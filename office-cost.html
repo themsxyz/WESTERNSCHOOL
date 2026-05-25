@@ -16,687 +16,819 @@
   <!-- Keep this blank. Add custom page content here later if needed. -->
   <main data-wsc-page-content>
     
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --navy: #0b2545;
-      --navy-2: #12385d;
-      --blue: #1d4f78;
-      --blue-soft: #e9f1f8;
-      --blue-gray: #eff4f8;
-      --slate: #334155;
-      --muted: #64748b;
-      --line: #d8e2ea;
-      --bg: #f5f8fb;
-      --card: #ffffff;
-      --black: #0f172a;
-      --success: #166534;
-      --success-bg: #ecfdf3;
-      --danger: #b91c1c;
-      --danger-bg: #fff1f2;
-      --warning: #b45309;
-      --warning-bg: #fff7ed;
-      --radius: 12px;
-      --shadow: 0 8px 22px rgba(15, 23, 42, 0.07);
-    }
-
-  
-
-    .bn {
-      font-family: "Noto Serif Bengali", serif;
-    }
-
-    .en {
-      font-family: Arial, sans-serif;
-      color: var(--muted);
-    }
-
-    .app {
+    .voucher.app {
       width: min(1240px, 94%);
-      margin: 22px auto 40px;
+      margin: 24px auto 44px;
+      color: var(--wsc-text);
+      font-family: var(--wsc-font-bn);
     }
 
-    .header {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+    .voucher .bn {
+      font-family: var(--wsc-font-bn);
+    }
+
+    .voucher .en {
+      font-family: var(--wsc-font-en);
+      color: var(--wsc-muted);
+    }
+
+    .voucher .header {
+      background: transparent;
+      border: 0;
+      box-shadow: none;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 18px;
-      padding: 22px;
-      border-top: 5px solid var(--navy);
+      gap: 20px;
+      padding: 18px 0 20px;
       align-items: center;
     }
 
-    .eyebrow {
-      color: var(--blue);
+    .voucher .eyebrow {
+      color: var(--wsc-primary);
       text-transform: uppercase;
-      letter-spacing: 0.8px;
-      font-size: 12px;
+      letter-spacing: 1.4px;
+      font-size: var(--wsc-text-xs);
       font-weight: 800;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
-    .header h1 {
-      color: var(--black);
-      font-size: 32px;
-      line-height: 1.15;
-      margin-bottom: 6px;
+    .voucher .header h1 {
+      color: var(--wsc-text);
+      font-size: var(--wsc-text-xl);
+      line-height: 1.14;
+      margin-bottom: 8px;
       font-weight: 800;
     }
 
-    .header p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-      font-weight: 600;
+    .voucher .header p {
+      color: var(--wsc-muted);
+      font-size: var(--wsc-text-sm);
+      line-height: 1.65;
+      font-weight: 500;
     }
 
-    .header-side {
+    .voucher .header-side {
       display: flex;
-      align-items: stretch;
+      align-items: center;
       gap: 10px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
 
-    .total-card {
+    .voucher .total-card {
       min-width: 190px;
-      border: 1px solid #c9d9e6;
-      background: var(--blue-soft);
-      border-radius: 10px;
-      padding: 14px 16px;
+      background: var(--wsc-bg);
+      border: 1px solid var(--wsc-border);
+      border-radius: var(--wsc-radius-lg);
+      padding: 14px 18px;
       text-align: left;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
     }
 
-    .total-card span {
+    .voucher .total-card span {
       display: block;
-      color: var(--muted);
-      font-size: 13px;
+      color: var(--wsc-muted);
+      font-size: var(--wsc-text-xs);
       font-weight: 800;
       margin-bottom: 6px;
     }
 
-    .total-card strong {
-      color: var(--navy);
+    .voucher .total-card strong {
+      color: var(--wsc-text);
       font-size: 30px;
       line-height: 1;
       font-weight: 900;
     }
 
-    .toolbar {
-      margin-top: 16px;
+    .voucher .toolbar {
+      margin-top: 14px;
     }
 
-    .message {
+    .voucher .message {
       display: none;
-      padding: 12px 14px;
-      border-radius: 10px;
-      font-size: 14px;
+      padding: 12px 15px;
+      border-radius: var(--wsc-radius-md);
+      font-size: var(--wsc-text-sm);
       font-weight: 700;
-      line-height: 1.5;
-      border: 1px solid var(--line);
-      background: var(--card);
+      line-height: 1.6;
+      border: 1px solid var(--wsc-border);
+      background: var(--wsc-bg);
     }
 
-    .message.info {
+    .voucher .message.info {
       display: block;
-      background: var(--blue-soft);
-      border-color: #c9d9e6;
-      color: var(--navy);
+      background: var(--wsc-bg);
+      border-color: #bfdbfe;
+      color: var(--wsc-primary-dark);
     }
 
-    .message.success {
+    .voucher .message.success {
       display: block;
-      background: var(--success-bg);
+      background: var(--wsc-bg);
       border-color: #bbf7d0;
-      color: var(--success);
+      color: var(--wsc-success);
     }
 
-    .message.error {
+    .voucher .message.error {
       display: block;
-      background: var(--danger-bg);
-      border-color: #fecdd3;
-      color: var(--danger);
+      background: #fef2f2;
+      border-color: #fecaca;
+      color: var(--wsc-danger);
     }
 
-    .backend-warning {
+
+    .voucher .backend-warning {
       display: none;
       margin-top: 12px;
       background: var(--warning-bg);
       color: var(--warning);
       border: 1px solid #fed7aa;
-      padding: 13px 14px;
-      border-radius: 10px;
-      font-size: 14px;
+      padding: 13px 15px;
+      border-radius: var(--wsc-radius-md);
+      font-size: var(--wsc-text-sm);
       font-weight: 700;
       line-height: 1.6;
     }
 
-    .backend-warning.show {
+    .voucher .backend-warning.show {
       display: block;
     }
 
-    .btn,
-    button,
-    .link-btn {
+    .voucher .btn,
+    .voucher button,
+    .voucher .link-btn {
       border: 0;
       outline: 0;
-      border-radius: 9px;
-      padding: 11px 15px;
-      background: var(--navy);
+      border-radius: var(--wsc-radius-pill);
+      padding: 0 18px;
+      background: #000000;
       color: #ffffff;
-      font-size: 14px;
+      font-size: var(--wsc-text-sm);
       font-weight: 800;
       cursor: pointer;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
+      gap: 8px;
       min-height: 42px;
-      transition: 0.15s ease;
+      transition: transform var(--wsc-transition), box-shadow var(--wsc-transition);
       white-space: nowrap;
-      font-family: Arial, "Noto Serif Bengali", serif;
+      font-family: var(--wsc-font-bn);
+      box-shadow: none;
     }
 
-    button:hover,
-    .link-btn:hover {
-      background: var(--navy-2);
-      transform: translateY(-1px);
+    .voucher .btn:hover,
+    .voucher button:hover,
+    .voucher .link-btn:hover {
+      background: #000000;
+      color: #ffffff;
+      transform: translateY(-1px) scale(1.025);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
     }
 
-    .secondary {
-      background: #ffffff;
-      color: var(--navy);
-      border: 1px solid #b9cddd;
+    .voucher .secondary {
+      min-height: 34px;
+      padding: 0 14px;
+      background: var(--wsc-bg);
+      color: var(--wsc-text);
+      border: 1px solid var(--wsc-border);
+      border-radius: var(--wsc-radius-pill);
+      box-shadow: none;
     }
 
-    .secondary:hover {
-      background: var(--blue-soft);
-      color: var(--navy);
+    .voucher .secondary:hover {
+      background: var(--wsc-bg);
+      color: var(--wsc-text);
+      border-color: var(--wsc-border);
+      transform: translateY(-1px) scale(1.025);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
     }
 
-    .primary-soft {
-      background: var(--blue);
+    .voucher .primary-soft {
+      background: #000000;
       color: #ffffff;
     }
 
-    .primary-soft:hover {
-      background: var(--navy-2);
+    .voucher .primary-soft:hover {
+      background: #000000;
+      color: #ffffff;
     }
 
-    .kpi-grid {
+    .voucher .refresh-btn {
+      width: 38px;
+      height: 38px;
+      min-height: 38px;
+      padding: 0;
+      flex: 0 0 38px;
+    }
+
+    .voucher .refresh-btn svg,
+    .voucher .calendar-btn svg,
+    .voucher .calendar-nav svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .voucher .kpi-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 14px;
       margin-top: 16px;
     }
 
-    .kpi {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 15px;
-      border-left: 4px solid var(--navy);
+    .voucher .kpi {
+      background: var(--wsc-bg);
+      border: 1px solid var(--wsc-border);
+      border-radius: var(--wsc-radius-lg);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
+      padding: 16px;
     }
 
-    .kpi:nth-child(even) {
-      border-left-color: var(--blue);
-    }
-
-    .kpi span {
-      color: var(--muted);
-      font-size: 12px;
+    .voucher .kpi span {
+      color: var(--wsc-muted);
+      font-size: var(--wsc-text-xs);
       text-transform: uppercase;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.55px;
       font-weight: 800;
       display: block;
-      margin-bottom: 7px;
-      font-family: Arial, sans-serif;
+      margin-bottom: 8px;
+      font-family: var(--wsc-font-en);
     }
 
-    .kpi strong {
-      color: var(--black);
-      font-size: 18px;
-      line-height: 1.35;
+    .voucher .kpi strong {
+      color: var(--wsc-text);
+      font-size: var(--wsc-text-md);
+      line-height: 1.4;
       font-weight: 800;
     }
 
-    .report-controls {
+    .voucher .report-controls {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
       margin-top: 16px;
     }
 
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 18px;
+    .voucher .panel,
+    .voucher .report-card,
+    .voucher .pdf-box,
+    .voucher .stat {
+      background: var(--wsc-bg);
+      border: 1px solid var(--wsc-border);
+      border-radius: var(--wsc-radius-lg);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.05);
     }
 
-    .panel-title {
+    .voucher .panel {
+      padding: 20px;
+    }
+
+    .voucher .panel-title {
       display: flex;
       justify-content: space-between;
       gap: 12px;
       align-items: flex-start;
-      margin-bottom: 14px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
+      margin-bottom: 16px;
+      padding-bottom: 13px;
+      border-bottom: 1px solid var(--wsc-border);
     }
 
-    .panel-title h2 {
-      color: var(--black);
-      font-size: 18px;
+    .voucher .panel-title h2 {
+      color: var(--wsc-text);
+      font-size: var(--wsc-text-md);
       line-height: 1.3;
       font-weight: 800;
     }
 
-    .panel-title small {
+    .voucher .panel-title small {
       display: block;
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 3px;
-      font-weight: 700;
-      font-family: Arial, sans-serif;
+      color: var(--wsc-muted);
+      font-size: var(--wsc-text-xs);
+      margin-top: 4px;
+      font-weight: 600;
+      font-family: var(--wsc-font-en);
     }
 
-    .tag {
-      background: var(--blue-soft);
-      color: var(--blue);
-      border: 1px solid #c9d9e6;
-      padding: 5px 9px;
-      border-radius: 999px;
+    .voucher .tag {
+      background: var(--wsc-surface-soft);
+      color: var(--wsc-primary-dark);
+      border: 1px solid var(--wsc-border);
+      padding: 6px 10px;
+      border-radius: var(--wsc-radius-pill);
       font-size: 11px;
       font-weight: 800;
       white-space: nowrap;
-      font-family: Arial, sans-serif;
+      font-family: var(--wsc-font-en);
     }
 
-    .form-row {
+    .voucher .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 11px;
-      margin-bottom: 12px;
+      gap: 12px;
+      margin-bottom: 14px;
     }
 
-    label {
+    .voucher label {
       display: block;
-      color: var(--black);
-      font-size: 13px;
+      color: var(--wsc-text);
+      font-size: var(--wsc-text-sm);
       font-weight: 800;
-      margin-bottom: 6px;
+      margin-bottom: 7px;
     }
 
-    label small {
+    .voucher label small {
       display: block;
-      color: var(--muted);
-      font-weight: 700;
-      margin-top: 2px;
-      font-family: Arial, sans-serif;
+      color: var(--wsc-muted);
+      font-weight: 600;
+      margin-top: 3px;
+      font-family: var(--wsc-font-en);
     }
 
-    input[type="date"] {
+    .voucher input[type="text"],
+    .voucher .select-trigger {
       width: 100%;
-      height: 44px;
-      border: 1px solid #cbd8e3;
-      border-radius: 9px;
-      background: #ffffff;
-      color: var(--black);
-      padding: 9px 11px;
-      font-size: 14px;
+      height: 50px;
+      background: var(--wsc-bg);
+      color: var(--wsc-text);
+      border: 1px solid var(--wsc-border);
+      border-radius: var(--wsc-radius-pill);
+      padding: 0 18px;
+      font-size: var(--wsc-text-sm);
       outline: none;
-      font-family: Arial, sans-serif;
+      box-shadow: none;
+      transition: border-color var(--wsc-transition), box-shadow var(--wsc-transition);
+      font-family: var(--wsc-font-en);
     }
 
-    input[type="date"]:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(29, 79, 120, 0.12);
+    .voucher input[type="text"]:focus,
+    .voucher .select-trigger:focus {
+      border-color: var(--wsc-primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
     }
 
-    .custom-select {
+    .voucher .custom-select {
       position: relative;
       width: 100%;
     }
 
-    .select-trigger {
-      width: 100%;
-      height: 44px;
-      background: #ffffff;
-      color: var(--black);
-      border: 1px solid #cbd8e3;
-      border-radius: 9px;
-      padding: 0 12px;
+    .voucher .select-trigger {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
       font-weight: 800;
-      font-size: 14px;
       text-align: left;
-      box-shadow: none;
     }
 
-    .select-trigger:hover {
-      background: #ffffff;
-      color: var(--black);
-      border-color: var(--blue);
+    .voucher .select-trigger:hover {
+      background: var(--wsc-bg);
+      color: var(--wsc-text);
+      border-color: var(--wsc-primary);
       transform: none;
-      box-shadow: 0 0 0 3px rgba(29, 79, 120, 0.08);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.06);
     }
 
-    .select-trigger:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(29, 79, 120, 0.12);
-    }
-
-    .select-value {
+    .voucher .select-value {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      color: var(--black);
+      color: var(--wsc-text);
     }
 
-    .select-arrow {
-      width: 10px;
-      height: 10px;
-      border-right: 2px solid var(--navy);
-      border-bottom: 2px solid var(--navy);
+    .voucher .select-arrow {
+      width: 9px;
+      height: 9px;
+      border-right: 2px solid var(--wsc-text);
+      border-bottom: 2px solid var(--wsc-text);
       transform: rotate(45deg) translateY(-2px);
-      transition: 0.15s ease;
+      transition: transform var(--wsc-transition);
       flex: 0 0 auto;
     }
 
-    .custom-select.open .select-arrow {
+    .voucher .custom-select.open .select-arrow {
       transform: rotate(225deg) translateY(-2px);
     }
 
-    .select-menu {
+    .voucher .select-menu {
       position: absolute;
       left: 0;
       right: 0;
-      top: calc(100% + 6px);
-      background: #ffffff;
-      border: 1px solid #cbd8e3;
-      border-radius: 10px;
-      box-shadow: 0 18px 34px rgba(15, 23, 42, 0.14);
+      top: calc(100% + 8px);
+      background: var(--wsc-bg);
+      border: 1px solid var(--wsc-border);
+      border-radius: var(--wsc-radius-lg);
+      box-shadow: 0 18px 42px rgba(15, 23, 42, 0.13);
       overflow: hidden;
       z-index: 50;
-      max-height: 230px;
+      max-height: 240px;
       overflow-y: auto;
       display: none;
+      padding: 6px;
     }
 
-    .custom-select.open .select-menu {
+    .voucher .custom-select.open .select-menu {
       display: block;
     }
 
-    .select-option {
+    .voucher .select-option {
       width: 100%;
-      background: #ffffff;
-      color: var(--black);
+      background: var(--wsc-bg);
+      color: var(--wsc-text);
       border: 0;
-      border-radius: 0;
-      min-height: 40px;
-      padding: 10px 12px;
+      border-radius: var(--wsc-radius-pill);
+      min-height: 38px;
+      padding: 9px 12px;
       justify-content: flex-start;
       font-weight: 800;
       text-align: left;
       box-shadow: none;
     }
 
-    .select-option:hover {
-      background: var(--blue-soft);
-      color: var(--navy);
+    .voucher .select-option:hover {
+      background: var(--wsc-surface-soft);
+      color: var(--wsc-primary-dark);
       transform: none;
       box-shadow: none;
     }
 
-    .select-option.selected {
-      background: var(--navy);
+    .voucher .select-option.selected {
+      background: #000000;
       color: #ffffff;
     }
 
-    .button-row {
-      display: flex;
-      gap: 9px;
-      flex-wrap: wrap;
-      margin-top: 12px;
+    .voucher .date-picker {
+      position: relative;
+      width: 100%;
     }
 
-    .pdf-box {
+    .voucher .date-picker input {
+      cursor: pointer;
+      padding-right: 50px;
+    }
+
+    .voucher .calendar-btn {
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      width: 38px;
+      height: 38px;
+      min-height: 38px;
+      padding: 0;
+      background: #000000;
+      color: #ffffff;
+      border-radius: var(--wsc-radius-pill);
+      box-shadow: none;
+    }
+
+    .voucher .calendar-btn:hover {
+      background: #000000;
+      color: #ffffff;
+      transform: scale(1.03);
+      box-shadow: none;
+    }
+
+    .voucher .calendar-popup {
       display: none;
-      margin-top: 16px;
-      background: #ffffff;
-      border: 1px solid var(--line);
-      border-left: 4px solid var(--success);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 15px;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: 310px;
+      background: var(--wsc-bg);
+      border: 1px solid var(--wsc-border);
+      border-radius: var(--wsc-radius-lg);
+      box-shadow: 0 24px 54px rgba(15, 23, 42, 0.16);
+      padding: 14px;
+      z-index: 80;
+    }
+
+    .voucher .calendar-popup.show {
+      display: block;
+    }
+
+    .voucher .calendar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .voucher .calendar-head strong {
+      color: var(--wsc-text);
+      font-size: var(--wsc-text-sm);
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .voucher .calendar-nav {
+      width: 34px;
+      height: 34px;
+      min-height: 34px;
+      padding: 0;
+      background: var(--wsc-surface-soft);
+      color: var(--wsc-text);
+      box-shadow: none;
+    }
+
+    .voucher .calendar-nav:hover {
+      background: var(--wsc-surface-soft);
+      color: var(--wsc-text);
+      transform: scale(1.04);
+      box-shadow: none;
+    }
+
+    .voucher .calendar-week,
+    .voucher .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+    }
+
+    .voucher .calendar-week {
+      margin-bottom: 6px;
+    }
+
+    .voucher .calendar-week span {
+      color: var(--wsc-muted);
+      font-size: 11px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .voucher .calendar-day {
+      min-height: 34px;
+      height: 34px;
+      padding: 0;
+      background: var(--wsc-surface-soft);
+      color: var(--wsc-text);
+      border: 1px solid transparent;
+      border-radius: var(--wsc-radius-pill);
+      box-shadow: none;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .voucher .calendar-day:hover {
+      background: var(--wsc-surface-soft);
+      color: var(--wsc-text);
+      transform: scale(1.04);
+      box-shadow: none;
+    }
+
+    .voucher .calendar-day.today {
+      border-color: var(--wsc-primary);
+      color: var(--wsc-primary-dark);
+    }
+
+    .voucher .calendar-day.selected {
+      background: #000000;
+      color: #ffffff;
+      border-color: #000000;
+    }
+
+    .voucher .calendar-day.muted {
+      color: var(--wsc-muted);
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .voucher .button-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .voucher .pdf-box {
+      display: none;
+      margin-top: 18px;
+      border-left: 4px solid var(--wsc-success);
+      padding: 16px;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
       flex-wrap: wrap;
     }
 
-    .pdf-box.show {
+    .voucher .pdf-box.show {
       display: flex;
     }
 
-    .pdf-box strong {
-      color: var(--success);
-      font-size: 14px;
+    .voucher .pdf-box strong {
+      color: var(--wsc-success);
+      font-size: var(--wsc-text-sm);
     }
 
-    .report-card {
-      margin-top: 16px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+    .voucher .report-card {
+      margin-top: 18px;
       padding: 20px;
     }
 
-    .empty {
+    .voucher .empty {
       text-align: center;
-      color: var(--muted);
-      font-size: 15px;
+      color: var(--wsc-muted);
+      font-size: var(--wsc-text-base);
       font-weight: 800;
-      padding: 40px 12px;
-      line-height: 1.6;
+      padding: 44px 12px;
+      line-height: 1.7;
     }
 
-    .report-head {
+    .voucher .report-head {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 16px;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 16px;
-      margin-bottom: 16px;
+      gap: 18px;
+      border-bottom: 1px solid var(--wsc-border);
+      padding-bottom: 18px;
+      margin-bottom: 18px;
     }
 
-    .report-head h2 {
-      color: var(--black);
-      font-size: 24px;
+    .voucher .report-head h2 {
+      color: var(--wsc-text);
+      font-size: 25px;
       line-height: 1.35;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
+      font-weight: 800;
     }
 
-    .report-head p {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
+    .voucher .report-head p {
+      color: var(--wsc-muted);
+      font-size: var(--wsc-text-sm);
+      line-height: 1.6;
     }
 
-    .report-meta {
+    .voucher .report-meta {
       text-align: right;
       color: var(--slate);
-      font-size: 13px;
-      line-height: 1.6;
-      min-width: 210px;
-      font-family: Arial, sans-serif;
+      font-size: var(--wsc-text-sm);
+      line-height: 1.7;
+      min-width: 220px;
+      font-family: var(--wsc-font-en);
     }
 
-    .stats {
+    .voucher .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 14px;
+      margin-bottom: 18px;
     }
 
-    .stat {
-      background: var(--blue-gray);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 14px;
+    .voucher .stat {
+      padding: 15px;
     }
 
-    .stat span {
-      color: var(--muted);
-      font-size: 12px;
+    .voucher .stat span {
+      color: var(--wsc-muted);
+      font-size: var(--wsc-text-xs);
       font-weight: 800;
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 7px;
       text-transform: uppercase;
-      letter-spacing: 0.25px;
-      font-family: Arial, sans-serif;
+      letter-spacing: 0.35px;
+      font-family: var(--wsc-font-en);
     }
 
-    .stat strong {
-      color: var(--navy);
-      font-size: 20px;
+    .voucher .stat strong {
+      color: var(--wsc-text);
+      font-size: 21px;
       line-height: 1.3;
     }
 
-    .section-title {
-      color: var(--black);
-      font-size: 17px;
-      margin: 20px 0 10px;
-      padding-left: 9px;
-      border-left: 4px solid var(--blue);
+    .voucher .section-title {
+      color: var(--wsc-text);
+      font-size: var(--wsc-text-md);
+      margin: 22px 0 12px;
+      padding-left: 10px;
+      border-left: 4px solid var(--wsc-primary);
       line-height: 1.4;
+      font-weight: 800;
     }
 
-    .table-wrap {
-      border: 1px solid var(--line);
-      border-radius: 10px;
+    .voucher .table-wrap {
+      border: 1px solid var(--wsc-border);
+      border-radius: var(--wsc-radius-lg);
       overflow-x: auto;
+      background: var(--wsc-surface-soft);
     }
 
-    table {
+    .voucher table {
       border-collapse: collapse;
       width: 100%;
       min-width: 720px;
-      background: #ffffff;
+      background: var(--wsc-surface-soft);
     }
 
-    th {
-      background: var(--navy);
-      color: #ffffff;
-      padding: 12px;
+    .voucher th {
+      background: var(--wsc-surface);
+      color: var(--wsc-text);
+      padding: 13px;
       text-align: left;
-      font-size: 13px;
+      font-size: var(--wsc-text-sm);
       white-space: nowrap;
-      font-family: Arial, sans-serif;
+      font-family: var(--wsc-font-en);
+      font-weight: 900;
+      border-bottom: 1px solid var(--wsc-border);
     }
 
-    td {
-      padding: 11px 12px;
-      border-bottom: 1px solid #e9eef3;
-      color: var(--black);
-      font-size: 14px;
+    .voucher td {
+      padding: 12px 13px;
+      border-bottom: 1px solid #edf2f7;
+      color: var(--wsc-text);
+      font-size: var(--wsc-text-sm);
       vertical-align: top;
-    }
-
-    tbody tr:nth-child(even) {
-      background: #f8fafc;
-    }
-
-    tbody tr:hover {
-      background: var(--blue-soft);
-    }
-
-    .amount {
-      display: block;
-      text-align: right;
-      font-weight: 800;
-      color: var(--navy);
-      white-space: nowrap;
-      font-family: Arial, sans-serif;
-    }
-
-    .words-box {
-      margin-top: 12px;
-      padding: 13px 14px;
-      border-radius: 10px;
-      background: var(--blue-soft);
-      border: 1px solid #c9d9e6;
-      color: var(--slate);
-      font-weight: 700;
       line-height: 1.6;
     }
 
-    .chart-area {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 20px;
-      align-items: center;
-      background: #ffffff;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 16px;
-      margin-top: 10px;
+    .voucher tbody tr:nth-child(even) {
+      background: var(--wsc-surface-soft);
     }
 
-    .pie {
+    .voucher tbody tr:hover {
+      background: var(--wsc-surface-soft);
+    }
+
+    .voucher .amount {
+      display: block;
+      text-align: right;
+      font-weight: 800;
+      color: var(--wsc-text);
+      white-space: nowrap;
+      font-family: var(--wsc-font-en);
+    }
+
+    .voucher .words-box {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: var(--wsc-radius-lg);
+      background: #000000;
+      color: var(--slate);
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
+    .voucher .chart-area {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 22px;
+      align-items: center;
+      background: transparent;
+      border: 1px solid var(--wsc-border);
+      border-radius: var(--wsc-radius-lg);
+      padding: 18px;
+      margin-top: 12px;
+    }
+
+    .voucher .pie {
       width: 250px;
       height: 250px;
       border-radius: 50%;
       border: 8px solid #f8fafc;
-      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.10);
-      background: #dbe5ec;
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.10);
+      background: #dbeafe;
       margin: auto;
     }
 
-    .legend {
+    .voucher .legend {
       display: grid;
-      gap: 8px;
+      gap: 9px;
     }
 
-    .legend-item {
+    .voucher .legend-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      border: 1px solid var(--line);
-      border-radius: 9px;
-      padding: 9px 10px;
-      background: #ffffff;
+      border: 1px solid var(--wsc-border);
+      border-radius: var(--wsc-radius-md);
+      padding: 10px 12px;
+      background: var(--wsc-surface-soft);
     }
 
-    .legend-left {
+    .voucher .legend-left {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
       min-width: 0;
     }
 
-    .dot {
+    .voucher .dot {
       width: 12px;
       height: 12px;
       border-radius: 50%;
       flex: 0 0 auto;
     }
 
-    .legend-name {
+    .voucher .legend-name {
       font-weight: 800;
       color: var(--slate);
       white-space: nowrap;
@@ -704,41 +836,79 @@
       text-overflow: ellipsis;
     }
 
-    .legend-item strong {
-      color: var(--navy);
+    .voucher .legend-item strong {
+      color: var(--wsc-text);
       white-space: nowrap;
-      font-family: Arial, sans-serif;
+      font-family: var(--wsc-font-en);
     }
 
     @media (max-width: 980px) {
-      .header,
-      .kpi-grid,
-      .report-controls,
-      .report-head,
-      .stats,
-      .chart-area {
+      .voucher .header,
+      .voucher .kpi-grid,
+      .voucher .report-controls,
+      .voucher .report-head,
+      .voucher .stats,
+      .voucher .chart-area {
         grid-template-columns: 1fr;
       }
 
-      .header-side,
-      .total-card,
-      .report-meta {
+      .voucher .header-side,
+      .voucher .total-card,
+      .voucher .report-meta {
         text-align: left;
         justify-content: flex-start;
       }
 
-      .button-row {
+      .voucher .button-row {
         flex-direction: column;
       }
 
-      button,
-      .link-btn {
+      .voucher button:not(.refresh-btn):not(.calendar-btn):not(.calendar-nav):not(.calendar-day),
+      .voucher .link-btn {
         width: 100%;
+      }
+
+      .voucher .calendar-popup {
+        left: 0;
+        right: auto;
+        width: min(310px, 100%);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .voucher.app {
+        width: min(100% - 24px, 1240px);
+        margin-top: 16px;
+      }
+
+      .voucher .header,
+      .voucher .panel,
+      .voucher .report-card {
+        padding: 16px;
+        border-radius: var(--wsc-radius-md);
+      }
+
+      .voucher .header {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .voucher .header h1 {
+        font-size: 23px;
+      }
+
+      .voucher .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .voucher .pie {
+        width: 210px;
+        height: 210px;
       }
     }
   </style>
 
-  <main class="app">
+  <main class="voucher app">
     <section class="header">
       <div>
         <div class="eyebrow">Dashboard</div>
@@ -752,7 +922,14 @@
           <span>Total Voucher</span>
           <strong id="voucherCount">০</strong>
         </div>
-        <button class="secondary" onclick="loadOptions()">Refresh Data</button>
+        <button class="secondary refresh-btn" onclick="loadOptions()" aria-label="Refresh Data" title="Refresh Data">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12a9 9 0 0 1-15.5 6.2"></path>
+            <path d="M3 12A9 9 0 0 1 18.5 5.8"></path>
+            <path d="M18 2v4h-4"></path>
+            <path d="M6 22v-4h4"></path>
+          </svg>
+        </button>
       </div>
     </section>
 
@@ -839,7 +1016,18 @@
 
         <div>
           <label for="dateInput">তারিখ <small>Select date</small></label>
-          <input id="dateInput" type="date" />
+          <div class="date-picker">
+            <input id="dateInput" type="text" readonly inputmode="none" onclick="toggleCalendar(event)" aria-haspopup="dialog" aria-expanded="false" />
+            <button type="button" class="calendar-btn" onclick="toggleCalendar(event)" aria-label="Open calendar" title="Open calendar">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 2v4"></path>
+                <path d="M16 2v4"></path>
+                <path d="M3 10h18"></path>
+                <rect x="3" y="4" width="18" height="18" rx="3"></rect>
+              </svg>
+            </button>
+            <div id="calendarPopup" class="calendar-popup" role="dialog" aria-label="Calendar" onclick="event.stopPropagation()"></div>
+          </div>
         </div>
 
         <div class="button-row">
@@ -865,6 +1053,8 @@
       monthlyYear: new Date().getFullYear(),
       year: new Date().getFullYear()
     };
+
+    let calendarViewDate = new Date();
 
     const MONTHS = [
       { value: 1, label: "জানুয়ারি / January" },
@@ -980,14 +1170,123 @@
 
     function closeDropdownsOnOutsideClick() {
       closeAllDropdowns(null);
+      closeCalendar();
+    }
+
+    function toggleCalendar(event) {
+      if (event) event.stopPropagation();
+
+      const popup = document.getElementById("calendarPopup");
+      if (!popup) return;
+
+      closeAllDropdowns(null);
+      renderCalendar();
+      popup.classList.toggle("show");
+    }
+
+    function closeCalendar() {
+      const popup = document.getElementById("calendarPopup");
+      if (popup) popup.classList.remove("show");
+    }
+
+    function changeCalendarMonth(event, direction) {
+      if (event) event.stopPropagation();
+      calendarViewDate = new Date(calendarViewDate.getFullYear(), calendarViewDate.getMonth() + direction, 1);
+      renderCalendar(calendarViewDate);
+    }
+
+    function chooseCalendarDate(event, year, month, day) {
+      if (event) event.stopPropagation();
+
+      const pickedDate = new Date(year, month, day);
+      document.getElementById("dateInput").value = formatDateValue(pickedDate);
+      calendarViewDate = new Date(year, month, 1);
+
+      renderCalendar(calendarViewDate);
+      closeCalendar();
+    }
+
+    function renderCalendar(viewDate) {
+      const popup = document.getElementById("calendarPopup");
+      const input = document.getElementById("dateInput");
+      if (!popup || !input) return;
+
+      if (viewDate) {
+        calendarViewDate = new Date(viewDate.getFullYear(), viewDate.getMonth(), 1);
+      }
+
+      const selectedDate = parseDateValue(input.value) || new Date();
+      const today = new Date();
+      const year = calendarViewDate.getFullYear();
+      const month = calendarViewDate.getMonth();
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const previousMonthDays = new Date(year, month, 0).getDate();
+      const monthLabel = MONTHS[month] ? MONTHS[month].label : "";
+      const weekDays = ["রবি", "সোম", "মঙ্গল", "বুধ", "বৃহ", "শুক্র", "শনি"];
+      const cells = [];
+
+      for (let i = firstDay - 1; i >= 0; i--) {
+        cells.push(`<button type="button" class="calendar-day muted" disabled>${toBanglaNumber(previousMonthDays - i)}</button>`);
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const isSelected = selectedDate.getFullYear() === year && selectedDate.getMonth() === month && selectedDate.getDate() === day;
+        const isToday = today.getFullYear() === year && today.getMonth() === month && today.getDate() === day;
+
+        cells.push(`
+          <button type="button" class="calendar-day ${isSelected ? "selected" : ""} ${isToday ? "today" : ""}" onclick="chooseCalendarDate(event, ${year}, ${month}, ${day})">
+            ${toBanglaNumber(day)}
+          </button>
+        `);
+      }
+
+      while (cells.length % 7 !== 0) {
+        cells.push(`<button type="button" class="calendar-day muted" disabled></button>`);
+      }
+
+      popup.innerHTML = `
+        <div class="calendar-head">
+          <button type="button" class="calendar-nav" onclick="changeCalendarMonth(event, -1)" aria-label="Previous month">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6"></path>
+            </svg>
+          </button>
+          <strong>${escapeHtml(monthLabel)} ${toBanglaNumber(year)}</strong>
+          <button type="button" class="calendar-nav" onclick="changeCalendarMonth(event, 1)" aria-label="Next month">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 18l6-6-6-6"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="calendar-week">
+          ${weekDays.map(day => `<span>${day}</span>`).join("")}
+        </div>
+        <div class="calendar-days">
+          ${cells.join("")}
+        </div>
+      `;
+    }
+
+    function parseDateValue(value) {
+      const match = String(value || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (!match) return null;
+
+      return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+    }
+
+    function formatDateValue(date) {
+      const yyyy = date.getFullYear();
+      const mm = String(date.getMonth() + 1).padStart(2, "0");
+      const dd = String(date.getDate()).padStart(2, "0");
+      return `${yyyy}-${mm}-${dd}`;
     }
 
     function setTodayDate() {
       const today = new Date();
-      const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, "0");
-      const dd = String(today.getDate()).padStart(2, "0");
-      document.getElementById("dateInput").value = `${yyyy}-${mm}-${dd}`;
+      calendarViewDate = new Date(today.getFullYear(), today.getMonth(), 1);
+      document.getElementById("dateInput").value = formatDateValue(today);
+      renderCalendar(calendarViewDate);
     }
 
     function callAppsScript(action, params = {}) {
@@ -1504,6 +1803,7 @@
       return escapeHtml(value).replace(/`/g, "&#096;");
     }
   </script>
+
 </main>
 
   <!-- JS files -->

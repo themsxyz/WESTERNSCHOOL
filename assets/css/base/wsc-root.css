@@ -64,7 +64,7 @@
 }
 
 html[data-theme="dark"] {
-  --wsc-bg: #0b1220;
+  --wsc-bg: #101011;
   --wsc-surface: #101827;
   --wsc-surface-soft: #172033;
   --wsc-text: #e5edf8;
@@ -77,7 +77,7 @@ html[data-theme="dark"] {
   --wsc-success: #4ade80;
   --wsc-shadow: 0 14px 40px rgba(0, 0, 0, 0.26);
 
-  --navy: #dbeafe;
+  --navy: #010e1e;
   --navy-2: #bfdbfe;
   --blue: #60a5fa;
   --blue-soft: #172033;
