@@ -4,22 +4,22 @@
    Menu names/links come from assets/js/wsc-config.js
 
    Update included:
-   - Navbar transparent glass style
-   - Gap between navbar and sidebar
-   - 2-line Apple style menu icon
-   - Sidebar collapsed pill design
-   - Other components remain unchanged
-   ============================================================ */
-/* ============================================================
-   DARK MODE: Sidebar image SVG icons white
-   Works for SVG used through <img>
+   - Sidebar width slightly increased
+   - Sidebar title/name shows fully in expanded mode
+   - Expanded sidebar = cross menu icon
+   - Collapsed sidebar = 2-line menu icon
+   - School logo/name stays in sidebar when expanded
+   - School logo appears only in navbar when sidebar is collapsed
+   - Navbar left area has live clock/date/weather
    ============================================================ */
 
 html[data-theme="dark"] .wsc-menu-img-icon {
   filter: brightness(0) invert(1);
 }
+
 .wsc-shell {
   min-height: 100vh;
+  --wsc-sidebar-expanded-width: 315px;
 }
 
 /* ============================================================
@@ -31,7 +31,7 @@ html[data-theme="dark"] .wsc-menu-img-icon {
   top: 16px;
   z-index: 80;
   height: var(--wsc-nav-height);
-  margin-left: calc(var(--wsc-sidebar-width) + 32px);
+  margin-left: calc(var(--wsc-sidebar-expanded-width) + 32px);
   margin-right: 16px;
 
   display: grid;
@@ -42,12 +42,25 @@ html[data-theme="dark"] .wsc-menu-img-icon {
 
   background: transparent;
   border: none;
-  border-radius: 0;
+  border-radius: 999px;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   box-shadow: none;
 
-  transition: margin-left var(--wsc-transition), background var(--wsc-transition);
+  transition:
+    margin-left var(--wsc-transition),
+    background 0.3s ease,
+    backdrop-filter 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.wsc-navbar.scrolled {
+  background: rgba(255, 255, 255, 0.46);
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 html[data-theme="dark"] .wsc-navbar {
@@ -58,8 +71,88 @@ html[data-theme="dark"] .wsc-navbar {
   -webkit-backdrop-filter: none;
 }
 
+html[data-theme="dark"] .wsc-navbar.scrolled {
+  background: rgba(15, 23, 42, 0.52);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.34);
+}
+
 /* ============================================================
-   NAVBAR BRAND
+   NAVBAR LIVE INFO
+   ============================================================ */
+
+.wsc-live-info {
+  min-width: 260px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--wsc-text);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.wsc-navbar-logo-only {
+  display: none;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid var(--wsc-border);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+
+.wsc-navbar-logo-only img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  display: block;
+}
+
+html.wsc-sidebar-collapsed .wsc-navbar-logo-only {
+  display: inline-flex;
+}
+
+.wsc-live-time {
+  color: var(--wsc-text);
+  font-family: var(--wsc-font-en);
+  font-size: var(--wsc-text-base);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.wsc-live-date,
+.wsc-live-weather {
+  color: var(--wsc-muted);
+  font-family: var(--wsc-font-en);
+  font-size: var(--wsc-text-xs);
+  font-weight: 700;
+  padding: 5px 9px;
+  border: 1px solid var(--wsc-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.58);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html[data-theme="dark"] .wsc-live-date,
+html[data-theme="dark"] .wsc-live-weather {
+  background: rgba(15, 23, 42, 0.36);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+html[data-theme="dark"] .wsc-navbar-logo-only {
+  background: rgba(15, 23, 42, 0.56);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ============================================================
+   OLD NAVBAR BRAND SAFETY
    ============================================================ */
 
 .wsc-brand {
@@ -120,7 +213,7 @@ html[data-theme="dark"] .wsc-navbar {
   bottom: 16px;
   z-index: 90;
 
-  width: var(--wsc-sidebar-width);
+  width: var(--wsc-sidebar-expanded-width);
   height: calc(100vh - 32px);
   padding: 16px;
 
@@ -141,15 +234,69 @@ html[data-theme="dark"] .wsc-sidebar {
 }
 
 /* ============================================================
-   SIDEBAR TOP + 2 LINE MENU ICON
+   SIDEBAR TOP + BRAND + MENU ICON
    ============================================================ */
 
 .wsc-sidebar__top {
-  height: 48px;
+  min-height: 58px;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-bottom: 12px;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.wsc-sidebar-brand {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--wsc-text);
+  text-decoration: none;
+}
+
+.wsc-sidebar-brand__logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid var(--wsc-border);
+  padding: 4px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  flex: 0 0 auto;
+}
+
+.wsc-sidebar-brand__text {
+  display: grid;
+  line-height: 1.2;
+  min-width: 0;
+  flex: 1;
+}
+
+.wsc-sidebar-brand__bn {
+  color: var(--wsc-text);
+  font-size: var(--wsc-text-sm);
+  font-weight: 800;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+.wsc-sidebar-brand__en {
+  color: var(--wsc-muted);
+  font-family: var(--wsc-font-en);
+  font-size: var(--wsc-text-xs);
+  font-weight: 700;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .wsc-apple-menu {
@@ -169,6 +316,7 @@ html[data-theme="dark"] .wsc-sidebar {
 
   position: relative;
   font-size: 0;
+  flex: 0 0 auto;
 }
 
 html[data-theme="dark"] .wsc-apple-menu {
@@ -188,22 +336,63 @@ html[data-theme="dark"] .wsc-apple-menu:hover {
 
 .wsc-apple-menu::before,
 .wsc-apple-menu::after {
-  content: "";
+  display: none;
+}
+
+.wsc-apple-menu__line {
   position: absolute;
   left: 50%;
-  width: 18px;
+  width: 19px;
   height: 2px;
   border-radius: 999px;
   background: var(--wsc-text);
-  transform: translateX(-50%);
+  transform-origin: center;
+  transition:
+    top var(--wsc-transition),
+    bottom var(--wsc-transition),
+    transform var(--wsc-transition),
+    width var(--wsc-transition),
+    background var(--wsc-transition);
 }
 
-.wsc-apple-menu::before {
+/* Expanded sidebar = cross icon */
+.wsc-apple-menu__line--top {
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.wsc-apple-menu__line--bottom {
+  top: 50%;
+  bottom: auto;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Collapsed sidebar = 2-line icon */
+html.wsc-sidebar-collapsed .wsc-apple-menu__line--top {
   top: 17px;
+  width: 18px;
+  transform: translateX(-50%) rotate(0deg);
 }
 
-.wsc-apple-menu::after {
+html.wsc-sidebar-collapsed .wsc-apple-menu__line--bottom {
+  top: auto;
   bottom: 17px;
+  width: 18px;
+  transform: translateX(-50%) rotate(0deg);
+}
+
+/* Mobile open sidebar = cross icon */
+html.wsc-mobile-sidebar-open .wsc-apple-menu__line--top {
+  top: 50%;
+  width: 19px;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+html.wsc-mobile-sidebar-open .wsc-apple-menu__line--bottom {
+  top: 50%;
+  bottom: auto;
+  width: 19px;
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 /* ============================================================
@@ -211,7 +400,7 @@ html[data-theme="dark"] .wsc-apple-menu:hover {
    ============================================================ */
 
 .wsc-sidebar__nav {
-  height: calc(100vh - 112px);
+  height: calc(100vh - 126px);
   overflow-y: auto;
   display: grid;
   align-content: start;
@@ -297,7 +486,7 @@ html[data-theme="dark"] .wsc-menu-link.wsc-is-active {
    ============================================================ */
 
 .wsc-main {
-  margin-left: calc(var(--wsc-sidebar-width) + 16px);
+  margin-left: calc(var(--wsc-sidebar-expanded-width) + 16px);
   padding: 24px 16px 24px 24px;
   min-height: calc(100vh - var(--wsc-nav-height));
   transition: margin-left var(--wsc-transition);
@@ -327,11 +516,18 @@ html.wsc-sidebar-collapsed .wsc-main {
 
 html.wsc-sidebar-collapsed .wsc-sidebar__top {
   justify-content: center;
+  min-height: 48px;
+  height: 48px;
+}
+
+html.wsc-sidebar-collapsed .wsc-sidebar-brand {
+  display: none;
 }
 
 html.wsc-sidebar-collapsed .wsc-sidebar__nav {
   padding-right: 0;
   align-items: center;
+  height: calc(100vh - 112px);
 }
 
 html.wsc-sidebar-collapsed .wsc-menu-group {
@@ -368,6 +564,14 @@ html.wsc-sidebar-collapsed .wsc-menu-arrow {
     grid-template-columns: auto 1fr auto;
   }
 
+  .wsc-live-info {
+    min-width: 170px;
+  }
+
+  .wsc-live-weather {
+    display: none;
+  }
+
   .wsc-sidebar {
     top: 12px;
     left: 12px;
@@ -391,18 +595,25 @@ html.wsc-sidebar-collapsed .wsc-menu-arrow {
   }
 
   html.wsc-sidebar-collapsed .wsc-sidebar {
-    width: var(--wsc-sidebar-width);
+    width: var(--wsc-sidebar-expanded-width);
     border-radius: 28px;
     padding: 16px;
   }
 
   html.wsc-sidebar-collapsed .wsc-sidebar__top {
     justify-content: flex-start;
+    min-height: 58px;
+    height: auto;
+  }
+
+  html.wsc-sidebar-collapsed .wsc-sidebar-brand {
+    display: flex;
   }
 
   html.wsc-sidebar-collapsed .wsc-sidebar__nav {
     padding-right: 4px;
     align-items: stretch;
+    height: calc(100vh - 126px);
   }
 
   html.wsc-sidebar-collapsed .wsc-menu-group {
@@ -433,7 +644,12 @@ html.wsc-sidebar-collapsed .wsc-menu-arrow {
     padding: 12px;
   }
 
-  .wsc-brand__en {
+  .wsc-live-info {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .wsc-live-date {
     display: none;
   }
 
@@ -449,13 +665,12 @@ html.wsc-sidebar-collapsed .wsc-menu-arrow {
 }
 
 @media (max-width: 520px) {
-  .wsc-brand__logo {
+  .wsc-sidebar-brand__logo {
     width: 38px;
     height: 38px;
   }
 
-  .wsc-brand__bn {
-    max-width: 150px;
+  .wsc-sidebar-brand__bn {
     font-size: 14px;
   }
 
@@ -496,28 +711,4 @@ html.wsc-sidebar-collapsed .wsc-menu-arrow {
 [data-wsc-page-content] {
   position: relative;
   z-index: 1;
-}
-/* ============================================================
-   NAVBAR SCROLL GLASS EFFECT
-   ============================================================ */
-.wsc-navbar {
-  transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  box-shadow: none;
-}
-
-.wsc-navbar.scrolled {
-  background: rgba(255, 255, 255, 0.46);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-html[data-theme="dark"] .wsc-navbar.scrolled {
-  background: rgba(15, 23, 42, 0.52);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.34);
 }

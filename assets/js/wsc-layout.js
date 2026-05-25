@@ -22,6 +22,7 @@
   }
 
   let layoutEventsBound = false;
+  let liveClockTimer = null;
 
   function escapeHTML(value) {
     return String(value ?? "")
@@ -103,7 +104,18 @@
     return `
       <aside class="wsc-sidebar" data-wsc-sidebar>
         <div class="wsc-sidebar__top">
-          <button class="wsc-apple-menu" type="button" data-wsc-sidebar-toggle title="Menu" aria-label="Menu">☰</button>
+          <button class="wsc-apple-menu" type="button" data-wsc-sidebar-toggle title="Menu" aria-label="Menu">
+            <span class="wsc-apple-menu__line wsc-apple-menu__line--top" aria-hidden="true"></span>
+            <span class="wsc-apple-menu__line wsc-apple-menu__line--bottom" aria-hidden="true"></span>
+          </button>
+
+          <a class="wsc-sidebar-brand" href="index.html">
+            <img class="wsc-sidebar-brand__logo" src="${escapeHTML(cfg.logoUrl)}" alt="Logo">
+            <span class="wsc-sidebar-brand__text">
+              <span class="wsc-sidebar-brand__bn">${escapeHTML(cfg.schoolNameBn)}</span>
+              <span class="wsc-sidebar-brand__en">${escapeHTML(cfg.schoolNameEn)}</span>
+            </span>
+          </a>
         </div>
 
         <nav class="wsc-sidebar__nav">
@@ -135,13 +147,14 @@
 
     return `
       <header class="wsc-navbar" data-wsc-navbar>
-        <a class="wsc-brand" href="index.html">
-          <img class="wsc-brand__logo" src="${escapeHTML(cfg.logoUrl)}" alt="Logo">
-          <span class="wsc-brand__text">
-            <span class="wsc-brand__bn">${escapeHTML(cfg.schoolNameBn)}</span>
-            <span class="wsc-brand__en">${escapeHTML(cfg.schoolNameEn)}</span>
-          </span>
-        </a>
+        <div class="wsc-live-info" aria-label="Current date time and weather">
+          <a class="wsc-navbar-logo-only" href="index.html" aria-label="Home">
+            <img src="${escapeHTML(cfg.logoUrl)}" alt="Logo">
+          </a>
+          <span class="wsc-live-time" data-wsc-live-time>--:--</span>
+          <span class="wsc-live-date" data-wsc-live-date>Loading date</span>
+          <span class="wsc-live-weather" data-wsc-live-weather>Weather loading</span>
+        </div>
 
         <div class="wsc-search">
           <form class="wsc-search__form" data-wsc-search-form>
@@ -325,6 +338,101 @@
     return pageContent;
   }
 
+  function updateLiveClock() {
+    const timeEl = document.querySelector("[data-wsc-live-time]");
+    const dateEl = document.querySelector("[data-wsc-live-date]");
+
+    if (!timeEl || !dateEl) return;
+
+    const now = new Date();
+
+    timeEl.textContent = now.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true
+    });
+
+    dateEl.textContent = now.toLocaleDateString("en-US", {
+      weekday: "short",
+      day: "2-digit",
+      month: "short",
+      year: "numeric"
+    });
+  }
+
+  function weatherLabelFromCode(code) {
+    const weatherCode = Number(code);
+
+    if ([0].includes(weatherCode)) return "Clear";
+    if ([1, 2].includes(weatherCode)) return "Partly cloudy";
+    if ([3].includes(weatherCode)) return "Cloudy";
+    if ([45, 48].includes(weatherCode)) return "Fog";
+    if ([51, 53, 55, 56, 57].includes(weatherCode)) return "Drizzle";
+    if ([61, 63, 65, 66, 67, 80, 81, 82].includes(weatherCode)) return "Rain";
+    if ([71, 73, 75, 77, 85, 86].includes(weatherCode)) return "Snow";
+    if ([95, 96, 99].includes(weatherCode)) return "Thunderstorm";
+
+    return "Weather";
+  }
+
+  function setWeatherText(latitude, longitude, fallbackName) {
+    const weatherEl = document.querySelector("[data-wsc-live-weather]");
+    if (!weatherEl) return;
+
+    const endpoint = `https://api.open-meteo.com/v1/forecast?latitude=${encodeURIComponent(latitude)}&longitude=${encodeURIComponent(longitude)}&current=temperature_2m,weather_code&timezone=auto`;
+
+    fetch(endpoint)
+      .then(response => response.ok ? response.json() : Promise.reject(new Error("weather failed")))
+      .then(data => {
+        const current = data.current || {};
+        const temp = Math.round(Number(current.temperature_2m));
+        const label = weatherLabelFromCode(current.weather_code);
+
+        if (Number.isFinite(temp)) {
+          weatherEl.textContent = `${temp}°C · ${label}`;
+        } else {
+          weatherEl.textContent = fallbackName || "Weather unavailable";
+        }
+      })
+      .catch(() => {
+        weatherEl.textContent = fallbackName || "Weather unavailable";
+      });
+  }
+
+  function updateLiveWeather() {
+    const weatherEl = document.querySelector("[data-wsc-live-weather]");
+    if (!weatherEl) return;
+
+    weatherEl.textContent = "Weather loading";
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          setWeatherText(position.coords.latitude, position.coords.longitude, "Local weather");
+        },
+        () => {
+          setWeatherText(23.8103, 90.4125, "Dhaka weather");
+        },
+        {
+          enableHighAccuracy: false,
+          timeout: 5000,
+          maximumAge: 1800000
+        }
+      );
+    } else {
+      setWeatherText(23.8103, 90.4125, "Dhaka weather");
+    }
+  }
+
+  function bindLiveInfo() {
+    updateLiveClock();
+    updateLiveWeather();
+
+    if (liveClockTimer) clearInterval(liveClockTimer);
+    liveClockTimer = setInterval(updateLiveClock, 1000);
+  }
+
   function renderLayout() {
     if (document.querySelector("[data-wsc-shell]")) return;
 
@@ -357,6 +465,7 @@
     document.body.prepend(shell);
 
     bindLayout();
+    bindLiveInfo();
 
     document.documentElement.classList.add("wsc-layout-ready");
 
@@ -380,6 +489,7 @@
 
   document.addEventListener("DOMContentLoaded", renderLayout);
 })();
+
 document.addEventListener("wsc:layout-ready", function () {
   const navbar = document.querySelector(".wsc-navbar");
 
