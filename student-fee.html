@@ -1,0 +1,657 @@
+﻿<!doctype html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Western School & College</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="assets/css/base/wsc-root.css">
+  <link rel="stylesheet" href="assets/css/side-nav/wsc-side-nav.css">
+  <link rel="stylesheet" href="assets/css/components/wsc-components.css">
+  <link rel="stylesheet" href="assets/css/responsive/wsc-responsive.css">
+  <link rel="stylesheet" href="assets/css/shortcode/wsc-shortcode.css">
+</head>
+<body>
+  <!-- Keep this blank. Add custom page content here later if needed. -->
+  <main data-wsc-page-content>
+    <style>
+
+.fee-body {
+    --fee-primary: #2563eb;
+    --fee-primary-dark: #1d4ed8;
+    --fee-success: #16a34a;
+    --fee-danger: #ef4444;
+    --fee-warning: #f59e0b;
+    --fee-gray-bg: #f3f6fb;
+    --fee-card-white: white;
+    --fee-text-dark: #111827;
+    --fee-text-light: #6b7280;
+    --fee-border: #e5e7eb;
+    --fee-border-focus: #d1d5db;
+    --fee-shadow: 0 10px 30px rgba(0,0,0,.04);
+    --fee-font-family: 'Noto Serif Display', 'Noto Serif Bengali', serif;
+    --fee-radius-lg: 28px;
+    --fee-radius-md: 24px;
+    --fee-radius-sm: 18px;
+    --fee-radius-pill: 999px;
+}
+
+.fee-body {
+    background: var(--fee-gray-bg);
+    padding: 24px;
+    color: var(--fee-text-dark);
+    font-family: var(--fee-font-family);
+}
+
+.fee-container {
+    max-width: 1600px;
+    margin: auto;
+}
+
+.fee-card {
+    background: var(--fee-card-white);
+    border-radius: var(--fee-radius-lg);
+    padding: 30px;
+    margin-bottom: 24px;
+    border: 1px solid var(--fee-border);
+    box-shadow: var(--fee-shadow);
+}
+
+.fee-h1 {
+    font-size: 38px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.fee-h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.fee-subtitle {
+    font-size: 15px;
+    color: var(--fee-text-light);
+}
+
+.fee-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+.fee-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fee-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.fee-input,
+.fee-select {
+    width: 100%;
+    padding: 15px 18px;
+    border-radius: 16px;
+    border: 1px solid var(--fee-border-focus);
+    background: white;
+    font-size: 15px;
+    outline: none;
+    transition: .2s;
+    font-family: var(--fee-font-family);
+}
+
+.fee-input:focus,
+.fee-select:focus {
+    border-color: var(--fee-primary);
+    box-shadow: 0 0 0 5px rgba(37,99,235,.08);
+}
+
+.fee-input[readonly] {
+    background: #f9fafb;
+    cursor: default;
+}
+
+.fee-button {
+    padding: 15px 24px;
+    border: none;
+    border-radius: var(--fee-radius-pill);
+    background: var(--fee-primary);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.fee-button:hover {
+    background: var(--fee-primary-dark);
+}
+
+.fee-button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+.fee-months {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.fee-month-pill {
+    position: relative;
+}
+
+.fee-month-pill input {
+    display: none;
+}
+
+.fee-month-pill label {
+    padding: 12px 18px;
+    border-radius: var(--fee-radius-pill);
+    background: white;
+    border: 1px solid var(--fee-border-focus);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 74px;
+}
+
+.fee-month-pill input:checked + label {
+    background: var(--fee-primary);
+    color: white;
+    border-color: var(--fee-primary);
+}
+
+.fee-month-card {
+    margin-top: 20px;
+    padding: 24px;
+    border-radius: var(--fee-radius-md);
+    background: #f9fafb;
+    border: 1px solid var(--fee-border);
+}
+
+.fee-month-card h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.fee-amount-preview {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--fee-primary);
+}
+
+.fee-success {
+    background: #dcfce7;
+    color: #166534;
+    padding: 18px;
+    border-radius: var(--fee-radius-sm);
+    margin-top: 20px;
+    font-size: 15px;
+    font-weight: 700;
+    display: none;
+}
+
+.fee-search-area {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.fee-search-area input {
+    flex: 1;
+}
+
+.fee-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.fee-summary-box {
+    padding: 24px;
+    border-radius: 22px;
+    background: #f9fafb;
+    border: 1px solid var(--fee-border);
+}
+
+.fee-summary-box h3 {
+    font-size: 14px;
+    color: var(--fee-text-light);
+    margin-bottom: 10px;
+}
+
+.fee-summary-box p {
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.fee-receipt-box {
+    margin-top: 24px;
+    padding: 24px;
+    border-radius: var(--fee-radius-md);
+    background: white;
+    border: 1px solid var(--fee-border);
+}
+
+.fee-receipt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.fee-badge {
+    padding: 10px 18px;
+    border-radius: var(--fee-radius-pill);
+    background: #eff6ff;
+    color: var(--fee-primary);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.fee-table-wrapper {
+    overflow: auto;
+    border-radius: var(--fee-radius-sm);
+}
+
+.fee-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.fee-table th {
+    background: #f3f4f6;
+    padding: 15px;
+    font-size: 14px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.fee-table td {
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    border-top: 1px solid var(--fee-border);
+    white-space: nowrap;
+}
+
+.fee-total-row {
+    background: #f9fafb;
+    font-weight: 800;
+}
+
+.fee-print-btn {
+    padding: 10px 18px;
+    border-radius: var(--fee-radius-pill);
+    background: var(--fee-success);
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    display: inline-block;
+    transition: .2s;
+}
+
+.fee-print-btn:hover {
+    background: #15803d;
+}
+
+.fee-disabled-area {
+    opacity: .5;
+    pointer-events: none;
+}
+
+@media(max-width: 768px) {
+    .fee-body {
+        padding: 14px;
+    }
+    .fee-card {
+        padding: 20px;
+    }
+    .fee-h1 {
+        font-size: 28px;
+    }
+    .fee-search-area {
+        flex-direction: column;
+    }
+}
+</style>
+
+<body class="fee-body">
+<div class="fee-container">
+    <!-- Header Card -->
+    <div class="fee-card">
+        <h1 class="fee-h1">WSC ফি ম্যানেজমেন্ট</h1>
+        <p class="fee-subtitle">বাংলা স্মার্ট ফি কালেকশন ও রিসিপ্ট সিস্টেম</p>
+    </div>
+
+    <!-- Student Information Card -->
+    <div class="fee-card">
+        <h2 class="fee-h2">👨‍🎓 শিক্ষার্থীর তথ্য</h2>
+        <div class="fee-grid">
+            <div class="fee-input-group">
+                <label class="fee-label">স্টুডেন্ট আইডি (Student ID)</label>
+                <input type="text" id="fee_student_id" class="fee-input" placeholder="Student ID লিখুন" onkeyup="feeFetchStudent()">
+            </div>
+            <div class="fee-input-group">
+                <label class="fee-label">নাম (Name)</label>
+                <input type="text" id="fee_student_name" class="fee-input" readonly>
+            </div>
+            <div class="fee-input-group">
+                <label class="fee-label">রোল (Roll)</label>
+                <input type="text" id="fee_roll" class="fee-input" readonly>
+            </div>
+            <div class="fee-input-group">
+                <label class="fee-label">শ্রেণি (Class)</label>
+                <input type="text" id="fee_class" class="fee-input" readonly>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fee Selection Card -->
+    <div class="fee-card fee-disabled-area" id="fee_feeSection">
+        <h2 class="fee-h2">📅 মাস নির্বাচন করুন</h2>
+        <div class="fee-months" id="fee_monthsContainer"></div>
+        <br>
+        <button class="fee-button" onclick="feeGenerateMonthInputs()">ফি ইনপুট তৈরি করুন</button>
+        <div id="fee_monthInputs"></div>
+    </div>
+
+    <!-- Payment Section Card -->
+    <div class="fee-card fee-disabled-area" id="fee_paymentSection">
+        <h2 class="fee-h2">💳 পেমেন্ট মাধ্যম</h2>
+        <select id="fee_payment_method" class="fee-select">
+            <option>Cash</option>
+            <option>Bkash</option>
+            <option>Nagad</option>
+            <option>Rocket</option>
+            <option>Bank</option>
+        </select>
+        <br><br>
+        <button class="fee-button" onclick="feeSubmitFees()" id="fee_submitBtn" disabled>Receipt Generate করুন</button>
+        <div class="fee-success" id="fee_successBox"></div>
+    </div>
+
+    <!-- Search & Reports Card -->
+    <div class="fee-card">
+        <h2 class="fee-h2">🔍 ফি অনুসন্ধান</h2>
+        <div class="fee-search-area">
+            <input type="text" id="fee_searchInput" class="fee-input" placeholder="Student ID / Receipt ID দিয়ে সার্চ করুন">
+            <button class="fee-button" onclick="feeSearchData()">সার্চ করুন</button>
+        </div>
+        <div id="fee_summary"></div>
+        <div id="fee_result"></div>
+    </div>
+</div>
+
+<script>
+    const FEE_API_URL = "https://script.google.com/macros/s/AKfycbxdqDiH48chrBATX0lD-F5di8jT08mXFURTI1DCh_iTB4edEaFP4f4mdj9Xipopx1gB/exec";
+    const feeMonthsList = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+    // Initialize month pills
+    document.getElementById("fee_monthsContainer").innerHTML = feeMonthsList.map(month => `
+        <div class="fee-month-pill">
+            <input type="checkbox" value="${month}" id="fee_${month}">
+            <label for="fee_${month}">${month}</label>
+        </div>
+    `).join("");
+
+    // Fetch student data by ID
+    async function feeFetchStudent() {
+        const studentId = document.getElementById("fee_student_id").value.trim();
+        if (studentId.length < 1) {
+            feeDisableSystem();
+            return;
+        }
+        try {
+            const response = await fetch(`${FEE_API_URL}?action=student&student_id=${studentId}`);
+            const data = await response.json();
+            if (data.error) {
+                feeDisableSystem();
+                return;
+            }
+            document.getElementById("fee_student_name").value = data.name || "";
+            document.getElementById("fee_roll").value = data.roll || "";
+            document.getElementById("fee_class").value = data.class || "";
+            document.getElementById("fee_feeSection").classList.remove("fee-disabled-area");
+            document.getElementById("fee_paymentSection").classList.remove("fee-disabled-area");
+            document.getElementById("fee_submitBtn").disabled = false;
+        } catch (err) {
+            feeDisableSystem();
+        }
+    }
+
+    function feeDisableSystem() {
+        document.getElementById("fee_student_name").value = "";
+        document.getElementById("fee_roll").value = "";
+        document.getElementById("fee_class").value = "";
+        document.getElementById("fee_feeSection").classList.add("fee-disabled-area");
+        document.getElementById("fee_paymentSection").classList.add("fee-disabled-area");
+        document.getElementById("fee_submitBtn").disabled = true;
+    }
+
+    // Generate dynamic month input cards
+    function feeGenerateMonthInputs() {
+        const checkedMonths = [...document.querySelectorAll('.fee-month-pill input:checked')].map(el => el.value);
+        let html = "";
+        checkedMonths.forEach(month => {
+            html += `
+                <div class="fee-month-card">
+                    <h3>📌 ${month}</h3>
+                    <div class="fee-grid">
+                        ${feeCreateAmountInput(month, "tuition", "Tuition Fee")}
+                        ${feeCreateAmountInput(month, "admission", "Admission Fee")}
+                        ${feeCreateAmountInput(month, "readmission", "Re Admission Fee")}
+                        ${feeCreateAmountInput(month, "exam", "Exam Fee")}
+                        ${feeCreateAmountInput(month, "computer", "Computer Fee")}
+                        ${feeCreateAmountInput(month, "sports", "Sports Fee")}
+                        ${feeCreateAmountInput(month, "tc", "TC Fee")}
+                        ${feeCreateAmountInput(month, "misc", "Misc Fee")}
+                    </div>
+                </div>
+            `;
+        });
+        document.getElementById("fee_monthInputs").innerHTML = html;
+    }
+
+    function feeCreateAmountInput(month, type, label) {
+        return `
+            <div>
+                <input type="text" class="fee-input" placeholder="${label}" id="fee_${month}_${type}" oninput="feeFormatAmount(this)">
+                <div class="fee-amount-preview" id="fee_${month}_${type}_preview"></div>
+            </div>
+        `;
+    }
+
+    function feeFormatAmount(input) {
+        let value = input.value.replace(/,/g, '');
+        value = value.replace(/\D/g, '');
+        if (value === "") {
+            input.value = "";
+            feeUpdatePreview(input.id, "");
+            return;
+        }
+        const number = parseInt(value);
+        input.value = number.toLocaleString("en-IN");
+        feeUpdatePreview(input.id, number.toLocaleString("bn-BD") + " টাকা");
+    }
+
+    function feeUpdatePreview(id, text) {
+        const preview = document.getElementById(id + "_preview");
+        if (preview) preview.innerHTML = text;
+    }
+
+    function feeCleanNumber(value) {
+        if (!value) return "";
+        return parseInt(value.toString().replace(/,/g, ''));
+    }
+
+    async function feeSubmitFees() {
+        const checkedMonths = [...document.querySelectorAll('.fee-month-pill input:checked')].map(el => el.value);
+        if (checkedMonths.length === 0) {
+            alert("মাস নির্বাচন করুন");
+            return;
+        }
+        const monthlyData = [];
+        checkedMonths.forEach(month => {
+            monthlyData.push({
+                month: month,
+                tuition_fee: feeCleanNumber(document.getElementById(`fee_${month}_tuition`).value),
+                admission_fee: feeCleanNumber(document.getElementById(`fee_${month}_admission`).value),
+                re_admission_fee: feeCleanNumber(document.getElementById(`fee_${month}_readmission`).value),
+                exam_fee: feeCleanNumber(document.getElementById(`fee_${month}_exam`).value),
+                computer_fee: feeCleanNumber(document.getElementById(`fee_${month}_computer`).value),
+                sports_fee: feeCleanNumber(document.getElementById(`fee_${month}_sports`).value),
+                tc_fee: feeCleanNumber(document.getElementById(`fee_${month}_tc`).value),
+                misc_fee: feeCleanNumber(document.getElementById(`fee_${month}_misc`).value)
+            });
+        });
+        const payload = {
+            student_id: document.getElementById("fee_student_id").value,
+            student_name: document.getElementById("fee_student_name").value,
+            roll: document.getElementById("fee_roll").value,
+            class: document.getElementById("fee_class").value,
+            payment_method: document.getElementById("fee_payment_method").value,
+            monthlyData: monthlyData
+        };
+        try {
+            const response = await fetch(FEE_API_URL, { method: "POST", body: JSON.stringify(payload) });
+            const result = await response.json();
+            const successBox = document.getElementById("fee_successBox");
+            successBox.style.display = "block";
+            successBox.innerHTML = `✅ Receipt সফলভাবে তৈরি হয়েছে<br><br>Receipt No: <b>${result.receipt_id}</b><br><br>মোট টাকা: <b>${Number(result.total).toLocaleString("bn-BD")} ৳</b>`;
+            if (result.pdf_link) window.open(result.pdf_link);
+            // Reset form
+            document.getElementById("fee_student_id").value = "";
+            feeDisableSystem();
+            document.getElementById("fee_monthInputs").innerHTML = "";
+            document.getElementById("fee_payment_method").selectedIndex = 0;
+            document.querySelectorAll('.fee-month-pill input').forEach(el => el.checked = false);
+        } catch (err) {
+            alert("সাবমিট ব্যর্থ, আবার চেষ্টা করুন");
+        }
+    }
+
+    // Helper formatting functions
+    function feeFormatDate(dateString) {
+        if (!dateString) return "-";
+        const date = new Date(dateString);
+        if (isNaN(date)) return dateString;
+        return date.toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" });
+    }
+
+    function feeFormatTime(timeString) {
+        if (!timeString) return "-";
+        if (timeString.includes("AM") || timeString.includes("PM")) return timeString;
+        const date = new Date(timeString);
+        if (isNaN(date)) return timeString;
+        return date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true });
+    }
+
+    async function feeSearchData() {
+        const searchValue = document.getElementById("fee_searchInput").value.trim();
+        try {
+            const response = await fetch(`${FEE_API_URL}?action=search&student_id=${searchValue}&receipt_id=${searchValue}`);
+            const data = await response.json();
+            const records = data.records || [];
+            const grouped = {};
+            records.forEach(item => {
+                if (!grouped[item.receipt_id]) grouped[item.receipt_id] = [];
+                grouped[item.receipt_id].push(item);
+            });
+            document.getElementById("fee_summary").innerHTML = `
+                <div class="fee-summary">
+                    <div class="fee-summary-box">
+                        <h3>মোট Receipt</h3>
+                        <p>${Number(Object.keys(grouped).length).toLocaleString("bn-BD")}</p>
+                    </div>
+                    <div class="fee-summary-box">
+                        <h3>বার্ষিক মোট</h3>
+                        <p>${Number(data.yearly_total || 0).toLocaleString("bn-BD")} ৳</p>
+                    </div>
+                </div>
+            `;
+            let html = "";
+            for (const [receiptId, rows] of Object.entries(grouped)) {
+                let receiptTotal = 0;
+                html += `
+                    <div class="fee-receipt-box">
+                        <div class="fee-receipt-header">
+                            <h2>📄 Receipt Details</h2>
+                            <div class="fee-badge">${receiptId}</div>
+                        </div>
+                        <div class="fee-table-wrapper">
+                            <table class="fee-table">
+                                <thead>
+                                    <tr>
+                                        <th>মাস</th><th>Tuition</th><th>Admission</th><th>Exam</th>
+                                        <th>Computer</th><th>Sports</th><th>Total</th><th>Date</th><th>সময়</th><th>Receipt</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                `;
+                rows.forEach(item => {
+                    receiptTotal += Number(item.total || 0);
+                    html += `
+                        <tr>
+                            <td>${item.month || ''}</td>
+                            <td>${Number(item.tuition_fee || 0).toLocaleString("bn-BD")}</td>
+                            <td>${Number(item.admission_fee || 0).toLocaleString("bn-BD")}</td>
+                            <td>${Number(item.exam_fee || 0).toLocaleString("bn-BD")}</td>
+                            <td>${Number(item.computer_fee || 0).toLocaleString("bn-BD")}</td>
+                            <td>${Number(item.sports_fee || 0).toLocaleString("bn-BD")}</td>
+                            <td>${Number(item.total || 0).toLocaleString("bn-BD")} ৳</td>
+                            <td>${feeFormatDate(item.payment_date)}</td>
+                            <td>${feeFormatTime(item.payment_time)}</td>
+                            <td><a href="${item.pdf_link || '#'}" target="_blank" class="fee-print-btn">Print</a></td>
+                        </tr>
+                    `;
+                });
+                html += `
+                                    <tr class="fee-total-row">
+                                        <td colspan="6">মোট টাকা</td>
+                                        <td colspan="1">${Number(receiptTotal).toLocaleString("bn-BD")} ৳</td>
+                                        <td colspan="3"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            }
+            document.getElementById("fee_result").innerHTML = html || "<div class='fee-card' style='margin-top:20px; text-align:center;'>কোনো রেকর্ড পাওয়া যায়নি</div>";
+        } catch (err) {
+            document.getElementById("fee_result").innerHTML = "<div class='fee-card' style='margin-top:20px; text-align:center;'>সার্চ করতে সমস্যা হয়েছে</div>";
+        }
+    }
+
+    // Initial system state
+    feeDisableSystem();
+</script>
+  </main>
+
+  <!-- JS files -->
+  <script src="assets/js/wsc-config.js"></script>
+  <script src="assets/js/wsc-layout.js"></script>
+  <script src="assets/js/wsc-search.js"></script>
+  <script src="assets/js/wsc-password.js"></script>
+</body>
+</html>

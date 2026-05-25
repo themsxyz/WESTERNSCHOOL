@@ -1,0 +1,1393 @@
+﻿<!doctype html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Western School & College</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="assets/css/base/wsc-root.css">
+  <link rel="stylesheet" href="assets/css/side-nav/wsc-side-nav.css">
+  <link rel="stylesheet" href="assets/css/components/wsc-components.css">
+  <link rel="stylesheet" href="assets/css/responsive/wsc-responsive.css">
+  <link rel="stylesheet" href="assets/css/shortcode/wsc-shortcode.css">
+</head>
+<body>
+  <!-- Keep this blank. Add custom page content here later if needed. -->
+  <main data-wsc-page-content>
+    <style>
+  .earn {
+    --earn-bg: #ffffff;
+    --earn-card: rgba(255, 255, 255, 0.72);
+    --earn-card-strong: rgba(255, 255, 255, 0.90);
+    --earn-border: rgba(15, 47, 99, 0.12);
+    --earn-border-strong: rgba(15, 47, 99, 0.18);
+    --earn-text: #080f1f;
+    --earn-muted: #5b6475;
+    --earn-blue: #1d4ed8;
+    --earn-navy: #0f2f63;
+    --earn-navy-dark: #071f44;
+    --earn-success: #15803d;
+    --earn-success-bg: #ecfdf3;
+    --earn-danger: #b91c1c;
+    --earn-danger-bg: #fef2f2;
+    --earn-warning: #b45309;
+    --earn-warning-bg: #fff7ed;
+    --earn-shadow: 0 18px 50px rgba(15, 47, 99, 0.10);
+    --earn-shadow-soft: 0 10px 28px rgba(15, 47, 99, 0.08);
+    --earn-radius-xl: 32px;
+    --earn-radius-lg: 24px;
+    --earn-radius-md: 18px;
+    --earn-radius-pill: 50px;
+
+    width: 100%;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top left, rgba(29, 78, 216, 0.08), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(15, 47, 99, 0.06), transparent 34%),
+      var(--earn-bg);
+    color: var(--earn-text);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    box-sizing: border-box;
+  }
+
+  .earn *,
+  .earn *::before,
+  .earn *::after {
+    box-sizing: border-box;
+  }
+
+  .earn button,
+  .earn input {
+    font: inherit;
+  }
+
+  .earn__app {
+    width: min(100%, 1540px);
+    min-height: 100vh;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 360px minmax(0, 1fr);
+    gap: 24px;
+    padding: 22px;
+  }
+
+  /* Section 1: fixed left sidebar */
+  .earn__sidebar {
+    position: sticky;
+    top: 22px;
+    height: calc(100vh - 44px);
+    overflow-y: auto;
+    padding: 22px;
+    border: 1px solid var(--earn-border);
+    border-radius: var(--earn-radius-xl);
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: var(--earn-shadow);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(15, 47, 99, 0.22) transparent;
+  }
+
+  .earn__sidebar::-webkit-scrollbar,
+  .earn__table-scroll::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .earn__sidebar::-webkit-scrollbar-thumb,
+  .earn__table-scroll::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgba(15, 47, 99, 0.22);
+  }
+
+  .earn__sidebar-head {
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--earn-border);
+  }
+
+  .earn__eyebrow {
+    width: fit-content;
+    margin-bottom: 10px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: #eef5ff;
+    color: var(--earn-blue);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+  }
+
+  .earn__section-title {
+    margin: 0;
+    color: var(--earn-text);
+    font-size: 23px;
+    line-height: 1.22;
+    letter-spacing: -0.025em;
+  }
+
+  .earn__subtext {
+    margin-top: 8px;
+    color: var(--earn-muted);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .earn__highlight {
+    color: var(--earn-blue);
+    font-weight: 900;
+  }
+
+  .earn__field {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .earn__field label {
+    color: var(--earn-text);
+    font-size: 13px;
+    font-weight: 850;
+    line-height: 1.35;
+  }
+
+  .earn__field small {
+    color: var(--earn-muted);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .earn__control,
+  .earn__date-control,
+  .earn__select-button {
+    width: 100%;
+    min-height: 50px;
+    border: 1px solid var(--earn-border-strong);
+    border-radius: var(--earn-radius-pill);
+    background: #ffffff;
+    color: var(--earn-text);
+    outline: none;
+    box-shadow: 0 8px 18px rgba(15, 47, 99, 0.04);
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  }
+
+  .earn__control {
+    padding: 13px 18px;
+  }
+
+  .earn__control::placeholder {
+    color: #9aa4b5;
+  }
+
+  .earn__control:focus,
+  .earn__date-control:focus-within,
+  .earn__custom-select.is-open .earn__select-button {
+    border-color: var(--earn-blue);
+    box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.12), 0 12px 24px rgba(15, 47, 99, 0.08);
+  }
+
+  /* Custom calendar input */
+  .earn__date-control {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 16px;
+  }
+
+  .earn__date-icon,
+  .earn__select-icon {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #eef5ff;
+    color: var(--earn-blue);
+    font-size: 15px;
+    font-weight: 900;
+  }
+
+  .earn__date-control input[type="date"] {
+    width: 100%;
+    min-height: 48px;
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: var(--earn-text);
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .earn__date-control input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* Custom dropdown */
+  .earn__custom-select {
+    position: relative;
+  }
+
+  .earn__select-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 9px 10px 9px 18px;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .earn__select-label {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--earn-text);
+    font-weight: 750;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .earn__select-icon {
+    transition: transform 180ms ease;
+  }
+
+  .earn__custom-select.is-open .earn__select-icon {
+    transform: rotate(180deg);
+  }
+
+  .earn__select-menu {
+    position: absolute;
+    z-index: 20;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    display: none;
+    padding: 8px;
+    border: 1px solid var(--earn-border);
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow: 0 18px 42px rgba(15, 47, 99, 0.16);
+  }
+
+  .earn__custom-select.is-open .earn__select-menu {
+    display: grid;
+    gap: 6px;
+  }
+
+  .earn__select-option {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border: 0;
+    border-radius: 18px;
+    padding: 10px 12px;
+    background: #ffffff;
+    color: var(--earn-text);
+    cursor: pointer;
+    font-weight: 750;
+    text-align: left;
+  }
+
+  .earn__select-option:hover,
+  .earn__select-option.is-active {
+    background: #eef5ff;
+    color: var(--earn-blue);
+  }
+
+  .earn__button-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .earn__button,
+  .earn__link-button {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 0;
+    border-radius: var(--earn-radius-pill);
+    padding: 12px 18px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 900;
+    line-height: 1.15;
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  }
+
+  .earn__button:hover,
+  .earn__link-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(15, 47, 99, 0.18);
+  }
+
+  .earn__button--primary,
+  .earn__link-button--primary,
+  .earn__button--dark,
+  .earn__link-button--dark {
+    background: var(--earn-navy);
+    color: #ffffff;
+  }
+
+  .earn__button--secondary,
+  .earn__link-button--secondary {
+    border: 1px solid var(--earn-border-strong);
+    background: #ffffff;
+    color: var(--earn-text);
+  }
+
+  .earn__button--full {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  /* Section 2: main dashboard content */
+  .earn__content {
+    min-width: 0;
+    display: grid;
+    gap: 18px;
+  }
+
+  .earn__page-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 24px;
+    border: 1px solid var(--earn-border);
+    border-radius: var(--earn-radius-xl);
+    background: var(--earn-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--earn-shadow-soft);
+  }
+
+  .earn__page-head h1 {
+    margin: 0;
+    color: var(--earn-text);
+    font-size: clamp(28px, 3.2vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+  }
+
+  .earn__page-head h1 span {
+    display: block;
+    margin-top: 8px;
+    color: var(--earn-blue);
+    font-size: clamp(15px, 1.4vw, 20px);
+    letter-spacing: -0.01em;
+  }
+
+  .earn__page-meta {
+    display: grid;
+    gap: 6px;
+    color: var(--earn-muted);
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: right;
+  }
+
+  .earn__stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .earn__stat-card,
+  .earn__table-card,
+  .earn__detail-card,
+  .earn__panel,
+  .earn__mini-card {
+    border: 1px solid var(--earn-border);
+    background: var(--earn-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--earn-shadow-soft);
+  }
+
+  .earn__stat-card {
+    min-height: 112px;
+    position: relative;
+    overflow: hidden;
+    padding: 16px;
+    border-radius: 22px;
+  }
+
+  .earn__stat-card::before {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    right: -28px;
+    top: -28px;
+    border-radius: 999px;
+    background: rgba(29, 78, 216, 0.12);
+  }
+
+  .earn__stat-label {
+    margin-bottom: 8px;
+    color: var(--earn-muted);
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: 750;
+  }
+
+  .earn__stat-value {
+    color: var(--earn-blue);
+    font-size: clamp(23px, 2.5vw, 34px);
+    font-weight: 950;
+    line-height: 1.08;
+    word-break: break-word;
+  }
+
+  .earn__stat-meta {
+    margin-top: 8px;
+    color: var(--earn-muted);
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .earn__tables-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .earn__table-card,
+  .earn__detail-card,
+  .earn__panel {
+    min-width: 0;
+    padding: 20px;
+    border-radius: var(--earn-radius-lg);
+  }
+
+  .earn__card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .earn__card-head .earn__section-title {
+    font-size: 20px;
+  }
+
+  .earn__table-scroll {
+    width: 100%;
+    max-height: 460px;
+    overflow: auto;
+    border: 1px solid var(--earn-border);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.76);
+  }
+
+  .earn__table-card--large .earn__table-scroll {
+    max-height: 560px;
+  }
+
+  .earn__table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .earn__table--compact {
+    min-width: 430px;
+  }
+
+  .earn__table th,
+  .earn__table td {
+    padding: 13px 14px;
+    border-bottom: 1px solid rgba(15, 47, 99, 0.08);
+    text-align: left;
+    color: #111827;
+    font-size: 14px;
+    line-height: 1.45;
+    vertical-align: middle;
+  }
+
+  .earn__table th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #f7faff;
+    color: var(--earn-text);
+    font-weight: 950;
+    white-space: nowrap;
+  }
+
+  .earn__table tbody tr:hover td {
+    background: rgba(238, 245, 255, 0.60);
+  }
+
+  .earn__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+    padding: 6px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 950;
+    white-space: nowrap;
+  }
+
+  .earn__badge--paid {
+    background: var(--earn-success-bg);
+    color: var(--earn-success);
+  }
+
+  .earn__badge--unpaid {
+    background: var(--earn-danger-bg);
+    color: var(--earn-danger);
+  }
+
+  .earn__badge--partial {
+    background: var(--earn-warning-bg);
+    color: var(--earn-warning);
+  }
+
+  .earn__action-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .earn__action-row .earn__button,
+  .earn__action-row .earn__link-button {
+    min-height: 38px;
+    padding: 9px 13px;
+    font-size: 12px;
+  }
+
+  .earn__detail-placeholder {
+    margin-top: 14px;
+    padding: 18px;
+    border: 1px dashed rgba(15, 47, 99, 0.24);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--earn-muted);
+    line-height: 1.7;
+  }
+
+  .earn__detail-box {
+    display: none;
+    margin-top: 16px;
+  }
+
+  .earn__detail-box.is-show {
+    display: grid;
+    gap: 16px;
+  }
+
+  .earn__detail-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding: 18px;
+    border: 1px solid var(--earn-border);
+    border-radius: 22px;
+    background: #f7faff;
+  }
+
+  .earn__muted {
+    color: var(--earn-muted);
+  }
+
+  .earn__detail-id {
+    margin-top: 4px;
+    color: var(--earn-blue);
+    font-size: 25px;
+    font-weight: 950;
+    word-break: break-word;
+  }
+
+  .earn__mini-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .earn__mini-card {
+    min-width: 0;
+    padding: 15px;
+    border-radius: 20px;
+  }
+
+  .earn__mini-key {
+    margin-bottom: 7px;
+    color: var(--earn-muted);
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .earn__mini-value {
+    color: var(--earn-text);
+    font-size: 17px;
+    font-weight: 850;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
+  .earn__details-text {
+    margin-top: 10px;
+    color: #263247;
+    line-height: 1.7;
+    white-space: pre-wrap;
+  }
+
+  .earn__footer-note {
+    padding: 10px;
+    text-align: center;
+    color: var(--earn-muted);
+    font-size: 13px;
+  }
+
+  /* Popup status */
+  .earn__status {
+    position: fixed;
+    z-index: 9999;
+    top: 24px;
+    right: 24px;
+    width: min(420px, calc(100vw - 32px));
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 15px 16px;
+    border: 1px solid rgba(29, 78, 216, 0.18);
+    border-left: 5px solid var(--earn-blue);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--earn-text);
+    line-height: 1.55;
+    box-shadow: 0 22px 50px rgba(15, 47, 99, 0.20);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 220ms ease, transform 220ms ease;
+  }
+
+  .earn__status.is-show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .earn__status-icon {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #eef5ff;
+    color: var(--earn-blue);
+    font-weight: 950;
+  }
+
+  .earn__status-text {
+    min-width: 0;
+    white-space: pre-wrap;
+    font-size: 14px;
+    font-weight: 750;
+  }
+
+  .earn__status.is-error {
+    border-color: rgba(185, 28, 28, 0.20);
+    border-left-color: var(--earn-danger);
+  }
+
+  .earn__status.is-error .earn__status-icon {
+    background: var(--earn-danger-bg);
+    color: var(--earn-danger);
+  }
+
+  @media (max-width: 1200px) {
+    .earn__app {
+      grid-template-columns: 1fr;
+    }
+
+    .earn__sidebar {
+      position: relative;
+      top: 0;
+      height: auto;
+      max-height: none;
+    }
+
+    .earn__sidebar-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      align-items: start;
+    }
+
+    .earn__button-row,
+    .earn__field--wide,
+    .earn__button--full {
+      grid-column: 1 / -1;
+    }
+
+    .earn__mini-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 860px) {
+    .earn__app {
+      padding: 14px;
+      gap: 16px;
+    }
+
+    .earn__sidebar,
+    .earn__page-head,
+    .earn__table-card,
+    .earn__detail-card,
+    .earn__panel {
+      padding: 16px;
+      border-radius: 22px;
+    }
+
+    .earn__sidebar-form,
+    .earn__stats-grid,
+    .earn__tables-grid,
+    .earn__mini-grid,
+    .earn__button-row {
+      grid-template-columns: 1fr;
+    }
+
+    .earn__page-head {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .earn__page-meta {
+      text-align: left;
+    }
+
+    .earn__table {
+      min-width: 680px;
+    }
+
+    .earn__table--compact {
+      min-width: 420px;
+    }
+
+    .earn__status {
+      top: 14px;
+      right: 14px;
+    }
+  }
+</style>
+
+<main class="earn">
+  <div class="earn__status" id="statusBox" aria-live="polite">
+    <span class="earn__status-icon" id="statusIcon">✓</span>
+    <span class="earn__status-text" id="statusText"></span>
+  </div>
+
+  <div class="earn__app">
+    <!-- 1st main section: fixed left sidebar -->
+    <aside class="earn__sidebar">
+      <div class="earn__sidebar-head">
+        <div class="earn__eyebrow">Invoice Controls</div>
+        <h2 class="earn__section-title">ফিল্টার ও সার্চ</h2>
+        <div class="earn__subtext">Filter, search, reload এবং specific invoice lookup এখান থেকে করুন।</div>
+      </div>
+
+      <div class="earn__sidebar-form">
+        <div class="earn__field">
+          <label for="fromDate">শুরুর তারিখ · From Date</label>
+          <div class="earn__date-control">
+            <span class="earn__date-icon">📅</span>
+            <input type="date" id="fromDate" />
+          </div>
+        </div>
+
+        <div class="earn__field">
+          <label for="toDate">শেষ তারিখ · To Date</label>
+          <div class="earn__date-control">
+            <span class="earn__date-icon">📅</span>
+            <input type="date" id="toDate" />
+          </div>
+        </div>
+
+        <div class="earn__field earn__field--wide">
+          <label>পেমেন্ট স্ট্যাটাস · Payment Status</label>
+          <div class="earn__custom-select" id="statusDropdown">
+            <input type="hidden" id="statusFilter" value="" />
+            <button type="button" class="earn__select-button" id="statusSelectBtn" aria-haspopup="listbox" aria-expanded="false">
+              <span class="earn__select-label" id="statusSelectLabel">সব · All</span>
+              <span class="earn__select-icon">⌄</span>
+            </button>
+            <div class="earn__select-menu" role="listbox">
+              <button type="button" class="earn__select-option is-active" data-value="">সব · All</button>
+              <button type="button" class="earn__select-option" data-value="Paid">Paid · পরিশোধিত</button>
+              <button type="button" class="earn__select-option" data-value="Unpaid">Unpaid · অপরিশোধিত</button>
+              <button type="button" class="earn__select-option" data-value="Partial">Partial · আংশিক</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="earn__field earn__field--wide">
+          <label for="searchInput">নাম / category / invoice no খুঁজুন</label>
+          <input class="earn__control" type="text" id="searchInput" placeholder="Search name, category, invoice no..." />
+          <small>বাংলা/English যেকোনো keyword লিখতে পারেন।</small>
+        </div>
+
+        <div class="earn__button-row">
+          <button class="earn__button earn__button--primary" id="applyFilterBtn">ফিল্টার করুন</button>
+          <button class="earn__button earn__button--secondary" id="resetFilterBtn">রিসেট</button>
+        </div>
+
+        <div class="earn__field earn__field--wide">
+          <label for="invoiceLookup">Single Invoice দেখুন</label>
+          <input class="earn__control" type="text" id="invoiceLookup" placeholder="Invoice ID লিখুন..." />
+          <small>যেমন: UUID invoiceId</small>
+        </div>
+
+        <button class="earn__button earn__button--primary earn__button--full" id="lookupBtn">একটি ইনভয়েস দেখুন · View Single Invoice</button>
+        <button class="earn__button earn__button--secondary earn__button--full" id="reloadBtn">সব ডাটা রিলোড · Reload Data</button>
+      </div>
+    </aside>
+
+    <!-- 2nd main section: summary and invoice list -->
+    <main class="earn__content">
+      <section class="earn__page-head">
+        <div>
+          <div class="earn__eyebrow">Dashboard ready</div>
+          <h1>
+            ইনভয়েস ড্যাশবোর্ড
+            <span>Monthly Summary · Yearly Summary · Invoice List</span>
+          </h1>
+        </div>
+        <div class="earn__page-meta">
+          <span><strong class="earn__highlight" id="heroTotalInvoice">০</strong> total invoices</span>
+          <span><strong class="earn__highlight" id="heroTotalAmount">৳ ০</strong> total amount</span>
+        </div>
+      </section>
+
+      <section class="earn__stats-grid">
+        <div class="earn__stat-card">
+          <div class="earn__stat-label">মোট ইনভয়েস · Total Invoice Count</div>
+          <div class="earn__stat-value" id="totalInvoices">০</div>
+          <div class="earn__stat-meta" id="totalInvoicesMeta">০ filtered invoice(s)</div>
+        </div>
+        <div class="earn__stat-card">
+          <div class="earn__stat-label">মোট টাকার পরিমাণ · Total Amount</div>
+          <div class="earn__stat-value" id="totalAmount">৳ ০</div>
+          <div class="earn__stat-meta">Amount of filtered invoices</div>
+        </div>
+        <div class="earn__stat-card">
+          <div class="earn__stat-label">পরিশোধিত · Paid Amount</div>
+          <div class="earn__stat-value" id="paidAmount">৳ ০</div>
+          <div class="earn__stat-meta">Paid invoices total</div>
+        </div>
+        <div class="earn__stat-card">
+          <div class="earn__stat-label">অপরিশোধিত/আংশিক · Due Amount</div>
+          <div class="earn__stat-value" id="dueAmount">৳ ০</div>
+          <div class="earn__stat-meta">Unpaid + partial invoices</div>
+        </div>
+      </section>
+
+      <section class="earn__tables-grid">
+        <div class="earn__table-card">
+          <div class="earn__card-head">
+            <div>
+              <h2 class="earn__section-title">মাসিক summary</h2>
+              <div class="earn__subtext">Monthly Summary from API</div>
+            </div>
+            <span class="earn__highlight" id="heroMonthCount">০</span>
+          </div>
+          <div class="earn__table-scroll">
+            <table class="earn__table earn__table--compact">
+              <thead>
+                <tr>
+                  <th>মাস · Month</th>
+                  <th>মোট · Total</th>
+                </tr>
+              </thead>
+              <tbody id="monthlyTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="earn__table-card">
+          <div class="earn__card-head">
+            <div>
+              <h2 class="earn__section-title">বার্ষিক summary</h2>
+              <div class="earn__subtext">Yearly Summary from API</div>
+            </div>
+            <span class="earn__highlight" id="heroYearCount">০</span>
+          </div>
+          <div class="earn__table-scroll">
+            <table class="earn__table earn__table--compact">
+              <thead>
+                <tr>
+                  <th>বছর · Year</th>
+                  <th>মোট · Total</th>
+                </tr>
+              </thead>
+              <tbody id="yearlyTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="earn__table-card earn__table-card--large">
+        <div class="earn__card-head">
+          <div>
+            <h2 class="earn__section-title">ইনভয়েস তালিকা</h2>
+            <div class="earn__subtext">Invoice list with date-wise filter, quick detail, and print action</div>
+          </div>
+        </div>
+        <div class="earn__table-scroll">
+          <table class="earn__table">
+            <thead>
+              <tr>
+                <th>তারিখ</th>
+                <th>ইনভয়েস নং</th>
+                <th>নাম</th>
+                <th>ক্যাটাগরি</th>
+                <th>পেমেন্ট</th>
+                <th>স্ট্যাটাস</th>
+                <th>মোট</th>
+                <th>অ্যাকশন</th>
+              </tr>
+            </thead>
+            <tbody id="invoiceTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="earn__detail-card">
+        <h2 class="earn__section-title">Single Invoice Detail</h2>
+        <div class="earn__subtext">একটি নির্দিষ্ট invoice-এর পুরো বিস্তারিত এখানে দেখাবে।</div>
+
+        <div class="earn__detail-placeholder" id="detailPlaceholder">
+          Invoice ID দিয়ে search করুন অথবা invoice list থেকে <strong>বিস্তারিত / Details</strong> চাপুন।
+        </div>
+
+        <div class="earn__detail-box" id="detailBox">
+          <div class="earn__detail-top">
+            <div>
+              <div class="earn__muted">Invoice No</div>
+              <div class="earn__detail-id" id="detailInvoiceNo">-</div>
+            </div>
+            <a class="earn__link-button earn__link-button--dark" id="detailPrintLink" target="_blank" rel="noopener">Print / PDF</a>
+          </div>
+
+          <div class="earn__mini-grid">
+            <div class="earn__mini-card"><div class="earn__mini-key">Invoice ID</div><div class="earn__mini-value" id="dInvoiceId">-</div></div>
+            <div class="earn__mini-card"><div class="earn__mini-key">তারিখ · Date</div><div class="earn__mini-value" id="dDate">-</div></div>
+            <div class="earn__mini-card"><div class="earn__mini-key">নাম · Customer Name</div><div class="earn__mini-value" id="dName">-</div></div>
+            <div class="earn__mini-card"><div class="earn__mini-key">ক্যাটাগরি · Category</div><div class="earn__mini-value" id="dCategory">-</div></div>
+            <div class="earn__mini-card"><div class="earn__mini-key">পেমেন্ট মেথড · Payment Method</div><div class="earn__mini-value" id="dPaymentMethod">-</div></div>
+            <div class="earn__mini-card"><div class="earn__mini-key">স্ট্যাটাস · Status</div><div class="earn__mini-value" id="dPaidStatus">-</div></div>
+            <div class="earn__mini-card"><div class="earn__mini-key">Amount</div><div class="earn__mini-value" id="dAmount">-</div></div>
+            <div class="earn__mini-card"><div class="earn__mini-key">Total</div><div class="earn__mini-value" id="dTotal">-</div></div>
+          </div>
+
+          <div class="earn__panel">
+            <h2 class="earn__section-title">বিস্তারিত · Details</h2>
+            <div class="earn__details-text" id="dDetails"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="earn__footer-note">Powered by Google Apps Script API · Bengali-first dashboard UI</div>
+    </main>
+  </div>
+</main>
+
+<script>
+  const API_BASE = 'https://script.google.com/macros/s/AKfycbyfG1_F-VwC8Wj3zyolgntU9FidbuSBM-fuT7u4TV8U75IeTKft_7Jo597ts4unhGd2/exec';
+
+  const state = {
+    invoices: [],
+    filteredInvoices: [],
+    monthlySummary: [],
+    yearlySummary: []
+  };
+
+  const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+  let statusTimer = null;
+
+  function toBanglaNumber(value) {
+    return String(value).replace(/\d/g, d => bnDigits[d]);
+  }
+
+  function formatMoney(value) {
+    const num = Number(value || 0);
+    const formatted = new Intl.NumberFormat('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(num);
+    return '৳ ' + toBanglaNumber(formatted);
+  }
+
+  function formatCount(value) {
+    return toBanglaNumber(Number(value || 0).toLocaleString('en-US'));
+  }
+
+  function safeText(value) {
+    return value == null || value === '' ? '-' : String(value);
+  }
+
+  function setStatus(message, isError = false, autoHide = true) {
+    const box = document.getElementById('statusBox');
+    const icon = document.getElementById('statusIcon');
+    const text = document.getElementById('statusText');
+
+    if (statusTimer) clearTimeout(statusTimer);
+
+    box.classList.toggle('is-error', isError);
+    box.classList.add('is-show');
+    icon.textContent = isError ? '!' : '✓';
+    text.textContent = message;
+
+    if (autoHide) {
+      statusTimer = setTimeout(() => {
+        box.classList.remove('is-show');
+      }, isError ? 5200 : 3200);
+    }
+  }
+
+  function clearStatus() {
+    const box = document.getElementById('statusBox');
+    if (statusTimer) clearTimeout(statusTimer);
+    box.classList.remove('is-show', 'is-error');
+    document.getElementById('statusText').textContent = '';
+  }
+
+  async function fetchJson(url) {
+    let response;
+    try {
+      response = await fetch(url);
+    } catch (error) {
+      throw new Error('API connection failed. Internet / deployment / access check করুন।');
+    }
+
+    const text = await response.text();
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch (error) {
+      throw new Error('Server JSON response দেয়নি।');
+    }
+
+    if (!response.ok || data.ok === false) {
+      throw new Error(data.message || 'Request failed.');
+    }
+
+    return data;
+  }
+
+  async function loadAllData() {
+    clearStatus();
+    setStatus('ডাটা লোড হচ্ছে... Please wait', false, false);
+
+    try {
+      const [invoiceRes, summaryRes] = await Promise.all([
+        fetchJson(`${API_BASE}?action=listInvoices&limit=1000`),
+        fetchJson(`${API_BASE}?action=summary`)
+      ]);
+
+      state.invoices = Array.isArray(invoiceRes.invoices) ? invoiceRes.invoices : [];
+      state.filteredInvoices = [...state.invoices];
+      state.monthlySummary = summaryRes.summary?.monthly || [];
+      state.yearlySummary = summaryRes.summary?.yearly || [];
+
+      renderAll();
+      setStatus('ডাটা সফলভাবে লোড হয়েছে। Dashboard ready.');
+    } catch (error) {
+      setStatus(error.message, true);
+    }
+  }
+
+  function renderAll() {
+    renderHero();
+    renderStats();
+    renderInvoiceTable();
+    renderMonthlyTable();
+    renderYearlyTable();
+  }
+
+  function renderHero() {
+    const totalAmount = sumTotal(state.invoices);
+    document.getElementById('heroTotalInvoice').textContent = formatCount(state.invoices.length);
+    document.getElementById('heroTotalAmount').textContent = formatMoney(totalAmount);
+    document.getElementById('heroMonthCount').textContent = formatCount(state.monthlySummary.length);
+    document.getElementById('heroYearCount').textContent = formatCount(state.yearlySummary.length);
+  }
+
+  function sumTotal(items) {
+    return items.reduce((sum, item) => sum + Number(item.total || item.amount || 0), 0);
+  }
+
+  function renderStats() {
+    const invoices = state.filteredInvoices;
+    const total = sumTotal(invoices);
+    const paid = invoices
+      .filter(item => String(item.paidStatus).toLowerCase() === 'paid')
+      .reduce((sum, item) => sum + Number(item.total || item.amount || 0), 0);
+    const due = total - paid;
+
+    document.getElementById('totalInvoices').textContent = formatCount(invoices.length);
+    document.getElementById('totalAmount').textContent = formatMoney(total);
+    document.getElementById('paidAmount').textContent = formatMoney(paid);
+    document.getElementById('dueAmount').textContent = formatMoney(due);
+    document.getElementById('totalInvoicesMeta').textContent = `${formatCount(invoices.length)} filtered invoice(s)`;
+  }
+
+  function renderMonthlyTable() {
+    const body = document.getElementById('monthlyTableBody');
+    body.innerHTML = '';
+
+    if (!state.monthlySummary.length) {
+      body.innerHTML = `<tr><td colspan="2">কোনো monthly summary পাওয়া যায়নি।</td></tr>`;
+      return;
+    }
+
+    state.monthlySummary.forEach(row => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${safeText(row[0])}</td>
+        <td><strong class="earn__highlight">${formatMoney(row[1])}</strong></td>
+      `;
+      body.appendChild(tr);
+    });
+  }
+
+  function renderYearlyTable() {
+    const body = document.getElementById('yearlyTableBody');
+    body.innerHTML = '';
+
+    if (!state.yearlySummary.length) {
+      body.innerHTML = `<tr><td colspan="2">কোনো yearly summary পাওয়া যায়নি।</td></tr>`;
+      return;
+    }
+
+    state.yearlySummary.forEach(row => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${safeText(row[0])}</td>
+        <td><strong class="earn__highlight">${formatMoney(row[1])}</strong></td>
+      `;
+      body.appendChild(tr);
+    });
+  }
+
+  function getStatusBadge(status) {
+    const raw = String(status || '').toLowerCase();
+    let cls = 'earn__badge--partial';
+    if (raw === 'paid') cls = 'earn__badge--paid';
+    if (raw === 'unpaid') cls = 'earn__badge--unpaid';
+    return `<span class="earn__badge ${cls}">${safeText(status)}</span>`;
+  }
+
+  function renderInvoiceTable() {
+    const body = document.getElementById('invoiceTableBody');
+    body.innerHTML = '';
+
+    if (!state.filteredInvoices.length) {
+      body.innerHTML = `<tr><td colspan="8">কোনো invoice পাওয়া যায়নি। No matching invoice found.</td></tr>`;
+      return;
+    }
+
+    state.filteredInvoices.forEach(item => {
+      const tr = document.createElement('tr');
+      const printUrl = `${API_BASE}?action=renderInvoice&invoiceId=${encodeURIComponent(item.invoiceId)}`;
+      tr.innerHTML = `
+        <td>${safeText(item.date)}</td>
+        <td><strong class="earn__highlight">${safeText(item.invoiceNo)}</strong></td>
+        <td>${safeText(item.name)}</td>
+        <td>${safeText(item.category)}</td>
+        <td>${safeText(item.paymentMethod)}</td>
+        <td>${getStatusBadge(item.paidStatus)}</td>
+        <td><strong class="earn__highlight">${formatMoney(item.total || item.amount)}</strong></td>
+        <td>
+          <div class="earn__action-row">
+            <button class="earn__button earn__button--secondary" data-invoice-id="${item.invoiceId}" data-action="detail">Details</button>
+            <a class="earn__link-button earn__link-button--dark" href="${printUrl}" target="_blank" rel="noopener">Print</a>
+          </div>
+        </td>
+      `;
+      body.appendChild(tr);
+    });
+  }
+
+  function applyFilters() {
+    const fromDate = document.getElementById('fromDate').value;
+    const toDate = document.getElementById('toDate').value;
+    const statusFilter = document.getElementById('statusFilter').value.trim().toLowerCase();
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+
+    state.filteredInvoices = state.invoices.filter(item => {
+      const itemDate = String(item.date || '');
+      const status = String(item.paidStatus || '').toLowerCase();
+      const haystack = [item.invoiceNo, item.name, item.category, item.paymentMethod, item.details]
+        .map(v => String(v || '').toLowerCase())
+        .join(' ');
+
+      if (fromDate && itemDate < fromDate) return false;
+      if (toDate && itemDate > toDate) return false;
+      if (statusFilter && status !== statusFilter) return false;
+      if (q && !haystack.includes(q)) return false;
+      return true;
+    });
+
+    renderAll();
+    setStatus(`ফিল্টার সম্পন্ন। ${formatCount(state.filteredInvoices.length)} টি invoice পাওয়া গেছে।`);
+  }
+
+  function resetFilters() {
+    document.getElementById('fromDate').value = '';
+    document.getElementById('toDate').value = '';
+    document.getElementById('statusFilter').value = '';
+    document.getElementById('searchInput').value = '';
+    resetCustomDropdown();
+    state.filteredInvoices = [...state.invoices];
+    renderAll();
+    setStatus('সব filter reset করা হয়েছে।');
+  }
+
+  async function showInvoiceDetail(invoiceId) {
+    if (!invoiceId) {
+      setStatus('Invoice ID দিন।', true);
+      return;
+    }
+
+    try {
+      const res = await fetchJson(`${API_BASE}?action=invoice&invoiceId=${encodeURIComponent(invoiceId)}`);
+      const invoice = res.invoice;
+      fillDetail(invoice);
+      setStatus('Single invoice detail loaded successfully.');
+    } catch (error) {
+      setStatus(error.message, true);
+    }
+  }
+
+  function fillDetail(invoice) {
+    document.getElementById('detailPlaceholder').style.display = 'none';
+    document.getElementById('detailBox').classList.add('is-show');
+    document.getElementById('detailInvoiceNo').textContent = safeText(invoice.invoiceNo);
+    document.getElementById('dInvoiceId').textContent = safeText(invoice.invoiceId);
+    document.getElementById('dDate').textContent = safeText(invoice.date);
+    document.getElementById('dName').textContent = safeText(invoice.name);
+    document.getElementById('dCategory').textContent = safeText(invoice.category);
+    document.getElementById('dPaymentMethod').textContent = safeText(invoice.paymentMethod);
+    document.getElementById('dPaidStatus').textContent = safeText(invoice.paidStatus);
+    document.getElementById('dAmount').textContent = formatMoney(invoice.amount);
+    document.getElementById('dTotal').textContent = formatMoney(invoice.total);
+    document.getElementById('dDetails').textContent = safeText(invoice.details);
+    document.getElementById('detailPrintLink').href = `${API_BASE}?action=renderInvoice&invoiceId=${encodeURIComponent(invoice.invoiceId)}`;
+  }
+
+  function initCustomDropdown() {
+    const dropdown = document.getElementById('statusDropdown');
+    const button = document.getElementById('statusSelectBtn');
+    const label = document.getElementById('statusSelectLabel');
+    const hidden = document.getElementById('statusFilter');
+    const options = dropdown.querySelectorAll('.earn__select-option');
+
+    button.addEventListener('click', () => {
+      const isOpen = dropdown.classList.toggle('is-open');
+      button.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    options.forEach(option => {
+      option.addEventListener('click', () => {
+        options.forEach(item => item.classList.remove('is-active'));
+        option.classList.add('is-active');
+        hidden.value = option.dataset.value || '';
+        label.textContent = option.textContent.trim();
+        dropdown.classList.remove('is-open');
+        button.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('click', event => {
+      if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove('is-open');
+        button.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  function resetCustomDropdown() {
+    const dropdown = document.getElementById('statusDropdown');
+    const label = document.getElementById('statusSelectLabel');
+    const button = document.getElementById('statusSelectBtn');
+    const options = dropdown.querySelectorAll('.earn__select-option');
+
+    label.textContent = 'সব · All';
+    dropdown.classList.remove('is-open');
+    button.setAttribute('aria-expanded', 'false');
+    options.forEach(option => {
+      option.classList.toggle('is-active', option.dataset.value === '');
+    });
+  }
+
+  document.getElementById('applyFilterBtn').addEventListener('click', applyFilters);
+  document.getElementById('resetFilterBtn').addEventListener('click', resetFilters);
+  document.getElementById('reloadBtn').addEventListener('click', loadAllData);
+  document.getElementById('lookupBtn').addEventListener('click', () => {
+    const invoiceId = document.getElementById('invoiceLookup').value.trim();
+    showInvoiceDetail(invoiceId);
+  });
+
+  document.getElementById('invoiceLookup').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      showInvoiceDetail(e.target.value.trim());
+    }
+  });
+
+  document.getElementById('searchInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      applyFilters();
+    }
+  });
+
+  document.getElementById('invoiceTableBody').addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-action="detail"]');
+    if (!btn) return;
+    const invoiceId = btn.getAttribute('data-invoice-id');
+    showInvoiceDetail(invoiceId);
+  });
+
+  initCustomDropdown();
+  loadAllData();
+</script>
+  </main>
+
+  <!-- JS files -->
+  <script src="assets/js/wsc-config.js"></script>
+  <script src="assets/js/wsc-layout.js"></script>
+  <script src="assets/js/wsc-search.js"></script>
+  <script src="assets/js/wsc-password.js"></script>
+</body>
+</html>

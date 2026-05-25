@@ -1,0 +1,107 @@
+﻿<!doctype html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Western School & College</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="assets/css/base/wsc-root.css">
+  <link rel="stylesheet" href="assets/css/side-nav/wsc-side-nav.css">
+  <link rel="stylesheet" href="assets/css/components/wsc-components.css">
+  <link rel="stylesheet" href="assets/css/responsive/wsc-responsive.css">
+  <link rel="stylesheet" href="assets/css/shortcode/wsc-shortcode.css">
+</head>
+<body>
+  <!-- Keep this blank. Add custom page content here later if needed. -->
+  <main data-wsc-page-content>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<style>
+.prottoyon{max-width:1200px;margin:50px auto;padding:30px;backdrop-filter:blur(15px);background:rgba(255,255,255,0.3);border-radius:30px;box-shadow:0 10px 40px rgba(0,0,0,0.1);}
+h2{text-align:center;margin-bottom:30px;color:#1f5eff;font-weight:800;}
+label{display:block;margin-bottom:6px;font-weight:700;color:#172033;}
+input,textarea{width:100%;padding:12px 16px;border-radius:50px;border:1px solid rgba(255,255,255,0.4);background:rgba(255,255,255,0.6);margin-bottom:15px;box-sizing:border-box;}
+textarea{resize:vertical;min-height:80px;}
+.custom-select{position:relative;width:100%;margin-bottom:15px;}
+.select-selected{background:rgba(255,255,255,0.6);border-radius:50px;padding:12px 16px;cursor:pointer;}
+.select-items{position:absolute;background:rgba(255,255,255,0.85);border-radius:12px;top:100%;left:0;right:0;z-index:99;display:none;}
+.select-items div{padding:12px 16px;cursor:pointer;}
+.select-items div:hover{background:#1f5eff;color:#fff;}
+.btn{width:100%;padding:15px 0;border-radius:50px;background:#1f5eff;color:#fff;font-weight:800;cursor:pointer;border:0;font-size:16px;transition:0.2s;}
+.btn:hover{background:#1747c7;}
+.result{display:none;margin-top:20px;padding:15px 16px;border-radius:16px;font-size:14px;}
+.result a{display:inline-block;margin:5px;color:#1f5eff;font-weight:700;text-decoration:none;}
+/* 3-কলাম লেআউট (ডেস্কটপ) */
+.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 25px;align-items:start;}
+.full-width{grid-column:span 3;}
+@media(max-width:900px){
+  .form-grid{grid-template-columns:repeat(2,1fr);gap:15px;}
+  .full-width{grid-column:span 2;}
+}
+@media(max-width:640px){
+  .form-grid{grid-template-columns:1fr;}
+  .full-width{grid-column:span 1;}
+  .prottoyon{padding:20px;margin:20px;}
+}
+</style>
+<div class="prottoyon">
+<h2>সার্টিফিকেট ফর্ম</h2>
+<form id="certificateForm">
+  <div class="form-grid">
+    <div><label>তারিখ</label><input type="text" name="date" class="datepicker" placeholder="২২ মে ২০২৬" required></div>
+    <div><label>নাম</label><input type="text" name="name" placeholder="ছাত্র/ছাত্রীর নাম" required></div>
+    <div><label>পিতার নাম</label><input type="text" name="father-name" placeholder="পিতার নাম" required></div>
+    <div><label>মাতার নাম</label><input type="text" name="mother-name" placeholder="মাতার নাম" required></div>
+    <div><label>ঠিকানা</label><textarea name="address" placeholder="ঠিকানা" required></textarea></div>
+    <div><label>ক্লাস</label><div class="custom-select" id="classSelect"></div></div>
+    <div><label>লিঙ্গ</label><div class="custom-select" id="genderSelect"></div></div>
+    <div><label>জন্মতারিখ</label><input type="text" name="date-of-birth" class="datepicker" placeholder="০১ জানুয়ারি ২০১০" required></div>
+    <div class="full-width"><button class="btn" type="submit">PDF তৈরি করুন</button></div>
+  </div>
+  <div class="result"></div>
+</form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+const WEB_APP_URL="https://script.google.com/macros/s/AKfycbz87PYg8eHSsC1FfqY2PKNik7wAMcwOGciNI5hsr33RyBkd9zS548di4Ezq7J9FxKvL/exec";
+const classes=['প্লে','নার্সারী','কেজি','১','২','৩','৪','৫'];
+const genders=['ছাত্র','ছাত্রী'];
+function createCustomSelect(id,array){
+ const container=document.getElementById(id);
+ const selected=document.createElement('div'); selected.className='select-selected'; selected.textContent='নির্বাচন করুন';
+ container.appendChild(selected);
+ const items=document.createElement('div'); items.className='select-items';
+ array.forEach(v=>{const d=document.createElement('div'); d.textContent=v; d.addEventListener('click',()=>{selected.textContent=v; items.style.display='none';}); items.appendChild(d);});
+ container.appendChild(items);
+ selected.addEventListener('click',()=>{items.style.display=items.style.display==='block'?'none':'block';});
+}
+createCustomSelect('classSelect',classes);
+createCustomSelect('genderSelect',genders);
+flatpickr('.datepicker',{dateFormat:'d F Y',altInput:true,altFormat:'d F Y',locale:{firstDayOfWeek:1,weekdays:{shorthand:['রবি','সোম','মঙ্গল','বুধ','বৃহস্পতি','শুক্র','শনি'],longhand:['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার']},months:{shorthand:['জান','ফেব','মার্চ','এপ্রিল','মে','জুন','জুল','আগ','সেপ্ট','অক্টো','নভ','ডিস'],longhand:['জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর']}}});
+document.getElementById('certificateForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const form=e.target;
+ const data={};
+ form.querySelectorAll('input,textarea').forEach(el=>{data[el.name]=el.value.replace(/[0-9]/g,d=>'০১২৩৪৫৬৭৮৯'[d])});
+ data.class=document.getElementById('classSelect').querySelector('.select-selected').textContent;
+ data.gender=document.getElementById('genderSelect').querySelector('.select-selected').textContent;
+ data.template='certificate';
+ const cb='cb_'+Date.now();
+ window[cb]=(res)=>{
+ const r=form.querySelector('.result'); r.style.display='block'; r.innerHTML='';
+ if(res.success){r.className='result success'; r.innerHTML=`<a href='${res.viewUrl}' target='_blank'>View PDF</a> <a href='${res.downloadUrl}' target='_blank'>Download PDF</a> <a href='${res.downloadUrl}' target='_blank' onclick='window.print()'>Print PDF</a>`;}
+ else{r.className='result error'; r.textContent=res.message;}
+ delete window[cb];
+};
+ const script=document.createElement('script'); script.src=WEB_APP_URL+'?action=generate&callback='+cb+'&'+new URLSearchParams(data).toString(); document.body.appendChild(script);
+});
+</script>
+  </main>
+
+  <!-- JS files -->
+  <script src="assets/js/wsc-config.js"></script>
+  <script src="assets/js/wsc-layout.js"></script>
+  <script src="assets/js/wsc-search.js"></script>
+  <script src="assets/js/wsc-password.js"></script>
+</body>
+</html>

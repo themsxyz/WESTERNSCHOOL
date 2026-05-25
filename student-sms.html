@@ -1,0 +1,584 @@
+﻿<!doctype html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Western School & College</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="assets/css/base/wsc-root.css">
+  <link rel="stylesheet" href="assets/css/side-nav/wsc-side-nav.css">
+  <link rel="stylesheet" href="assets/css/components/wsc-components.css">
+  <link rel="stylesheet" href="assets/css/responsive/wsc-responsive.css">
+  <link rel="stylesheet" href="assets/css/shortcode/wsc-shortcode.css">
+</head>
+<body>
+  <!-- Keep this blank. Add custom page content here later if needed. -->
+  <main data-wsc-page-content>
+    <style>
+
+.sms-body{
+    --sms-gradient-start: #f8fafc;
+    --sms-gradient-end: #eef2f7;
+    --sms-text-dark: #111827;
+    --sms-text-primary: #0f172a;
+    --sms-text-secondary: #64748b;
+    --sms-text-muted: #475569;
+    --sms-glass-bg: rgba(255,255,255,.58);
+    --sms-glass-border: rgba(255,255,255,.8);
+    --sms-glass-border-light: rgba(255,255,255,.85);
+    --sms-border-table: rgba(203,213,225,.6);
+    --sms-border-table-light: rgba(226,232,240,.7);
+    --sms-purple: linear-gradient(135deg,#7c3aed,#8b5cf6);
+    --sms-blue: linear-gradient(135deg,#2563eb,#3b82f6);
+    --sms-green: linear-gradient(135deg,#059669,#10b981);
+    --sms-red: linear-gradient(135deg,#dc2626,#ef4444);
+    --sms-cyan: linear-gradient(135deg,#0891b2,#06b6d4);
+    --sms-radius-xl: 32px;
+    --sms-radius-pill: 999px;
+    --sms-shadow: 0 10px 30px rgba(15,23,42,.06);
+    --sms-shadow-lg: 0 10px 30px rgba(15,23,42,.1);
+    --sms-inner-glow: inset 0 1px 0 rgba(255,255,255,.9);
+    --sms-font-family: 'Noto Serif Display', 'Noto Serif Bengali', serif;
+}
+
+
+
+.sms-container{
+    max-width: 1400px;
+    margin: auto;
+}
+
+.sms-card{
+    background: var(--sms-glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--sms-glass-border);
+    border-radius: var(--sms-radius-xl);
+    padding: 30px;
+    box-shadow: var(--sms-shadow), var(--sms-inner-glow);
+    margin-bottom: 24px;
+}
+
+.sms-title{
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--sms-text-primary);
+}
+
+.sms-subtitle{
+    color: var(--sms-text-secondary);
+    font-size: 14px;
+    margin-bottom: 28px;
+    line-height: 1.7;
+}
+
+.sms-action-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 25px;
+}
+
+.sms-btn{
+    border: none;
+    outline: none;
+    padding: 15px 24px;
+    border-radius: var(--sms-radius-pill);
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    transition: .25s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+    font-family: var(--sms-font-family);
+}
+
+.sms-btn:hover{
+    transform: translateY(-2px);
+}
+
+.sms-btn:disabled{
+    opacity: .5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.sms-btn-create{
+    background: var(--sms-purple);
+}
+
+.sms-btn-refresh{
+    background: var(--sms-blue);
+}
+
+.sms-btn-sms{
+    background: var(--sms-green);
+}
+
+.sms-btn-clear{
+    background: var(--sms-red);
+}
+
+.sms-btn-upload{
+    background: var(--sms-cyan);
+}
+
+.sms-upload-wrap{
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.sms-file-input{
+    flex: 1;
+    min-width: 260px;
+}
+
+.sms-file-input input{
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: var(--sms-radius-pill);
+    border: none;
+    outline: none;
+    background: rgba(255,255,255,.75);
+    border: 1px solid rgba(203,213,225,.8);
+    color: var(--sms-text-dark);
+    backdrop-filter: blur(10px);
+    font-family: var(--sms-font-family);
+}
+
+.sms-file-input input::file-selector-button{
+    border: none;
+    background: var(--sms-text-dark);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: var(--sms-radius-pill);
+    margin-right: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: var(--sms-font-family);
+}
+
+.sms-table-card{
+    overflow: hidden;
+    padding: 0;
+}
+
+.sms-table-wrap{
+    overflow: auto;
+}
+
+.sms-table{
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255,255,255,.4);
+    backdrop-filter: blur(18px);
+}
+
+.sms-table thead{
+    background: rgba(255,255,255,.7);
+    backdrop-filter: blur(16px);
+}
+
+.sms-table th{
+    padding: 20px;
+    text-align: left;
+    font-size: 13px;
+    color: var(--sms-text-muted);
+    font-weight: 700;
+    border-bottom: 1px solid var(--sms-border-table);
+    white-space: nowrap;
+}
+
+.sms-table td{
+    padding: 18px 20px;
+    font-size: 14px;
+    color: var(--sms-text-dark);
+    border-bottom: 1px solid var(--sms-border-table-light);
+}
+
+.sms-table tbody tr{
+    transition: .2s;
+}
+
+.sms-table tbody tr:hover{
+    background: rgba(255,255,255,.5);
+}
+
+.sms-status{
+    padding: 8px 14px;
+    border-radius: var(--sms-radius-pill);
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.sms-status-sent{
+    background: rgba(16,185,129,.12);
+    color: #059669;
+}
+
+.sms-status-failed{
+    background: rgba(239,68,68,.12);
+    color: #dc2626;
+}
+
+.sms-status-pending{
+    background: rgba(245,158,11,.12);
+    color: #d97706;
+}
+
+.sms-loading{
+    padding: 55px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--sms-text-secondary);
+}
+
+.sms-popup{
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120px);
+    min-width: 280px;
+    max-width: 90%;
+    padding: 16px 24px;
+    border-radius: var(--sms-radius-pill);
+    color: var(--sms-text-dark);
+    font-weight: 700;
+    text-align: center;
+    background: rgba(255,255,255,.7);
+    backdrop-filter: blur(18px);
+    border: 1px solid var(--sms-glass-border-light);
+    box-shadow: var(--sms-shadow-lg), var(--sms-inner-glow);
+    transition: .4s ease;
+    z-index: 999;
+    font-family: var(--sms-font-family);
+}
+
+.sms-popup.show{
+    transform: translateX(-50%) translateY(0);
+}
+
+.sms-popup.sms-success{
+    color: #059669;
+}
+
+.sms-popup.sms-error{
+    color: #dc2626;
+}
+
+.sms-loader{
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(0,0,0,.15);
+    border-top: 3px solid var(--sms-text-dark);
+    border-radius: 50%;
+    animation: smsSpin .8s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.sms-icon{
+    font-size: 16px;
+}
+
+@keyframes smsSpin{
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+@media(max-width: 900px){
+    .sms-action-grid{
+        flex-direction: column;
+    }
+    .sms-btn{
+        width: 100%;
+    }
+    .sms-upload-wrap{
+        flex-direction: column;
+    }
+    .sms-upload-wrap button{
+        width: 100%;
+    }
+}
+
+</style>
+
+<body class="sms-body">
+
+<div class="sms-container">
+
+    <div class="sms-card">
+
+        <div class="sms-title">
+            SMS ড্যাশবোর্ড
+        </div>
+
+        <div class="sms-subtitle">
+           ওয়েস্টার্ন স্কুল স্মার্ট SMS Management System
+        </div>
+
+        <div class="sms-action-grid">
+
+            <button class="sms-btn sms-btn-create" id="sms_createBtn" onclick="smsCreateSheet()">
+                <span class="sms-icon">📄</span>
+                File তৈরি করুন
+            </button>
+
+            <button class="sms-btn sms-btn-refresh" onclick="smsLoadData()">
+                <span class="sms-icon">🔄</span>
+                ডাটা রিফ্রেশ
+            </button>
+
+            <button class="sms-btn sms-btn-sms" onclick="smsSendSMS()">
+                <span class="sms-icon">📩</span>
+                SMS পাঠান
+            </button>
+
+            <button class="sms-btn sms-btn-clear" onclick="smsClearData()">
+                <span class="sms-icon">🗑️</span>
+                ডাটা ক্লিয়ার
+            </button>
+
+        </div>
+
+        <div class="sms-upload-wrap">
+
+            <div class="sms-file-input">
+                <input type="file" id="sms_fileInput" accept=".txt">
+            </div>
+
+            <button class="sms-btn sms-btn-upload" onclick="smsUploadFile()">
+                <span class="sms-icon">📤</span>
+                আপলোড
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="sms-card sms-table-card">
+
+        <div id="sms_loading" class="sms-loading">
+            ডাটা লোড হচ্ছে...
+        </div>
+
+        <div class="sms-table-wrap">
+
+            <table id="sms_table" class="sms-table" style="display:none;">
+
+                <thead>
+                    <tr>
+                        <th>ক্রমিক নং</th>
+                        <th>মোবাইল নাম্বার</th>
+                        <th>স্টুডেন্ট আইডি</th>
+                        <th>শিক্ষার্থীর নাম</th>
+                        <th>ক্লাস</th>
+                        <th>তারিখ ও সময়</th>
+                        <th>স্ট্যাটাস</th>
+                    </tr>
+                </thead>
+
+                <tbody id="sms_tbody"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="sms_popup" class="sms-popup"></div>
+
+<script>
+
+const SMS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxkegyGx5IH5LiYfwUQS1dN5vG9aMP-oBVm0RR0f6fIcR1-4OfDoXU3wVACfrndSrRFwA/exec';
+
+/* ================= POPUP ================= */
+
+function smsShowPopup(message, type='success') {
+    const popup = document.getElementById('sms_popup');
+    popup.innerHTML = message;
+    popup.className = `sms-popup show sms-${type}`;
+    setTimeout(() => {
+        popup.classList.remove('show');
+    }, 2500);
+}
+
+/* ================= DATE FORMAT ================= */
+
+function smsFormatDate(dateString){
+    if(!dateString) return "";
+    const date = new Date(dateString);
+    if(isNaN(date)) return dateString;
+    return date.toLocaleString('en-GB',{
+        day:'2-digit',
+        month:'short',
+        year:'numeric',
+        hour:'2-digit',
+        minute:'2-digit',
+        second:'2-digit',
+        hour12:true
+    });
+}
+
+/* ================= LOAD DATA ================= */
+
+async function smsLoadData(){
+    document.getElementById("sms_loading").style.display = "block";
+    document.getElementById("sms_table").style.display = "none";
+    
+    try{
+        const response = await fetch(SMS_WEBAPP_URL + "?action=getData");
+        const data = await response.json();
+        let html = "";
+        
+        if(data.length > 0){
+            document.getElementById("sms_createBtn").disabled = true;
+        }
+        
+        data.forEach(item => {
+            let statusClass = "pending";
+            let statusText = item.status || "Pending";
+            
+            if(item.status === "Sent"){
+                statusClass = "sent";
+            }
+            if(item.status === "Failed"){
+                statusClass = "failed";
+            }
+            
+            html += `
+                <tr>
+                    <td>${item.row || ""}</td>
+                    <td>${item.number || ""}</td>
+                    <td>${item.id || ""}</td>
+                    <td>${item.name || ""}</td>
+                    <td>${item.class || ""}</td>
+                    <td>${smsFormatDate(item.datetime)}</td>
+                    <td>
+                        <span class="sms-status sms-status-${statusClass}">
+                            ${statusText}
+                        </span>
+                    </td>
+                </tr>
+            `;
+        });
+        
+        document.getElementById("sms_tbody").innerHTML = html;
+        document.getElementById("sms_loading").style.display = "none";
+        document.getElementById("sms_table").style.display = "table";
+        
+    } catch(err){
+        document.getElementById("sms_loading").innerHTML = "ডাটা লোড করা যায়নি";
+        console.error(err);
+        smsShowPopup("❌ Failed to load data", "error");
+    }
+}
+
+/* ================= CREATE SHEET ================= */
+
+async function smsCreateSheet(){
+    try{
+        smsShowPopup('<span class="sms-loader"></span> File তৈরি হচ্ছে...');
+        const response = await fetch(SMS_WEBAPP_URL + "?action=createSheet");
+        const text = await response.text();
+        
+        if(text.toLowerCase().includes("already")){
+            document.getElementById("sms_createBtn").disabled = true;
+        }
+        
+        smsShowPopup("✅ " + text, "success");
+        smsLoadData();
+        
+    } catch(err){
+        smsShowPopup("❌ দুঃখিত হয়নি", "error");
+    }
+}
+
+/* ================= SEND SMS ================= */
+
+async function smsSendSMS(){
+    try{
+        smsShowPopup('<span class="sms-loader"></span> SMS পাঠানো হচ্ছে...');
+        const response = await fetch(SMS_WEBAPP_URL + "?action=sendSMS");
+        const text = await response.text();
+        smsShowPopup("✅ " + text, "success");
+        smsLoadData();
+        
+    } catch(err){
+        smsShowPopup("❌ SMS পাঠানো ব্যার্থ", "error");
+    }
+}
+
+/* ================= CLEAR DATA ================= */
+
+async function smsClearData(){
+    try{
+        smsShowPopup('<span class="sms-loader"></span> Data ক্লিয়ার হচ্ছে...');
+        const response = await fetch(SMS_WEBAPP_URL + "?action=clearData");
+        const text = await response.text();
+        smsShowPopup("✅ " + text, "success");
+        smsLoadData();
+        
+    } catch(err){
+        smsShowPopup("❌ Clear Failed", "error");
+    }
+}
+
+/* ================= TXT UPLOAD ================= */
+
+async function smsUploadFile() {
+    const file = document.getElementById('sms_fileInput').files[0];
+    if (!file) {
+        smsShowPopup('❌ File select করুন', 'error');
+        return;
+    }
+    
+    try {
+        smsShowPopup('<span class="sms-loader"></span> Upload হচ্ছে...');
+        const text = await file.text();
+        const response = await fetch(SMS_WEBAPP_URL, {
+            method: 'POST',
+            body: text
+        });
+        const result = await response.text();
+        
+        if(result.toLowerCase().includes('success')){
+            smsShowPopup('✅ Import Completed Successfully', 'success');
+            smsLoadData();
+        } else {
+            smsShowPopup('❌ ' + result, 'error');
+        }
+        
+    } catch(err){
+        smsShowPopup('❌ Upload ব্যার্থ', 'error');
+        console.error(err);
+    }
+}
+
+/* ================= INITIAL LOAD ================= */
+
+smsLoadData();
+
+</script>
+  </main>
+
+  <!-- JS files -->
+  <script src="assets/js/wsc-config.js"></script>
+  <script src="assets/js/wsc-layout.js"></script>
+  <script src="assets/js/wsc-search.js"></script>
+  <script src="assets/js/wsc-password.js"></script>
+</body>
+</html>

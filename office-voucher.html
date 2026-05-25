@@ -1,0 +1,695 @@
+﻿<!doctype html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Western School & College</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="assets/css/base/wsc-root.css">
+  <link rel="stylesheet" href="assets/css/side-nav/wsc-side-nav.css">
+  <link rel="stylesheet" href="assets/css/components/wsc-components.css">
+  <link rel="stylesheet" href="assets/css/responsive/wsc-responsive.css">
+  <link rel="stylesheet" href="assets/css/shortcode/wsc-shortcode.css">
+</head>
+<body>
+  <!-- Keep this blank. Add custom page content here later if needed. -->
+  <main data-wsc-page-content>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+
+/* desktop friendly container with refined card - all classes start with .voucher */
+.voucherContainer {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 32px;
+  box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.02);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+/* header area redesign */
+.voucherHeader {
+  background: linear-gradient(135deg, #0f2b3d 0%, #1a4a6f 100%);
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.voucherHeader h2 {
+  margin: 0;
+  font-size: 1.85rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.voucherHeader h2 i {
+  font-size: 1.8rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* main padding area */
+.voucherFormMain {
+  padding: 2rem 2rem 1.8rem 2rem;
+}
+
+/* row layout - desktop 2 column grid */
+.voucherTwoColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.voucherInputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.voucherInputGroup label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #4a5b6e;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.voucherInputGroup label i {
+  font-size: 0.9rem;
+  color: #2c6e9e;
+}
+
+.voucherInput, .voucherSelect {
+  padding: 0.9rem 1.2rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+  font-size: 0.95rem;
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.voucherInput:focus, .voucherSelect:focus {
+  border-color: #1a4a6f;
+  box-shadow: 0 0 0 4px rgba(26, 74, 111, 0.12);
+}
+
+/* items section styling */
+.voucherItemsSection {
+  margin-top: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.voucherSectionTitle {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+  color: #1e2f3e;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-left: 4px solid #1a4a6f;
+  padding-left: 14px;
+}
+
+.voucherItemsList {
+  background: #fafcff;
+  border-radius: 24px;
+  padding: 0.25rem 0;
+}
+
+.voucherItem {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  background: white;
+  border-radius: 20px;
+  padding: 0.4rem;
+  transition: all 0.2s;
+  border: 1px solid #edf2f7;
+}
+
+.voucherItem:hover {
+  border-color: #cbdde9;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.voucherItemInputDesc {
+  flex: 2.5;
+  padding: 0.9rem 1.2rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+  font-size: 0.95rem;
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.voucherItemInputAmount {
+  flex: 1;
+  padding: 0.9rem 1.2rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+  font-size: 0.95rem;
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.voucherItemInputDesc:focus, .voucherItemInputAmount:focus {
+  border-color: #1a4a6f;
+  box-shadow: 0 0 0 4px rgba(26, 74, 111, 0.12);
+}
+
+.voucherRemoveBtn {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 0.65rem 1.2rem;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  transition: 0.2s;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.voucherRemoveBtn:hover {
+  background: #fecaca;
+  color: #991b1b;
+  transform: scale(0.98);
+}
+
+.voucherBtn {
+  padding: 0.8rem 1.8rem;
+  border: none;
+  background: #f1f5f9;
+  color: #1e2f3e;
+  border-radius: 40px;
+  cursor: pointer;
+  font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.voucherBtn i {
+  font-size: 0.9rem;
+}
+
+.voucherBtn:hover {
+  background: #e6edf4;
+  transform: translateY(-1px);
+}
+
+.voucherAddBtn {
+  background: #eef2ff;
+  color: #1a4a6f;
+  border: 1px solid #cbdde9;
+  margin-top: 0.5rem;
+}
+
+.voucherAddBtn:hover {
+  background: #e0e9f5;
+}
+
+.voucherTotal {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-top: 1.5rem;
+  margin-bottom: 1.8rem;
+  padding: 1rem 1.8rem;
+  background: linear-gradient(115deg, #f8fafc 0%, #ffffff 100%);
+  border-radius: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e2edf2;
+  color: #0c4e6e;
+}
+
+.voucherTotalLabel {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #3c5a73;
+}
+
+.voucherTotalAmount {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #1a4a6f, #0f2b3d);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.voucherSubmitBtn {
+  width: 100%;
+  background: linear-gradient(95deg, #0f2b3d 0%, #1a4a6f 100%);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1rem;
+  border-radius: 60px;
+  box-shadow: 0 8px 20px -8px rgba(26,74,111,0.4);
+  margin-top: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.voucherSubmitBtn:hover {
+  background: linear-gradient(95deg, #1a3e55, #23638c);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px -10px rgba(26,74,111,0.5);
+}
+
+/* pdf result card */
+.voucherPdfResult {
+  background: #f0f9f4;
+  border-radius: 28px;
+  padding: 1.6rem 2rem;
+  margin-top: 2rem;
+  border-left: 6px solid #2b7e3a;
+  animation: voucherFadeSlideUp 0.3s ease;
+}
+
+.voucherPdfResult strong {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #166534;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.voucherPdfButtons {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0 0.8rem;
+  flex-wrap: wrap;
+}
+
+.voucherOpenBtn, .voucherDownloadBtn {
+  background: #1f4e6e;
+  color: white;
+  padding: 0.7rem 1.6rem;
+  font-weight: 600;
+  border: none;
+}
+
+.voucherOpenBtn:hover, .voucherDownloadBtn:hover {
+  background: #0f3a52;
+}
+
+.voucherDownloadBtn {
+  background: #2c7a3e;
+}
+
+.voucherPrintNote {
+  background: #eef2f5;
+  padding: 0.6rem 1rem;
+  border-radius: 28px;
+  font-size: 0.8rem;
+  color: #4a627a;
+  margin-top: 1rem;
+  display: inline-block;
+}
+
+.voucherErrorBox {
+  margin-top: 1rem;
+  padding: 1rem 1.5rem;
+  background: #fff5f5;
+  border-radius: 28px;
+  color: #c2410c;
+  font-weight: 500;
+  border-left: 5px solid #e53e3e;
+  display: none;
+}
+
+.voucherSuccessText {
+  font-weight: 800;
+  background: #e6f7ec;
+  padding: 0.2rem 0.8rem;
+  border-radius: 30px;
+  display: inline-block;
+  font-family: monospace;
+}
+
+/* modern scroll & tiny adjustments */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+@media (max-width: 780px) {
+  body {
+    padding: 1rem;
+  }
+  .voucherTwoColumns {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .voucherItem {
+    flex-wrap: wrap;
+    padding: 0.8rem;
+  }
+  .voucherItemInputDesc, .voucherItemInputAmount {
+    flex: 1 1 100%;
+  }
+  .voucherRemoveBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  .voucherFormMain {
+    padding: 1.5rem;
+  }
+  .voucherTotal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@keyframes voucherFadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* subtle icon spacing */
+.fa, .fas, .far {
+  font-size: 0.9em;
+}
+
+.voucherSelect {
+  cursor: pointer;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%234a5b6e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1.2rem center;
+  background-size: 1rem;
+}
+</style>
+
+<div class="voucherContainer">
+  <div class="voucherHeader">
+    <h2>
+      <i class="fas fa-receipt"></i> 
+      ভাউচার মেকার
+    </h2>
+  </div>
+
+  <div class="voucherFormMain">
+    <div class="voucherTwoColumns">
+      <div class="voucherInputGroup">
+        <label><i class="far fa-calendar-alt"></i> তারিখ</label>
+        <input type="date" id="date" class="voucherInput">
+      </div>
+      <div class="voucherInputGroup">
+        <label><i class="fas fa-tag"></i> ক্যাটাগরি</label>
+        <select id="category" class="voucherSelect">
+          <option value="">ক্যাটাগরি লোড হচ্ছে...</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="voucherItemsSection">
+      <div class="voucherSectionTitle">
+        <i class="fas fa-list-ul"></i> আইটেম লিস্ট
+      </div>
+      <div id="items"></div>
+      <button type="button" class="voucherBtn voucherAddBtn" onclick="addItem()">
+        <i class="fas fa-plus-circle"></i> আরও যোগ করুন
+      </button>
+    </div>
+
+    <div class="voucherTotal">
+      <span class="voucherTotalLabel"><i class="fas fa-calculator"></i> মোট টাকার পরিমাণ</span>
+      <span><span id="total" class="voucherTotalAmount">0</span> <span style="font-size: 0.9rem;">টাকা</span></span>
+    </div>
+
+    <div class="voucherActionArea">
+      <button type="button" id="submitBtn" class="voucherSubmitBtn" onclick="submitVoucher()">
+        <i class="fas fa-save"></i> ভাউচার সেভ ও PDF তৈরি
+      </button>
+    </div>
+
+    <div id="errorBox" class="voucherErrorBox"></div>
+
+    <div id="pdfResult" class="voucherPdfResult" style="display: none;">
+      <strong><i class="fas fa-check-circle"></i> PDF সফলভাবে তৈরি হয়েছে!</strong>
+      <p style="margin: 10px 0 6px 0;">
+        Voucher No: 
+        <span id="voucherNoText" class="voucherSuccessText"></span>
+      </p>
+      <div class="voucherPdfButtons">
+        <a id="viewPdfLink" href="#" target="_blank">
+          <button type="button" class="voucherBtn voucherOpenBtn"><i class="fas fa-eye"></i> PDF ওপেন / প্রিন্ট</button>
+        </a>
+        <a id="downloadPdfLink" href="#" target="_blank">
+          <button type="button" class="voucherBtn voucherDownloadBtn"><i class="fas fa-download"></i> PDF ডাউনলোড</button>
+        </a>
+      </div>
+      <p class="voucherPrintNote">
+        <i class="fas fa-print"></i> Print করার জন্য “PDF ওপেন / প্রিন্ট” এ ক্লিক করে browser থেকে Ctrl + P চাপুন।
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbxMegDeUZTVurpiGLpvzD1m9taVM_7wg9yYLGzJZuZ8DOcVxIV_HHa0ayxoqR2i7PEX/exec";
+
+window.onload = function(){
+  setTodayDate();
+  addItem();
+  loadCategories();
+};
+
+function setTodayDate(){
+  const today = new Date().toISOString().split("T")[0];
+  document.getElementById("date").value = today;
+}
+
+async function loadCategories(){
+  const category = document.getElementById("category");
+  try{
+    const res = await fetch(API_URL);
+    const data = await res.json();
+    category.innerHTML = "";
+    if(data.status === "success" && data.categories){
+      data.categories.forEach(cat => {
+        const option = document.createElement("option");
+        option.value = cat;
+        option.innerText = cat;
+        category.appendChild(option);
+      });
+    }else{
+      category.innerHTML = `<option value="">Category Load Failed</option>`;
+    }
+  }catch(error){
+    category.innerHTML = `<option value="">Category Load Failed</option>`;
+    showError("Category load করা যায়নি। Apps Script URL check করুন।");
+  }
+}
+
+function addItem(){
+  const div = document.createElement("div");
+  div.className = "voucherItem";
+  div.innerHTML = `
+    <input 
+      type="text" 
+      class="voucherItemInputDesc" 
+      placeholder="বিবরণ (যেমন: পেট্রোল, খাবার)"
+      onblur="formatDescription(this)"
+      oninput="liveCleanDescription(this)"
+    >
+    <input 
+      type="number" 
+      class="voucherItemInputAmount" 
+      placeholder="টাকার পরিমাণ" 
+      oninput="calculateTotal()"
+    >
+    <button type="button" class="voucherRemoveBtn" onclick="removeItem(this)">
+      <i class="fas fa-trash-alt"></i> Remove
+    </button>
+  `;
+  document.getElementById("items").appendChild(div);
+}
+
+function liveCleanDescription(input){
+  input.value = input.value.replace(/\s+/g, " ");
+}
+
+function formatDescription(input){
+  let text = input.value.trim();
+  text = text.replace(/\s+/g, " ");
+  text = text.toLowerCase().replace(/\b[a-z]/g, function(letter){
+    return letter.toUpperCase();
+  });
+  input.value = text;
+}
+
+function removeItem(button){
+  const itemRows = document.querySelectorAll(".voucherItem");
+  if(itemRows.length > 1){
+    button.parentElement.remove();
+    calculateTotal();
+  }else{
+    showError("কমপক্ষে একটি item থাকতে হবে।");
+  }
+}
+
+function calculateTotal(){
+  let total = 0;
+  document.querySelectorAll(".voucherItemInputAmount").forEach(input => {
+    total += Number(input.value) || 0;
+  });
+  document.getElementById("total").innerText = total.toLocaleString("en-IN");
+}
+
+function showError(message){
+  const errorBox = document.getElementById("errorBox");
+  errorBox.innerText = message;
+  errorBox.style.display = "block";
+  setTimeout(() => {
+    if(errorBox.innerText === message) errorBox.style.display = "none";
+  }, 4000);
+}
+
+function hideError(){
+  const errorBox = document.getElementById("errorBox");
+  errorBox.innerText = "";
+  errorBox.style.display = "none";
+}
+
+function validateForm(){
+  const date = document.getElementById("date").value;
+  const category = document.getElementById("category").value;
+  const items = [];
+  document.querySelectorAll(".voucherItem").forEach(row => {
+    const description = row.querySelector(".voucherItemInputDesc").value.trim();
+    const amount = row.querySelector(".voucherItemInputAmount").value;
+    if(description && amount){
+      items.push({ description, amount });
+    }
+  });
+  if(!date){
+    showError("তারিখ দিন।");
+    return false;
+  }
+  if(!category){
+    showError("Category select করুন।");
+    return false;
+  }
+  if(items.length === 0){
+    showError("কমপক্ষে একটি description এবং amount দিন।");
+    return false;
+  }
+  return true;
+}
+
+async function submitVoucher(){
+  hideError();
+  document.getElementById("pdfResult").style.display = "none";
+  document.querySelectorAll(".voucherItemInputDesc").forEach(input => {
+    formatDescription(input);
+  });
+  if(!validateForm()){
+    return;
+  }
+  const submitBtn = document.getElementById("submitBtn");
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = `<i class="fas fa-spinner fa-pulse"></i> PDF তৈরি হচ্ছে...`;
+  const items = [];
+  document.querySelectorAll(".voucherItem").forEach(row => {
+    const description = row.querySelector(".voucherItemInputDesc").value.trim();
+    const amount = row.querySelector(".voucherItemInputAmount").value;
+    if(description && amount){
+      items.push({ description, amount });
+    }
+  });
+  const payload = {
+    date: document.getElementById("date").value,
+    category: document.getElementById("category").value,
+    items: items
+  };
+  try{
+    const res = await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if(data.status === "success"){
+      document.getElementById("voucherNoText").innerText = data.voucherNo;
+      document.getElementById("viewPdfLink").href = data.pdf;
+      document.getElementById("downloadPdfLink").href = data.downloadPdf || data.pdf;
+      document.getElementById("pdfResult").style.display = "block";
+      clearFormAfterSuccess();
+    }else{
+      showError(data.message || "Something went wrong.");
+    }
+  }catch(error){
+    console.error(error);
+    showError("PDF তৈরি করা যায়নি। Apps Script deployment এবং permission check করুন।");
+  }
+  submitBtn.disabled = false;
+  submitBtn.innerHTML = `<i class="fas fa-save"></i> ভাউচার সেভ ও PDF তৈরি`;
+}
+
+function clearFormAfterSuccess(){
+  document.getElementById("items").innerHTML = "";
+  addItem();
+  calculateTotal();
+  setTodayDate();
+}
+</script>
+
+  </main>
+
+  <!-- JS files -->
+  <script src="assets/js/wsc-config.js"></script>
+  <script src="assets/js/wsc-layout.js"></script>
+  <script src="assets/js/wsc-search.js"></script>
+  <script src="assets/js/wsc-password.js"></script>
+</body>
+</html>

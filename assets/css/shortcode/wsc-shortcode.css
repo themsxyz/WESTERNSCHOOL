@@ -1,0 +1,53 @@
+﻿/* ============================================================
+   EDIT HERE: Reusable shortcode/utility classes
+   ============================================================ */
+
+.wsc-u-bn { font-family: var(--wsc-font-bn); }
+.wsc-u-en { font-family: var(--wsc-font-en); }
+
+.wsc-u-xs { font-size: var(--wsc-text-xs); }
+.wsc-u-sm { font-size: var(--wsc-text-sm); }
+.wsc-u-base { font-size: var(--wsc-text-base); }
+.wsc-u-md { font-size: var(--wsc-text-md); }
+.wsc-u-lg { font-size: var(--wsc-text-lg); }
+.wsc-u-xl { font-size: var(--wsc-text-xl); }
+
+.wsc-u-primary { color: var(--wsc-primary); }
+.wsc-u-purple { color: var(--wsc-purple); }
+.wsc-u-muted { color: var(--wsc-muted); }
+.wsc-u-danger { color: var(--wsc-danger); }
+.wsc-u-success { color: var(--wsc-success); }
+
+.wsc-u-bg { background: var(--wsc-bg); }
+.wsc-u-surface { background: var(--wsc-surface); }
+.wsc-u-soft { background: var(--wsc-surface-soft); }
+
+.wsc-u-p-2 { padding: 8px; }
+.wsc-u-p-3 { padding: 12px; }
+.wsc-u-p-4 { padding: 16px; }
+.wsc-u-p-5 { padding: 20px; }
+.wsc-u-p-6 { padding: 24px; }
+
+.wsc-u-card {
+  background: var(--wsc-surface);
+  border: 1px solid var(--wsc-border);
+  border-radius: var(--wsc-radius-lg);
+  box-shadow: var(--wsc-shadow);
+}
+
+.wsc-u-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.wsc-u-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.wsc-u-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}

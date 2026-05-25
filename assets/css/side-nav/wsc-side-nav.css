@@ -1,0 +1,523 @@
+﻿/* ============================================================
+   EDIT HERE: Navbar and sidebar design only
+   Navbar/sidebar HTML comes from assets/js/wsc-layout.js
+   Menu names/links come from assets/js/wsc-config.js
+
+   Update included:
+   - Navbar transparent glass style
+   - Gap between navbar and sidebar
+   - 2-line Apple style menu icon
+   - Sidebar collapsed pill design
+   - Other components remain unchanged
+   ============================================================ */
+/* ============================================================
+   DARK MODE: Sidebar image SVG icons white
+   Works for SVG used through <img>
+   ============================================================ */
+
+html[data-theme="dark"] .wsc-menu-img-icon {
+  filter: brightness(0) invert(1);
+}
+.wsc-shell {
+  min-height: 100vh;
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+
+.wsc-navbar {
+  position: sticky;
+  top: 16px;
+  z-index: 80;
+  height: var(--wsc-nav-height);
+  margin-left: calc(var(--wsc-sidebar-width) + 32px);
+  margin-right: 16px;
+
+  display: grid;
+  grid-template-columns: auto minmax(240px, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: 0 22px;
+
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+
+  transition: margin-left var(--wsc-transition), background var(--wsc-transition);
+}
+
+html[data-theme="dark"] .wsc-navbar {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* ============================================================
+   NAVBAR BRAND
+   ============================================================ */
+
+.wsc-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.wsc-brand__logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid var(--wsc-border);
+  padding: 4px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.wsc-brand__text {
+  display: grid;
+  line-height: 1.2;
+  min-width: 0;
+}
+
+.wsc-brand__bn {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wsc-brand__en {
+  font-family: var(--wsc-font-en);
+  color: var(--wsc-muted);
+  font-size: var(--wsc-text-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wsc-navbar__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* ============================================================
+   SIDEBAR GLASS FRAME
+   ============================================================ */
+
+.wsc-sidebar {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  bottom: 16px;
+  z-index: 90;
+
+  width: var(--wsc-sidebar-width);
+  height: calc(100vh - 32px);
+  padding: 16px;
+
+  background: rgba(255, 255, 255, 0.46);
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: 28px;
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.14);
+
+  transition: width var(--wsc-transition), transform var(--wsc-transition), border-radius var(--wsc-transition);
+}
+
+html[data-theme="dark"] .wsc-sidebar {
+  background: rgba(15, 23, 42, 0.52);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.34);
+}
+
+/* ============================================================
+   SIDEBAR TOP + 2 LINE MENU ICON
+   ============================================================ */
+
+.wsc-sidebar__top {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 12px;
+}
+
+.wsc-apple-menu {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--wsc-text);
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform var(--wsc-transition), background var(--wsc-transition), border-color var(--wsc-transition);
+
+  position: relative;
+  font-size: 0;
+}
+
+html[data-theme="dark"] .wsc-apple-menu {
+  background: rgba(30, 41, 59, 0.76);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.wsc-apple-menu:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.86);
+  border-color: rgba(37, 99, 235, 0.30);
+}
+
+html[data-theme="dark"] .wsc-apple-menu:hover {
+  background: rgba(51, 65, 85, 0.88);
+}
+
+.wsc-apple-menu::before,
+.wsc-apple-menu::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--wsc-text);
+  transform: translateX(-50%);
+}
+
+.wsc-apple-menu::before {
+  top: 17px;
+}
+
+.wsc-apple-menu::after {
+  bottom: 17px;
+}
+
+/* ============================================================
+   SIDEBAR NAVIGATION
+   ============================================================ */
+
+.wsc-sidebar__nav {
+  height: calc(100vh - 112px);
+  overflow-y: auto;
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding-right: 4px;
+}
+
+.wsc-sidebar__nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.wsc-sidebar__nav::-webkit-scrollbar-thumb {
+  background: rgba(37, 99, 235, 0.28);
+  border-radius: 999px;
+}
+
+.wsc-menu-group {
+  display: grid;
+  gap: 4px;
+}
+
+.wsc-menu-toggle,
+.wsc-menu-link {
+  width: 100%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--wsc-text);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 11px 12px;
+  border-radius: 16px;
+  text-align: left;
+
+  transition: background var(--wsc-transition), color var(--wsc-transition), border-color var(--wsc-transition);
+}
+
+.wsc-menu-toggle:hover,
+.wsc-menu-link:hover,
+.wsc-menu-link.wsc-is-active {
+  background: rgba(37, 99, 235, 0.10);
+  border-color: rgba(37, 99, 235, 0.14);
+  color: var(--wsc-primary-dark);
+}
+
+html[data-theme="dark"] .wsc-menu-toggle:hover,
+html[data-theme="dark"] .wsc-menu-link:hover,
+html[data-theme="dark"] .wsc-menu-link.wsc-is-active {
+  background: rgba(96, 165, 250, 0.12);
+  border-color: rgba(96, 165, 250, 0.18);
+}
+
+.wsc-menu-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wsc-menu-arrow {
+  transition: transform var(--wsc-transition);
+}
+
+.wsc-menu-group.wsc-is-open .wsc-menu-arrow {
+  transform: rotate(180deg);
+}
+
+.wsc-submenu {
+  display: none;
+  padding-left: 18px;
+}
+
+.wsc-menu-group.wsc-is-open .wsc-submenu {
+  display: grid;
+  gap: 4px;
+}
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+
+.wsc-main {
+  margin-left: calc(var(--wsc-sidebar-width) + 16px);
+  padding: 24px 16px 24px 24px;
+  min-height: calc(100vh - var(--wsc-nav-height));
+  transition: margin-left var(--wsc-transition);
+}
+
+.wsc-page-content {
+  min-height: 360px;
+}
+
+/* ============================================================
+   COLLAPSED SIDEBAR = PILL DESIGN
+   ============================================================ */
+
+html.wsc-sidebar-collapsed .wsc-sidebar {
+  width: var(--wsc-sidebar-collapsed-width);
+  border-radius: 999px;
+  padding: 14px 10px;
+}
+
+html.wsc-sidebar-collapsed .wsc-navbar {
+  margin-left: calc(var(--wsc-sidebar-collapsed-width) + 32px);
+}
+
+html.wsc-sidebar-collapsed .wsc-main {
+  margin-left: calc(var(--wsc-sidebar-collapsed-width) + 16px);
+}
+
+html.wsc-sidebar-collapsed .wsc-sidebar__top {
+  justify-content: center;
+}
+
+html.wsc-sidebar-collapsed .wsc-sidebar__nav {
+  padding-right: 0;
+  align-items: center;
+}
+
+html.wsc-sidebar-collapsed .wsc-menu-group {
+  justify-items: center;
+}
+
+html.wsc-sidebar-collapsed .wsc-menu-toggle,
+html.wsc-sidebar-collapsed .wsc-menu-link {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 999px;
+}
+
+html.wsc-sidebar-collapsed .wsc-submenu {
+  padding-left: 0;
+}
+
+html.wsc-sidebar-collapsed .wsc-menu-text,
+html.wsc-sidebar-collapsed .wsc-menu-arrow {
+  display: none;
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE FIX
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .wsc-navbar {
+    top: 12px;
+    margin-left: 12px;
+    margin-right: 12px;
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .wsc-sidebar {
+    top: 12px;
+    left: 12px;
+    bottom: 12px;
+    height: calc(100vh - 24px);
+    transform: translateX(-110%);
+  }
+
+  html.wsc-mobile-sidebar-open .wsc-sidebar {
+    transform: translateX(0);
+  }
+
+  .wsc-main,
+  html.wsc-sidebar-collapsed .wsc-main {
+    margin-left: 0;
+    padding: 20px 12px;
+  }
+
+  html.wsc-sidebar-collapsed .wsc-navbar {
+    margin-left: 12px;
+  }
+
+  html.wsc-sidebar-collapsed .wsc-sidebar {
+    width: var(--wsc-sidebar-width);
+    border-radius: 28px;
+    padding: 16px;
+  }
+
+  html.wsc-sidebar-collapsed .wsc-sidebar__top {
+    justify-content: flex-start;
+  }
+
+  html.wsc-sidebar-collapsed .wsc-sidebar__nav {
+    padding-right: 4px;
+    align-items: stretch;
+  }
+
+  html.wsc-sidebar-collapsed .wsc-menu-group {
+    justify-items: stretch;
+  }
+
+  html.wsc-sidebar-collapsed .wsc-menu-toggle,
+  html.wsc-sidebar-collapsed .wsc-menu-link {
+    width: 100%;
+    height: auto;
+    padding: 11px 12px;
+    justify-content: flex-start;
+    border-radius: 16px;
+  }
+
+  html.wsc-sidebar-collapsed .wsc-menu-text,
+  html.wsc-sidebar-collapsed .wsc-menu-arrow {
+    display: initial;
+  }
+}
+
+@media (max-width: 760px) {
+  .wsc-navbar {
+    height: auto;
+    min-height: var(--wsc-nav-height);
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .wsc-brand__en {
+    display: none;
+  }
+
+  .wsc-search {
+    grid-column: 1 / -1;
+    order: 3;
+    width: 100%;
+  }
+
+  .wsc-main {
+    padding: 16px 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .wsc-brand__logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  .wsc-brand__bn {
+    max-width: 150px;
+    font-size: 14px;
+  }
+
+  .wsc-navbar__actions {
+    gap: 6px;
+  }
+}
+/* ============================================================
+   CUSTOM PAGE SAFETY FIX
+   Add this at the bottom of wsc-side-nav.css
+   ============================================================ */
+
+.wsc-main {
+  position: relative;
+  z-index: 1;
+}
+
+.wsc-page-content {
+  width: 100%;
+  min-height: calc(100vh - var(--wsc-nav-height) - 48px);
+  cursor: auto;
+}
+
+.wsc-page-content:empty {
+  min-height: 0;
+}
+
+.wsc-sidebar,
+.wsc-navbar,
+.wsc-popup-overlay,
+.wsc-toast,
+.wsc-search__panel,
+.wsc-tool-panel {
+  pointer-events: auto;
+}
+
+/* Custom content should stay normal and clickable */
+[data-wsc-page-content] {
+  position: relative;
+  z-index: 1;
+}
+/* ============================================================
+   NAVBAR SCROLL GLASS EFFECT
+   ============================================================ */
+.wsc-navbar {
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+.wsc-navbar.scrolled {
+  background: rgba(255, 255, 255, 0.46);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+html[data-theme="dark"] .wsc-navbar.scrolled {
+  background: rgba(15, 23, 42, 0.52);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.34);
+}

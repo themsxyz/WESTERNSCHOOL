@@ -1,0 +1,1515 @@
+﻿<!doctype html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Western School & College</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="assets/css/base/wsc-root.css">
+  <link rel="stylesheet" href="assets/css/side-nav/wsc-side-nav.css">
+  <link rel="stylesheet" href="assets/css/components/wsc-components.css">
+  <link rel="stylesheet" href="assets/css/responsive/wsc-responsive.css">
+  <link rel="stylesheet" href="assets/css/shortcode/wsc-shortcode.css">
+</head>
+<body>
+  <!-- Keep this blank. Add custom page content here later if needed. -->
+  <main data-wsc-page-content>
+    
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #0b2545;
+      --navy-2: #12385d;
+      --blue: #1d4f78;
+      --blue-soft: #e9f1f8;
+      --blue-gray: #eff4f8;
+      --slate: #334155;
+      --muted: #64748b;
+      --line: #d8e2ea;
+      --bg: #f5f8fb;
+      --card: #ffffff;
+      --black: #0f172a;
+      --success: #166534;
+      --success-bg: #ecfdf3;
+      --danger: #b91c1c;
+      --danger-bg: #fff1f2;
+      --warning: #b45309;
+      --warning-bg: #fff7ed;
+      --radius: 12px;
+      --shadow: 0 8px 22px rgba(15, 23, 42, 0.07);
+    }
+
+  
+
+    .bn {
+      font-family: "Noto Serif Bengali", serif;
+    }
+
+    .en {
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+    }
+
+    .app {
+      width: min(1240px, 94%);
+      margin: 22px auto 40px;
+    }
+
+    .header {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      padding: 22px;
+      border-top: 5px solid var(--navy);
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .header h1 {
+      color: var(--black);
+      font-size: 32px;
+      line-height: 1.15;
+      margin-bottom: 6px;
+      font-weight: 800;
+    }
+
+    .header p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .header-side {
+      display: flex;
+      align-items: stretch;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .total-card {
+      min-width: 190px;
+      border: 1px solid #c9d9e6;
+      background: var(--blue-soft);
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-align: left;
+    }
+
+    .total-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .total-card strong {
+      color: var(--navy);
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .toolbar {
+      margin-top: 16px;
+    }
+
+    .message {
+      display: none;
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.5;
+      border: 1px solid var(--line);
+      background: var(--card);
+    }
+
+    .message.info {
+      display: block;
+      background: var(--blue-soft);
+      border-color: #c9d9e6;
+      color: var(--navy);
+    }
+
+    .message.success {
+      display: block;
+      background: var(--success-bg);
+      border-color: #bbf7d0;
+      color: var(--success);
+    }
+
+    .message.error {
+      display: block;
+      background: var(--danger-bg);
+      border-color: #fecdd3;
+      color: var(--danger);
+    }
+
+    .backend-warning {
+      display: none;
+      margin-top: 12px;
+      background: var(--warning-bg);
+      color: var(--warning);
+      border: 1px solid #fed7aa;
+      padding: 13px 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .backend-warning.show {
+      display: block;
+    }
+
+    .btn,
+    button,
+    .link-btn {
+      border: 0;
+      outline: 0;
+      border-radius: 9px;
+      padding: 11px 15px;
+      background: var(--navy);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 42px;
+      transition: 0.15s ease;
+      white-space: nowrap;
+      font-family: Arial, "Noto Serif Bengali", serif;
+    }
+
+    button:hover,
+    .link-btn:hover {
+      background: var(--navy-2);
+      transform: translateY(-1px);
+    }
+
+    .secondary {
+      background: #ffffff;
+      color: var(--navy);
+      border: 1px solid #b9cddd;
+    }
+
+    .secondary:hover {
+      background: var(--blue-soft);
+      color: var(--navy);
+    }
+
+    .primary-soft {
+      background: var(--blue);
+      color: #ffffff;
+    }
+
+    .primary-soft:hover {
+      background: var(--navy-2);
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .kpi {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 15px;
+      border-left: 4px solid var(--navy);
+    }
+
+    .kpi:nth-child(even) {
+      border-left-color: var(--blue);
+    }
+
+    .kpi span {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      font-weight: 800;
+      display: block;
+      margin-bottom: 7px;
+      font-family: Arial, sans-serif;
+    }
+
+    .kpi strong {
+      color: var(--black);
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .report-controls {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .panel-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-title h2 {
+      color: var(--black);
+      font-size: 18px;
+      line-height: 1.3;
+      font-weight: 800;
+    }
+
+    .panel-title small {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 3px;
+      font-weight: 700;
+      font-family: Arial, sans-serif;
+    }
+
+    .tag {
+      background: var(--blue-soft);
+      color: var(--blue);
+      border: 1px solid #c9d9e6;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+      font-family: Arial, sans-serif;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      color: var(--black);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    label small {
+      display: block;
+      color: var(--muted);
+      font-weight: 700;
+      margin-top: 2px;
+      font-family: Arial, sans-serif;
+    }
+
+    input[type="date"] {
+      width: 100%;
+      height: 44px;
+      border: 1px solid #cbd8e3;
+      border-radius: 9px;
+      background: #ffffff;
+      color: var(--black);
+      padding: 9px 11px;
+      font-size: 14px;
+      outline: none;
+      font-family: Arial, sans-serif;
+    }
+
+    input[type="date"]:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(29, 79, 120, 0.12);
+    }
+
+    .custom-select {
+      position: relative;
+      width: 100%;
+    }
+
+    .select-trigger {
+      width: 100%;
+      height: 44px;
+      background: #ffffff;
+      color: var(--black);
+      border: 1px solid #cbd8e3;
+      border-radius: 9px;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 14px;
+      text-align: left;
+      box-shadow: none;
+    }
+
+    .select-trigger:hover {
+      background: #ffffff;
+      color: var(--black);
+      border-color: var(--blue);
+      transform: none;
+      box-shadow: 0 0 0 3px rgba(29, 79, 120, 0.08);
+    }
+
+    .select-trigger:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(29, 79, 120, 0.12);
+    }
+
+    .select-value {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--black);
+    }
+
+    .select-arrow {
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid var(--navy);
+      border-bottom: 2px solid var(--navy);
+      transform: rotate(45deg) translateY(-2px);
+      transition: 0.15s ease;
+      flex: 0 0 auto;
+    }
+
+    .custom-select.open .select-arrow {
+      transform: rotate(225deg) translateY(-2px);
+    }
+
+    .select-menu {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(100% + 6px);
+      background: #ffffff;
+      border: 1px solid #cbd8e3;
+      border-radius: 10px;
+      box-shadow: 0 18px 34px rgba(15, 23, 42, 0.14);
+      overflow: hidden;
+      z-index: 50;
+      max-height: 230px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .custom-select.open .select-menu {
+      display: block;
+    }
+
+    .select-option {
+      width: 100%;
+      background: #ffffff;
+      color: var(--black);
+      border: 0;
+      border-radius: 0;
+      min-height: 40px;
+      padding: 10px 12px;
+      justify-content: flex-start;
+      font-weight: 800;
+      text-align: left;
+      box-shadow: none;
+    }
+
+    .select-option:hover {
+      background: var(--blue-soft);
+      color: var(--navy);
+      transform: none;
+      box-shadow: none;
+    }
+
+    .select-option.selected {
+      background: var(--navy);
+      color: #ffffff;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .pdf-box {
+      display: none;
+      margin-top: 16px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--success);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 15px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .pdf-box.show {
+      display: flex;
+    }
+
+    .pdf-box strong {
+      color: var(--success);
+      font-size: 14px;
+    }
+
+    .report-card {
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 800;
+      padding: 40px 12px;
+      line-height: 1.6;
+    }
+
+    .report-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+
+    .report-head h2 {
+      color: var(--black);
+      font-size: 24px;
+      line-height: 1.35;
+      margin-bottom: 5px;
+    }
+
+    .report-head p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .report-meta {
+      text-align: right;
+      color: var(--slate);
+      font-size: 13px;
+      line-height: 1.6;
+      min-width: 210px;
+      font-family: Arial, sans-serif;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .stat {
+      background: var(--blue-gray);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      display: block;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.25px;
+      font-family: Arial, sans-serif;
+    }
+
+    .stat strong {
+      color: var(--navy);
+      font-size: 20px;
+      line-height: 1.3;
+    }
+
+    .section-title {
+      color: var(--black);
+      font-size: 17px;
+      margin: 20px 0 10px;
+      padding-left: 9px;
+      border-left: 4px solid var(--blue);
+      line-height: 1.4;
+    }
+
+    .table-wrap {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 720px;
+      background: #ffffff;
+    }
+
+    th {
+      background: var(--navy);
+      color: #ffffff;
+      padding: 12px;
+      text-align: left;
+      font-size: 13px;
+      white-space: nowrap;
+      font-family: Arial, sans-serif;
+    }
+
+    td {
+      padding: 11px 12px;
+      border-bottom: 1px solid #e9eef3;
+      color: var(--black);
+      font-size: 14px;
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    tbody tr:hover {
+      background: var(--blue-soft);
+    }
+
+    .amount {
+      display: block;
+      text-align: right;
+      font-weight: 800;
+      color: var(--navy);
+      white-space: nowrap;
+      font-family: Arial, sans-serif;
+    }
+
+    .words-box {
+      margin-top: 12px;
+      padding: 13px 14px;
+      border-radius: 10px;
+      background: var(--blue-soft);
+      border: 1px solid #c9d9e6;
+      color: var(--slate);
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .chart-area {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 10px;
+    }
+
+    .pie {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      border: 8px solid #f8fafc;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.10);
+      background: #dbe5ec;
+      margin: auto;
+    }
+
+    .legend {
+      display: grid;
+      gap: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 9px 10px;
+      background: #ffffff;
+    }
+
+    .legend-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex: 0 0 auto;
+    }
+
+    .legend-name {
+      font-weight: 800;
+      color: var(--slate);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .legend-item strong {
+      color: var(--navy);
+      white-space: nowrap;
+      font-family: Arial, sans-serif;
+    }
+
+    @media (max-width: 980px) {
+      .header,
+      .kpi-grid,
+      .report-controls,
+      .report-head,
+      .stats,
+      .chart-area {
+        grid-template-columns: 1fr;
+      }
+
+      .header-side,
+      .total-card,
+      .report-meta {
+        text-align: left;
+        justify-content: flex-start;
+      }
+
+      .button-row {
+        flex-direction: column;
+      }
+
+      button,
+      .link-btn {
+        width: 100%;
+      }
+    }
+  </style>
+
+  <main class="app">
+    <section class="header">
+      <div>
+        <div class="eyebrow">Dashboard</div>
+        <h1>Voucher Report</h1>
+        <p class="bn">ভাউচার রিপোর্ট ম্যানেজমেন্ট ড্যাশবোর্ড</p>
+        <p class="en">Monthly, yearly and date-wise report generation</p>
+      </div>
+
+      <div class="header-side">
+        <div class="total-card">
+          <span>Total Voucher</span>
+          <strong id="voucherCount">০</strong>
+        </div>
+        <button class="secondary" onclick="loadOptions()">Refresh Data</button>
+      </div>
+    </section>
+
+    <section class="toolbar">
+      <div id="message" class="message info">ড্যাশবোর্ড ডাটা লোড হচ্ছে...</div>
+    </section>
+
+    <div id="backendWarning" class="backend-warning"></div>
+
+    <section class="kpi-grid">
+      <div class="kpi">
+        <span>Report Type</span>
+        <strong>Monthly / Yearly / Date-wise</strong>
+      </div>
+      <div class="kpi">
+        <span>PDF Folder</span>
+        <strong>Voucher-report PDF</strong>
+      </div>
+      <div class="kpi">
+        <span>Storage</span>
+        <strong>Google Drive</strong>
+      </div>
+      <div class="kpi">
+        <span>Latest Status</span>
+        <strong id="lastStatus">লোড হচ্ছে</strong>
+      </div>
+    </section>
+
+    <section class="report-controls">
+      <div class="panel">
+        <div class="panel-title">
+          <div>
+            <h2>মাসিক রিপোর্ট</h2>
+            <small>Monthly Report</small>
+          </div>
+          <span class="tag">Month</span>
+        </div>
+
+        <div class="form-row">
+          <div>
+            <label>মাস <small>Select month</small></label>
+            <div id="monthDropdown" class="custom-select"></div>
+          </div>
+          <div>
+            <label>বছর <small>Select year</small></label>
+            <div id="monthlyYearDropdown" class="custom-select"></div>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button onclick="viewMonthlyReport()">View Report</button>
+          <button class="primary-soft" onclick="generateMonthlyPDF()">Generate PDF</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          <div>
+            <h2>বাৎসরিক রিপোর্ট</h2>
+            <small>Yearly Report</small>
+          </div>
+          <span class="tag">Year</span>
+        </div>
+
+        <div>
+          <label>বছর <small>Select year</small></label>
+          <div id="yearDropdown" class="custom-select"></div>
+        </div>
+
+        <div class="button-row">
+          <button onclick="viewYearlyReport()">View Report</button>
+          <button class="primary-soft" onclick="generateYearlyPDF()">Generate PDF</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">
+          <div>
+            <h2>তারিখভিত্তিক রিপোর্ট</h2>
+            <small>Date-wise Report</small>
+          </div>
+          <span class="tag">Date</span>
+        </div>
+
+        <div>
+          <label for="dateInput">তারিখ <small>Select date</small></label>
+          <input id="dateInput" type="date" />
+        </div>
+
+        <div class="button-row">
+          <button onclick="viewDateReport()">View Report</button>
+          <button class="primary-soft" onclick="generateDatePDF()">Generate PDF</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="pdfBox" class="pdf-box"></section>
+
+    <section id="reportArea" class="report-card">
+      <div class="empty">এখনো কোনো রিপোর্ট লোড হয়নি। মাস, বছর বা তারিখ নির্বাচন করে রিপোর্ট দেখুন।<br />No report loaded yet.</div>
+    </section>
+  </main>
+
+  <script>
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxMegDeUZTVurpiGLpvzD1m9taVM_7wg9yYLGzJZuZ8DOcVxIV_HHa0ayxoqR2i7PEX/exec";
+    let messageHideTimer = null;
+
+    const selected = {
+      month: new Date().getMonth() + 1,
+      monthlyYear: new Date().getFullYear(),
+      year: new Date().getFullYear()
+    };
+
+    const MONTHS = [
+      { value: 1, label: "জানুয়ারি / January" },
+      { value: 2, label: "ফেব্রুয়ারি / February" },
+      { value: 3, label: "মার্চ / March" },
+      { value: 4, label: "এপ্রিল / April" },
+      { value: 5, label: "মে / May" },
+      { value: 6, label: "জুন / June" },
+      { value: 7, label: "জুলাই / July" },
+      { value: 8, label: "আগস্ট / August" },
+      { value: 9, label: "সেপ্টেম্বর / September" },
+      { value: 10, label: "অক্টোবর / October" },
+      { value: 11, label: "নভেম্বর / November" },
+      { value: 12, label: "ডিসেম্বর / December" }
+    ];
+
+    const MONTH_BN = {
+      January: "জানুয়ারি",
+      February: "ফেব্রুয়ারি",
+      March: "মার্চ",
+      April: "এপ্রিল",
+      May: "মে",
+      June: "জুন",
+      July: "জুলাই",
+      August: "আগস্ট",
+      September: "সেপ্টেম্বর",
+      October: "অক্টোবর",
+      November: "নভেম্বর",
+      December: "ডিসেম্বর"
+    };
+
+    const PIE_COLORS = [
+      "#0b2545", "#1d4f78", "#334155", "#64748b", "#12385d",
+      "#2563eb", "#0f766e", "#475569", "#0284c7", "#1e293b",
+      "#0369a1", "#0f172a", "#3b82f6", "#075985", "#155e75"
+    ];
+
+    document.addEventListener("DOMContentLoaded", function () {
+      try { localStorage.removeItem("voucherAppsScriptUrl"); } catch (error) {}
+      setupInitialDropdowns();
+      setTodayDate();
+      document.addEventListener("click", closeDropdownsOnOutsideClick);
+      loadOptions();
+    });
+
+    function setupInitialDropdowns() {
+      setCustomDropdown("monthDropdown", MONTHS, selected.month, value => selected.month = Number(value));
+
+      const currentYear = new Date().getFullYear();
+      const years = [];
+      for (let year = currentYear + 1; year >= currentYear - 5; year--) {
+        years.push({ value: year, label: `${toBanglaNumber(year)} / ${year}` });
+      }
+
+      setCustomDropdown("monthlyYearDropdown", years, selected.monthlyYear, value => selected.monthlyYear = Number(value));
+      setCustomDropdown("yearDropdown", years, selected.year, value => selected.year = Number(value));
+    }
+
+    function setCustomDropdown(elementId, options, selectedValue, onChange) {
+      const container = document.getElementById(elementId);
+      const selectedOption = options.find(option => String(option.value) === String(selectedValue)) || options[0] || { value: "", label: "Select" };
+
+      container.dataset.value = selectedOption.value;
+      container.innerHTML = `
+        <button type="button" class="select-trigger" aria-haspopup="listbox" aria-expanded="false">
+          <span class="select-value">${escapeHtml(selectedOption.label)}</span>
+          <span class="select-arrow"></span>
+        </button>
+        <div class="select-menu" role="listbox">
+          ${options.map(option => `
+            <button type="button" class="select-option ${String(option.value) === String(selectedOption.value) ? "selected" : ""}" data-value="${escapeAttribute(option.value)}">
+              ${escapeHtml(option.label)}
+            </button>
+          `).join("")}
+        </div>
+      `;
+
+      const trigger = container.querySelector(".select-trigger");
+      const menu = container.querySelector(".select-menu");
+
+      trigger.addEventListener("click", event => {
+        event.stopPropagation();
+        closeAllDropdowns(container);
+        container.classList.toggle("open");
+        trigger.setAttribute("aria-expanded", container.classList.contains("open") ? "true" : "false");
+      });
+
+      menu.querySelectorAll(".select-option").forEach(button => {
+        button.addEventListener("click", event => {
+          event.stopPropagation();
+          const value = button.dataset.value;
+          const label = button.textContent.trim();
+          container.dataset.value = value;
+          container.querySelector(".select-value").textContent = label;
+          menu.querySelectorAll(".select-option").forEach(option => option.classList.remove("selected"));
+          button.classList.add("selected");
+          container.classList.remove("open");
+          trigger.setAttribute("aria-expanded", "false");
+          onChange(value);
+        });
+      });
+    }
+
+    function closeAllDropdowns(except) {
+      document.querySelectorAll(".custom-select.open").forEach(dropdown => {
+        if (dropdown !== except) {
+          dropdown.classList.remove("open");
+          const trigger = dropdown.querySelector(".select-trigger");
+          if (trigger) trigger.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+
+    function closeDropdownsOnOutsideClick() {
+      closeAllDropdowns(null);
+    }
+
+    function setTodayDate() {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, "0");
+      const dd = String(today.getDate()).padStart(2, "0");
+      document.getElementById("dateInput").value = `${yyyy}-${mm}-${dd}`;
+    }
+
+    function callAppsScript(action, params = {}) {
+      return new Promise((resolve, reject) => {
+        const callbackName = "voucherCallback_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
+        const query = new URLSearchParams({
+          action: action,
+          callback: callbackName,
+          cacheBust: Date.now(),
+          ...params
+        });
+
+        const script = document.createElement("script");
+        script.src = APPS_SCRIPT_URL + "?" + query.toString();
+
+        const timeout = setTimeout(() => {
+          cleanup();
+          reject(new Error("Request timeout. Apps Script deployment/backend code check করুন।"));
+        }, 45000);
+
+        window[callbackName] = function (data) {
+          clearTimeout(timeout);
+          cleanup();
+          resolve(data);
+        };
+
+        script.onerror = function () {
+          clearTimeout(timeout);
+          cleanup();
+          reject(new Error("Apps Script connection failed. Deployment permission check করুন।"));
+        };
+
+        function cleanup() {
+          delete window[callbackName];
+          if (script.parentNode) script.parentNode.removeChild(script);
+        }
+
+        document.body.appendChild(script);
+      });
+    }
+
+    async function loadOptions() {
+      try {
+        hidePdfBox();
+        hideBackendWarning();
+        showMessage("ভাউচার ডাটা লোড হচ্ছে...", "info");
+        setLastStatus("লোড হচ্ছে");
+
+        const data = await callAppsScript("options");
+
+        if (data.status !== "success") {
+          handleBackendError(data.message || "Report data not found.");
+          return;
+        }
+
+        document.getElementById("voucherCount").textContent = toBanglaNumber(data.voucherCount || 0);
+        updateDropdownsFromOptions(data.years || [], data.months || []);
+        showMessage("Dashboard ready. রিপোর্ট দেখা ও PDF তৈরি করা যাবে।", "success");
+        setLastStatus("ডাটা প্রস্তুত");
+      } catch (error) {
+        handleBackendError(error.message);
+      }
+    }
+
+    function updateDropdownsFromOptions(years, months) {
+      if (years.length) {
+        const yearOptions = years.map(year => ({ value: year, label: `${toBanglaNumber(year)} / ${year}` }));
+        selected.year = years.includes(selected.year) ? selected.year : years[0];
+        selected.monthlyYear = years.includes(selected.monthlyYear) ? selected.monthlyYear : years[0];
+        setCustomDropdown("yearDropdown", yearOptions, selected.year, value => selected.year = Number(value));
+        setCustomDropdown("monthlyYearDropdown", yearOptions, selected.monthlyYear, value => selected.monthlyYear = Number(value));
+      }
+
+      if (months.length) {
+        const uniqueMonths = new Set();
+        months.forEach(item => uniqueMonths.add(Number(item.month)));
+        const monthOptions = MONTHS.filter(month => uniqueMonths.has(month.value));
+        selected.month = monthOptions.some(month => month.value === selected.month) ? selected.month : monthOptions[0].value;
+        setCustomDropdown("monthDropdown", monthOptions, selected.month, value => selected.month = Number(value));
+      }
+    }
+
+    function handleBackendError(message) {
+      showMessage(message, "error");
+      setLastStatus("সমস্যা হয়েছে");
+
+      if (String(message).includes("setGridlinesVisible")) {
+        showBackendWarning("Backend Apps Script-এ পুরোনো setGridlinesVisible line আছে। Code.gs-এ Ctrl+F দিয়ে setGridlinesVisible খুঁজে remove করে hideGridlinesSafe(sheet) দিন, তারপর New version deploy করুন।");
+      }
+    }
+
+    function showBackendWarning(text) {
+      const box = document.getElementById("backendWarning");
+      box.textContent = text;
+      box.className = "backend-warning show";
+    }
+
+    function hideBackendWarning() {
+      const box = document.getElementById("backendWarning");
+      box.textContent = "";
+      box.className = "backend-warning";
+    }
+
+    async function viewMonthlyReport() {
+      try {
+        hidePdfBox();
+        hideBackendWarning();
+        showMessage("মাসিক রিপোর্ট লোড হচ্ছে...", "info");
+        setLastStatus("রিপোর্ট লোড হচ্ছে");
+
+        const report = await callAppsScript("monthlyReport", {
+          month: selected.month,
+          year: selected.monthlyYear
+        });
+
+        checkReport(report);
+        renderMonthlyReport(report);
+        showMessage("Monthly report loaded successfully.", "success");
+        setLastStatus("মাসিক রিপোর্ট প্রস্তুত");
+      } catch (error) {
+        handleBackendError(error.message);
+      }
+    }
+
+    async function viewYearlyReport() {
+      try {
+        hidePdfBox();
+        hideBackendWarning();
+        showMessage("বাৎসরিক রিপোর্ট লোড হচ্ছে...", "info");
+        setLastStatus("রিপোর্ট লোড হচ্ছে");
+
+        const report = await callAppsScript("yearlyReport", { year: selected.year });
+
+        checkReport(report);
+        renderYearlyReport(report);
+        showMessage("Yearly report loaded successfully.", "success");
+        setLastStatus("বাৎসরিক রিপোর্ট প্রস্তুত");
+      } catch (error) {
+        handleBackendError(error.message);
+      }
+    }
+
+    async function viewDateReport() {
+      try {
+        hidePdfBox();
+        hideBackendWarning();
+
+        const date = document.getElementById("dateInput").value;
+        if (!date) throw new Error("Please select a date first.");
+
+        showMessage("তারিখভিত্তিক রিপোর্ট লোড হচ্ছে...", "info");
+        setLastStatus("রিপোর্ট লোড হচ্ছে");
+
+        const report = await callAppsScript("dateReport", { date });
+
+        checkReport(report);
+        renderDateReport(report);
+        showMessage("Date-wise report loaded successfully.", "success");
+        setLastStatus("তারিখভিত্তিক রিপোর্ট প্রস্তুত");
+      } catch (error) {
+        handleBackendError(error.message);
+      }
+    }
+
+    async function generateMonthlyPDF() {
+      try {
+        hideBackendWarning();
+        showMessage("মাসিক PDF তৈরি হচ্ছে...", "info");
+        setLastStatus("PDF তৈরি হচ্ছে");
+
+        const data = await callAppsScript("generateMonthlyPDF", {
+          month: selected.month,
+          year: selected.monthlyYear
+        });
+
+        checkGeneratedPdf(data);
+        renderMonthlyReport(data.report);
+        showPdfBox(data.pdfUrl, "Monthly PDF generated successfully.");
+        showMessage("Monthly PDF saved in Drive folder.", "success");
+        setLastStatus("PDF তৈরি হয়েছে");
+      } catch (error) {
+        handleBackendError(error.message);
+      }
+    }
+
+    async function generateYearlyPDF() {
+      try {
+        hideBackendWarning();
+        showMessage("বাৎসরিক PDF তৈরি হচ্ছে...", "info");
+        setLastStatus("PDF তৈরি হচ্ছে");
+
+        const data = await callAppsScript("generateYearlyPDF", { year: selected.year });
+
+        checkGeneratedPdf(data);
+        renderYearlyReport(data.report);
+        showPdfBox(data.pdfUrl, "Yearly PDF generated successfully.");
+        showMessage("Yearly PDF saved in Drive folder.", "success");
+        setLastStatus("PDF তৈরি হয়েছে");
+      } catch (error) {
+        handleBackendError(error.message);
+      }
+    }
+
+    async function generateDatePDF() {
+      try {
+        hideBackendWarning();
+
+        const date = document.getElementById("dateInput").value;
+        if (!date) throw new Error("Please select a date first.");
+
+        showMessage("তারিখভিত্তিক PDF তৈরি হচ্ছে...", "info");
+        setLastStatus("PDF তৈরি হচ্ছে");
+
+        const data = await callAppsScript("generateDatePDF", { date });
+
+        checkGeneratedPdf(data);
+        renderDateReport(data.report);
+        showPdfBox(data.pdfUrl, "Date-wise PDF generated successfully.");
+        showMessage("Date-wise PDF saved in Drive folder.", "success");
+        setLastStatus("PDF তৈরি হয়েছে");
+      } catch (error) {
+        handleBackendError(error.message);
+      }
+    }
+
+    function checkReport(report) {
+      if (!report || report.status !== "success") {
+        throw new Error(report && report.message ? report.message : "Report data not found.");
+      }
+    }
+
+    function checkGeneratedPdf(data) {
+      if (!data || data.status !== "success") {
+        throw new Error(data && data.message ? data.message : "PDF generation failed.");
+      }
+      if (!data.pdfUrl) {
+        throw new Error("PDF generated, but URL not returned.");
+      }
+    }
+
+    function renderMonthlyReport(report) {
+      const table1 = createTable(
+        ["তারিখ / Date", "V-ID", "Category", "Amount", "Day Total"],
+        report.table1,
+        row => [toBanglaNumber(row.date), row.voucherId, row.categoryName, moneyCell(row.categoryAmountFormatted), moneyCell(row.dayTotalFormatted || "")]
+      );
+
+      const table2 = createTable(
+        ["Category", "Monthly Total"],
+        report.table2,
+        row => [row.categoryName, moneyCell(row.totalFormatted)]
+      );
+
+      renderReportShell({
+        title: `${banglaMonthLabel(report.monthLabel)} Voucher Report`,
+        subtitle: "মাসিক রিপোর্ট / Monthly Report",
+        stats: [
+          ["Voucher Count", toBanglaNumber(report.voucherCount || 0)],
+          ["Monthly Total", moneyDisplay(report.monthlyTotalFormatted)],
+          ["Report Period", banglaMonthLabel(report.monthLabel)]
+        ],
+        body: `
+          <h3 class="section-title">টেবিল ১: মাসিক ভাউচার বিস্তারিত / Monthly Voucher Details</h3>
+          ${table1}
+          <div class="words-box"><strong>Monthly Total in Words:</strong> ${escapeHtml(report.monthlyTotalInSentence)}</div>
+
+          <h3 class="section-title">টেবিল ২: ক্যাটাগরিভিত্তিক মাসিক মোট / Category-wise Monthly Total</h3>
+          ${table2}
+
+          <h3 class="section-title">Category Pie Chart</h3>
+          ${createPieChart(report.table2)}
+        `
+      });
+    }
+
+    function renderYearlyReport(report) {
+      const table1 = createTable(
+        ["Month", "Total", "Total in Words"],
+        report.table1,
+        row => [translateMonth(row.monthName), moneyCell(row.totalFormatted), row.totalInSentence]
+      );
+
+      const table2 = createTable(
+        ["Category", "Yearly Total"],
+        report.table2,
+        row => [row.categoryName, moneyCell(row.totalFormatted)]
+      );
+
+      renderReportShell({
+        title: `${toBanglaNumber(report.year)} Yearly Voucher Report`,
+        subtitle: "বাৎসরিক রিপোর্ট / Yearly Report",
+        stats: [
+          ["Voucher Count", toBanglaNumber(report.voucherCount || 0)],
+          ["Yearly Total", moneyDisplay(report.yearlyTotalFormatted)],
+          ["Report Year", toBanglaNumber(report.year)]
+        ],
+        body: `
+          <h3 class="section-title">টেবিল ১: মাসভিত্তিক বাৎসরিক মোট / Month-wise Yearly Total</h3>
+          ${table1}
+          <div class="words-box"><strong>Yearly Total in Words:</strong> ${escapeHtml(report.yearlyTotalInSentence)}</div>
+
+          <h3 class="section-title">টেবিল ২: ক্যাটাগরিভিত্তিক বাৎসরিক মোট / Category-wise Yearly Total</h3>
+          ${table2}
+
+          <h3 class="section-title">Category Pie Chart</h3>
+          ${createPieChart(report.table2)}
+        `
+      });
+    }
+
+    function renderDateReport(report) {
+      const table1 = createTable(
+        ["তারিখ / Date", "V-ID", "Category", "Amount"],
+        report.table1,
+        row => [toBanglaNumber(row.date), row.voucherId, row.categoryName, moneyCell(row.categoryAmountFormatted)]
+      );
+
+      const table2 = createTable(
+        ["Category", "Date Total"],
+        report.table2,
+        row => [row.categoryName, moneyCell(row.totalFormatted)]
+      );
+
+      renderReportShell({
+        title: `${toBanglaNumber(report.date)} Voucher Report`,
+        subtitle: "তারিখভিত্তিক রিপোর্ট / Date-wise Report",
+        stats: [
+          ["Voucher Count", toBanglaNumber(report.voucherCount || 0)],
+          ["Day Total", moneyDisplay(report.dayTotalFormatted)],
+          ["Report Date", toBanglaNumber(report.date)]
+        ],
+        body: `
+          <h3 class="section-title">টেবিল ১: তারিখভিত্তিক ভাউচার বিস্তারিত / Date-wise Voucher Details</h3>
+          ${table1}
+          <div class="words-box"><strong>Day Total in Words:</strong> ${escapeHtml(report.dayTotalInSentence)}</div>
+
+          <h3 class="section-title">টেবিল ২: ক্যাটাগরিভিত্তিক তারিখের মোট / Category-wise Date Total</h3>
+          ${table2}
+
+          <h3 class="section-title">Category Pie Chart</h3>
+          ${createPieChart(report.table2)}
+        `
+      });
+    }
+
+    function renderReportShell(config) {
+      const reportArea = document.getElementById("reportArea");
+      reportArea.innerHTML = `
+        <div class="report-head">
+          <div>
+            <h2>${escapeHtml(config.title)}</h2>
+            <p>Generated voucher summary and category analysis</p>
+          </div>
+          <div class="report-meta">
+            <strong>${escapeHtml(config.subtitle)}</strong><br>
+            Generated: ${toBanglaNumber(new Date().toLocaleString())}
+          </div>
+        </div>
+
+        <div class="stats">
+          ${config.stats.map(item => `
+            <div class="stat">
+              <span>${escapeHtml(item[0])}</span>
+              <strong>${escapeHtml(item[1])}</strong>
+            </div>
+          `).join("")}
+        </div>
+
+        ${config.body}
+      `;
+    }
+
+    function createTable(headers, rows, mapper) {
+      if (!rows || rows.length === 0) {
+        return `<div class="empty">এই রিপোর্টের জন্য কোনো ডাটা পাওয়া যায়নি।<br>No data found for this report.</div>`;
+      }
+
+      const thead = `<thead><tr>${headers.map(header => `<th>${escapeHtml(header)}</th>`).join("")}</tr></thead>`;
+      const tbody = rows.map(row => `<tr>${mapper(row).map(cell => `<td>${cell}</td>`).join("")}</tr>`).join("");
+      return `<div class="table-wrap"><table>${thead}<tbody>${tbody}</tbody></table></div>`;
+    }
+
+    function createPieChart(rows) {
+      if (!rows || rows.length === 0) {
+        return `<div class="empty">পাই চার্টের জন্য কোনো ক্যাটাগরি ডাটা পাওয়া যায়নি।<br>No category data available.</div>`;
+      }
+
+      const total = rows.reduce((sum, row) => sum + Number(row.total || 0), 0);
+      if (total <= 0) return `<div class="empty">No chartable amount found.</div>`;
+
+      let current = 0;
+      const segments = rows.map((row, index) => {
+        const value = Number(row.total || 0);
+        const degrees = (value / total) * 360;
+        const start = current;
+        const end = current + degrees;
+        current = end;
+        return `${PIE_COLORS[index % PIE_COLORS.length]} ${start.toFixed(2)}deg ${end.toFixed(2)}deg`;
+      });
+
+      const legend = rows.map((row, index) => {
+        const percent = total ? ((Number(row.total || 0) / total) * 100).toFixed(1) : "0.0";
+        return `
+          <div class="legend-item">
+            <div class="legend-left">
+              <span class="dot" style="background:${PIE_COLORS[index % PIE_COLORS.length]}"></span>
+              <span class="legend-name">${escapeHtml(row.categoryName)}</span>
+            </div>
+            <strong>${moneyDisplay(row.totalFormatted)} (${toBanglaNumber(percent)}%)</strong>
+          </div>
+        `;
+      }).join("");
+
+      return `
+        <div class="chart-area">
+          <div class="pie" style="background: conic-gradient(${segments.join(",")});"></div>
+          <div class="legend">${legend}</div>
+        </div>
+      `;
+    }
+
+    function showPdfBox(pdfUrl, text) {
+      const pdfBox = document.getElementById("pdfBox");
+      const downloadUrl = getDriveDownloadUrl(pdfUrl);
+
+      pdfBox.className = "pdf-box show";
+      pdfBox.innerHTML = `
+        <strong>${escapeHtml(text)}</strong>
+        <div class="button-row" style="margin:0;">
+          <a class="link-btn" href="${escapeAttribute(pdfUrl)}" target="_blank" rel="noopener">View PDF</a>
+          <a class="link-btn secondary" href="${escapeAttribute(downloadUrl)}" target="_blank" rel="noopener">Download PDF</a>
+        </div>
+      `;
+    }
+
+    function hidePdfBox() {
+      const pdfBox = document.getElementById("pdfBox");
+      pdfBox.className = "pdf-box";
+      pdfBox.innerHTML = "";
+    }
+
+    function getDriveDownloadUrl(url) {
+      if (!url) return "#";
+
+      let fileId = "";
+      const match1 = String(url).match(/\/d\/([^/]+)/);
+      const match2 = String(url).match(/[?&]id=([^&]+)/);
+      if (match1 && match1[1]) fileId = match1[1];
+      if (!fileId && match2 && match2[1]) fileId = match2[1];
+      if (!fileId) return url;
+
+      return "https://drive.google.com/uc?export=download&id=" + encodeURIComponent(fileId);
+    }
+
+    function showMessage(text, type) {
+      const message = document.getElementById("message");
+
+      if (messageHideTimer) {
+        clearTimeout(messageHideTimer);
+        messageHideTimer = null;
+      }
+
+      message.textContent = text;
+      message.className = "message " + (type || "info");
+      message.style.display = "block";
+
+      if (type === "success") {
+        messageHideTimer = setTimeout(() => {
+          message.style.display = "none";
+        }, 2300);
+      }
+    }
+
+    function setLastStatus(text) {
+      document.getElementById("lastStatus").textContent = text;
+    }
+
+    function translateMonth(monthName) {
+      return MONTH_BN[monthName] ? `${MONTH_BN[monthName]} / ${monthName}` : monthName;
+    }
+
+    function banglaMonthLabel(label) {
+      if (!label) return "";
+      let output = String(label);
+      Object.keys(MONTH_BN).forEach(en => {
+        output = output.replace(en, `${MONTH_BN[en]} / ${en}`);
+      });
+      return toBanglaNumber(output);
+    }
+
+    function moneyCell(value) {
+      return `<span class="amount">${moneyDisplay(value)}</span>`;
+    }
+
+    function moneyDisplay(value) {
+      return `৳ ${toBanglaNumber(value)}`;
+    }
+
+    function toBanglaNumber(value) {
+      const map = {"0":"০","1":"১","2":"২","3":"৩","4":"৪","5":"৫","6":"৬","7":"৭","8":"৮","9":"৯"};
+      return String(value === null || value === undefined ? "" : value).replace(/[0-9]/g, digit => map[digit]);
+    }
+
+    function escapeHtml(value) {
+      return String(value === null || value === undefined ? "" : value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function escapeAttribute(value) {
+      return escapeHtml(value).replace(/`/g, "&#096;");
+    }
+  </script>
+</main>
+
+  <!-- JS files -->
+  <script src="assets/js/wsc-config.js"></script>
+  <script src="assets/js/wsc-layout.js"></script>
+  <script src="assets/js/wsc-search.js"></script>
+  <script src="assets/js/wsc-password.js"></script>
+</body>
+</html>

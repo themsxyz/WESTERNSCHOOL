@@ -1,0 +1,513 @@
+﻿<!doctype html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Western School & College</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="assets/css/base/wsc-root.css">
+  <link rel="stylesheet" href="assets/css/side-nav/wsc-side-nav.css">
+  <link rel="stylesheet" href="assets/css/components/wsc-components.css">
+  <link rel="stylesheet" href="assets/css/responsive/wsc-responsive.css">
+  <link rel="stylesheet" href="assets/css/shortcode/wsc-shortcode.css">
+</head>
+<body>
+  <!-- Keep this blank. Add custom page content here later if needed. -->
+  <main data-wsc-page-content>
+     <style>
+    :root {
+      --bg: #f6f6f6;
+      --card: #ffffff;
+      --text: #111111;
+      --line: #d7d7d7;
+      --muted: #666666;
+      --error-bg: #fff1f1;
+      --success-bg: #f7fbf7;
+      --success-line: #b8d7b8;
+      --error-line: #d88;
+    }
+
+    .invoice {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .inline-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .head {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .head h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    .head p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: #000;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font: inherit;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    button {
+      border: 1px solid #000;
+      background: #000;
+      color: #fff;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: #fff;
+      color: #000;
+    }
+
+    button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    .status {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      display: none;
+      white-space: pre-wrap;
+    }
+
+    .status.show {
+      display: block;
+    }
+
+    .result-box {
+      margin-top: 18px;
+      display: none;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      background: #fafafa;
+    }
+
+    .result-box.show {
+      display: block;
+    }
+
+    .result-box a {
+      color: #000;
+      font-weight: 700;
+    }
+
+    .small {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 700px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .invoice {
+        padding: 16px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+    }
+  </style>
+  <div class="invoice">
+    <div class="card">
+      <div class="toolbar">
+        <div>
+          <div class="hint">Invoice form connected with Google Apps Script + Google Sheet.</div>
+          <div class="small">Set your deployed Apps Script web app URL below.</div>
+        </div>
+        <div class="inline-row">
+          <button type="button" class="secondary" id="refreshBtn">Refresh Categories</button>
+          <button type="button" class="secondary" id="addCategoryBtn">Add Category</button>
+          <button type="button" class="secondary" id="deleteCategoryBtn">Delete Category</button>
+        </div>
+      </div>
+
+      <div class="head">
+        <h1>WESTERN SCHOOL AND COLLEGE</h1>
+        <p>Didar Market, Dewanbazar, Chottogram</p>
+        <p><strong>INVOICE FORM</strong></p>
+      </div>
+
+      <form id="invoiceForm">
+        <div class="grid">
+          <div class="field">
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required />
+          </div>
+
+          <div class="field">
+            <label for="name">Customer Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter customer name" required />
+          </div>
+
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" name="category" required></select>
+          </div>
+
+          <div class="field">
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" name="amount" step="0.01" min="0.01" placeholder="0.00" required />
+          </div>
+
+          <div class="field">
+            <label for="paymentMethod">Payment Method</label>
+            <select id="paymentMethod" name="paymentMethod" required>
+              <option value="Bkash">Bkash</option>
+              <option value="Cash">Cash</option>
+              <option value="Bank">Bank</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="paidStatus">Paid Status</label>
+            <select id="paidStatus" name="paidStatus" required>
+              <option value="Paid">Paid</option>
+              <option value="Unpaid">Unpaid</option>
+              <option value="Partial">Partial</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label for="details">Details</label>
+            <textarea id="details" name="details" placeholder="Write invoice details" required></textarea>
+          </div>
+
+          <div class="field full">
+            <label for="total">Total</label>
+            <input type="number" id="total" name="total" step="0.01" min="0.01" placeholder="0.00" required />
+          </div>
+        </div>
+
+        <div class="inline-row">
+          <button type="submit" id="submitBtn">Create Invoice</button>
+          <button type="button" class="secondary" id="resetBtn">Reset</button>
+        </div>
+      </form>
+
+      <div class="status" id="statusBox"></div>
+
+      <div class="result-box" id="resultBox">
+        <div><strong>Invoice created successfully.</strong></div>
+        <div id="resultText" style="margin-top: 8px;"></div>
+        <div style="margin-top: 10px;">
+          <a id="printLink" href="#" target="_blank" rel="noopener">Open / Print Invoice</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = 'https://script.google.com/macros/s/AKfycbyfG1_F-VwC8Wj3zyolgntU9FidbuSBM-fuT7u4TV8U75IeTKft_7Jo597ts4unhGd2/exec';
+
+    const invoiceForm = document.getElementById('invoiceForm');
+    const categorySelect = document.getElementById('category');
+    const statusBox = document.getElementById('statusBox');
+    const resultBox = document.getElementById('resultBox');
+    const resultText = document.getElementById('resultText');
+    const printLink = document.getElementById('printLink');
+    const amountInput = document.getElementById('amount');
+    const totalInput = document.getElementById('total');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function setToday() {
+      const today = new Date();
+      const local = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
+        .toISOString()
+        .slice(0, 10);
+      document.getElementById('date').value = local;
+    }
+
+    function showStatus(message, isError = false) {
+      statusBox.className = 'status show';
+      statusBox.textContent = message;
+      statusBox.style.background = isError ? 'var(--error-bg)' : 'var(--success-bg)';
+      statusBox.style.borderColor = isError ? 'var(--error-line)' : 'var(--success-line)';
+      statusBox.style.color = '#111';
+    }
+
+    function clearStatus() {
+      statusBox.className = 'status';
+      statusBox.textContent = '';
+    }
+
+    function assertApiConfigured() {
+      if (!API_BASE || API_BASE.includes('PASTE_YOUR_DEPLOYED_APPS_SCRIPT_EXEC_URL_HERE')) {
+        throw new Error('Apps Script URL set kora hoy nai. API_BASE e deployed /exec URL boshao.');
+      }
+    }
+
+    async function fetchJson(url, options = {}) {
+      let response;
+      try {
+        response = await fetch(url, options);
+      } catch (networkError) {
+        throw new Error('Network request failed. URL / deployment / access check koro.');
+      }
+
+      const text = await response.text();
+      let data;
+
+      try {
+        data = JSON.parse(text);
+      } catch (parseError) {
+        throw new Error(`Server JSON return kore nai. Response: ${text.slice(0, 200)}`);
+      }
+
+      if (!response.ok) {
+        throw new Error(data.message || `HTTP ${response.status}`);
+      }
+
+      return data;
+    }
+
+    async function postAction(action, data = {}) {
+      assertApiConfigured();
+
+      return await fetchJson(API_BASE, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify({ action, ...data })
+      });
+    }
+
+    async function loadBootstrap() {
+      clearStatus();
+      resultBox.classList.remove('show');
+
+      try {
+        assertApiConfigured();
+        const data = await fetchJson(`${API_BASE}?action=bootstrap`);
+        if (!data.ok) throw new Error(data.message || 'Bootstrap failed');
+
+        fillCategories(data.categories || []);
+        showStatus('Connected successfully. Categories loaded.');
+      } catch (err) {
+        showStatus('Failed to connect with Apps Script API.\n' + err.message, true);
+      }
+    }
+
+    function fillCategories(categories) {
+      categorySelect.innerHTML = '';
+
+      if (!Array.isArray(categories) || !categories.length) {
+        const option = document.createElement('option');
+        option.value = '';
+        option.textContent = 'No category found';
+        categorySelect.appendChild(option);
+        return;
+      }
+
+      categories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat;
+        option.textContent = cat;
+        categorySelect.appendChild(option);
+      });
+    }
+
+    function getPayload() {
+      return {
+        date: document.getElementById('date').value,
+        name: document.getElementById('name').value.trim(),
+        category: document.getElementById('category').value,
+        details: document.getElementById('details').value.trim(),
+        amount: Number(document.getElementById('amount').value || 0),
+        paymentMethod: document.getElementById('paymentMethod').value,
+        paidStatus: document.getElementById('paidStatus').value,
+        total: Number(document.getElementById('total').value || 0)
+      };
+    }
+
+    function validatePayload(payload) {
+      if (!payload.date) throw new Error('Date required.');
+      if (!payload.name) throw new Error('Customer name required.');
+      if (!payload.category) throw new Error('Category required.');
+      if (!payload.details) throw new Error('Details required.');
+      if (!(payload.amount > 0)) throw new Error('Amount must be greater than 0.');
+      if (!(payload.total > 0)) throw new Error('Total must be greater than 0.');
+    }
+
+    async function addCategory() {
+      const name = prompt('Enter new category name');
+      if (!name) return;
+
+      try {
+        const data = await postAction('addCategory', { name: name.trim() });
+        if (!data.ok) throw new Error(data.message || 'Add category failed');
+        fillCategories(data.categories || []);
+        showStatus(data.message || 'Category added successfully.');
+      } catch (err) {
+        showStatus(err.message, true);
+      }
+    }
+
+    async function deleteCategory() {
+      const name = prompt('Enter category name to delete exactly');
+      if (!name) return;
+
+      try {
+        const data = await postAction('deleteCategory', { name: name.trim() });
+        if (!data.ok) throw new Error(data.message || 'Delete category failed');
+        fillCategories(data.categories || []);
+        showStatus(data.message || 'Category deleted successfully.');
+      } catch (err) {
+        showStatus(err.message, true);
+      }
+    }
+
+    invoiceForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearStatus();
+      resultBox.classList.remove('show');
+
+      try {
+        const payload = getPayload();
+        validatePayload(payload);
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Saving...';
+
+        const data = await postAction('createInvoice', { payload });
+        if (!data.ok) throw new Error(data.message || 'Create invoice failed');
+
+        showStatus(`Invoice saved. Invoice No: ${data.invoiceNo}\nInvoice ID: ${data.invoiceId}`);
+        resultText.textContent = `Invoice No: ${data.invoiceNo} | Invoice ID: ${data.invoiceId}`;
+
+        if (data.printUrl) {
+          printLink.href = data.printUrl;
+          printLink.style.display = 'inline';
+        } else {
+          printLink.removeAttribute('href');
+          printLink.style.display = 'none';
+        }
+
+        resultBox.classList.add('show');
+        invoiceForm.reset();
+        setToday();
+      } catch (err) {
+        showStatus(err.message, true);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Create Invoice';
+      }
+    });
+
+    amountInput.addEventListener('input', () => {
+      if (!totalInput.value || Number(totalInput.value) === 0) {
+        totalInput.value = amountInput.value;
+      }
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      invoiceForm.reset();
+      setToday();
+      clearStatus();
+      resultBox.classList.remove('show');
+    });
+
+    document.getElementById('refreshBtn').addEventListener('click', loadBootstrap);
+    document.getElementById('addCategoryBtn').addEventListener('click', addCategory);
+    document.getElementById('deleteCategoryBtn').addEventListener('click', deleteCategory);
+
+    setToday();
+    loadBootstrap();
+  </script>
+</main>
+  </main>
+
+  <!-- JS files -->
+  <script src="assets/js/wsc-config.js"></script>
+  <script src="assets/js/wsc-layout.js"></script>
+  <script src="assets/js/wsc-search.js"></script>
+  <script src="assets/js/wsc-password.js"></script>
+</body>
+</html>

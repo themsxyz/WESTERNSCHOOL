@@ -1,0 +1,399 @@
+﻿<!doctype html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Western School & College</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="assets/css/base/wsc-root.css">
+  <link rel="stylesheet" href="assets/css/side-nav/wsc-side-nav.css">
+  <link rel="stylesheet" href="assets/css/components/wsc-components.css">
+  <link rel="stylesheet" href="assets/css/responsive/wsc-responsive.css">
+  <link rel="stylesheet" href="assets/css/shortcode/wsc-shortcode.css">
+</head>
+<body>
+  <!-- Keep this blank. Add custom page content here later if needed. -->
+  <main data-wsc-page-content>
+    <style>
+ 
+    .mark-app-card {
+      width: 100%;
+      max-width: 560px;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 24px 70px rgba(15, 23, 42, 0.14);
+      border: 1px solid #e5e7eb;
+      margin: 0 auto;
+    }
+
+    .mark-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .mark-header h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      line-height: 1.2;
+      color: #0f5132;
+    }
+
+    .mark-header p {
+      margin: 0;
+      color: #6b7280;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .mark-form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    select,
+    input {
+      width: 100%;
+      height: 48px;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      padding: 0 14px;
+      font-size: 15px;
+      color: #111827;
+      outline: none;
+      background: #ffffff;
+      transition: 0.2s ease;
+    }
+
+    select:focus,
+    input:focus {
+      border-color: #0f5132;
+      box-shadow: 0 0 0 4px rgba(15, 81, 50, 0.12);
+    }
+
+    .mark-btn {
+      width: 100%;
+      height: 50px;
+      border: none;
+      border-radius: 12px;
+      background: #0f5132;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+      margin-top: 6px;
+    }
+
+    .mark-btn:hover {
+      background: #0a3f26;
+    }
+
+    .mark-btn:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    .mark-status-box {
+      display: none;
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 14px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .mark-loading {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+
+    .mark-error {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .mark-success {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    .mark-success h3 {
+      margin: 0 0 10px;
+      color: #065f46;
+      font-size: 18px;
+    }
+
+    .mark-result-info {
+      margin-bottom: 14px;
+    }
+
+    .mark-link-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .mark-link-buttons a {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 44px;
+      padding: 10px 12px;
+      text-decoration: none;
+      border-radius: 10px;
+      background: #0f5132;
+      color: #ffffff;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .mark-link-buttons a.mark-secondary {
+      background: #334155;
+    }
+
+    .mark-note {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 520px) {
+      .mark-app-card {
+        padding: 24px 18px;
+      }
+
+      .mark-header h1 {
+        font-size: 24px;
+      }
+
+      .mark-link-buttons {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <main class="mark-app-card">
+    <div class="mark-header">
+      <h1>Marksheet PDF Generator</h1>
+      <p>Select a class and exam name. The system will generate a class-wise marksheet PDF automatically.</p>
+    </div>
+
+    <form id="marksheetForm">
+      <div class="mark-form-group">
+        <label for="className">Select Class</label>
+        <select id="className" required>
+          <option value="">Choose Class</option>
+          <option value="play">Play</option>
+          <option value="nursery">Nursery</option>
+          <option value="kg">KG</option>
+          <option value="1">Class 1</option>
+          <option value="2">Class 2</option>
+          <option value="3">Class 3</option>
+          <option value="4">Class 4</option>
+          <option value="5">Class 5</option>
+        </select>
+      </div>
+
+      <div class="mark-form-group">
+        <label for="examName">Exam Name</label>
+        <input
+          type="text"
+          id="examName"
+          placeholder="Example: Half Yearly Exam 2026"
+          required
+        />
+      </div>
+
+      <button type="submit" class="mark-btn" id="generateBtn">Generate PDF</button>
+    </form>
+
+    <div class="mark-status-box mark-loading" id="loadingBox">
+      Generating PDF. Please keep this page open.
+    </div>
+
+    <div class="mark-status-box mark-error" id="errorBox"></div>
+
+    <div class="mark-status-box mark-success" id="successBox">
+      <h3>PDF Generated Successfully!</h3>
+      <div class="mark-result-info" id="resultInfo"></div>
+      <div class="mark-link-buttons">
+        <a href="#" target="_blank" rel="noopener" id="viewPdfLink">View PDF</a>
+        <a href="#" target="_blank" rel="noopener" id="downloadPdfLink" class="mark-secondary">Download PDF</a>
+      </div>
+    </div>
+
+    <div class="mark-note">
+      Backend will read students from Google Sheet, filter by selected class, generate HTML marksheet, convert it to PDF, and return the PDF link.
+    </div>
+  </main>
+
+  <script>
+    /************************************************************
+     * FRONTEND CONFIG
+     * Step 1: Deploy Apps Script as Web App.
+     * Step 2: Paste your Web App /exec URL below.
+     * Step 3: Keep API_TOKEN same as backend CONFIG.API_TOKEN.
+     ************************************************************/
+    const APPS_SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzvK7uZTudHTpgNKLxsY09mIiFsh64uG9X2hSuKuQHYrl1uh4FAY9K1Q4RbyO8WBZHZUg/exec';
+    const API_TOKEN = 'CHANGE_THIS_SECRET_TOKEN_12345';
+
+    const form = document.getElementById('marksheetForm');
+    const classNameInput = document.getElementById('className');
+    const examNameInput = document.getElementById('examName');
+    const generateBtn = document.getElementById('generateBtn');
+
+    const loadingBox = document.getElementById('loadingBox');
+    const errorBox = document.getElementById('errorBox');
+    const successBox = document.getElementById('successBox');
+    const resultInfo = document.getElementById('resultInfo');
+    const viewPdfLink = document.getElementById('viewPdfLink');
+    const downloadPdfLink = document.getElementById('downloadPdfLink');
+
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      const className = classNameInput.value.trim();
+      const examName = examNameInput.value.trim();
+
+      if (!className || !examName) {
+        showError('Please select class and enter exam name.');
+        return;
+      }
+
+      if (!APPS_SCRIPT_WEB_APP_URL || APPS_SCRIPT_WEB_APP_URL.includes('PASTE_YOUR')) {
+        showError('Please set your Apps Script Web App URL in APPS_SCRIPT_WEB_APP_URL.');
+        return;
+      }
+
+      setLoading(true);
+
+      try {
+        const response = await callBackendJsonp({
+          action: 'generatePdf',
+          className: className,
+          examName: examName,
+          token: API_TOKEN
+        });
+
+        if (!response.success) {
+          throw new Error(response.error || 'Failed to generate PDF.');
+        }
+
+        showSuccess(response);
+      } catch (error) {
+        showError(error.message || String(error));
+      } finally {
+        setLoading(false);
+      }
+    });
+
+    /************************************************************
+     * JSONP CALL
+     * Apps Script web app often causes CORS issue with fetch.
+     * JSONP avoids browser CORS problem for simple GET API.
+     ************************************************************/
+    function callBackendJsonp(params) {
+      return new Promise(function (resolve, reject) {
+        const callbackName = 'marksheetCallback_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
+        const script = document.createElement('script');
+        const timeoutMs = 120000;
+
+        params.callback = callbackName;
+
+        const queryString = new URLSearchParams(params).toString();
+        script.src = APPS_SCRIPT_WEB_APP_URL + '?' + queryString;
+
+        const timeout = setTimeout(function () {
+          cleanup();
+          reject(new Error('Request timeout. PDF generation took too long. Try again.'));
+        }, timeoutMs);
+
+        window[callbackName] = function (data) {
+          cleanup();
+          resolve(data);
+        };
+
+        script.onerror = function () {
+          cleanup();
+          reject(new Error('Could not connect to backend. Check Apps Script Web App URL and deployment access.'));
+        };
+
+        function cleanup() {
+          clearTimeout(timeout);
+          delete window[callbackName];
+
+          if (script.parentNode) {
+            script.parentNode.removeChild(script);
+          }
+        }
+
+        document.body.appendChild(script);
+      });
+    }
+
+    function setLoading(isLoading) {
+      generateBtn.disabled = isLoading;
+      generateBtn.textContent = isLoading ? 'Generating PDF...' : 'Generate PDF';
+
+      loadingBox.style.display = isLoading ? 'block' : 'none';
+
+      if (isLoading) {
+        errorBox.style.display = 'none';
+        successBox.style.display = 'none';
+      }
+    }
+
+    function showError(message) {
+      errorBox.textContent = message;
+      errorBox.style.display = 'block';
+      successBox.style.display = 'none';
+    }
+
+    function showSuccess(data) {
+      resultInfo.innerHTML = `
+        <strong>Exam Name:</strong> ${escapeHtml(data.examName)}<br>
+        <strong>Class:</strong> ${escapeHtml(data.className)}<br>
+        <strong>Total Students:</strong> ${escapeHtml(String(data.totalStudents))}<br>
+        <strong>PDF File:</strong> ${escapeHtml(data.pdfFileName)}
+      `;
+
+      viewPdfLink.href = data.pdfViewUrl;
+      downloadPdfLink.href = data.pdfDownloadUrl;
+
+      successBox.style.display = 'block';
+      errorBox.style.display = 'none';
+    }
+
+    function escapeHtml(value) {
+      return String(value === null || value === undefined ? '' : value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  </script>
+  </main>
+
+  <!-- JS files -->
+  <script src="assets/js/wsc-config.js"></script>
+  <script src="assets/js/wsc-layout.js"></script>
+  <script src="assets/js/wsc-search.js"></script>
+  <script src="assets/js/wsc-password.js"></script>
+</body>
+</html>

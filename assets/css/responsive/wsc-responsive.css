@@ -1,0 +1,81 @@
+﻿/* ============================================================
+   EDIT HERE: Responsive, desktop/tablet/mobile friendly CSS
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .wsc-navbar {
+    margin-left: 0;
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .wsc-sidebar {
+    transform: translateX(-105%);
+  }
+
+  html.wsc-mobile-sidebar-open .wsc-sidebar {
+    transform: translateX(0);
+  }
+
+  .wsc-main,
+  html.wsc-sidebar-collapsed .wsc-main {
+    margin-left: 0;
+  }
+
+  html.wsc-sidebar-collapsed .wsc-navbar {
+    margin-left: 0;
+  }
+
+  html.wsc-sidebar-collapsed .wsc-sidebar {
+    width: var(--wsc-sidebar-width);
+  }
+
+  html.wsc-sidebar-collapsed .wsc-menu-text,
+  html.wsc-sidebar-collapsed .wsc-menu-arrow {
+    display: initial;
+  }
+}
+
+@media (max-width: 760px) {
+  .wsc-navbar {
+    height: auto;
+    min-height: var(--wsc-nav-height);
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .wsc-brand__en {
+    display: none;
+  }
+
+  .wsc-search {
+    grid-column: 1 / -1;
+    order: 3;
+    width: 100%;
+  }
+
+  .wsc-main {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .wsc-brand__logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  .wsc-brand__bn {
+    max-width: 150px;
+    font-size: 14px;
+  }
+
+  .wsc-navbar__actions {
+    gap: 6px;
+  }
+
+  .wsc-icon-btn {
+    width: 38px;
+    min-height: 38px;
+  }
+}

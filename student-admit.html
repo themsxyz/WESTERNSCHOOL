@@ -1,0 +1,881 @@
+﻿<!doctype html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Western School & College</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="assets/css/base/wsc-root.css">
+  <link rel="stylesheet" href="assets/css/side-nav/wsc-side-nav.css">
+  <link rel="stylesheet" href="assets/css/components/wsc-components.css">
+  <link rel="stylesheet" href="assets/css/responsive/wsc-responsive.css">
+  <link rel="stylesheet" href="assets/css/shortcode/wsc-shortcode.css">
+</head>
+<body>
+  <!-- Keep this blank. Add custom page content here later if needed. -->
+  <main data-wsc-page-content>
+     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+  .container-dual {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      position: relative;
+    }
+
+    /* Glassmorphic orbs background */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      mix-blend-mode: multiply;
+      filter: blur(3xl);
+      opacity: 0.4;
+      pointer-events: none;
+      animation: orbPulse 10s infinite alternate;
+    }
+
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      top: -10%;
+      left: -5%;
+      background: rgba(225, 235, 250, 0.5);
+      animation-duration: 10s;
+    }
+
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      bottom: -15%;
+      right: -10%;
+      background: rgba(200, 220, 250, 0.4);
+      animation-duration: 14s;
+      animation-direction: reverse;
+    }
+
+    @keyframes orbPulse {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 0.5; transform: scale(1.08); }
+    }
+
+    /* Glass card container */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(14px);
+      border-radius: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(0, 0, 0, 0.02);
+      padding: 2rem;
+      transition: all 0.25s ease;
+    }
+
+    .glass-card:hover {
+      background: rgba(255, 255, 255, 0.68);
+      border-color: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Headers */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .header-icon {
+      font-size: 1.8rem;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(4px);
+      padding: 8px;
+      border-radius: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1d3e5e, #2c6280);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+
+    .section-desc {
+      color: #4a627a;
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+
+    /* Form group */
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #3a5a78;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    /* Custom Dropdown Styles */
+    .custom-dropdown {
+      position: relative;
+      width: 100%;
+    }
+
+    .dropdown-trigger {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 1.25rem;
+      padding: 12px 18px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1a2f3f;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .dropdown-trigger:hover {
+      background: rgba(255, 255, 255, 0.88);
+      border-color: #b0c4e0;
+    }
+
+    .dropdown-trigger.active {
+      background: rgba(255, 255, 255, 0.96);
+      border-color: #9bb8e0;
+      box-shadow: 0 0 0 3px rgba(80, 130, 200, 0.2);
+    }
+
+    .dropdown-arrow {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      color: #3f5570;
+    }
+
+    .dropdown-trigger.active .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+    /* Dropdown menu */
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 1.25rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    .dropdown-menu.open {
+      max-height: 320px;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .dropdown-option {
+      padding: 12px 18px;
+      cursor: pointer;
+      color: #1a2f3f;
+      font-weight: 500;
+      transition: all 0.15s ease;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      display: flex;
+      align-items: center;
+    }
+
+    .dropdown-option:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-option:hover {
+      background: linear-gradient(135deg, rgba(230, 240, 255, 0.8), rgba(212, 226, 252, 0.8));
+      color: #0f2b3b;
+      padding-left: 24px;
+    }
+
+    .dropdown-option.selected {
+      background: linear-gradient(135deg, #e6f0ff, #d4e2fc);
+      color: #0f2b3b;
+      font-weight: 600;
+    }
+
+    /* Regular input styles */
+    .form-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 1.25rem;
+      padding: 12px 18px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1a2f3f;
+      transition: all 0.2s;
+      outline: none;
+    }
+
+    .form-input:focus {
+      background: rgba(255, 255, 255, 0.96);
+      border-color: #9bb8e0;
+      box-shadow: 0 0 0 3px rgba(80, 130, 200, 0.2);
+    }
+
+    .form-input:disabled,
+    .form-input[readonly] {
+      background: rgba(245, 248, 252, 0.85);
+      cursor: default;
+      color: #6a7e98;
+    }
+
+    /* Time wrapper */
+    .time-wrapper {
+      position: relative;
+    }
+
+    .time-hint {
+      text-align: right;
+      margin-top: 5px;
+    }
+
+    .hint-badge {
+      font-size: 0.7rem;
+      background: rgba(255, 255, 240, 0.6);
+      padding: 2px 10px;
+      border-radius: 40px;
+      color: #3a5a78;
+      display: inline-block;
+    }
+
+    /* Optional badge */
+    .optional-badge {
+      font-size: 0.65rem;
+      background: rgba(100, 120, 140, 0.25);
+      backdrop-filter: blur(4px);
+      padding: 2px 8px;
+      border-radius: 30px;
+      display: inline-block;
+      margin-left: 8px;
+      font-weight: 500;
+      color: #3a5a78;
+    }
+
+    /* Button group */
+    .button-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    /* Buttons */
+    .btn {
+      flex: 1;
+      background: rgba(28, 45, 65, 0.88);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 1.75rem;
+      font-weight: 600;
+      color: white;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      outline: none;
+    }
+
+    .btn:hover {
+      background: #1f334b;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px -12px rgba(0, 0, 0, 0.25);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: rgba(55, 75, 95, 0.85);
+    }
+
+    .btn-secondary:hover {
+      background: #2f4a62;
+    }
+
+    .btn-success {
+      background: rgba(30, 110, 55, 0.92);
+    }
+
+    .btn-success:hover {
+      background: #236b3c;
+    }
+
+    /* Result area */
+    .result-area {
+      margin-top: 28px;
+      display: none;
+      animation: fadeIn 0.35s ease-out;
+    }
+
+    .result-area.show {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(6px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .result-buttons {
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(6px);
+      border-radius: 1.5rem;
+      padding: 6px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .result-link {
+      flex: 1;
+      background: rgba(30, 110, 55, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 2rem;
+      padding: 12px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .result-link:hover {
+      background: #236b3c;
+      transform: scale(1.01);
+    }
+
+    .result-link-print {
+      background: rgba(35, 90, 140, 0.92);
+    }
+
+    .result-link-print:hover {
+      background: #1f6390;
+    }
+
+    .result-message {
+      text-align: center;
+      font-size: 0.7rem;
+      margin-top: 12px;
+      color: #4f6f8f;
+    }
+
+    /* Hint text */
+    .hint-text {
+      font-size: 0.7rem;
+      color: #6a7e98;
+      margin-top: 4px;
+      margin-left: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hint-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #2e7d5e;
+      border-radius: 50%;
+    }
+
+    /* Status indicator */
+    .status-indicator {
+      margin-top: 24px;
+      padding: 14px 18px;
+      border-radius: 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-align: center;
+      background: #f8fafc;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s ease;
+    }
+
+    .status-indicator.loading {
+      background: #eff6ff;
+      color: #2563eb;
+      border-color: #bfdbfe;
+    }
+
+    .status-indicator.success {
+      background: #ecfdf5;
+      color: #059669;
+      border-color: #a7f3d0;
+    }
+
+    .status-indicator.error {
+      background: #fef2f2;
+      color: #dc2626;
+      border-color: #fecaca;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(37, 99, 235, 0.2);
+      border-top: 2px solid #2563eb;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 968px) {
+      .container-dual {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .button-group {
+        flex-direction: column;
+      }
+      .section-title {
+        font-size: 1.4rem;
+      }
+    }
+
+    @media (max-width: 540px) {
+      body { padding: 12px; }
+      .glass-card { padding: 1.2rem; }
+      .section-title { font-size: 1.2rem; }
+      .dropdown-menu.open { max-height: 240px; }
+    }
+  </style>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="container-dual">
+    <!-- ========== এডমিট কার্ড সেকশন ========== -->
+    <div class="glass-card">
+      <div class="section-header">
+        <div class="header-icon">🎫</div>
+        <h2 class="section-title">এডমিট কার্ড স্টুডিও</h2>
+      </div>
+      <p class="section-desc">স্মার্ট ফিল্ড · কাস্টম ড্রপডাউন · আইডি ছাড়া "সকলের জন্য"</p>
+
+      <!-- পরীক্ষার নাম ড্রপডাউন -->
+      <div class="form-group">
+        <label class="form-label">📖 পরীক্ষার নাম</label>
+        <div class="custom-dropdown" id="admit_exam_dropdown">
+          <div class="dropdown-trigger" onclick="toggleDropdown(event, 'admit_exam_dropdown')">
+            <span id="admit_exam_value">প্রথম সাময়িক পরীক্ষা</span>
+            <div class="dropdown-arrow">▼</div>
+          </div>
+          <div class="dropdown-menu">
+            <div class="dropdown-option" onclick="selectOption(event, 'admit_exam_dropdown', 'প্রথম সাময়িক পরীক্ষা')">📖 প্রথম সাময়িক পরীক্ষা</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'admit_exam_dropdown', 'দ্বিতীয় সাময়িক পরীক্ষা')">📚 দ্বিতীয় সাময়িক পরীক্ষা</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'admit_exam_dropdown', 'বার্ষিক পরীক্ষা')">🎓 বার্ষিক পরীক্ষা</div>
+          </div>
+        </div>
+        <input type="hidden" id="admit_exam" value="প্রথম সাময়িক পরীক্ষা">
+      </div>
+
+      <!-- বছর -->
+      <div class="form-group">
+        <label class="form-label">📅 সাল (স্বয়ংক্রিয়)</label>
+        <input type="text" id="admit_year" class="form-input" placeholder="২০২৫" readonly>
+      </div>
+
+      <!-- শ্রেণি ড্রপডাউন -->
+      <div class="form-group">
+        <label class="form-label">🎈 শ্রেণি</label>
+        <div class="custom-dropdown" id="admit_className_dropdown">
+          <div class="dropdown-trigger" onclick="toggleDropdown(event, 'admit_className_dropdown')">
+            <span id="admit_className_value">১ম শ্রেণি</span>
+            <div class="dropdown-arrow">▼</div>
+          </div>
+          <div class="dropdown-menu">
+            <div class="dropdown-option" onclick="selectOption(event, 'admit_className_dropdown', 'play')">🎈 প্লে</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'admit_className_dropdown', 'nursery')">🍎 নার্সারি</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'admit_className_dropdown', 'kg')">🌟 কেজি</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'admit_className_dropdown', '1')">📖 ১ম শ্রেণি</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'admit_className_dropdown', '2')">📚 ২য় শ্রেণি</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'admit_className_dropdown', '3')">✏️ ৩য় শ্রেণি</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'admit_className_dropdown', '4')">📐 ৪র্থ শ্রেণি</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'admit_className_dropdown', '5')">🧪 ৫ম শ্রেণি</div>
+          </div>
+        </div>
+        <input type="hidden" id="admit_className" value="1">
+      </div>
+
+      <!-- পরীক্ষার সময় -->
+      <div class="form-group time-wrapper">
+        <label class="form-label">⏰ পরীক্ষা শুরুর সময়</label>
+        <input type="time" id="admit_examtime_clock" class="form-input" step="60" value="10:00">
+        <div class="time-hint"><span class="hint-badge">সময় নির্বাচন করুন</span></div>
+        <input type="hidden" id="admit_examtime">
+      </div>
+
+      <!-- শিক্ষার্থী আইডি -->
+      <div class="form-group">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap;">
+          <label class="form-label">🆔 শিক্ষার্থী আইডি</label>
+          <span class="optional-badge">"সকলের জন্য" এ অপশনাল</span>
+        </div>
+        <input type="text" id="admit_ids" class="form-input" placeholder="যেমন: ১০০১, ১০০২, ১০০৩" style="font-family: monospace;">
+        <div class="hint-text"><span class="hint-dot"></span> স্বয়ংক্রিয় ফরম্যাট: কমা + স্পেস | <strong style="color:#2c6280;">ব্যক্তির জন্য আবশ্যক</strong></div>
+      </div>
+
+      <!-- বাটন -->
+      <div class="button-group">
+        <button class="btn btn-success" onclick="admitGenerateAll()">📄 সকলের জন্য তৈরি করুন</button>
+        <button class="btn btn-secondary" onclick="admitGenerateIndividual()">👤 নির্দিষ্ট শিক্ষার্থী</button>
+      </div>
+
+      <!-- ফলাফল এলাকা -->
+      <div id="admit_result" class="result-area">
+        <div class="result-buttons">
+          <a id="admit_downloadBtn" class="result-link" target="_blank">📥 ডাউনলোড</a>
+          <a id="admit_printBtn" class="result-link result-link-print" target="_blank">🖨️ প্রিন্ট</a>
+        </div>
+        <div class="result-message">✨ এডমিট কার্ড প্রস্তুত — খুলুন ও প্রিন্ট করুন</div>
+      </div>
+      <p style="font-size: 0.65rem; color: #8ba0b5; text-align: center; margin-top: 20px;">গ্লাসমরফিজম · কাস্টম ড্রপডাউন · স্মার্ট ভ্যালিডেশন</p>
+    </div>
+
+    <!-- ========== সিট প্লান সেকশন (এক্সাম ড্রপডাউন যুক্ত) ========== -->
+    <div class="glass-card">
+      <div class="section-header">
+        <div class="header-icon">📋</div>
+        <h2 class="section-title">সিট প্লান জেনারেটর</h2>
+      </div>
+      <p class="section-desc">শ্রেণি · পরীক্ষার নাম (ড্রপডাউন) · সাল · তৈরি করুন</p>
+
+      <!-- শ্রেণি ড্রপডাউন -->
+      <div class="form-group">
+        <label class="form-label">📚 শ্রেণি</label>
+        <div class="custom-dropdown" id="sitplan_cls_dropdown">
+          <div class="dropdown-trigger" onclick="toggleDropdown(event, 'sitplan_cls_dropdown')">
+            <span id="sitplan_cls_value">১ম শ্রেণি</span>
+            <div class="dropdown-arrow">▼</div>
+          </div>
+          <div class="dropdown-menu">
+            <div class="dropdown-option" onclick="selectOption(event, 'sitplan_cls_dropdown', 'Play')">🎈 প্লে</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'sitplan_cls_dropdown', 'Nursery')">🍎 নার্সারি</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'sitplan_cls_dropdown', 'KG')">🌟 কেজি</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'sitplan_cls_dropdown', '1')">📖 ১ম শ্রেণি</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'sitplan_cls_dropdown', '2')">📚 ২য় শ্রেণি</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'sitplan_cls_dropdown', '3')">✏️ ৩য় শ্রেণি</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'sitplan_cls_dropdown', '4')">📐 ৪র্থ শ্রেণি</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'sitplan_cls_dropdown', '5')">🧪 ৫ম শ্রেণি</div>
+          </div>
+        </div>
+        <input type="hidden" id="sitplan_cls" value="1">
+      </div>
+
+      <!-- পরীক্ষার নাম - ড্রপডাউন (নির্দেশ অনুযায়ী যোগ করা হয়েছে) -->
+      <div class="form-group">
+        <label class="form-label">✏️ পরীক্ষার নাম</label>
+        <div class="custom-dropdown" id="sitplan_exam_dropdown">
+          <div class="dropdown-trigger" onclick="toggleDropdown(event, 'sitplan_exam_dropdown')">
+            <span id="sitplan_exam_value">প্রথম সাময়িক পরীক্ষা</span>
+            <div class="dropdown-arrow">▼</div>
+          </div>
+          <div class="dropdown-menu">
+            <div class="dropdown-option" onclick="selectOption(event, 'sitplan_exam_dropdown', 'প্রথম সাময়িক পরীক্ষা')">📖 প্রথম সাময়িক পরীক্ষা</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'sitplan_exam_dropdown', 'দ্বিতীয় সাময়িক পরীক্ষা')">📚 দ্বিতীয় সাময়িক পরীক্ষা</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'sitplan_exam_dropdown', 'বার্ষিক পরীক্ষা')">🎓 বার্ষিক পরীক্ষা</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'sitplan_exam_dropdown', 'মিড টার্ম পরীক্ষা')">📝 মিড টার্ম পরীক্ষা</div>
+            <div class="dropdown-option" onclick="selectOption(event, 'sitplan_exam_dropdown', 'চূড়ান্ত পরীক্ষা')">🏆 চূড়ান্ত পরীক্ষা</div>
+          </div>
+        </div>
+        <input type="hidden" id="sitplan_exam" value="প্রথম সাময়িক পরীক্ষা">
+      </div>
+
+      <!-- সাল -->
+      <div class="form-group">
+        <label class="form-label">📅 সাল</label>
+        <input type="text" id="sitplan_year" class="form-input" placeholder="যেমন: ২০২৫">
+      </div>
+
+      <!-- জেনারেট বাটন -->
+      <button class="btn btn-success" onclick="sitplanGenerate()" style="width: 100%; margin-top: 20px;">⚡ সিট প্লান তৈরি করুন</button>
+
+      <!-- স্ট্যাটাস -->
+      <div id="sitplan_status" class="status-indicator">
+        ✅ প্রস্তুত — তথ্য দিন ও জেনারেট করুন
+      </div>
+
+      <p style="font-size: 0.65rem; color: #8ba0b5; text-align: center; margin-top: 20px;">গ্লাস ডিজাইন · মসৃণ ড্রপডাউন · তাত্ক্ষণিক জেনারেশন</p>
+    </div>
+  </div>
+
+  <script>
+    // ========== কাস্টম ড্রপডাউন লজিক ==========
+    function toggleDropdown(e, dropdownId) {
+      e.stopPropagation();
+      const dropdown = document.getElementById(dropdownId);
+      const menu = dropdown.querySelector('.dropdown-menu');
+      const trigger = dropdown.querySelector('.dropdown-trigger');
+      
+      document.querySelectorAll('.dropdown-menu.open').forEach(el => {
+        if (el !== menu) {
+          el.classList.remove('open');
+          el.parentElement.querySelector('.dropdown-trigger').classList.remove('active');
+        }
+      });
+
+      menu.classList.toggle('open');
+      trigger.classList.toggle('active');
+    }
+
+    function selectOption(e, dropdownId, value) {
+      e.stopPropagation();
+      const dropdown = document.getElementById(dropdownId);
+      const trigger = dropdown.querySelector('.dropdown-trigger');
+      const menu = dropdown.querySelector('.dropdown-menu');
+      const valueSpan = trigger.querySelector('span:first-child');
+      valueSpan.textContent = e.currentTarget.textContent;
+      
+      const hiddenInput = dropdown.nextElementSibling;
+      if (hiddenInput && hiddenInput.type === 'hidden') {
+        hiddenInput.value = value;
+      }
+
+      menu.querySelectorAll('.dropdown-option').forEach(opt => opt.classList.remove('selected'));
+      e.currentTarget.classList.add('selected');
+
+      menu.classList.remove('open');
+      trigger.classList.remove('active');
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.custom-dropdown')) {
+        document.querySelectorAll('.dropdown-menu.open').forEach(menu => {
+          menu.classList.remove('open');
+          menu.parentElement.querySelector('.dropdown-trigger').classList.remove('active');
+        });
+      }
+    });
+
+    // ========== এডমিট কার্ড ফাংশন ==========
+    function admitAutoSetYear() {
+      const currentYear = new Date().getFullYear().toString();
+      document.getElementById("admit_year").value = currentYear + " সাল";
+    }
+
+    const admitIdsInput = document.getElementById("admit_ids");
+    function admitFormatIdsWithCommaSpace(value) {
+      let raw = value.replace(/\s+/g, ',');
+      let parts = raw.split(',').filter(part => part.trim() !== "");
+      let cleaned = parts.map(p => p.trim());
+      return cleaned.join(", ");
+    }
+    function admitHandleIdInput(e) {
+      let input = e.target;
+      let formatted = admitFormatIdsWithCommaSpace(input.value);
+      if (formatted !== input.value) {
+        input.value = formatted;
+        input.setSelectionRange(formatted.length, formatted.length);
+      }
+    }
+    function admitHandleIdBlur(e) {
+      let raw = e.target.value;
+      let cleaned = admitFormatIdsWithCommaSpace(raw);
+      if (cleaned.endsWith(", ")) cleaned = cleaned.slice(0, -2);
+      e.target.value = cleaned;
+    }
+    if (admitIdsInput) {
+      admitIdsInput.addEventListener("input", admitHandleIdInput);
+      admitIdsInput.addEventListener("blur", admitHandleIdBlur);
+      admitIdsInput.addEventListener("paste", () => setTimeout(() => {
+        admitIdsInput.value = admitFormatIdsWithCommaSpace(admitIdsInput.value);
+      }, 10));
+    }
+
+    const admitTimeClock = document.getElementById("admit_examtime_clock");
+    const admitExamTimeHidden = document.getElementById("admit_examtime");
+    function admitUpdateExamTime() {
+      let timeVal = admitTimeClock.value;
+      if (timeVal) {
+        let [hour, minute] = timeVal.split(":");
+        let hourNum = parseInt(hour, 10);
+        let ampm = hourNum >= 12 ? "PM" : "AM";
+        let hour12 = hourNum % 12;
+        if (hour12 === 0) hour12 = 12;
+        admitExamTimeHidden.value = `${hour12}:${minute} ${ampm}`;
+      } else admitExamTimeHidden.value = "";
+    }
+    admitTimeClock.addEventListener("change", admitUpdateExamTime);
+    admitTimeClock.addEventListener("input", admitUpdateExamTime);
+    admitUpdateExamTime();
+
+    const ADMIT_API_URL = "https://script.google.com/macros/s/AKfycby_TESJKvA4Z_wVAVGIjH8jE8Ko875kpK79886LP1eEv5e9bEgaxgEkl9FtxhY3HFBx/exec";
+    function admitGetPayload(type) {
+      let idsRaw = document.getElementById("admit_ids").value;
+      let idsArray = idsRaw.split(",").map(id => id.trim()).filter(id => id !== "");
+      return {
+          exam: document.getElementById("admit_exam").value,
+          year: document.getElementById("admit_year").value,
+          className: document.getElementById("admit_className").value,
+          examtime: document.getElementById("admit_examtime").value,
+          type: type,
+          ids: idsArray
+      };
+    }
+    async function admitGenerateAll() {
+      const examVal = document.getElementById("admit_exam").value;
+      const yearVal = document.getElementById("admit_year").value;
+      const examtimeVal = document.getElementById("admit_examtime").value;
+      const classVal = document.getElementById("admit_className").value;
+      if (!examVal || !yearVal || !examtimeVal || !classVal) {
+          alert("দয়া করে পরীক্ষার নাম, সাল, সময় এবং শ্রেণি পূরণ করুন।");
+          return;
+      }
+      await admitSendRequest(admitGetPayload("all"));
+    }
+    async function admitGenerateIndividual() {
+      const idsRaw = document.getElementById("admit_ids").value;
+      const idsArray = idsRaw.split(",").map(id => id.trim()).filter(id => id !== "");
+      if (!idsArray.length) {
+          alert("👤 নির্দিষ্ট শিক্ষার্থীর জন্য অন্তত একটি শিক্ষার্থী আইডি দিন (কমা দিয়ে)।");
+          return;
+      }
+      const examVal = document.getElementById("admit_exam").value;
+      const yearVal = document.getElementById("admit_year").value;
+      const examtimeVal = document.getElementById("admit_examtime").value;
+      const classVal = document.getElementById("admit_className").value;
+      if (!examVal || !yearVal || !examtimeVal || !classVal) {
+          alert("দয়া করে পরীক্ষার নাম, সাল, সময় এবং শ্রেণি পূরণ করুন।");
+          return;
+      }
+      await admitSendRequest(admitGetPayload("individual"));
+    }
+    async function admitSendRequest(data) {
+      const resultDiv = document.getElementById("admit_result");
+      resultDiv.classList.remove('show');
+      try {
+          const response = await fetch(ADMIT_API_URL, { method: "POST", body: JSON.stringify(data) });
+          const result = await response.json();
+          if (result.success && result.pdf) {
+              resultDiv.classList.add('show');
+              document.getElementById("admit_downloadBtn").href = result.pdf;
+              document.getElementById("admit_printBtn").href = result.pdf;
+          } else {
+              alert(result.message || "একটি সমস্যা হয়েছে, আবার চেষ্টা করুন।");
+          }
+      } catch (error) {
+          alert("নেটওয়ার্ক সমস্যা, পরে আবার চেষ্টা করুন।");
+      }
+    }
+
+    // ========== সিট প্লান ফাংশন (এক্সাম ড্রপডাউন সহ) ==========
+    const SITPLAN_APP_URL = "https://script.google.com/macros/s/AKfycby_TESJKvA4Z_wVAVGIjH8jE8Ko875kpK79886LP1eEv5e9bEgaxgEkl9FtxhY3HFBx/exec";
+
+    function sitplanSetStatus(message, type = "info") {
+      const statusDiv = document.getElementById("sitplan_status");
+      if (!statusDiv) return;
+      statusDiv.innerHTML = message;
+      statusDiv.classList.remove("loading", "success", "error");
+      if (type === "loading") statusDiv.classList.add("loading");
+      else if (type === "success") statusDiv.classList.add("success");
+      else if (type === "error") statusDiv.classList.add("error");
+    }
+
+    async function sitplanGenerate() {
+      const classValue = document.getElementById("sitplan_cls").value;
+      const examValue = document.getElementById("sitplan_exam").value.trim();
+      const yearValue = document.getElementById("sitplan_year").value.trim();
+
+      if (!classValue) {
+        sitplanSetStatus("❌ দয়া করে একটি শ্রেণি নির্বাচন করুন", "error");
+        return;
+      }
+      if (!examValue) {
+        sitplanSetStatus("❌ দয়া করে পরীক্ষার নাম নির্বাচন করুন", "error");
+        return;
+      }
+      if (!yearValue) {
+        sitplanSetStatus("❌ দয়া করে সাল লিখুন", "error");
+        return;
+      }
+
+      sitplanSetStatus('<span class="spinner"></span> সিট প্লান তৈরি হচ্ছে, দয়া করে অপেক্ষা করুন...', "loading");
+
+      const payload = { class: classValue, examname: examValue, year: yearValue };
+
+      try {
+        const response = await fetch(SITPLAN_APP_URL, {
+          method: "POST",
+          mode: "cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        let data;
+        try { data = await response.json(); } catch (e) { throw new Error("সার্ভার থেকে সঠিক উত্তর পাওয়া যায়নি"); }
+        if (data && data.url) {
+          sitplanSetStatus("✅ সিট প্লান সফলভাবে তৈরি হয়েছে!", "success");
+          window.open(data.url, "_blank");
+          setTimeout(() => {
+            if (document.getElementById("sitplan_status")) sitplanSetStatus("✅ প্রস্তুত — আরেকটি সিট প্লান তৈরি করুন", "info");
+          }, 4000);
+        } else {
+          const errorMsg = data?.error || "কিছু ভুল হয়েছে, আবার চেষ্টা করুন।";
+          sitplanSetStatus(`⚠️ ${errorMsg}`, "error");
+        }
+      } catch (error) {
+        console.error("সিটপ্লান ত্রুটি:", error);
+        sitplanSetStatus("❌ নেটওয়ার্ক সমস্যা বা সার্ভার উপলব্ধ নয়।", "error");
+      }
+    }
+
+    // প্রাথমিককরণ
+    admitAutoSetYear();
+    document.getElementById("sitplan_year")?.addEventListener("keypress", (e) => { if (e.key === "Enter") sitplanGenerate(); });
+  </script>
+  </main>
+
+  <!-- JS files -->
+  <script src="assets/js/wsc-config.js"></script>
+  <script src="assets/js/wsc-layout.js"></script>
+  <script src="assets/js/wsc-search.js"></script>
+  <script src="assets/js/wsc-password.js"></script>
+</body>
+</html>
