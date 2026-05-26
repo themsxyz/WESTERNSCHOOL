@@ -15,698 +15,680 @@
 <body>
   <!-- Keep this blank. Add custom page content here later if needed. -->
   <main data-wsc-page-content>
-     
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
 
-  <style>
+<style>
+  .agreement {
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: var(--wsc-radius-lg);
+    border: 1px solid var(--wsc-border);
+    background: var(--wsc-surface);
+    box-shadow: var(--wsc-shadow);
+    font-family: var(--wsc-font-bn);
+    color: var(--wsc-text);
+  }
 
+  .agreement__header {
+    text-align: center;
+    margin-bottom: 26px;
+  }
+
+  .agreement__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 15px;
+    margin-bottom: 14px;
+    border-radius: var(--wsc-radius-pill);
+    background: var(--blue-soft);
+    color: var(--wsc-primary);
+    font-size: var(--wsc-text-sm);
+    font-weight: 800;
+  }
+
+  .agreement h1 {
+    margin: 0 0 8px;
+    font-size: clamp(25px, 4vw, 38px);
+    line-height: 1.25;
+    color: var(--wsc-primary);
+    font-weight: 900;
+  }
+
+  .agreement__subtitle {
+    max-width: 680px;
+    margin: 0 auto;
+    color: var(--wsc-muted);
+    font-size: var(--wsc-text-sm);
+    line-height: 1.7;
+  }
+
+  .agreement__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .agreement__field--full {
+    grid-column: 1 / -1;
+  }
+
+  .agreement label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: var(--wsc-text-sm);
+    font-weight: 800;
+    color: var(--wsc-text);
+  }
+
+  .agreement input,
+  .agreement textarea {
+    width: 100%;
+    border: 1px solid var(--wsc-border);
+    outline: none;
+    border-radius: var(--wsc-radius-pill);
+    padding: 14px 17px;
+    background: var(--wsc-surface-soft);
+    color: var(--wsc-text);
+    font-size: var(--wsc-text-sm);
+    font-family: var(--wsc-font-bn);
+    transition: var(--wsc-transition);
+  }
+
+  .agreement textarea {
+    min-height: 92px;
+    resize: vertical;
+    border-radius: var(--wsc-radius-md);
+    line-height: 1.6;
+  }
+
+  .agreement input::placeholder,
+  .agreement textarea::placeholder {
+    color: var(--wsc-muted);
+  }
+
+  .agreement input:focus,
+  .agreement textarea:focus {
+    border-color: var(--wsc-primary);
+    background: var(--wsc-surface);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--wsc-primary) 15%, transparent);
+  }
+
+  .agreement__hint {
+    margin-top: 7px;
+    color: var(--wsc-muted);
+    font-size: var(--wsc-text-xs);
+    line-height: 1.55;
+  }
+
+  .agreement__actions {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .agreement__btn {
+    width: 100%;
+    border: 0;
+    border-radius: var(--wsc-radius-pill);
+    padding: 15px 22px;
+    background: var(--wsc-primary);
+    color: #ffffff;
+    font-size: var(--wsc-text-base);
+    font-weight: 900;
+    font-family: var(--wsc-font-bn);
+    cursor: pointer;
+    box-shadow: var(--wsc-shadow);
+    transition: var(--wsc-transition);
+  }
+
+  .agreement__btn:hover {
+    background: var(--wsc-primary-dark);
+    transform: translateY(-1px);
+  }
+
+  .agreement__btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .agreement__status {
+    min-height: 22px;
+    text-align: center;
+    color: var(--wsc-muted);
+    font-size: var(--wsc-text-sm);
+    font-weight: 700;
+  }
+
+  .agreement__result {
+    display: none;
+    margin-top: 20px;
+    padding: 16px;
+    border-radius: var(--wsc-radius-md);
+    font-size: var(--wsc-text-sm);
+    line-height: 1.6;
+  }
+
+  .agreement__result--success {
+    display: block;
+    border: 1px solid color-mix(in srgb, var(--wsc-success) 25%, transparent);
+    background: var(--success-bg);
+    color: var(--success);
+  }
+
+  .agreement__result--error {
+    display: block;
+    border: 1px solid color-mix(in srgb, var(--wsc-danger) 25%, transparent);
+    background: var(--danger-bg);
+    color: var(--danger);
+  }
+
+  .agreement__result-title {
+    margin: 0 0 10px;
+    font-weight: 900;
+    font-size: var(--wsc-text-sm);
+  }
+
+  .agreement__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .agreement__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 15px;
+    border-radius: var(--wsc-radius-pill);
+    background: var(--wsc-surface);
+    color: var(--wsc-primary);
+    font-weight: 900;
+    text-decoration: none;
+    border: 1px solid var(--wsc-border);
+    cursor: pointer;
+    font-family: var(--wsc-font-bn);
+    font-size: var(--wsc-text-sm);
+  }
+
+  .agreement__link:hover {
+    background: var(--wsc-surface-soft);
+  }
+
+  .flatpickr-calendar {
+    font-family: var(--wsc-font-bn) !important;
+    border-radius: var(--wsc-radius-md) !important;
+    overflow: hidden !important;
+    border: 1px solid var(--wsc-border) !important;
+    box-shadow: var(--wsc-shadow) !important;
+  }
+
+  .flatpickr-current-month,
+  .flatpickr-weekday,
+  .flatpickr-day {
+    font-family: var(--wsc-font-bn) !important;
+  }
+
+  @media (max-width: 760px) {
     .agreement {
-      width: 100%;
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 30px;
-      border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.55);
-      background: rgba(255, 255, 255, 0.38);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      box-shadow: 0 20px 60px rgba(23, 32, 51, 0.12);
-    }
-
-    .agreement__header {
-      text-align: center;
-      margin-bottom: 28px;
-    }
-
-    .agreement__badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 15px;
-      margin-bottom: 14px;
-      border-radius: 999px;
-      background: rgba(31, 94, 255, 0.1);
-      color: #1f5eff;
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .agreement h1 {
-      margin: 0 0 8px;
-      font-size: clamp(25px, 4vw, 38px);
-      line-height: 1.25;
-      color: #1747c7;
-      font-weight: 900;
-    }
-
-    .agreement__subtitle {
-      margin: 0;
-      color: #667085;
-      font-size: 15px;
-      line-height: 1.7;
+      padding: 20px;
+      border-radius: var(--wsc-radius-md);
     }
 
     .agreement__grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .agreement__field--full {
-      grid-column: 1 / -1;
-    }
-
-    .agreement label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 14px;
-      font-weight: 800;
-      color: #172033;
-    }
-
-    .agreement input,
-    .agreement textarea {
-      width: 100%;
-      border: 1px solid rgba(255, 255, 255, 0.72);
-      outline: none;
-      border-radius: 999px;
-      padding: 14px 17px;
-      background: rgba(255, 255, 255, 0.62);
-      color: #172033;
-      font-size: 15px;
-      font-family: inherit;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
-      transition: 0.22s ease;
-    }
-
-    .agreement textarea {
-      min-height: 92px;
-      resize: vertical;
-      border-radius: 22px;
-      line-height: 1.6;
-    }
-
-    .agreement input:focus,
-    .agreement textarea:focus {
-      border-color: rgba(31, 94, 255, 0.65);
-      box-shadow: 0 0 0 5px rgba(31, 94, 255, 0.12);
-      background: rgba(255, 255, 255, 0.82);
-    }
-
-    .agreement__hint {
-      margin-top: 7px;
-      color: #667085;
-      font-size: 12px;
-      line-height: 1.55;
-    }
-
-    .agreement__actions {
-      margin-top: 24px;
-      display: grid;
       grid-template-columns: 1fr;
       gap: 14px;
     }
 
-    .agreement__btn {
-      width: 100%;
-      border: 0;
-      border-radius: 999px;
-      padding: 15px 22px;
-      background: linear-gradient(135deg, #1f5eff, #1747c7);
-      color: #ffffff;
-      font-size: 16px;
-      font-weight: 900;
-      font-family: inherit;
-      cursor: pointer;
-      box-shadow: 0 14px 32px rgba(31, 94, 255, 0.24);
-      transition: 0.22s ease;
-    }
-
-    .agreement__btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 42px rgba(31, 94, 255, 0.28);
-    }
-
-    .agreement__btn:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .agreement__status {
-      min-height: 22px;
-      text-align: center;
-      color: #667085;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .agreement__result {
-      display: none;
-      margin-top: 20px;
-      padding: 16px;
-      border-radius: 22px;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .agreement__result--success {
-      display: block;
-      border: 1px solid rgba(8, 116, 67, 0.22);
-      background: rgba(239, 253, 246, 0.85);
-      color: #087443;
-    }
-
-    .agreement__result--error {
-      display: block;
-      border: 1px solid rgba(180, 35, 24, 0.22);
-      background: rgba(255, 244, 242, 0.92);
-      color: #b42318;
-    }
-
-    .agreement__result-title {
-      margin: 0 0 10px;
-      font-weight: 900;
-      font-size: 15px;
-    }
-
     .agreement__links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
+      display: grid;
+      grid-template-columns: 1fr;
     }
 
     .agreement__link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 10px 15px;
-      border-radius: 999px;
-      background: #ffffff;
-      color: #1f5eff;
-      font-weight: 900;
-      text-decoration: none;
-      border: 1px solid rgba(31, 94, 255, 0.18);
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 14px;
+      width: 100%;
     }
+  }
+</style>
 
-    .agreement__link:hover {
-      background: rgba(31, 94, 255, 0.08);
-    }
+<main class="agreement">
+  <header class="agreement__header">
+    <div class="agreement__badge">রুম এগ্রিমেন্ট PDF</div>
+    <h1>রুম এগ্রিমেন্ট ফর্ম</h1>
+    <p class="agreement__subtitle">সব তথ্য পূরণ করে PDF তৈরি করুন। ভাড়ার টাকা শব্দে স্বয়ংক্রিয়ভাবে তৈরি হবে, তবে প্রয়োজন হলে ম্যানুয়ালি লিখতে পারবেন।</p>
+  </header>
 
-    .flatpickr-calendar {
-      font-family: "Noto Sans Bengali", "SolaimanLipi", Arial, sans-serif !important;
-      border-radius: 18px !important;
-      overflow: hidden !important;
-      box-shadow: 0 18px 60px rgba(23, 32, 51, 0.16) !important;
-    }
-
-    .flatpickr-current-month,
-    .flatpickr-weekday,
-    .flatpickr-day {
-      font-family: "Noto Sans Bengali", "SolaimanLipi", Arial, sans-serif !important;
-    }
-
-    @media (max-width: 760px) {
-      body {
-        padding: 16px 10px;
-      }
-
-      .agreement {
-        padding: 20px;
-        border-radius: 24px;
-      }
-
-      .agreement__grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
-      }
-
-      .agreement__links {
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-
-      .agreement__link {
-        width: 100%;
-      }
-    }
-  </style>
-  <main class="agreement">
-    <header class="agreement__header">
-      <div class="agreement__badge">রুম এগ্রিমেন্ট PDF</div>
-      <h1>রুম এগ্রিমেন্ট ফর্ম</h1>
-      <p class="agreement__subtitle">সব তথ্য পূরণ করে PDF তৈরি করুন। ভাড়ার টাকা শব্দে স্বয়ংক্রিয়ভাবে তৈরি হবে, তবে প্রয়োজন হলে ম্যানুয়ালি লিখতে পারবেন।</p>
-    </header>
-
-    <form id="agreementForm" autocomplete="off">
-      <div class="agreement__grid">
-        <div class="agreement__field">
-          <label for="name">নাম</label>
-          <input id="name" type="text" name="name" placeholder="দ্বিতীয় পক্ষের নাম" required />
-        </div>
-
-        <div class="agreement__field">
-          <label for="phone">মোবাইল</label>
-          <input id="phone" type="text" name="phone" placeholder="০১৮০০০০০০০০" required />
-        </div>
-
-        <div class="agreement__field agreement__field--full">
-          <label for="address">ঠিকানা</label>
-          <textarea id="address" name="address" placeholder="সম্পূর্ণ ঠিকানা লিখুন" required></textarea>
-        </div>
-
-        <div class="agreement__field">
-          <label for="NID">জাতীয় পরিচয়পত্র নং</label>
-          <input id="NID" type="text" name="NID" placeholder="জাতীয় পরিচয়পত্র নং" required />
-        </div>
-
-        <div class="agreement__field">
-          <label for="rent-date-month-year">ভাড়া শুরুর তারিখ / মাস / বছর</label>
-          <input id="rent-date-month-year" type="text" name="rent-date-month-year" class="agreement-datepicker" placeholder="০১ জানুয়ারি ২০২৬" required />
-        </div>
-
-        <div class="agreement__field">
-          <label for="rent-amount">মাসিক ভাড়া</label>
-          <input id="rent-amount" type="text" name="rent-amount" placeholder="৫০০০" inputmode="numeric" required />
-          <div class="agreement__hint">ইংরেজি বা বাংলা সংখ্যা লিখতে পারবেন। PDF-এ বাংলা সংখ্যা যাবে।</div>
-        </div>
-
-        <div class="agreement__field">
-          <label for="rent-amount-sentence">ভাড়া শব্দে</label>
-          <input id="rent-amount-sentence" type="text" name="rent-amount-sentence" placeholder="ফাঁকা রাখলে অটো হবে, যেমন: পাঁচ হাজার টাকা" />
-          <div class="agreement__hint">অটো লেখা সঠিক না হলে এখানে নিজে লিখে দিন।</div>
-        </div>
-
-        <div class="agreement__field">
-          <label for="current-year">বর্তমান বছর</label>
-          <input id="current-year" type="text" name="current-year" placeholder="২০২৬" />
-        </div>
-
-        <div class="agreement__field">
-          <label for="next-year">পরবর্তী বছর</label>
-          <input id="next-year" type="text" name="next-year" placeholder="২০২৭" />
-        </div>
-
-        <div class="agreement__field">
-          <label for="rent-amount-plus">ভাড়া + ৫০০</label>
-          <input id="rent-amount-plus" type="text" name="rent-amount-plus" placeholder="৫৫০০" inputmode="numeric" />
-          <div class="agreement__hint">ফাঁকা রাখলে মাসিক ভাড়ার সাথে ৫০০ যোগ হবে।</div>
-        </div>
-
-        <div class="agreement__field">
-          <label for="rent-amount-plus-sentence">ভাড়া + ৫০০ শব্দে</label>
-          <input id="rent-amount-plus-sentence" type="text" name="rent-amount-plus-sentence" placeholder="ফাঁকা রাখলে অটো হবে, যেমন: পাঁচ হাজার পাঁচশত টাকা" />
-          <div class="agreement__hint">অটো লেখা সঠিক না হলে এখানে নিজে লিখে দিন।</div>
-        </div>
-
-        <div class="agreement__field agreement__field--full">
-          <label for="agreement-date">চুক্তির তারিখ</label>
-          <input id="agreement-date" type="text" name="agreement-date" class="agreement-datepicker" placeholder="২২ মে ২০২৬" required />
-        </div>
+  <form id="agreementForm" autocomplete="off">
+    <div class="agreement__grid">
+      <div class="agreement__field">
+        <label for="name">নাম</label>
+        <input id="name" type="text" name="name" placeholder="দ্বিতীয় পক্ষের নাম" required />
       </div>
 
-      <div class="agreement__actions">
-        <button id="submitBtn" class="agreement__btn" type="submit">PDF তৈরি করুন</button>
-        <div id="statusText" class="agreement__status"></div>
+      <div class="agreement__field">
+        <label for="phone">মোবাইল</label>
+        <input id="phone" type="text" name="phone" placeholder="০১৮০০০০০০০০" required />
       </div>
 
-      <div id="resultBox" class="agreement__result"></div>
-    </form>
-  </main>
+      <div class="agreement__field agreement__field--full">
+        <label for="address">ঠিকানা</label>
+        <textarea id="address" name="address" placeholder="সম্পূর্ণ ঠিকানা লিখুন" required></textarea>
+      </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script>
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz87PYg8eHSsC1FfqY2PKNik7wAMcwOGciNI5hsr33RyBkd9zS548di4Ezq7J9FxKvL/exec";
+      <div class="agreement__field">
+        <label for="NID">জাতীয় পরিচয়পত্র নং</label>
+        <input id="NID" type="text" name="NID" placeholder="জাতীয় পরিচয়পত্র নং" required />
+      </div>
 
-    const BN_DIGITS = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
-    const BN_MONTHS = [
-      "জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন",
-      "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"
-    ];
+      <div class="agreement__field">
+        <label for="rent-date-month-year">ভাড়া শুরুর তারিখ / মাস / বছর</label>
+        <input id="rent-date-month-year" type="text" name="rent-date-month-year" class="agreement-datepicker" placeholder="০১ জানুয়ারি ২০২৬" required />
+      </div>
 
-    const BN_WEEKDAYS_SHORT = ["রবি", "সোম", "মঙ্গল", "বুধ", "বৃহ", "শুক্র", "শনি"];
-    const BN_WEEKDAYS_LONG = ["রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার", "শুক্রবার", "শনিবার"];
+      <div class="agreement__field">
+        <label for="rent-amount">মাসিক ভাড়া</label>
+        <input id="rent-amount" type="text" name="rent-amount" placeholder="৫০০০" inputmode="numeric" required />
+        <div class="agreement__hint">ইংরেজি বা বাংলা সংখ্যা লিখতে পারবেন। PDF-এ বাংলা সংখ্যা যাবে।</div>
+      </div>
 
-    function toBanglaDigits(value) {
-      return String(value || "").replace(/[0-9]/g, function (digit) {
-        return BN_DIGITS[Number(digit)];
+      <div class="agreement__field">
+        <label for="rent-amount-sentence">ভাড়া শব্দে</label>
+        <input id="rent-amount-sentence" type="text" name="rent-amount-sentence" placeholder="ফাঁকা রাখলে অটো হবে, যেমন: পাঁচ হাজার টাকা" />
+        <div class="agreement__hint">অটো লেখা সঠিক না হলে এখানে নিজে লিখে দিন।</div>
+      </div>
+
+      <div class="agreement__field">
+        <label for="current-year">বর্তমান বছর</label>
+        <input id="current-year" type="text" name="current-year" placeholder="২০২৬" />
+      </div>
+
+      <div class="agreement__field">
+        <label for="next-year">পরবর্তী বছর</label>
+        <input id="next-year" type="text" name="next-year" placeholder="২০২৭" />
+      </div>
+
+      <div class="agreement__field">
+        <label for="rent-amount-plus">ভাড়া + ৫০০</label>
+        <input id="rent-amount-plus" type="text" name="rent-amount-plus" placeholder="৫৫০০" inputmode="numeric" />
+        <div class="agreement__hint">ফাঁকা রাখলে মাসিক ভাড়ার সাথে ৫০০ যোগ হবে।</div>
+      </div>
+
+      <div class="agreement__field">
+        <label for="rent-amount-plus-sentence">ভাড়া + ৫০০ শব্দে</label>
+        <input id="rent-amount-plus-sentence" type="text" name="rent-amount-plus-sentence" placeholder="ফাঁকা রাখলে অটো হবে, যেমন: পাঁচ হাজার পাঁচশত টাকা" />
+        <div class="agreement__hint">অটো লেখা সঠিক না হলে এখানে নিজে লিখে দিন।</div>
+      </div>
+
+      <div class="agreement__field agreement__field--full">
+        <label for="agreement-date">চুক্তির তারিখ</label>
+        <input id="agreement-date" type="text" name="agreement-date" class="agreement-datepicker" placeholder="২২ মে ২০২৬" required />
+      </div>
+    </div>
+
+    <div class="agreement__actions">
+      <button id="submitBtn" class="agreement__btn" type="submit">PDF তৈরি করুন</button>
+      <div id="statusText" class="agreement__status"></div>
+    </div>
+
+    <div id="resultBox" class="agreement__result"></div>
+  </form>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz87PYg8eHSsC1FfqY2PKNik7wAMcwOGciNI5hsr33RyBkd9zS548di4Ezq7J9FxKvL/exec";
+
+  const BN_DIGITS = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+  const BN_MONTHS = [
+    "জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন",
+    "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"
+  ];
+
+  const BN_WEEKDAYS_SHORT = ["রবি", "সোম", "মঙ্গল", "বুধ", "বৃহ", "শুক্র", "শনি"];
+  const BN_WEEKDAYS_LONG = ["রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার", "শুক্রবার", "শনিবার"];
+
+  function toBanglaDigits(value) {
+    return String(value || "").replace(/[0-9]/g, function (digit) {
+      return BN_DIGITS[Number(digit)];
+    });
+  }
+
+  function toEnglishDigits(value) {
+    const bangla = "০১২৩৪৫৬৭৮৯";
+    return String(value || "").replace(/[০-৯]/g, function (digit) {
+      return String(bangla.indexOf(digit));
+    });
+  }
+
+  function formatBanglaDate(date) {
+    if (!(date instanceof Date) || isNaN(date.getTime())) return "";
+    const day = toBanglaDigits(String(date.getDate()).padStart(2, "0"));
+    const month = BN_MONTHS[date.getMonth()];
+    const year = toBanglaDigits(date.getFullYear());
+    return day + " " + month + " " + year;
+  }
+
+  function refreshFlatpickrBanglaDigits() {
+    setTimeout(function () {
+      document.querySelectorAll(".flatpickr-day").forEach(function (el) {
+        el.textContent = toBanglaDigits(el.textContent);
       });
-    }
 
-    function toEnglishDigits(value) {
-      const bangla = "০১২৩৪৫৬৭৮৯";
-      return String(value || "").replace(/[০-৯]/g, function (digit) {
-        return String(bangla.indexOf(digit));
+      document.querySelectorAll(".cur-year").forEach(function (el) {
+        el.value = toBanglaDigits(el.value);
       });
-    }
+    }, 0);
+  }
 
-    function formatBanglaDate(date) {
-      if (!(date instanceof Date) || isNaN(date.getTime())) {
-        return "";
+  document.querySelectorAll(".agreement-datepicker").forEach(function (input) {
+    flatpickr(input, {
+      allowInput: false,
+      disableMobile: true,
+      dateFormat: "d F Y",
+      locale: {
+        firstDayOfWeek: 6,
+        weekdays: {
+          shorthand: BN_WEEKDAYS_SHORT,
+          longhand: BN_WEEKDAYS_LONG
+        },
+        months: {
+          shorthand: BN_MONTHS,
+          longhand: BN_MONTHS
+        }
+      },
+      formatDate: formatBanglaDate,
+      onReady: function (selectedDates, dateStr, instance) {
+        instance.input.value = selectedDates[0] ? formatBanglaDate(selectedDates[0]) : "";
+        refreshFlatpickrBanglaDigits();
+      },
+      onOpen: refreshFlatpickrBanglaDigits,
+      onMonthChange: refreshFlatpickrBanglaDigits,
+      onYearChange: refreshFlatpickrBanglaDigits,
+      onValueUpdate: function (selectedDates, dateStr, instance) {
+        instance.input.value = selectedDates[0] ? formatBanglaDate(selectedDates[0]) : "";
+        refreshFlatpickrBanglaDigits();
+      },
+      onChange: function (selectedDates, dateStr, instance) {
+        instance.input.value = selectedDates[0] ? formatBanglaDate(selectedDates[0]) : "";
+        refreshFlatpickrBanglaDigits();
+      }
+    });
+  });
+
+  function cleanMoneyNumber(value) {
+    const english = toEnglishDigits(value).replace(/,/g, "").replace(/[^0-9]/g, "");
+    if (!english) return null;
+    const numberValue = Number(english);
+    return isNaN(numberValue) ? null : numberValue;
+  }
+
+  const BENGALI_WORDS_0_TO_99 = [
+    "", "এক", "দুই", "তিন", "চার", "পাঁচ", "ছয়", "সাত", "আট", "নয়",
+    "দশ", "এগারো", "বারো", "তেরো", "চৌদ্দ", "পনেরো", "ষোল", "সতেরো", "আঠারো", "ঊনিশ",
+    "বিশ", "একুশ", "বাইশ", "তেইশ", "চব্বিশ", "পঁচিশ", "ছাব্বিশ", "সাতাশ", "আঠাশ", "ঊনত্রিশ",
+    "ত্রিশ", "একত্রিশ", "বত্রিশ", "তেত্রিশ", "চৌত্রিশ", "পঁয়ত্রিশ", "ছত্রিশ", "সাঁইত্রিশ", "আটত্রিশ", "ঊনচল্লিশ",
+    "চল্লিশ", "একচল্লিশ", "বিয়াল্লিশ", "তেতাল্লিশ", "চুয়াল্লিশ", "পঁয়তাল্লিশ", "ছেচল্লিশ", "সাতচল্লিশ", "আটচল্লিশ", "ঊনপঞ্চাশ",
+    "পঞ্চাশ", "একান্ন", "বায়ান্ন", "তিপ্পান্ন", "চুয়ান্ন", "পঞ্চান্ন", "ছাপ্পান্ন", "সাতান্ন", "আটান্ন", "ঊনষাট",
+    "ষাট", "একষট্টি", "বাষট্টি", "তেষট্টি", "চৌষট্টি", "পঁয়ষট্টি", "ছেষট্টি", "সাতষট্টি", "আটষট্টি", "ঊনসত্তর",
+    "সত্তর", "একাত্তর", "বাহাত্তর", "তিয়াত্তর", "চুয়াত্তর", "পঁচাত্তর", "ছিয়াত্তর", "সাতাত্তর", "আটাত্তর", "ঊনআশি",
+    "আশি", "একাশি", "বিরাশি", "তিরাশি", "চুরাশি", "পঁচাশি", "ছিয়াশি", "সাতাশি", "আটাশি", "ঊননব্বই",
+    "নব্বই", "একানব্বই", "বিরানব্বই", "তিরানব্বই", "চুরানব্বই", "পঁচানব্বই", "ছিয়ানব্বই", "সাতানব্বই", "আটানব্বই", "নিরানব্বই"
+  ];
+
+  function twoDigitBanglaWords(numberValue) {
+    return BENGALI_WORDS_0_TO_99[numberValue] || "";
+  }
+
+  function threeDigitBanglaWords(numberValue) {
+    const parts = [];
+    const hundred = Math.floor(numberValue / 100);
+    const rest = numberValue % 100;
+
+    if (hundred > 0) parts.push(twoDigitBanglaWords(hundred) + "শত");
+    if (rest > 0) parts.push(twoDigitBanglaWords(rest));
+
+    return parts.join(" ");
+  }
+
+  function numberToBanglaWords(numberValue) {
+    let number = Number(numberValue);
+    if (isNaN(number)) return "";
+    if (number === 0) return "শূন্য";
+
+    number = Math.floor(Math.abs(number));
+    const parts = [];
+
+    const crore = Math.floor(number / 10000000);
+    number = number % 10000000;
+
+    const lakh = Math.floor(number / 100000);
+    number = number % 100000;
+
+    const thousand = Math.floor(number / 1000);
+    number = number % 1000;
+
+    if (crore > 0) parts.push(threeDigitBanglaWords(crore) + " কোটি");
+    if (lakh > 0) parts.push(threeDigitBanglaWords(lakh) + " লক্ষ");
+    if (thousand > 0) parts.push(threeDigitBanglaWords(thousand) + " হাজার");
+    if (number > 0) parts.push(threeDigitBanglaWords(number));
+
+    return parts.join(" ");
+  }
+
+  function amountSentence(numberValue) {
+    const words = numberToBanglaWords(numberValue);
+    return words ? words + " টাকা" : "";
+  }
+
+  const rentAmountInput = document.getElementById("rent-amount");
+  const rentSentenceInput = document.getElementById("rent-amount-sentence");
+  const rentAmountPlusInput = document.getElementById("rent-amount-plus");
+  const rentPlusSentenceInput = document.getElementById("rent-amount-plus-sentence");
+  const currentYearInput = document.getElementById("current-year");
+  const nextYearInput = document.getElementById("next-year");
+
+  function updateAutoAmountFields() {
+    const rentNumber = cleanMoneyNumber(rentAmountInput.value);
+
+    if (rentNumber !== null) {
+      rentAmountInput.value = toBanglaDigits(rentNumber);
+
+      if (!rentSentenceInput.dataset.manual || !rentSentenceInput.value.trim()) {
+        rentSentenceInput.value = amountSentence(rentNumber);
       }
 
-      const day = toBanglaDigits(String(date.getDate()).padStart(2, "0"));
-      const month = BN_MONTHS[date.getMonth()];
-      const year = toBanglaDigits(date.getFullYear());
-      return day + " " + month + " " + year;
+      if (!rentAmountPlusInput.dataset.manual || !rentAmountPlusInput.value.trim()) {
+        rentAmountPlusInput.value = toBanglaDigits(rentNumber + 500);
+      }
     }
 
-    function refreshFlatpickrBanglaDigits() {
-      setTimeout(function () {
-        document.querySelectorAll(".flatpickr-day").forEach(function (el) {
-          el.textContent = toBanglaDigits(el.textContent);
-        });
+    const plusNumber = cleanMoneyNumber(rentAmountPlusInput.value);
 
-        document.querySelectorAll(".cur-year").forEach(function (el) {
-          el.value = toBanglaDigits(el.value);
-        });
-      }, 0);
+    if (plusNumber !== null) {
+      rentAmountPlusInput.value = toBanglaDigits(plusNumber);
+
+      if (!rentPlusSentenceInput.dataset.manual || !rentPlusSentenceInput.value.trim()) {
+        rentPlusSentenceInput.value = amountSentence(plusNumber);
+      }
     }
+  }
 
-    document.querySelectorAll(".agreement-datepicker").forEach(function (input) {
-      flatpickr(input, {
-        allowInput: false,
-        disableMobile: true,
-        dateFormat: "d F Y",
-        locale: {
-          firstDayOfWeek: 6,
-          weekdays: {
-            shorthand: BN_WEEKDAYS_SHORT,
-            longhand: BN_WEEKDAYS_LONG
-          },
-          months: {
-            shorthand: BN_MONTHS,
-            longhand: BN_MONTHS
-          }
-        },
-        formatDate: function (date) {
-          return formatBanglaDate(date);
-        },
-        onReady: function (selectedDates, dateStr, instance) {
-          instance.input.value = selectedDates[0] ? formatBanglaDate(selectedDates[0]) : "";
-          refreshFlatpickrBanglaDigits();
-        },
-        onOpen: function () {
-          refreshFlatpickrBanglaDigits();
-        },
-        onMonthChange: function () {
-          refreshFlatpickrBanglaDigits();
-        },
-        onYearChange: function () {
-          refreshFlatpickrBanglaDigits();
-        },
-        onValueUpdate: function (selectedDates, dateStr, instance) {
-          instance.input.value = selectedDates[0] ? formatBanglaDate(selectedDates[0]) : "";
-          refreshFlatpickrBanglaDigits();
-        },
-        onChange: function (selectedDates, dateStr, instance) {
-          instance.input.value = selectedDates[0] ? formatBanglaDate(selectedDates[0]) : "";
-          refreshFlatpickrBanglaDigits();
-        }
-      });
+  rentAmountInput.addEventListener("input", function () {
+    rentSentenceInput.dataset.manual = "";
+    if (!rentAmountPlusInput.dataset.manual) rentAmountPlusInput.value = "";
+    if (!rentPlusSentenceInput.dataset.manual) rentPlusSentenceInput.value = "";
+    updateAutoAmountFields();
+  });
+
+  rentAmountPlusInput.addEventListener("input", function () {
+    rentAmountPlusInput.dataset.manual = "true";
+    rentPlusSentenceInput.dataset.manual = "";
+    updateAutoAmountFields();
+  });
+
+  rentSentenceInput.addEventListener("input", function () {
+    rentSentenceInput.dataset.manual = rentSentenceInput.value.trim() ? "true" : "";
+  });
+
+  rentPlusSentenceInput.addEventListener("input", function () {
+    rentPlusSentenceInput.dataset.manual = rentPlusSentenceInput.value.trim() ? "true" : "";
+  });
+
+  function setDefaultYears() {
+    const now = new Date();
+    if (!currentYearInput.value.trim()) currentYearInput.value = toBanglaDigits(now.getFullYear());
+    if (!nextYearInput.value.trim()) nextYearInput.value = toBanglaDigits(now.getFullYear() + 1);
+  }
+
+  setDefaultYears();
+
+  function getFormData(form) {
+    const data = {};
+
+    form.querySelectorAll("input, textarea").forEach(function (element) {
+      data[element.name] = toBanglaDigits(element.value.trim());
     });
 
-    function cleanMoneyNumber(value) {
-      const english = toEnglishDigits(value).replace(/,/g, "").replace(/[^0-9]/g, "");
-      if (!english) return null;
-      const numberValue = Number(english);
-      return isNaN(numberValue) ? null : numberValue;
+    const rentNumber = cleanMoneyNumber(data["rent-amount"]);
+    const plusNumber = cleanMoneyNumber(data["rent-amount-plus"]);
+
+    if (!data["rent-amount-sentence"] && rentNumber !== null) {
+      data["rent-amount-sentence"] = amountSentence(rentNumber);
     }
 
-    const BENGALI_WORDS_0_TO_99 = [
-      "", "এক", "দুই", "তিন", "চার", "পাঁচ", "ছয়", "সাত", "আট", "নয়",
-      "দশ", "এগারো", "বারো", "তেরো", "চৌদ্দ", "পনেরো", "ষোল", "সতেরো", "আঠারো", "ঊনিশ",
-      "বিশ", "একুশ", "বাইশ", "তেইশ", "চব্বিশ", "পঁচিশ", "ছাব্বিশ", "সাতাশ", "আঠাশ", "ঊনত্রিশ",
-      "ত্রিশ", "একত্রিশ", "বত্রিশ", "তেত্রিশ", "চৌত্রিশ", "পঁয়ত্রিশ", "ছত্রিশ", "সাঁইত্রিশ", "আটত্রিশ", "ঊনচল্লিশ",
-      "চল্লিশ", "একচল্লিশ", "বিয়াল্লিশ", "তেতাল্লিশ", "চুয়াল্লিশ", "পঁয়তাল্লিশ", "ছেচল্লিশ", "সাতচল্লিশ", "আটচল্লিশ", "ঊনপঞ্চাশ",
-      "পঞ্চাশ", "একান্ন", "বায়ান্ন", "তিপ্পান্ন", "চুয়ান্ন", "পঞ্চান্ন", "ছাপ্পান্ন", "সাতান্ন", "আটান্ন", "ঊনষাট",
-      "ষাট", "একষট্টি", "বাষট্টি", "তেষট্টি", "চৌষট্টি", "পঁয়ষট্টি", "ছেষট্টি", "সাতষট্টি", "আটষট্টি", "ঊনসত্তর",
-      "সত্তর", "একাত্তর", "বাহাত্তর", "তিয়াত্তর", "চুয়াত্তর", "পঁচাত্তর", "ছিয়াত্তর", "সাতাত্তর", "আটাত্তর", "ঊনআশি",
-      "আশি", "একাশি", "বিরাশি", "তিরাশি", "চুরাশি", "পঁচাশি", "ছিয়াশি", "সাতাশি", "আটাশি", "ঊননব্বই",
-      "নব্বই", "একানব্বই", "বিরানব্বই", "তিরানব্বই", "চুরানব্বই", "পঁচানব্বই", "ছিয়ানব্বই", "সাতানব্বই", "আটানব্বই", "নিরানব্বই"
-    ];
-
-    function twoDigitBanglaWords(numberValue) {
-      return BENGALI_WORDS_0_TO_99[numberValue] || "";
+    if (!data["rent-amount-plus"] && rentNumber !== null) {
+      data["rent-amount-plus"] = toBanglaDigits(rentNumber + 500);
     }
 
-    function threeDigitBanglaWords(numberValue) {
-      const parts = [];
-      const hundred = Math.floor(numberValue / 100);
-      const rest = numberValue % 100;
+    if (!data["rent-amount-plus-sentence"]) {
+      const finalPlusNumber = plusNumber !== null ? plusNumber : rentNumber !== null ? rentNumber + 500 : null;
+      if (finalPlusNumber !== null) data["rent-amount-plus-sentence"] = amountSentence(finalPlusNumber);
+    }
 
-      if (hundred > 0) {
-        parts.push(twoDigitBanglaWords(hundred) + "শত");
+    data.template = "roomAgreement";
+    return data;
+  }
+
+  function callAppsScriptJsonp(payload) {
+    return new Promise(function (resolve, reject) {
+      const callbackName = "agreementCallback_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
+      const params = new URLSearchParams();
+      params.set("action", "generate");
+      params.set("callback", callbackName);
+
+      Object.keys(payload).forEach(function (key) {
+        params.set(key, payload[key]);
+      });
+
+      const script = document.createElement("script");
+      script.src = WEB_APP_URL + "?" + params.toString();
+      script.async = true;
+
+      const timeout = setTimeout(function () {
+        cleanup();
+        reject(new Error("Request timeout. Apps Script deployment and permission check করুন।"));
+      }, 60000);
+
+      window[callbackName] = function (response) {
+        cleanup();
+        resolve(response);
+      };
+
+      script.onerror = function () {
+        cleanup();
+        reject(new Error("Apps Script Web App URL connect করা যায়নি।"));
+      };
+
+      function cleanup() {
+        clearTimeout(timeout);
+        delete window[callbackName];
+        if (script.parentNode) script.parentNode.removeChild(script);
       }
 
-      if (rest > 0) {
-        parts.push(twoDigitBanglaWords(rest));
-      }
+      document.body.appendChild(script);
+    });
+  }
 
-      return parts.join(" ");
+  function escapeHtml(value) {
+    return String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function showSuccess(response) {
+    const resultBox = document.getElementById("resultBox");
+    const fileName = escapeHtml(response.fileName || "Generated PDF");
+    const viewUrl = response.viewUrl || "#";
+    const downloadUrl = response.downloadUrl || "#";
+
+    resultBox.className = "agreement__result agreement__result--success";
+    resultBox.innerHTML = `
+      <p class="agreement__result-title">PDF সফলভাবে তৈরি হয়েছে।</p>
+      <div>ফাইল নাম: ${fileName}</div>
+      <div class="agreement__links">
+        <a class="agreement__link" href="${viewUrl}" target="_blank" rel="noopener">PDF দেখুন</a>
+        <a class="agreement__link" href="${downloadUrl}" target="_blank" rel="noopener">PDF ডাউনলোড</a>
+        <button class="agreement__link" type="button" onclick="printPdf('${viewUrl}')">PDF প্রিন্ট</button>
+      </div>
+    `;
+  }
+
+  function showError(message) {
+    const resultBox = document.getElementById("resultBox");
+    resultBox.className = "agreement__result agreement__result--error";
+    resultBox.innerHTML = `<p class="agreement__result-title">সমস্যা হয়েছে</p><div>${escapeHtml(message)}</div>`;
+  }
+
+  function printPdf(url) {
+    const printWindow = window.open(url, "_blank", "noopener,noreferrer");
+    if (!printWindow) {
+      alert("Popup blocked হয়েছে। আগে PDF দেখুন, তারপর browser থেকে print করুন।");
     }
+  }
 
-    function numberToBanglaWords(numberValue) {
-      let number = Number(numberValue);
+  document.getElementById("agreementForm").addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-      if (isNaN(number)) return "";
-      if (number === 0) return "শূন্য";
+    const form = event.target;
+    const submitBtn = document.getElementById("submitBtn");
+    const statusText = document.getElementById("statusText");
+    const resultBox = document.getElementById("resultBox");
 
-      number = Math.floor(Math.abs(number));
-      const parts = [];
+    submitBtn.disabled = true;
+    statusText.textContent = "PDF তৈরি হচ্ছে...";
+    resultBox.className = "agreement__result";
+    resultBox.innerHTML = "";
 
-      const crore = Math.floor(number / 10000000);
-      number = number % 10000000;
-
-      const lakh = Math.floor(number / 100000);
-      number = number % 100000;
-
-      const thousand = Math.floor(number / 1000);
-      number = number % 1000;
-
-      if (crore > 0) parts.push(threeDigitBanglaWords(crore) + " কোটি");
-      if (lakh > 0) parts.push(threeDigitBanglaWords(lakh) + " লক্ষ");
-      if (thousand > 0) parts.push(threeDigitBanglaWords(thousand) + " হাজার");
-      if (number > 0) parts.push(threeDigitBanglaWords(number));
-
-      return parts.join(" ");
-    }
-
-    function amountSentence(numberValue) {
-      const words = numberToBanglaWords(numberValue);
-      return words ? words + " টাকা" : "";
-    }
-
-    const rentAmountInput = document.getElementById("rent-amount");
-    const rentSentenceInput = document.getElementById("rent-amount-sentence");
-    const rentAmountPlusInput = document.getElementById("rent-amount-plus");
-    const rentPlusSentenceInput = document.getElementById("rent-amount-plus-sentence");
-    const currentYearInput = document.getElementById("current-year");
-    const nextYearInput = document.getElementById("next-year");
-
-    function updateAutoAmountFields() {
-      const rentNumber = cleanMoneyNumber(rentAmountInput.value);
-
-      if (rentNumber !== null) {
-        rentAmountInput.value = toBanglaDigits(rentNumber);
-
-        if (!rentSentenceInput.dataset.manual || !rentSentenceInput.value.trim()) {
-          rentSentenceInput.value = amountSentence(rentNumber);
-        }
-
-        if (!rentAmountPlusInput.dataset.manual || !rentAmountPlusInput.value.trim()) {
-          rentAmountPlusInput.value = toBanglaDigits(rentNumber + 500);
-        }
-      }
-
-      const plusNumber = cleanMoneyNumber(rentAmountPlusInput.value);
-
-      if (plusNumber !== null) {
-        rentAmountPlusInput.value = toBanglaDigits(plusNumber);
-
-        if (!rentPlusSentenceInput.dataset.manual || !rentPlusSentenceInput.value.trim()) {
-          rentPlusSentenceInput.value = amountSentence(plusNumber);
-        }
-      }
-    }
-
-    rentAmountInput.addEventListener("input", function () {
-      rentSentenceInput.dataset.manual = "";
-      if (!rentAmountPlusInput.dataset.manual) rentAmountPlusInput.value = "";
-      if (!rentPlusSentenceInput.dataset.manual) rentPlusSentenceInput.value = "";
+    try {
       updateAutoAmountFields();
-    });
+      setDefaultYears();
 
-    rentAmountPlusInput.addEventListener("input", function () {
-      rentAmountPlusInput.dataset.manual = "true";
-      rentPlusSentenceInput.dataset.manual = "";
-      updateAutoAmountFields();
-    });
+      const payload = getFormData(form);
+      const response = await callAppsScriptJsonp(payload);
 
-    rentSentenceInput.addEventListener("input", function () {
-      rentSentenceInput.dataset.manual = rentSentenceInput.value.trim() ? "true" : "";
-    });
-
-    rentPlusSentenceInput.addEventListener("input", function () {
-      rentPlusSentenceInput.dataset.manual = rentPlusSentenceInput.value.trim() ? "true" : "";
-    });
-
-    function setDefaultYears() {
-      const now = new Date();
-      if (!currentYearInput.value.trim()) currentYearInput.value = toBanglaDigits(now.getFullYear());
-      if (!nextYearInput.value.trim()) nextYearInput.value = toBanglaDigits(now.getFullYear() + 1);
-    }
-
-    setDefaultYears();
-
-    function getFormData(form) {
-      const data = {};
-      form.querySelectorAll("input, textarea").forEach(function (element) {
-        data[element.name] = toBanglaDigits(element.value.trim());
-      });
-
-      const rentNumber = cleanMoneyNumber(data["rent-amount"]);
-      const plusNumber = cleanMoneyNumber(data["rent-amount-plus"]);
-
-      if (!data["rent-amount-sentence"] && rentNumber !== null) {
-        data["rent-amount-sentence"] = amountSentence(rentNumber);
+      if (!response || !response.success) {
+        throw new Error(response && response.message ? response.message : "PDF তৈরি করা যায়নি।");
       }
 
-      if (!data["rent-amount-plus"] && rentNumber !== null) {
-        data["rent-amount-plus"] = toBanglaDigits(rentNumber + 500);
-      }
-
-      if (!data["rent-amount-plus-sentence"]) {
-        const finalPlusNumber = plusNumber !== null ? plusNumber : rentNumber !== null ? rentNumber + 500 : null;
-        if (finalPlusNumber !== null) {
-          data["rent-amount-plus-sentence"] = amountSentence(finalPlusNumber);
-        }
-      }
-
-      data.template = "roomAgreement";
-      return data;
+      showSuccess(response);
+    } catch (error) {
+      showError(error.message || "Unknown error");
+    } finally {
+      submitBtn.disabled = false;
+      statusText.textContent = "";
     }
-
-    function callAppsScriptJsonp(payload) {
-      return new Promise(function (resolve, reject) {
-        const callbackName = "agreementCallback_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
-        const params = new URLSearchParams();
-        params.set("action", "generate");
-        params.set("callback", callbackName);
-
-        Object.keys(payload).forEach(function (key) {
-          params.set(key, payload[key]);
-        });
-
-        const script = document.createElement("script");
-        script.src = WEB_APP_URL + "?" + params.toString();
-        script.async = true;
-
-        const timeout = setTimeout(function () {
-          cleanup();
-          reject(new Error("Request timeout. Apps Script deployment and permission check করুন।"));
-        }, 60000);
-
-        window[callbackName] = function (response) {
-          cleanup();
-          resolve(response);
-        };
-
-        script.onerror = function () {
-          cleanup();
-          reject(new Error("Apps Script Web App URL connect করা যায়নি।"));
-        };
-
-        function cleanup() {
-          clearTimeout(timeout);
-          delete window[callbackName];
-          if (script.parentNode) {
-            script.parentNode.removeChild(script);
-          }
-        }
-
-        document.body.appendChild(script);
-      });
-    }
-
-    function escapeHtml(value) {
-      return String(value || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
-
-    function showSuccess(response) {
-      const resultBox = document.getElementById("resultBox");
-      const fileName = escapeHtml(response.fileName || "Generated PDF");
-      const viewUrl = response.viewUrl || "#";
-      const downloadUrl = response.downloadUrl || "#";
-
-      resultBox.className = "agreement__result agreement__result--success";
-      resultBox.innerHTML = `
-        <p class="agreement__result-title">PDF সফলভাবে তৈরি হয়েছে।</p>
-        <div>ফাইল নাম: ${fileName}</div>
-        <div class="agreement__links">
-          <a class="agreement__link" href="${viewUrl}" target="_blank" rel="noopener">PDF দেখুন</a>
-          <a class="agreement__link" href="${downloadUrl}" target="_blank" rel="noopener">PDF ডাউনলোড</a>
-          <button class="agreement__link" type="button" onclick="printPdf('${viewUrl}')">PDF প্রিন্ট</button>
-        </div>
-      `;
-    }
-
-    function showError(message) {
-      const resultBox = document.getElementById("resultBox");
-      resultBox.className = "agreement__result agreement__result--error";
-      resultBox.innerHTML = `<p class="agreement__result-title">সমস্যা হয়েছে</p><div>${escapeHtml(message)}</div>`;
-    }
-
-    function printPdf(url) {
-      const printWindow = window.open(url, "_blank", "noopener,noreferrer");
-      if (!printWindow) {
-        alert("Popup blocked হয়েছে। আগে PDF দেখুন, তারপর browser থেকে print করুন।");
-      }
-    }
-
-    document.getElementById("agreementForm").addEventListener("submit", async function (event) {
-      event.preventDefault();
-
-      const form = event.target;
-      const submitBtn = document.getElementById("submitBtn");
-      const statusText = document.getElementById("statusText");
-      const resultBox = document.getElementById("resultBox");
-
-      submitBtn.disabled = true;
-      statusText.textContent = "PDF তৈরি হচ্ছে...";
-      resultBox.className = "agreement__result";
-      resultBox.innerHTML = "";
-
-      try {
-        updateAutoAmountFields();
-        setDefaultYears();
-
-        const payload = getFormData(form);
-        const response = await callAppsScriptJsonp(payload);
-
-        if (!response || !response.success) {
-          throw new Error(response && response.message ? response.message : "PDF তৈরি করা যায়নি।");
-        }
-
-        showSuccess(response);
-      } catch (error) {
-        showError(error.message || "Unknown error");
-      } finally {
-        submitBtn.disabled = false;
-        statusText.textContent = "";
-      }
-    });
-  </script>
+  });
+</script>
   </main>
 
   <!-- JS files -->

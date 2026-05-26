@@ -24,18 +24,18 @@
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
-  background: #ffffff;
-  border-radius: 32px;
-  box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.02);
+  background: var(--wsc-surface);
+  border-radius: var(--earn-radius-xl);
+  box-shadow: var(--earn-shadow-soft);
   overflow: hidden;
-  transition: all 0.2s ease;
+  transition: all var(--wsc-transition);
 }
 
 /* header area redesign */
 .voucherHeader {
-  background: linear-gradient(135deg, #0f2b3d 0%, #1a4a6f 100%);
+  background: linear-gradient(135deg, var(--earn-navy-dark) 0%, var(--earn-navy) 100%);
   padding: 1.25rem 2rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid var(--earn-border);
 }
 
 .voucherHeader h2 {
@@ -43,7 +43,7 @@
   font-size: 1.85rem;
   font-weight: 600;
   letter-spacing: -0.3px;
-  color: white;
+  color: var(--wsc-surface);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -51,7 +51,7 @@
 
 .voucherHeader h2 i {
   font-size: 1.8rem;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  filter: none;
 }
 
 /* main padding area */
@@ -78,7 +78,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #4a5b6e;
+  color: var(--earn-muted);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -86,25 +86,25 @@
 
 .voucherInputGroup label i {
   font-size: 0.9rem;
-  color: #2c6e9e;
+  color: var(--earn-blue);
 }
 
 .voucherInput, .voucherSelect {
   padding: 0.9rem 1.2rem;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 20px;
+  border: 1.5px solid var(--wsc-border);
+  border-radius: var(--earn-radius-md);
   font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
   font-size: 0.95rem;
-  background: #ffffff;
-  color: #0f172a;
+  background: var(--wsc-surface);
+  color: var(--wsc-text);
   outline: none;
-  transition: all 0.2s ease;
+  transition: all var(--wsc-transition);
   font-weight: 500;
 }
 
 .voucherInput:focus, .voucherSelect:focus {
-  border-color: #1a4a6f;
-  box-shadow: 0 0 0 4px rgba(26, 74, 111, 0.12);
+  border-color: var(--earn-blue);
+  box-shadow: 0 0 0 4px var(--earn-border-strong);
 }
 
 /* items section styling */
@@ -117,17 +117,17 @@
   font-weight: 700;
   font-size: 1.1rem;
   margin-bottom: 1.2rem;
-  color: #1e2f3e;
+  color: var(--wsc-text);
   display: flex;
   align-items: center;
   gap: 10px;
-  border-left: 4px solid #1a4a6f;
+  border-left: 4px solid var(--earn-blue);
   padding-left: 14px;
 }
 
 .voucherItemsList {
-  background: #fafcff;
-  border-radius: 24px;
+  background: var(--wsc-surface-soft);
+  border-radius: var(--earn-radius-lg);
   padding: 0.25rem 0;
 }
 
@@ -136,59 +136,59 @@
   gap: 1rem;
   margin-bottom: 1rem;
   align-items: center;
-  background: white;
-  border-radius: 20px;
+  background: var(--wsc-surface);
+  border-radius: var(--earn-radius-md);
   padding: 0.4rem;
-  transition: all 0.2s;
-  border: 1px solid #edf2f7;
+  transition: all var(--wsc-transition);
+  border: 1px solid var(--earn-border);
 }
 
 .voucherItem:hover {
-  border-color: #cbdde9;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+  border-color: var(--earn-border-strong);
+  box-shadow: var(--earn-shadow-soft);
 }
 
 .voucherItemInputDesc {
   flex: 2.5;
   padding: 0.9rem 1.2rem;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 20px;
+  border: 1.5px solid var(--wsc-border);
+  border-radius: var(--earn-radius-md);
   font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
   font-size: 0.95rem;
-  background: #ffffff;
-  color: #0f172a;
+  background: var(--wsc-surface);
+  color: var(--wsc-text);
   outline: none;
-  transition: all 0.2s ease;
+  transition: all var(--wsc-transition);
   font-weight: 500;
 }
 
 .voucherItemInputAmount {
   flex: 1;
   padding: 0.9rem 1.2rem;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 20px;
+  border: 1.5px solid var(--wsc-border);
+  border-radius: var(--earn-radius-md);
   font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
   font-size: 0.95rem;
-  background: #ffffff;
-  color: #0f172a;
+  background: var(--wsc-surface);
+  color: var(--wsc-text);
   outline: none;
-  transition: all 0.2s ease;
+  transition: all var(--wsc-transition);
   font-weight: 500;
 }
 
 .voucherItemInputDesc:focus, .voucherItemInputAmount:focus {
-  border-color: #1a4a6f;
-  box-shadow: 0 0 0 4px rgba(26, 74, 111, 0.12);
+  border-color: var(--earn-blue);
+  box-shadow: 0 0 0 4px var(--earn-border-strong);
 }
 
 .voucherRemoveBtn {
-  background: #fee2e2;
-  color: #b91c1c;
+  background: var(--earn-danger-bg);
+  color: var(--earn-danger);
   padding: 0.65rem 1.2rem;
-  border-radius: 40px;
+  border-radius: var(--earn-radius-pill);
   font-weight: 600;
   font-size: 0.8rem;
-  transition: 0.2s;
+  transition: var(--wsc-transition);
   width: auto;
   display: inline-flex;
   align-items: center;
@@ -198,22 +198,22 @@
 }
 
 .voucherRemoveBtn:hover {
-  background: #fecaca;
-  color: #991b1b;
+  background: var(--danger-bg);
+  color: var(--danger);
   transform: scale(0.98);
 }
 
 .voucherBtn {
   padding: 0.8rem 1.8rem;
   border: none;
-  background: #f1f5f9;
-  color: #1e2f3e;
-  border-radius: 40px;
+  background: var(--wsc-surface-soft);
+  color: var(--wsc-text);
+  border-radius: var(--earn-radius-pill);
   cursor: pointer;
   font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
-  transition: 0.2s ease;
+  transition: var(--wsc-transition);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -225,19 +225,19 @@
 }
 
 .voucherBtn:hover {
-  background: #e6edf4;
+  background: var(--blue-soft);
   transform: translateY(-1px);
 }
 
 .voucherAddBtn {
-  background: #eef2ff;
-  color: #1a4a6f;
+  background: var(--wsc-surface-soft);
+  color: var(--earn-blue);
   border: 1px solid #cbdde9;
   margin-top: 0.5rem;
 }
 
 .voucherAddBtn:hover {
-  background: #e0e9f5;
+  background: var(--blue-soft);
 }
 
 .voucherTotal {
@@ -246,26 +246,26 @@
   margin-top: 1.5rem;
   margin-bottom: 1.8rem;
   padding: 1rem 1.8rem;
-  background: linear-gradient(115deg, #f8fafc 0%, #ffffff 100%);
-  border-radius: 60px;
+  background: linear-gradient(115deg, var(--wsc-surface-soft) 0%, var(--wsc-surface) 100%);
+  border-radius: var(--earn-radius-pill);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #e2edf2;
-  color: #0c4e6e;
+  border: 1px solid var(--wsc-border);
+  color: var(--earn-blue);
 }
 
 .voucherTotalLabel {
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.3px;
-  color: #3c5a73;
+  color: var(--earn-muted);
 }
 
 .voucherTotalAmount {
   font-size: 1.8rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #1a4a6f, #0f2b3d);
+  background: linear-gradient(135deg, var(--earn-blue), var(--earn-navy-dark));
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -273,38 +273,38 @@
 
 .voucherSubmitBtn {
   width: 100%;
-  background: linear-gradient(95deg, #0f2b3d 0%, #1a4a6f 100%);
-  color: white;
+  background: linear-gradient(95deg, var(--earn-navy-dark) 0%, var(--earn-blue) 100%);
+  color: var(--wsc-surface);
   font-size: 1rem;
   font-weight: 700;
   padding: 1rem;
-  border-radius: 60px;
-  box-shadow: 0 8px 20px -8px rgba(26,74,111,0.4);
+  border-radius: var(--earn-radius-pill);
+  box-shadow: var(--earn-shadow-soft);
   margin-top: 0.5rem;
   border: none;
   cursor: pointer;
 }
 
 .voucherSubmitBtn:hover {
-  background: linear-gradient(95deg, #1a3e55, #23638c);
+  background: linear-gradient(95deg, var(--earn-navy) 0%, var(--earn-blue) 100%);
   transform: translateY(-2px);
-  box-shadow: 0 12px 22px -10px rgba(26,74,111,0.5);
+  box-shadow: var(--earn-shadow);
 }
 
 /* pdf result card */
 .voucherPdfResult {
-  background: #f0f9f4;
-  border-radius: 28px;
+  background: var(--earn-success-bg);
+  border-radius: var(--earn-radius-lg);
   padding: 1.6rem 2rem;
   margin-top: 2rem;
-  border-left: 6px solid #2b7e3a;
-  animation: voucherFadeSlideUp 0.3s ease;
+  border-left: 6px solid var(--earn-success);
+  animation: voucherFadeSlideUp var(--wsc-transition);
 }
 
 .voucherPdfResult strong {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #166534;
+  color: var(--earn-success);
   margin-bottom: 0.75rem;
   display: flex;
   align-items: center;
@@ -319,27 +319,27 @@
 }
 
 .voucherOpenBtn, .voucherDownloadBtn {
-  background: #1f4e6e;
-  color: white;
+  background: var(--earn-navy);
+  color: var(--wsc-surface);
   padding: 0.7rem 1.6rem;
   font-weight: 600;
   border: none;
 }
 
 .voucherOpenBtn:hover, .voucherDownloadBtn:hover {
-  background: #0f3a52;
+  background: var(--earn-navy-dark);
 }
 
 .voucherDownloadBtn {
-  background: #2c7a3e;
+  background: var(--earn-success);
 }
 
 .voucherPrintNote {
-  background: #eef2f5;
+  background: var(--wsc-surface-soft);
   padding: 0.6rem 1rem;
-  border-radius: 28px;
+  border-radius: var(--earn-radius-lg);
   font-size: 0.8rem;
-  color: #4a627a;
+  color: var(--wsc-muted);
   margin-top: 1rem;
   display: inline-block;
 }
@@ -347,19 +347,19 @@
 .voucherErrorBox {
   margin-top: 1rem;
   padding: 1rem 1.5rem;
-  background: #fff5f5;
-  border-radius: 28px;
-  color: #c2410c;
+  background: var(--earn-danger-bg);
+  border-radius: var(--earn-radius-lg);
+  color: var(--earn-danger);
   font-weight: 500;
-  border-left: 5px solid #e53e3e;
+  border-left: 5px solid var(--earn-danger);
   display: none;
 }
 
 .voucherSuccessText {
   font-weight: 800;
-  background: #e6f7ec;
+  background: var(--earn-success-bg);
   padding: 0.2rem 0.8rem;
-  border-radius: 30px;
+  border-radius: var(--earn-radius-pill);
   display: inline-block;
   font-family: monospace;
 }
@@ -420,14 +420,306 @@ input[type=number] {
   font-size: 0.9em;
 }
 
-.voucherSelect {
-  cursor: pointer;
-  appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%234a5b6e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
-  background-repeat: no-repeat;
-  background-position: right 1.2rem center;
-  background-size: 1rem;
+/* custom calendar and dropdown - no browser default UI */
+.voucherDatePicker,
+.voucherDropdown {
+  position: relative;
+  width: 100%;
 }
+
+.voucherDateTrigger,
+.voucherDropdownTrigger {
+  width: 100%;
+  min-height: 52px;
+  padding: 0.9rem 1.2rem;
+  border: 1.5px solid var(--wsc-border);
+  border-radius: var(--earn-radius-md);
+  font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+  font-size: 0.95rem;
+  background: var(--wsc-surface);
+  color: var(--wsc-text);
+  outline: none;
+  transition: all var(--wsc-transition);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+}
+
+.voucherDateTrigger:hover,
+.voucherDropdownTrigger:hover,
+.voucherDatePicker.isOpen .voucherDateTrigger,
+.voucherDropdown.isOpen .voucherDropdownTrigger {
+  border-color: var(--earn-blue);
+  box-shadow: 0 0 0 4px rgba(26, 74, 111, 0.10);
+}
+
+.voucherDateTrigger i,
+.voucherDropdownTrigger i {
+  color: var(--earn-blue);
+  font-size: 0.95rem;
+  flex: 0 0 auto;
+}
+
+.voucherDropdown.isOpen .voucherDropdownTrigger i {
+  transform: rotate(180deg);
+}
+
+.voucherDropdownMenu,
+.voucherCalendarPanel {
+  position: absolute;
+  z-index: 1000;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  background: var(--wsc-surface);
+  border: 1px solid var(--wsc-border);
+  border-radius: var(--wsc-radius-lg);
+  box-shadow: var(--earn-shadow-soft);
+  display: none;
+  overflow: hidden;
+}
+
+.voucherDropdown.isOpen .voucherDropdownMenu,
+.voucherDatePicker.isOpen .voucherCalendarPanel {
+  display: block;
+  animation: voucherFadeSlideUp var(--wsc-transition);
+}
+
+.voucherDropdownMenu {
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 0.45rem;
+}
+
+.voucherDropdownOption {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--wsc-text);
+  padding: 0.85rem 1rem;
+  border-radius: var(--wsc-radius-md);
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+  font-size: 0.93rem;
+  font-weight: 600;
+  transition: var(--wsc-transition);
+}
+
+.voucherDropdownOption:hover {
+  background: var(--wsc-surface-soft);
+  color: var(--earn-blue);
+}
+
+.voucherDropdownOption.isSelected {
+  background: var(--blue-soft);
+  color: var(--earn-navy-dark);
+}
+
+.voucherDropdownOption.isDisabled {
+  cursor: not-allowed;
+  color: var(--muted);
+}
+
+.voucherCalendarPanel {
+  padding: 1rem;
+}
+
+.voucherCalendarHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 0.9rem;
+}
+
+.voucherCalendarMonth {
+  color: var(--earn-navy-dark);
+  font-weight: 800;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.voucherCalNav {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--wsc-border);
+  border-radius: var(--wsc-radius-md);
+  background: var(--wsc-surface-soft);
+  color: var(--earn-blue);
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1;
+  transition: var(--wsc-transition);
+}
+
+.voucherCalNav:hover {
+  background: var(--blue-soft);
+  border-color: var(--earn-blue);
+}
+
+.voucherCalendarWeek,
+.voucherCalendarDays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.voucherCalendarWeek {
+  margin-bottom: 7px;
+}
+
+.voucherCalendarWeek span {
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.voucherCalEmpty,
+.voucherCalDay {
+  min-height: 36px;
+  border-radius: var(--wsc-radius-md);
+}
+
+.voucherCalDay {
+  border: 1px solid transparent;
+  background: var(--wsc-surface-soft);
+  color: var(--wsc-text);
+  cursor: pointer;
+  font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  transition: var(--wsc-transition);
+}
+
+.voucherCalDay:hover {
+  background: var(--blue-soft);
+  color: var(--earn-blue);
+}
+
+.voucherCalDay.isToday {
+  border-color: var(--earn-blue);
+  color: var(--earn-blue);
+}
+
+.voucherCalDay.isSelected {
+  background: var(--earn-blue);
+  color: var(--wsc-surface);
+  border-color: var(--earn-blue);
+}
+
+.voucherCalendarActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--earn-border);
+}
+
+.voucherCalAction {
+  min-height: 38px;
+  border: 1px solid var(--wsc-border);
+  border-radius: var(--wsc-radius-md);
+  background: var(--wsc-surface-soft);
+  color: var(--wsc-text);
+  cursor: pointer;
+  font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  transition: var(--wsc-transition);
+}
+
+.voucherCalAction:hover {
+  background: var(--blue-soft);
+  color: var(--earn-blue);
+}
+
+.voucherCalActionPrimary {
+  background: var(--earn-blue);
+  border-color: var(--earn-blue);
+  color: var(--wsc-surface);
+}
+
+.voucherCalActionPrimary:hover {
+  background: var(--earn-navy-dark);
+  color: var(--wsc-surface);
+}
+
+@media (max-width: 780px) {
+  .voucherDropdownMenu,
+  .voucherCalendarPanel {
+    position: relative;
+    top: 8px;
+  }
+}
+.voucherInput,
+.voucherSelect,
+.voucherItemInputDesc,
+.voucherItemInputAmount,
+.voucherDateTrigger,
+.voucherDropdownTrigger {
+  min-height: 52px;
+  padding: 0.9rem 1.25rem;
+  border: 1.5px solid var(--wsc-border);
+  border-radius: var(--earn-radius-pill);
+  background: var(--wsc-surface);
+  color: var(--wsc-text);
+  font-family: var(--wsc-font-bn);
+  font-size: var(--wsc-text-sm);
+  font-weight: 600;
+  outline: none;
+  box-shadow: none;
+  transition: border-color var(--wsc-transition), background var(--wsc-transition), color var(--wsc-transition);
+}
+
+.voucherInput:hover,
+.voucherSelect:hover,
+.voucherItemInputDesc:hover,
+.voucherItemInputAmount:hover,
+.voucherDateTrigger:hover,
+.voucherDropdownTrigger:hover,
+.voucherDatePicker.isOpen .voucherDateTrigger,
+.voucherDropdown.isOpen .voucherDropdownTrigger {
+  border-color: var(--wsc-primary);
+  background: var(--wsc-surface);
+  box-shadow: none;
+}
+
+.voucherInput:focus,
+.voucherSelect:focus,
+.voucherItemInputDesc:focus,
+.voucherItemInputAmount:focus {
+  border-color: var(--wsc-primary);
+  background: var(--wsc-surface);
+  box-shadow: none;
+}
+
+.voucherInput::placeholder,
+.voucherItemInputDesc::placeholder,
+.voucherItemInputAmount::placeholder {
+  color: var(--wsc-muted);
+}
+
+.voucherItem {
+  border-radius: var(--earn-radius-pill);
+}
+
+.voucherDropdownMenu,
+.voucherCalendarPanel {
+  border-radius: var(--earn-radius-lg);
+}
+
+.voucherDropdownOption,
+.voucherCalDay,
+.voucherCalNav,
+.v
 </style>
 
 <div class="voucherContainer">
@@ -442,13 +734,49 @@ input[type=number] {
     <div class="voucherTwoColumns">
       <div class="voucherInputGroup">
         <label><i class="far fa-calendar-alt"></i> তারিখ</label>
-        <input type="date" id="date" class="voucherInput">
+        <div class="voucherDatePicker" id="datePicker">
+          <input type="hidden" id="date">
+          <button type="button" class="voucherDateTrigger" id="dateTrigger">
+            <span id="dateText">তারিখ নির্বাচন করুন</span>
+            <i class="far fa-calendar-alt"></i>
+          </button>
+
+          <div class="voucherCalendarPanel" id="calendarPanel">
+            <div class="voucherCalendarHead">
+              <button type="button" class="voucherCalNav" id="prevMonth">‹</button>
+              <div class="voucherCalendarMonth" id="calendarMonth"></div>
+              <button type="button" class="voucherCalNav" id="nextMonth">›</button>
+            </div>
+
+            <div class="voucherCalendarWeek">
+              <span>রবি</span>
+              <span>সোম</span>
+              <span>মঙ্গল</span>
+              <span>বুধ</span>
+              <span>বৃহঃ</span>
+              <span>শুক্র</span>
+              <span>শনি</span>
+            </div>
+
+            <div class="voucherCalendarDays" id="calendarDays"></div>
+
+            <div class="voucherCalendarActions">
+              <button type="button" class="voucherCalAction" id="clearDate">মুছুন</button>
+              <button type="button" class="voucherCalAction voucherCalActionPrimary" id="todayDate">আজ</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="voucherInputGroup">
         <label><i class="fas fa-tag"></i> ক্যাটাগরি</label>
-        <select id="category" class="voucherSelect">
-          <option value="">ক্যাটাগরি লোড হচ্ছে...</option>
-        </select>
+        <div class="voucherDropdown" id="categoryDropdown">
+          <input type="hidden" id="category">
+          <button type="button" class="voucherDropdownTrigger" id="categoryTrigger">
+            <span id="categoryText">ক্যাটাগরি লোড হচ্ছে...</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="voucherDropdownMenu" id="categoryMenu"></div>
+        </div>
       </div>
     </div>
 
@@ -499,35 +827,254 @@ input[type=number] {
 <script>
 const API_URL = "https://script.google.com/macros/s/AKfycbxMegDeUZTVurpiGLpvzD1m9taVM_7wg9yYLGzJZuZ8DOcVxIV_HHa0ayxoqR2i7PEX/exec";
 
+let calendarViewDate = new Date();
+
+const bnDigits = ["০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯"];
+const bnMonths = [
+  "জানুয়ারি",
+  "ফেব্রুয়ারি",
+  "মার্চ",
+  "এপ্রিল",
+  "মে",
+  "জুন",
+  "জুলাই",
+  "আগস্ট",
+  "সেপ্টেম্বর",
+  "অক্টোবর",
+  "নভেম্বর",
+  "ডিসেম্বর"
+];
+
 window.onload = function(){
+  initCustomCalendar();
+  initCustomDropdown();
   setTodayDate();
   addItem();
   loadCategories();
 };
 
+function toBanglaNumber(value){
+  return String(value).replace(/\d/g, digit => bnDigits[digit]);
+}
+
+function padDatePart(value){
+  return String(value).padStart(2, "0");
+}
+
+function formatISODate(date){
+  return `${date.getFullYear()}-${padDatePart(date.getMonth() + 1)}-${padDatePart(date.getDate())}`;
+}
+
+function parseISODate(value){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(value || "")) return null;
+  const parts = value.split("-").map(Number);
+  const date = new Date(parts[0], parts[1] - 1, parts[2]);
+  if(
+    date.getFullYear() !== parts[0] ||
+    date.getMonth() !== parts[1] - 1 ||
+    date.getDate() !== parts[2]
+  ){
+    return null;
+  }
+  return date;
+}
+
+function formatDisplayDate(date){
+  return `${toBanglaNumber(date.getDate())} ${bnMonths[date.getMonth()]} ${toBanglaNumber(date.getFullYear())}`;
+}
+
+function closeCustomCalendar(){
+  const datePicker = document.getElementById("datePicker");
+  if(datePicker) datePicker.classList.remove("isOpen");
+}
+
+function closeCustomDropdown(){
+  const dropdown = document.getElementById("categoryDropdown");
+  if(dropdown) dropdown.classList.remove("isOpen");
+}
+
+function initCustomCalendar(){
+  const datePicker = document.getElementById("datePicker");
+  const trigger = document.getElementById("dateTrigger");
+
+  trigger.addEventListener("click", function(event){
+    event.stopPropagation();
+    closeCustomDropdown();
+    datePicker.classList.toggle("isOpen");
+    renderCalendar();
+  });
+
+  document.getElementById("prevMonth").addEventListener("click", function(event){
+    event.stopPropagation();
+    calendarViewDate = new Date(calendarViewDate.getFullYear(), calendarViewDate.getMonth() - 1, 1);
+    renderCalendar();
+  });
+
+  document.getElementById("nextMonth").addEventListener("click", function(event){
+    event.stopPropagation();
+    calendarViewDate = new Date(calendarViewDate.getFullYear(), calendarViewDate.getMonth() + 1, 1);
+    renderCalendar();
+  });
+
+  document.getElementById("todayDate").addEventListener("click", function(event){
+    event.stopPropagation();
+    setCustomDate(new Date());
+    closeCustomCalendar();
+  });
+
+  document.getElementById("clearDate").addEventListener("click", function(event){
+    event.stopPropagation();
+    document.getElementById("date").value = "";
+    document.getElementById("dateText").innerText = "তারিখ নির্বাচন করুন";
+    closeCustomCalendar();
+  });
+
+  document.getElementById("calendarPanel").addEventListener("click", function(event){
+    event.stopPropagation();
+    const dayButton = event.target.closest("[data-date]");
+    if(dayButton){
+      const selectedDate = parseISODate(dayButton.dataset.date);
+      if(selectedDate){
+        setCustomDate(selectedDate);
+        closeCustomCalendar();
+      }
+    }
+  });
+
+  document.addEventListener("click", closeCustomCalendar);
+  document.addEventListener("keydown", function(event){
+    if(event.key === "Escape") closeCustomCalendar();
+  });
+}
+
 function setTodayDate(){
-  const today = new Date().toISOString().split("T")[0];
-  document.getElementById("date").value = today;
+  setCustomDate(new Date());
+}
+
+function setCustomDate(date){
+  document.getElementById("date").value = formatISODate(date);
+  document.getElementById("dateText").innerText = formatDisplayDate(date);
+  calendarViewDate = new Date(date.getFullYear(), date.getMonth(), 1);
+  renderCalendar();
+}
+
+function renderCalendar(){
+  const monthLabel = document.getElementById("calendarMonth");
+  const daysContainer = document.getElementById("calendarDays");
+  const selectedValue = document.getElementById("date").value;
+  const todayValue = formatISODate(new Date());
+
+  const year = calendarViewDate.getFullYear();
+  const month = calendarViewDate.getMonth();
+  const firstDay = new Date(year, month, 1);
+  const totalDays = new Date(year, month + 1, 0).getDate();
+  const startOffset = firstDay.getDay();
+
+  monthLabel.innerText = `${bnMonths[month]} ${toBanglaNumber(year)}`;
+  daysContainer.innerHTML = "";
+
+  for(let i = 0; i < startOffset; i++){
+    const empty = document.createElement("span");
+    empty.className = "voucherCalEmpty";
+    daysContainer.appendChild(empty);
+  }
+
+  for(let day = 1; day <= totalDays; day++){
+    const date = new Date(year, month, day);
+    const iso = formatISODate(date);
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "voucherCalDay";
+    button.dataset.date = iso;
+    button.innerText = toBanglaNumber(day);
+
+    if(iso === todayValue) button.classList.add("isToday");
+    if(iso === selectedValue) button.classList.add("isSelected");
+
+    daysContainer.appendChild(button);
+  }
+}
+
+function initCustomDropdown(){
+  const dropdown = document.getElementById("categoryDropdown");
+  const trigger = document.getElementById("categoryTrigger");
+
+  trigger.addEventListener("click", function(event){
+    event.stopPropagation();
+    closeCustomCalendar();
+    dropdown.classList.toggle("isOpen");
+  });
+
+  document.getElementById("categoryMenu").addEventListener("click", function(event){
+    event.stopPropagation();
+    const option = event.target.closest("[data-category]");
+    if(option && !option.classList.contains("isDisabled")){
+      setCategoryValue(option.dataset.category);
+      closeCustomDropdown();
+    }
+  });
+
+  document.addEventListener("click", closeCustomDropdown);
+  document.addEventListener("keydown", function(event){
+    if(event.key === "Escape") closeCustomDropdown();
+  });
+}
+
+function setCategoryValue(value){
+  document.getElementById("category").value = value || "";
+  document.getElementById("categoryText").innerText = value || "ক্যাটাগরি নির্বাচন করুন";
+
+  document.querySelectorAll(".voucherDropdownOption").forEach(option => {
+    option.classList.toggle("isSelected", option.dataset.category === value);
+  });
+}
+
+function renderCategoryOptions(categories){
+  const menu = document.getElementById("categoryMenu");
+  menu.innerHTML = "";
+
+  if(!Array.isArray(categories) || categories.length === 0){
+    const empty = document.createElement("button");
+    empty.type = "button";
+    empty.className = "voucherDropdownOption isDisabled";
+    empty.innerText = "Category পাওয়া যায়নি";
+    menu.appendChild(empty);
+    setCategoryValue("");
+    return;
+  }
+
+  categories.forEach(cat => {
+    const option = document.createElement("button");
+    option.type = "button";
+    option.className = "voucherDropdownOption";
+    option.dataset.category = cat;
+    option.innerText = cat;
+    menu.appendChild(option);
+  });
+
+  setCategoryValue(categories[0]);
 }
 
 async function loadCategories(){
-  const category = document.getElementById("category");
+  document.getElementById("categoryText").innerText = "ক্যাটাগরি লোড হচ্ছে...";
+  document.getElementById("category").value = "";
+  document.getElementById("categoryMenu").innerHTML = `
+    <button type="button" class="voucherDropdownOption isDisabled">Loading...</button>
+  `;
+
   try{
     const res = await fetch(API_URL);
     const data = await res.json();
-    category.innerHTML = "";
+
     if(data.status === "success" && data.categories){
-      data.categories.forEach(cat => {
-        const option = document.createElement("option");
-        option.value = cat;
-        option.innerText = cat;
-        category.appendChild(option);
-      });
+      renderCategoryOptions(data.categories);
     }else{
-      category.innerHTML = `<option value="">Category Load Failed</option>`;
+      renderCategoryOptions([]);
+      showError("Category Load Failed");
     }
   }catch(error){
-    category.innerHTML = `<option value="">Category Load Failed</option>`;
+    renderCategoryOptions([]);
     showError("Category load করা যায়নি। Apps Script URL check করুন।");
   }
 }
@@ -606,6 +1153,7 @@ function validateForm(){
   const date = document.getElementById("date").value;
   const category = document.getElementById("category").value;
   const items = [];
+
   document.querySelectorAll(".voucherItem").forEach(row => {
     const description = row.querySelector(".voucherItemInputDesc").value.trim();
     const amount = row.querySelector(".voucherItemInputAmount").value;
@@ -613,6 +1161,7 @@ function validateForm(){
       items.push({ description, amount });
     }
   });
+
   if(!date){
     showError("তারিখ দিন।");
     return false;
@@ -631,15 +1180,19 @@ function validateForm(){
 async function submitVoucher(){
   hideError();
   document.getElementById("pdfResult").style.display = "none";
+
   document.querySelectorAll(".voucherItemInputDesc").forEach(input => {
     formatDescription(input);
   });
+
   if(!validateForm()){
     return;
   }
+
   const submitBtn = document.getElementById("submitBtn");
   submitBtn.disabled = true;
   submitBtn.innerHTML = `<i class="fas fa-spinner fa-pulse"></i> PDF তৈরি হচ্ছে...`;
+
   const items = [];
   document.querySelectorAll(".voucherItem").forEach(row => {
     const description = row.querySelector(".voucherItemInputDesc").value.trim();
@@ -648,17 +1201,20 @@ async function submitVoucher(){
       items.push({ description, amount });
     }
   });
+
   const payload = {
     date: document.getElementById("date").value,
     category: document.getElementById("category").value,
     items: items
   };
+
   try{
     const res = await fetch(API_URL, {
       method: "POST",
       body: JSON.stringify(payload)
     });
     const data = await res.json();
+
     if(data.status === "success"){
       document.getElementById("voucherNoText").innerText = data.voucherNo;
       document.getElementById("viewPdfLink").href = data.pdf;
@@ -672,6 +1228,7 @@ async function submitVoucher(){
     console.error(error);
     showError("PDF তৈরি করা যায়নি। Apps Script deployment এবং permission check করুন।");
   }
+
   submitBtn.disabled = false;
   submitBtn.innerHTML = `<i class="fas fa-save"></i> ভাউচার সেভ ও PDF তৈরি`;
 }

@@ -14,280 +14,784 @@
 </head>
 <body>
   <!-- Keep this blank. Add custom page content here later if needed. -->
-  <main data-wsc-page-content>
-     <style>
-    :root {
-      --bg: #f6f6f6;
-      --card: #ffffff;
-      --text: #111111;
-      --line: #d7d7d7;
-      --muted: #666666;
-      --error-bg: #fff1f1;
-      --success-bg: #f7fbf7;
-      --success-line: #b8d7b8;
-      --error-line: #d88;
+ <main data-wsc-page-content>
+ 
+<style>
+  .invoice,
+  .invoice *,
+  .invoice *::before,
+  .invoice *::after {
+    box-sizing: border-box;
+  }
+
+  .invoice {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 24px;
+    color: var(--wsc-text);
+    font-family: var(--wsc-font-bn);
+  }
+
+  .invoice .card {
+    background: var(--wsc-surface);
+    border: 1px solid var(--wsc-border);
+    border-radius: var(--earn-radius-pill);
+    padding: 24px;
+    box-shadow: none;
+  }
+
+  .invoice .toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+
+  .invoice .inline-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .invoice .toolbar .inline-row {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .invoice .head {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .invoice .head h1 {
+    margin: 0 0 8px;
+    color: var(--wsc-text);
+    font-family: var(--wsc-font-en);
+    font-size: var(--wsc-text-xl);
+    letter-spacing: 0.5px;
+  }
+
+  .invoice .head p {
+    margin: 0;
+    color: var(--wsc-muted);
+  }
+
+  .invoice .hint {
+    color: var(--wsc-muted);
+    font-size: var(--wsc-text-xs);
+    line-height: 1.5;
+  }
+
+  .invoice form {
+    display: grid;
+    gap: 16px;
+  }
+
+  .invoice .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .invoice .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .invoice .field.full {
+    grid-column: 1 / -1;
+  }
+
+  .invoice label {
+    color: var(--wsc-text);
+    font-size: var(--wsc-text-sm);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+
+  .invoice input,
+  .invoice select,
+  .invoice textarea {
+    width: 100%;
+    min-height: 52px;
+    border: 1px solid var(--wsc-border);
+    background-color: var(--wsc-surface);
+    color: var(--wsc-text);
+    border-radius: var(--earn-radius-pill);
+    padding: 13px 18px;
+    font: inherit;
+    font-weight: 650;
+    outline: none;
+    box-shadow: none;
+    transition: border-color var(--wsc-transition), background-color var(--wsc-transition), color var(--wsc-transition);
+  }
+
+  .invoice input:hover,
+  .invoice select:hover,
+  .invoice textarea:hover {
+    border-color: var(--wsc-primary);
+    background-color: var(--wsc-surface);
+    box-shadow: none;
+  }
+
+  .invoice input:focus,
+  .invoice select:focus,
+  .invoice textarea:focus {
+    border-color: var(--wsc-primary);
+    background-color: var(--wsc-surface);
+    box-shadow: none;
+    transform: none;
+  }
+
+  .invoice input::placeholder,
+  .invoice textarea::placeholder {
+    color: var(--wsc-muted);
+  }
+
+  .invoice select {
+    padding-right: 48px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: var(--wsc-surface);
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--wsc-muted) 50%),
+      linear-gradient(135deg, var(--wsc-muted) 50%, transparent 50%);
+    background-position:
+      calc(100% - 24px) 50%,
+      calc(100% - 18px) 50%;
+    background-size: 7px 7px, 7px 7px;
+    background-repeat: no-repeat;
+  }
+
+  .invoice select option {
+    background: var(--wsc-surface);
+    color: var(--wsc-text);
+    font-weight: 650;
+  }
+
+  .invoice textarea {
+    min-height: 120px;
+    border-radius: var(--earn-radius-xl);
+    resize: vertical;
+    line-height: 1.6;
+  }
+
+  .invoice button {
+    min-height: 48px;
+    border: 1px solid var(--black);
+    background: var(--black);
+    color: var(--wsc-surface);
+    border-radius: var(--earn-radius-pill);
+    padding: 12px 22px;
+    font: inherit;
+    font-weight: 850;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: none;
+    transition: background var(--wsc-transition), border-color var(--wsc-transition), color var(--wsc-transition);
+  }
+
+  .invoice button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .invoice button.secondary {
+    background: var(--wsc-surface);
+    color: var(--wsc-text);
+    border-color: var(--wsc-border);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .invoice button.secondary:hover {
+    border-color: var(--wsc-primary);
+    background: var(--wsc-surface-soft);
+    color: var(--wsc-primary);
+  }
+
+  .invoice button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .invoice .status {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: var(--earn-radius-lg);
+    border: 1px solid var(--wsc-border);
+    display: none;
+    white-space: pre-wrap;
+    background: var(--wsc-surface);
+    color: var(--wsc-text);
+    box-shadow: none;
+  }
+
+  .invoice .status.show {
+    display: block;
+  }
+
+  .invoice .result-box {
+    margin-top: 18px;
+    display: none;
+    border: 1px solid var(--wsc-border);
+    border-radius: var(--earn-radius-lg);
+    padding: 16px;
+    background: var(--wsc-surface-soft);
+    color: var(--wsc-text);
+    box-shadow: none;
+  }
+
+  .invoice .result-box.show {
+    display: block;
+  }
+
+  .invoice .result-box a {
+    color: var(--wsc-primary);
+    font-weight: 700;
+  }
+
+  .invoice .small {
+    font-size: var(--wsc-text-xs);
+    color: var(--wsc-muted);
+  }
+
+  .invoice .cal-control {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 14px;
+    border: 1px solid var(--earn-border-strong);
+    border-radius: var(--earn-radius-lg);
+    background: var(--earn-bg);
+    color: var(--earn-text);
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+    transition: border-color var(--wsc-transition), background var(--wsc-transition);
+  }
+
+  .invoice .cal-control::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: -1;
+    border-radius: calc(var(--earn-radius-lg) - 2px);
+    background: linear-gradient(135deg, var(--earn-bg), var(--wsc-surface-soft));
+    pointer-events: none;
+  }
+
+  .invoice .cal-control:hover,
+  .invoice .cal-control:focus-within,
+  .invoice .cal-control.is-open {
+    border-color: var(--earn-blue);
+    background: var(--earn-bg);
+    box-shadow: none;
+  }
+
+  .invoice .cal-control.is-open {
+    z-index: 100;
+    box-shadow: none;
+  }
+
+  .invoice .cal-icon {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--earn-border);
+    border-radius: var(--wsc-radius-md);
+    background: var(--wsc-surface-soft);
+    color: var(--earn-blue);
+    font-size: var(--wsc-text-base);
+    font-weight: 900;
+    box-shadow: none;
+  }
+
+  .invoice .cal-input {
+    width: 100%;
+    min-height: 54px;
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: var(--earn-text);
+    font-size: var(--wsc-text-sm);
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    caret-color: transparent;
+    box-shadow: none;
+  }
+
+  .invoice .cal-input:focus {
+    border: 0;
+    box-shadow: none;
+  }
+
+  .invoice .cal-input::placeholder {
+    color: var(--earn-muted);
+  }
+
+  .invoice .cal-card {
+    position: absolute;
+    z-index: 999;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    display: none;
+    padding: 14px;
+    border: 1px solid var(--earn-border-strong);
+    border-radius: var(--earn-radius-lg);
+    background: var(--earn-bg);
+    color: var(--earn-text);
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .invoice .cal-control.is-open .cal-card {
+    display: block;
+    animation: calIn 180ms ease both;
+  }
+
+  @keyframes calIn {
+    from {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .invoice .cal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .invoice .cal-month {
+    min-width: 0;
+    color: var(--earn-text);
+    font-size: 15px;
+    font-weight: 950;
+    text-align: center;
+  }
+
+  .invoice .cal-nav {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--earn-border);
+    border-radius: var(--radius);
+    background: var(--wsc-surface-soft);
+    color: var(--earn-blue);
+    cursor: pointer;
+    font-size: var(--wsc-text-md);
+    font-weight: 950;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .invoice .cal-nav:hover {
+    background: var(--wsc-surface-soft);
+    border-color: var(--earn-blue);
+  }
+
+  .invoice .cal-week,
+  .invoice .cal-days {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .invoice .cal-week {
+    margin-bottom: 7px;
+  }
+
+  .invoice .cal-week span {
+    color: var(--earn-muted);
+    font-size: 11px;
+    font-weight: 950;
+    text-align: center;
+  }
+
+  .invoice .cal-day,
+  .invoice .cal-empty {
+    min-height: 34px;
+    border-radius: var(--radius);
+  }
+
+  .invoice .cal-day {
+    border: 1px solid transparent;
+    background: var(--wsc-surface-soft);
+    color: var(--earn-text);
+    cursor: pointer;
+    font-size: var(--wsc-text-xs);
+    font-weight: 900;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .invoice .cal-day:hover {
+    border-color: var(--earn-border-strong);
+    background: var(--blue-soft);
+    color: var(--earn-blue);
+  }
+
+  .invoice .cal-day.is-today {
+    border-color: var(--earn-blue);
+    color: var(--earn-blue);
+  }
+
+  .invoice .cal-day.is-selected {
+    border-color: var(--earn-blue);
+    background: var(--earn-blue);
+    color: var(--wsc-surface);
+  }
+
+  .invoice .cal-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--earn-border);
+  }
+
+  .invoice .cal-action {
+    min-height: 36px;
+    border: 1px solid var(--earn-border);
+    border-radius: var(--wsc-radius-md);
+    background: var(--wsc-surface-soft);
+    color: var(--earn-text);
+    cursor: pointer;
+    font-size: var(--wsc-text-xs);
+    font-weight: 900;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .invoice .cal-action:hover {
+    background: var(--blue-soft);
+    border-color: var(--earn-blue);
+    color: var(--earn-blue);
+  }
+
+  .invoice .cal-action--primary {
+    border-color: var(--earn-blue);
+    background: var(--earn-blue);
+    color: var(--wsc-surface);
+  }
+
+  .invoice .cal-action--primary:hover {
+    background: var(--wsc-primary-dark);
+    color: var(--wsc-surface);
+  }
+
+  .invoice .custom-select {
+    position: relative;
+    width: 100%;
+  }
+
+  .invoice .custom-select-trigger {
+    width: 100%;
+    min-height: 52px;
+    border: 1px solid var(--wsc-border);
+    background: var(--wsc-surface);
+    color: var(--wsc-text);
+    border-radius: var(--earn-radius-pill);
+    padding: 13px 18px;
+    font: inherit;
+    font-weight: 650;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    text-align: left;
+    transition: border-color var(--wsc-transition), background-color var(--wsc-transition), color var(--wsc-transition);
+  }
+
+  .invoice .custom-select-trigger:hover,
+  .invoice .custom-select.is-open .custom-select-trigger {
+    border-color: var(--wsc-primary);
+    background: var(--wsc-surface);
+    color: var(--wsc-text);
+  }
+
+  .invoice .custom-select-value {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .invoice .custom-select-arrow {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wsc-muted);
+    font-size: 15px;
+    font-weight: 900;
+    transition: transform var(--wsc-transition), color var(--wsc-transition);
+  }
+
+  .invoice .custom-select.is-open .custom-select-arrow {
+    transform: rotate(180deg);
+    color: var(--wsc-primary);
+  }
+
+  .invoice .custom-select-menu {
+    position: absolute;
+    z-index: 1000;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    display: none;
+    max-height: 230px;
+    overflow-y: auto;
+    padding: 8px;
+    border: 1px solid var(--wsc-border);
+    border-radius: var(--earn-radius-lg);
+    background: var(--wsc-surface);
+    color: var(--wsc-text);
+    box-shadow: none;
+  }
+
+  .invoice .custom-select.is-open .custom-select-menu {
+    display: grid;
+    gap: 5px;
+    animation: dropdownIn 150ms ease both;
+  }
+
+  @keyframes dropdownIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .invoice .custom-select-option {
+    width: 100%;
+    min-height: 40px;
+    border: 1px solid transparent;
+    border-radius: var(--wsc-radius-md);
+    background: transparent;
+    color: var(--wsc-text);
+    padding: 9px 12px;
+    font: inherit;
+    font-size: var(--wsc-text-sm);
+    font-weight: 750;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    box-shadow: none;
+  }
+
+  .invoice .custom-select-option:hover {
+    border-color: var(--wsc-border);
+    background: var(--wsc-surface-soft);
+    color: var(--wsc-primary);
+  }
+
+  .invoice .custom-select-option.is-selected {
+    border-color: var(--wsc-primary);
+    background: var(--wsc-surface-soft);
+    color: var(--wsc-primary);
+  }
+
+  .invoice .custom-select-option.is-disabled {
+    color: var(--wsc-muted);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  @media (max-width: 700px) {
+    .invoice .grid {
+      grid-template-columns: 1fr;
     }
 
     .invoice {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 24px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
-    }
-
-    .toolbar {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-
-    .inline-row {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .head {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .head h1 {
-      margin: 0 0 8px;
-      font-size: 28px;
-      letter-spacing: 0.5px;
-    }
-
-    .head p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .hint {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    form {
-      display: grid;
-      gap: 16px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    label {
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: #000;
-      border-radius: 10px;
-      padding: 12px 14px;
-      font: inherit;
-      outline: none;
-    }
-
-    textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
-
-    button {
-      border: 1px solid #000;
-      background: #000;
-      color: #fff;
-      border-radius: 10px;
-      padding: 12px 16px;
-      font: inherit;
-      cursor: pointer;
-    }
-
-    button.secondary {
-      background: #fff;
-      color: #000;
-    }
-
-    button:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-    }
-
-    .status {
-      margin-top: 16px;
-      padding: 12px 14px;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      display: none;
-      white-space: pre-wrap;
-    }
-
-    .status.show {
-      display: block;
-    }
-
-    .result-box {
-      margin-top: 18px;
-      display: none;
-      border: 1px solid var(--line);
-      border-radius: 12px;
       padding: 16px;
-      background: #fafafa;
     }
 
-    .result-box.show {
-      display: block;
+    .invoice .card {
+      padding: 18px;
+      border-radius: var(--earn-radius-xl);
     }
 
-    .result-box a {
-      color: #000;
-      font-weight: 700;
+    .invoice .toolbar .inline-row,
+    .invoice .inline-row {
+      width: 100%;
     }
 
-    .small {
-      font-size: 12px;
-      color: var(--muted);
+    .invoice .toolbar button,
+    .invoice form > .inline-row button {
+      flex: 1 1 100%;
     }
+  }
+</style>
 
-    @media (max-width: 700px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
+<div class="invoice">
+  <div class="card">
+    
+    <div class="head">
+      <h1>INVOICE</h1>
+    </div>
 
-      .invoice {
-        padding: 16px;
-      }
+    <div class="toolbar">
+      <div class="inline-row">
+        <button type="button" class="secondary" id="refreshBtn">Refresh Categories</button>
+        <button type="button" class="secondary" id="addCategoryBtn">Add Category</button>
+        <button type="button" class="secondary" id="deleteCategoryBtn">Delete Category</button>
+      </div>
+    </div>
 
-      .card {
-        padding: 18px;
-      }
-    }
-  </style>
-  <div class="invoice">
-    <div class="card">
-      <div class="toolbar">
-        <div>
-          <div class="hint">Invoice form connected with Google Apps Script + Google Sheet.</div>
-          <div class="small">Set your deployed Apps Script web app URL below.</div>
+    <form id="invoiceForm">
+      <div class="grid">
+        <div class="field">
+          <label for="date">Date</label>
+          <div class="cal-control" data-cal-wrap="date">
+            <span class="cal-icon">📅</span>
+            <input class="cal-input" type="text" id="date" name="date" readonly inputmode="none" placeholder="তারিখ নির্বাচন করুন" data-cal-input required />
+            <div class="cal-card" data-cal-for="date" aria-hidden="true">
+              <div class="cal-head">
+                <button type="button" class="cal-nav" data-cal-nav="-1" aria-label="আগের মাস">‹</button>
+                <div class="cal-month" data-cal-month></div>
+                <button type="button" class="cal-nav" data-cal-nav="1" aria-label="পরের মাস">›</button>
+              </div>
+              <div class="cal-week">
+                <span>রবি</span><span>সোম</span><span>মঙ্গল</span><span>বুধ</span><span>বৃহঃ</span><span>শুক্র</span><span>শনি</span>
+              </div>
+              <div class="cal-days" data-cal-days></div>
+              <div class="cal-actions">
+                <button type="button" class="cal-action" data-cal-clear>মুছুন</button>
+                <button type="button" class="cal-action cal-action--primary" data-cal-today>আজ</button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="inline-row">
-          <button type="button" class="secondary" id="refreshBtn">Refresh Categories</button>
-          <button type="button" class="secondary" id="addCategoryBtn">Add Category</button>
-          <button type="button" class="secondary" id="deleteCategoryBtn">Delete Category</button>
+
+        <div class="field">
+          <label for="name">Customer Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter customer name" required />
+        </div>
+
+        <div class="field">
+          <label for="category">Category</label>
+          <div class="custom-select" data-custom-select>
+            <button type="button" class="custom-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="custom-select-value" data-custom-value>Select category</span>
+              <span class="custom-select-arrow">⌄</span>
+            </button>
+            <input type="hidden" id="category" name="category" data-custom-input required />
+            <div class="custom-select-menu" role="listbox" data-custom-options></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="amount">Amount</label>
+          <input type="number" id="amount" name="amount" step="0.01" min="0.01" placeholder="0.00" required />
+        </div>
+
+        <div class="field">
+          <label for="paymentMethod">Payment Method</label>
+          <div class="custom-select" data-custom-select>
+            <button type="button" class="custom-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="custom-select-value" data-custom-value>Bkash</span>
+              <span class="custom-select-arrow">⌄</span>
+            </button>
+            <input type="hidden" id="paymentMethod" name="paymentMethod" value="Bkash" data-custom-input required />
+            <div class="custom-select-menu" role="listbox" data-custom-options></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="paidStatus">Paid Status</label>
+          <div class="custom-select" data-custom-select>
+            <button type="button" class="custom-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="custom-select-value" data-custom-value>Paid</span>
+              <span class="custom-select-arrow">⌄</span>
+            </button>
+            <input type="hidden" id="paidStatus" name="paidStatus" value="Paid" data-custom-input required />
+            <div class="custom-select-menu" role="listbox" data-custom-options></div>
+          </div>
+        </div>
+
+        <div class="field full">
+          <label for="details">Details</label>
+          <textarea id="details" name="details" placeholder="Write invoice details" required></textarea>
+        </div>
+
+        <div class="field full">
+          <label for="total">Total</label>
+          <input type="number" id="total" name="total" step="0.01" min="0.01" placeholder="0.00" required />
         </div>
       </div>
 
-      <div class="head">
-        <h1>WESTERN SCHOOL AND COLLEGE</h1>
-        <p>Didar Market, Dewanbazar, Chottogram</p>
-        <p><strong>INVOICE FORM</strong></p>
+      <div class="inline-row">
+        <button type="submit" id="submitBtn">Create Invoice</button>
+        <button type="button" class="secondary" id="resetBtn">Reset</button>
       </div>
+    </form>
 
-      <form id="invoiceForm">
-        <div class="grid">
-          <div class="field">
-            <label for="date">Date</label>
-            <input type="date" id="date" name="date" required />
-          </div>
+    <div class="status" id="statusBox"></div>
 
-          <div class="field">
-            <label for="name">Customer Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter customer name" required />
-          </div>
-
-          <div class="field">
-            <label for="category">Category</label>
-            <select id="category" name="category" required></select>
-          </div>
-
-          <div class="field">
-            <label for="amount">Amount</label>
-            <input type="number" id="amount" name="amount" step="0.01" min="0.01" placeholder="0.00" required />
-          </div>
-
-          <div class="field">
-            <label for="paymentMethod">Payment Method</label>
-            <select id="paymentMethod" name="paymentMethod" required>
-              <option value="Bkash">Bkash</option>
-              <option value="Cash">Cash</option>
-              <option value="Bank">Bank</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="paidStatus">Paid Status</label>
-            <select id="paidStatus" name="paidStatus" required>
-              <option value="Paid">Paid</option>
-              <option value="Unpaid">Unpaid</option>
-              <option value="Partial">Partial</option>
-            </select>
-          </div>
-
-          <div class="field full">
-            <label for="details">Details</label>
-            <textarea id="details" name="details" placeholder="Write invoice details" required></textarea>
-          </div>
-
-          <div class="field full">
-            <label for="total">Total</label>
-            <input type="number" id="total" name="total" step="0.01" min="0.01" placeholder="0.00" required />
-          </div>
-        </div>
-
-        <div class="inline-row">
-          <button type="submit" id="submitBtn">Create Invoice</button>
-          <button type="button" class="secondary" id="resetBtn">Reset</button>
-        </div>
-      </form>
-
-      <div class="status" id="statusBox"></div>
-
-      <div class="result-box" id="resultBox">
-        <div><strong>Invoice created successfully.</strong></div>
-        <div id="resultText" style="margin-top: 8px;"></div>
-        <div style="margin-top: 10px;">
-          <a id="printLink" href="#" target="_blank" rel="noopener">Open / Print Invoice</a>
-        </div>
+    <div class="result-box" id="resultBox">
+      <div><strong>Invoice created successfully.</strong></div>
+      <div id="resultText" style="margin-top: 8px;"></div>
+      <div style="margin-top: 10px;">
+        <a id="printLink" href="#" target="_blank" rel="noopener">Open / Print Invoice</a>
       </div>
     </div>
   </div>
+</div>
 
   <script>
     const API_BASE = 'https://script.google.com/macros/s/AKfycbyfG1_F-VwC8Wj3zyolgntU9FidbuSBM-fuT7u4TV8U75IeTKft_7Jo597ts4unhGd2/exec';
 
     const invoiceForm = document.getElementById('invoiceForm');
-    const categorySelect = document.getElementById('category');
+    const categoryInput = document.getElementById('category');
     const statusBox = document.getElementById('statusBox');
     const resultBox = document.getElementById('resultBox');
     const resultText = document.getElementById('resultText');
@@ -296,20 +800,370 @@
     const totalInput = document.getElementById('total');
     const submitBtn = document.getElementById('submitBtn');
 
+    const calState = {};
+    let currentCategories = [];
+    const bnDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+    const bnMonths = [
+      'জানুয়ারি',
+      'ফেব্রুয়ারি',
+      'মার্চ',
+      'এপ্রিল',
+      'মে',
+      'জুন',
+      'জুলাই',
+      'আগস্ট',
+      'সেপ্টেম্বর',
+      'অক্টোবর',
+      'নভেম্বর',
+      'ডিসেম্বর'
+    ];
+
+    function toBanglaNumber(value) {
+      return String(value).replace(/\d/g, digit => bnDigits[digit]);
+    }
+
+    function padDatePart(value) {
+      return String(value).padStart(2, '0');
+    }
+
+    function formatISODate(date) {
+      return `${date.getFullYear()}-${padDatePart(date.getMonth() + 1)}-${padDatePart(date.getDate())}`;
+    }
+
+    function parseISODate(value) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return null;
+      const [year, month, day] = value.split('-').map(Number);
+      const date = new Date(year, month - 1, day);
+
+      if (
+        date.getFullYear() !== year ||
+        date.getMonth() !== month - 1 ||
+        date.getDate() !== day
+      ) {
+        return null;
+      }
+
+      return date;
+    }
+
+    function getMonthTitle(date) {
+      return `${bnMonths[date.getMonth()]} ${toBanglaNumber(date.getFullYear())}`;
+    }
+
+    function formatBanglaDisplayDate(date) {
+      return `${toBanglaNumber(date.getDate())} ${bnMonths[date.getMonth()]} ${toBanglaNumber(date.getFullYear())}`;
+    }
+
+    function getCalendarISOValue(input) {
+      return input.dataset.isoValue || '';
+    }
+
+    function setCalendarValue(input, date) {
+      input.dataset.isoValue = formatISODate(date);
+      input.value = formatBanglaDisplayDate(date);
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    function clearCalendarValue(input) {
+      input.dataset.isoValue = '';
+      input.value = '';
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+
+    function closeCustomDropdowns() {
+      document.querySelectorAll('.invoice .custom-select.is-open').forEach(select => {
+        select.classList.remove('is-open');
+        const trigger = select.querySelector('.custom-select-trigger');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    function openCustomDropdown(select) {
+      const isOpen = select.classList.contains('is-open');
+
+      closeCustomDropdowns();
+      closeCalendars();
+
+      if (!isOpen) {
+        select.classList.add('is-open');
+        const trigger = select.querySelector('.custom-select-trigger');
+        if (trigger) trigger.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    function setCustomSelectValue(inputId, value, label = '') {
+      const input = document.getElementById(inputId);
+      const select = input.closest('.custom-select');
+      const valueBox = select.querySelector('[data-custom-value]');
+      const options = select.querySelectorAll('.custom-select-option');
+
+      input.value = value || '';
+      valueBox.textContent = label || value || 'Select';
+
+      options.forEach(option => {
+        option.classList.toggle('is-selected', option.dataset.value === input.value);
+      });
+
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    function renderCustomOptions(inputId, options, emptyText = 'No option found') {
+      const input = document.getElementById(inputId);
+      const select = input.closest('.custom-select');
+      const menu = select.querySelector('[data-custom-options]');
+      const list = Array.isArray(options) ? options.filter(Boolean) : [];
+
+      menu.innerHTML = '';
+
+      if (!list.length) {
+        const empty = document.createElement('button');
+        empty.type = 'button';
+        empty.className = 'custom-select-option is-disabled';
+        empty.textContent = emptyText;
+        empty.disabled = true;
+        menu.appendChild(empty);
+        setCustomSelectValue(inputId, '', emptyText);
+        return;
+      }
+
+      list.forEach(item => {
+        const optionValue = typeof item === 'object' ? item.value : item;
+        const optionLabel = typeof item === 'object' ? item.label : item;
+        const option = document.createElement('button');
+
+        option.type = 'button';
+        option.className = 'custom-select-option';
+        option.dataset.value = optionValue;
+        option.textContent = optionLabel;
+        option.setAttribute('role', 'option');
+
+        menu.appendChild(option);
+      });
+
+      const currentValue = input.value;
+      const exists = list.some(item => {
+        const optionValue = typeof item === 'object' ? item.value : item;
+        return optionValue === currentValue;
+      });
+
+      const first = list[0];
+      const firstValue = typeof first === 'object' ? first.value : first;
+      const firstLabel = typeof first === 'object' ? first.label : first;
+
+      if (exists) {
+        const currentItem = list.find(item => {
+          const optionValue = typeof item === 'object' ? item.value : item;
+          return optionValue === currentValue;
+        });
+        setCustomSelectValue(
+          inputId,
+          currentValue,
+          typeof currentItem === 'object' ? currentItem.label : currentItem
+        );
+      } else {
+        setCustomSelectValue(inputId, firstValue, firstLabel);
+      }
+    }
+
+    function resetCustomDropdowns() {
+      if (currentCategories.length) {
+        setCustomSelectValue('category', currentCategories[0], currentCategories[0]);
+      } else {
+        setCustomSelectValue('category', '', 'No category found');
+      }
+
+      setCustomSelectValue('paymentMethod', 'Bkash', 'Bkash');
+      setCustomSelectValue('paidStatus', 'Paid', 'Paid');
+    }
+
+    function initCustomDropdowns() {
+      document.querySelectorAll('.invoice .custom-select').forEach(select => {
+        const trigger = select.querySelector('.custom-select-trigger');
+        const menu = select.querySelector('[data-custom-options]');
+        const input = select.querySelector('[data-custom-input]');
+
+        trigger.addEventListener('click', event => {
+          event.preventDefault();
+          event.stopPropagation();
+          openCustomDropdown(select);
+        });
+
+        menu.addEventListener('click', event => {
+          event.preventDefault();
+          event.stopPropagation();
+
+          const option = event.target.closest('.custom-select-option');
+          if (!option || option.disabled) return;
+
+          setCustomSelectValue(input.id, option.dataset.value, option.textContent.trim());
+          closeCustomDropdowns();
+        });
+      });
+
+      document.addEventListener('click', event => {
+        if (!event.target.closest('.invoice .custom-select')) closeCustomDropdowns();
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeCustomDropdowns();
+      });
+    }
+
+    function closeCalendars() {
+      document.querySelectorAll('.invoice .cal-control.is-open').forEach(control => {
+        control.classList.remove('is-open');
+        const card = control.querySelector('.cal-card');
+        if (card) card.setAttribute('aria-hidden', 'true');
+      });
+    }
+
+    function openCalendar(input) {
+      const control = input.closest('.cal-control');
+      const card = control.querySelector('.cal-card');
+      const selected = parseISODate(getCalendarISOValue(input));
+      const baseDate = selected || new Date();
+
+      closeCustomDropdowns();
+      closeCalendars();
+
+      calState[input.id] = {
+        viewYear: baseDate.getFullYear(),
+        viewMonth: baseDate.getMonth()
+      };
+
+      renderCalendar(input.id);
+      control.classList.add('is-open');
+      card.setAttribute('aria-hidden', 'false');
+    }
+
+    function renderCalendar(inputId) {
+      const input = document.getElementById(inputId);
+      const control = input.closest('.cal-control');
+      const card = control.querySelector('.cal-card');
+      const monthLabel = card.querySelector('[data-cal-month]');
+      const daysBox = card.querySelector('[data-cal-days]');
+      const view = calState[inputId] || {
+        viewYear: new Date().getFullYear(),
+        viewMonth: new Date().getMonth()
+      };
+
+      const selectedValue = getCalendarISOValue(input);
+      const todayValue = formatISODate(new Date());
+      const firstDay = new Date(view.viewYear, view.viewMonth, 1);
+      const totalDays = new Date(view.viewYear, view.viewMonth + 1, 0).getDate();
+      const startOffset = firstDay.getDay();
+
+      monthLabel.textContent = getMonthTitle(firstDay);
+      daysBox.innerHTML = '';
+
+      for (let i = 0; i < startOffset; i++) {
+        const empty = document.createElement('span');
+        empty.className = 'cal-empty';
+        daysBox.appendChild(empty);
+      }
+
+      for (let day = 1; day <= totalDays; day++) {
+        const date = new Date(view.viewYear, view.viewMonth, day);
+        const iso = formatISODate(date);
+        const btn = document.createElement('button');
+
+        btn.type = 'button';
+        btn.className = 'cal-day';
+        btn.dataset.calDate = iso;
+        btn.textContent = toBanglaNumber(day);
+
+        if (iso === todayValue) btn.classList.add('is-today');
+        if (iso === selectedValue) btn.classList.add('is-selected');
+
+        daysBox.appendChild(btn);
+      }
+    }
+
+    function initCustomCalendar() {
+      document.querySelectorAll('.invoice [data-cal-input]').forEach(input => {
+        input.addEventListener('click', event => {
+          event.stopPropagation();
+          openCalendar(input);
+        });
+
+        input.addEventListener('focus', () => {
+          openCalendar(input);
+        });
+
+        const control = input.closest('.cal-control');
+        control.addEventListener('click', event => {
+          if (event.target.closest('.cal-card')) return;
+          openCalendar(input);
+        });
+      });
+
+      document.querySelectorAll('.invoice .cal-card').forEach(card => {
+        card.addEventListener('click', event => {
+          event.stopPropagation();
+
+          const inputId = card.dataset.calFor;
+          const input = document.getElementById(inputId);
+
+          const nav = event.target.closest('[data-cal-nav]');
+          if (nav) {
+            const direction = Number(nav.dataset.calNav || 0);
+            const view = calState[inputId];
+            const next = new Date(view.viewYear, view.viewMonth + direction, 1);
+
+            calState[inputId] = {
+              viewYear: next.getFullYear(),
+              viewMonth: next.getMonth()
+            };
+
+            renderCalendar(inputId);
+            return;
+          }
+
+          const day = event.target.closest('[data-cal-date]');
+          if (day) {
+            setCalendarValue(input, parseISODate(day.dataset.calDate));
+            closeCalendars();
+            return;
+          }
+
+          if (event.target.closest('[data-cal-clear]')) {
+            clearCalendarValue(input);
+            closeCalendars();
+            return;
+          }
+
+          if (event.target.closest('[data-cal-today]')) {
+            setCalendarValue(input, new Date());
+            closeCalendars();
+          }
+        });
+      });
+
+      document.addEventListener('click', event => {
+        if (!event.target.closest('.invoice .cal-control')) closeCalendars();
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeCalendars();
+      });
+    }
+
     function setToday() {
       const today = new Date();
       const local = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
         .toISOString()
         .slice(0, 10);
-      document.getElementById('date').value = local;
+      const dateInput = document.getElementById('date');
+      setCalendarValue(dateInput, parseISODate(local));
     }
 
     function showStatus(message, isError = false) {
       statusBox.className = 'status show';
       statusBox.textContent = message;
-      statusBox.style.background = isError ? 'var(--error-bg)' : 'var(--success-bg)';
-      statusBox.style.borderColor = isError ? 'var(--error-line)' : 'var(--success-line)';
-      statusBox.style.color = '#111';
+      statusBox.style.background = isError ? 'var(--danger-bg)' : 'var(--success-bg)';
+      statusBox.style.borderColor = isError ? 'var(--danger)' : 'var(--success)';
+      statusBox.style.color = 'var(--wsc-text)';
     }
 
     function clearStatus() {
@@ -376,27 +1230,13 @@
     }
 
     function fillCategories(categories) {
-      categorySelect.innerHTML = '';
-
-      if (!Array.isArray(categories) || !categories.length) {
-        const option = document.createElement('option');
-        option.value = '';
-        option.textContent = 'No category found';
-        categorySelect.appendChild(option);
-        return;
-      }
-
-      categories.forEach(cat => {
-        const option = document.createElement('option');
-        option.value = cat;
-        option.textContent = cat;
-        categorySelect.appendChild(option);
-      });
+      currentCategories = Array.isArray(categories) ? categories.filter(Boolean) : [];
+      renderCustomOptions('category', currentCategories, 'No category found');
     }
 
     function getPayload() {
       return {
-        date: document.getElementById('date').value,
+        date: getCalendarISOValue(document.getElementById('date')),
         name: document.getElementById('name').value.trim(),
         category: document.getElementById('category').value,
         details: document.getElementById('details').value.trim(),
@@ -472,6 +1312,7 @@
 
         resultBox.classList.add('show');
         invoiceForm.reset();
+        resetCustomDropdowns();
         setToday();
       } catch (err) {
         showStatus(err.message, true);
@@ -489,6 +1330,7 @@
 
     document.getElementById('resetBtn').addEventListener('click', () => {
       invoiceForm.reset();
+      resetCustomDropdowns();
       setToday();
       clearStatus();
       resultBox.classList.remove('show');
@@ -498,11 +1340,16 @@
     document.getElementById('addCategoryBtn').addEventListener('click', addCategory);
     document.getElementById('deleteCategoryBtn').addEventListener('click', deleteCategory);
 
+    initCustomDropdowns();
+    renderCustomOptions('paymentMethod', ['Bkash', 'Cash', 'Bank']);
+    renderCustomOptions('paidStatus', ['Paid', 'Unpaid', 'Partial']);
+    initCustomCalendar();
     setToday();
     loadBootstrap();
   </script>
 </main>
-  </main>
+
+
 
   <!-- JS files -->
   <script src="assets/js/wsc-config.js"></script>

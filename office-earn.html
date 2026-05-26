@@ -17,37 +17,10 @@
   <main data-wsc-page-content>
     <style>
   .earn {
-    --earn-bg: #ffffff;
-    --earn-card: rgba(255, 255, 255, 0.72);
-    --earn-card-strong: rgba(255, 255, 255, 0.90);
-    --earn-border: rgba(15, 47, 99, 0.12);
-    --earn-border-strong: rgba(15, 47, 99, 0.18);
-    --earn-text: #080f1f;
-    --earn-muted: #5b6475;
-    --earn-blue: #1d4ed8;
-    --earn-navy: #0f2f63;
-    --earn-navy-dark: #071f44;
-    --earn-success: #15803d;
-    --earn-success-bg: #ecfdf3;
-    --earn-danger: #b91c1c;
-    --earn-danger-bg: #fef2f2;
-    --earn-warning: #b45309;
-    --earn-warning-bg: #fff7ed;
-    --earn-shadow: 0 18px 50px rgba(15, 47, 99, 0.10);
-    --earn-shadow-soft: 0 10px 28px rgba(15, 47, 99, 0.08);
-    --earn-radius-xl: 32px;
-    --earn-radius-lg: 24px;
-    --earn-radius-md: 18px;
-    --earn-radius-pill: 50px;
-
     width: 100%;
     min-height: 100vh;
-    background:
-      radial-gradient(circle at top left, rgba(29, 78, 216, 0.08), transparent 30%),
-      radial-gradient(circle at bottom right, rgba(15, 47, 99, 0.06), transparent 34%),
-      var(--earn-bg);
     color: var(--earn-text);
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--wsc-font-bn);
     box-sizing: border-box;
   }
 
@@ -81,24 +54,42 @@
     padding: 22px;
     border: 1px solid var(--earn-border);
     border-radius: var(--earn-radius-xl);
-    background: rgba(255, 255, 255, 0.82);
+    background: transparent;
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     box-shadow: var(--earn-shadow);
     scrollbar-width: thin;
-    scrollbar-color: rgba(15, 47, 99, 0.22) transparent;
+    scrollbar-color: var(--wsc-bg) transparent;
+  }
+
+  /* Chrome, Edge, Safari */
+  .earn__sidebar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .earn__sidebar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .earn__sidebar::-webkit-scrollbar-thumb {
+    background: var(--wsc-bg);
+    border-radius: 999px;
+  }
+
+  .earn__sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--wsc-bg);
   }
 
   .earn__sidebar::-webkit-scrollbar,
   .earn__table-scroll::-webkit-scrollbar {
     width: 8px;
-    height: 8px;
+    height: 2px;
   }
 
   .earn__sidebar::-webkit-scrollbar-thumb,
   .earn__table-scroll::-webkit-scrollbar-thumb {
     border-radius: 999px;
-    background: rgba(15, 47, 99, 0.22);
+    background: var(--wsc-bg);
   }
 
   .earn__sidebar-head {
@@ -112,7 +103,7 @@
     margin-bottom: 10px;
     padding: 7px 12px;
     border-radius: 999px;
-    background: #eef5ff;
+    background: var(--wsc-bg);
     color: var(--earn-blue);
     font-size: 12px;
     font-weight: 900;
@@ -165,10 +156,10 @@
     min-height: 50px;
     border: 1px solid var(--earn-border-strong);
     border-radius: var(--earn-radius-pill);
-    background: #ffffff;
+    background: var(--wsc-bg);
     color: var(--earn-text);
     outline: none;
-    box-shadow: 0 8px 18px rgba(15, 47, 99, 0.04);
+    box-shadow: var(--earn-shadow-soft);
     transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
   }
 
@@ -177,59 +168,240 @@
   }
 
   .earn__control::placeholder {
-    color: #9aa4b5;
+    color: var(--earn-muted);
   }
 
   .earn__control:focus,
   .earn__date-control:focus-within,
   .earn__custom-select.is-open .earn__select-button {
     border-color: var(--earn-blue);
-    box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.12), 0 12px 24px rgba(15, 47, 99, 0.08);
+    box-shadow: 0 0 0 4px var(--blue-soft), var(--earn-shadow-soft);
   }
 
-  /* Custom calendar input */
+  /* Custom Bengali calendar input */
   .earn__date-control {
     position: relative;
+    isolation: isolate;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 0 16px;
+    gap: 12px;
+    min-height: 56px;
+    padding: 0 14px;
+    border-radius: var(--earn-radius-lg);
+    background: var(--wsc-bg);
+    cursor: pointer;
+  }
+
+  .earn__date-control::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: -1;
+    border-radius: calc(var(--earn-radius-lg) - 2px);
+    background: linear-gradient(135deg, var(--wsc-bg), var(--wsc-surface-soft));
+    pointer-events: none;
+  }
+
+  .earn__date-control:hover {
+    border-color: var(--earn-blue);
+    box-shadow: 0 0 0 4px var(--blue-soft), var(--earn-shadow-soft);
+  }
+
+  .earn__date-control.is-open {
+    z-index: 60;
+    border-color: var(--earn-blue);
+    box-shadow: 0 0 0 4px var(--blue-soft), var(--earn-shadow);
   }
 
   .earn__date-icon,
   .earn__select-icon {
-    width: 32px;
-    height: 32px;
-    flex: 0 0 32px;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 999px;
-    background: #eef5ff;
+    border: 1px solid var(--earn-border);
+    border-radius: 14px;
+    background: var(--wsc-surface);
     color: var(--earn-blue);
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 900;
+    box-shadow: var(--earn-shadow-soft);
   }
 
-  .earn__date-control input[type="date"] {
+  .earn__date-control input {
     width: 100%;
-    min-height: 48px;
+    min-height: 54px;
     padding: 0;
     border: 0;
     outline: none;
     background: transparent;
     color: var(--earn-text);
-    appearance: none;
-    -webkit-appearance: none;
+    font-size: 14px;
+    font-weight: 850;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    caret-color: transparent;
   }
 
-  .earn__date-control input[type="date"]::-webkit-calendar-picker-indicator {
-    width: 100%;
-    height: 100%;
+  .earn__date-control input::placeholder {
+    color: var(--earn-muted);
+  }
+
+  .earn__calendar-card {
     position: absolute;
-    inset: 0;
-    opacity: 0;
+    z-index: 100;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    display: none;
+    padding: 14px;
+    border: 1px solid var(--earn-border-strong);
+    border-radius: var(--earn-radius-lg);
+    background: var(--wsc-bg);
+    color: var(--earn-text);
+    box-shadow: var(--earn-shadow);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .earn__date-control.is-open .earn__calendar-card {
+    display: block;
+    animation: earnCalendarIn 180ms ease both;
+  }
+
+  @keyframes earnCalendarIn {
+    from {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .earn__calendar-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .earn__calendar-month {
+    min-width: 0;
+    color: var(--earn-text);
+    font-size: 15px;
+    font-weight: 950;
+    text-align: center;
+  }
+
+  .earn__calendar-nav {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--earn-border);
+    border-radius: 12px;
+    background: var(--wsc-surface);
+    color: var(--earn-blue);
     cursor: pointer;
+    font-weight: 950;
+    box-shadow: var(--earn-shadow-soft);
+  }
+
+  .earn__calendar-nav:hover {
+    background: var(--wsc-surface-soft);
+  }
+
+  .earn__calendar-week,
+  .earn__calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .earn__calendar-week {
+    margin-bottom: 7px;
+  }
+
+  .earn__calendar-week span {
+    color: var(--earn-muted);
+    font-size: 11px;
+    font-weight: 950;
+    text-align: center;
+  }
+
+  .earn__calendar-day,
+  .earn__calendar-empty {
+    min-height: 34px;
+    border-radius: 12px;
+  }
+
+  .earn__calendar-day {
+    border: 1px solid transparent;
+    background: var(--wsc-surface);
+    color: var(--earn-text);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 900;
+    box-shadow: 0 6px 14px rgba(15, 47, 99, 0.04);
+  }
+
+  .earn__calendar-day:hover {
+    border-color: var(--earn-border-strong);
+    background: var(--wsc-surface-soft);
+    color: var(--earn-blue);
+  }
+
+  .earn__calendar-day.is-today {
+    border-color: var(--earn-blue);
+    color: var(--earn-blue);
+  }
+
+  .earn__calendar-day.is-selected {
+    border-color: var(--earn-blue);
+    background: var(--earn-blue);
+    color: var(--wsc-surface);
+  }
+
+  .earn__calendar-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--earn-border);
+  }
+
+  .earn__calendar-action {
+    min-height: 36px;
+    border: 1px solid var(--earn-border);
+    border-radius: 14px;
+    background: var(--wsc-surface);
+    color: var(--earn-text);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .earn__calendar-action:hover {
+    background: var(--wsc-surface-soft);
+    color: var(--earn-blue);
+  }
+
+  .earn__calendar-action--primary {
+    border-color: var(--earn-blue);
+    background: var(--earn-navy);
+    color: var(--wsc-surface);
+  }
+
+  .earn__calendar-action--primary:hover {
+    background: var(--earn-navy-dark);
+    color: var(--wsc-surface);
   }
 
   /* Custom dropdown */
@@ -274,8 +446,8 @@
     padding: 8px;
     border: 1px solid var(--earn-border);
     border-radius: 24px;
-    background: #ffffff;
-    box-shadow: 0 18px 42px rgba(15, 47, 99, 0.16);
+    background: var(--wsc-surface);
+    box-shadow: var(--earn-shadow);
   }
 
   .earn__custom-select.is-open .earn__select-menu {
@@ -292,7 +464,7 @@
     border: 0;
     border-radius: 18px;
     padding: 10px 12px;
-    background: #ffffff;
+    background: var(--wsc-surface);
     color: var(--earn-text);
     cursor: pointer;
     font-weight: 750;
@@ -301,7 +473,7 @@
 
   .earn__select-option:hover,
   .earn__select-option.is-active {
-    background: #eef5ff;
+    background: var(--wsc-bg);
     color: var(--earn-blue);
   }
 
@@ -332,7 +504,7 @@
   .earn__button:hover,
   .earn__link-button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 12px 24px rgba(15, 47, 99, 0.18);
+    box-shadow: var(--earn-shadow-soft);
   }
 
   .earn__button--primary,
@@ -340,13 +512,13 @@
   .earn__button--dark,
   .earn__link-button--dark {
     background: var(--earn-navy);
-    color: #ffffff;
+    color: var(--wsc-surface);
   }
 
   .earn__button--secondary,
   .earn__link-button--secondary {
     border: 1px solid var(--earn-border-strong);
-    background: #ffffff;
+    background: var(--wsc-surface);
     color: var(--earn-text);
   }
 
@@ -435,7 +607,7 @@
     right: -28px;
     top: -28px;
     border-radius: 999px;
-    background: rgba(29, 78, 216, 0.12);
+    background: var(--blue-soft);
   }
 
   .earn__stat-label {
@@ -493,7 +665,7 @@
     overflow: auto;
     border: 1px solid var(--earn-border);
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.76);
+    background: var(--earn-card);
   }
 
   .earn__table-card--large .earn__table-scroll {
@@ -514,9 +686,9 @@
   .earn__table th,
   .earn__table td {
     padding: 13px 14px;
-    border-bottom: 1px solid rgba(15, 47, 99, 0.08);
+    border-bottom: 1px solid var(--earn-border);
     text-align: left;
-    color: #111827;
+    color: var(--earn-text);
     font-size: 14px;
     line-height: 1.45;
     vertical-align: middle;
@@ -526,14 +698,14 @@
     position: sticky;
     top: 0;
     z-index: 2;
-    background: #f7faff;
+    background: var(--wsc-bg);
     color: var(--earn-text);
     font-weight: 950;
     white-space: nowrap;
   }
 
   .earn__table tbody tr:hover td {
-    background: rgba(238, 245, 255, 0.60);
+    background: var(--wsc-bg);
   }
 
   .earn__badge {
@@ -580,9 +752,9 @@
   .earn__detail-placeholder {
     margin-top: 14px;
     padding: 18px;
-    border: 1px dashed rgba(15, 47, 99, 0.24);
+    border: 1px dashed var(--earn-border-strong);
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.72);
+    background: var(--earn-card);
     color: var(--earn-muted);
     line-height: 1.7;
   }
@@ -606,7 +778,7 @@
     padding: 18px;
     border: 1px solid var(--earn-border);
     border-radius: 22px;
-    background: #f7faff;
+    background: var(--wsc-bg);
   }
 
   .earn__muted {
@@ -650,7 +822,7 @@
 
   .earn__details-text {
     margin-top: 10px;
-    color: #263247;
+    color: var(--earn-text);
     line-height: 1.7;
     white-space: pre-wrap;
   }
@@ -666,25 +838,25 @@
   .earn__status {
     position: fixed;
     z-index: 9999;
-    top: 24px;
     right: 24px;
+    bottom: 24px;
     width: min(420px, calc(100vw - 32px));
     display: flex;
     align-items: flex-start;
     gap: 12px;
     padding: 15px 16px;
-    border: 1px solid rgba(29, 78, 216, 0.18);
+    border: 1px solid var(--earn-border-strong);
     border-left: 5px solid var(--earn-blue);
     border-radius: 22px;
-    background: rgba(255, 255, 255, 0.92);
+    background: var(--earn-card-strong);
     color: var(--earn-text);
     line-height: 1.55;
-    box-shadow: 0 22px 50px rgba(15, 47, 99, 0.20);
+    box-shadow: var(--earn-shadow);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
     opacity: 0;
     pointer-events: none;
-    transform: translateY(-10px);
+    transform: translateY(12px);
     transition: opacity 220ms ease, transform 220ms ease;
   }
 
@@ -702,7 +874,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    background: #eef5ff;
+    background: var(--wsc-bg);
     color: var(--earn-blue);
     font-weight: 950;
   }
@@ -715,7 +887,7 @@
   }
 
   .earn__status.is-error {
-    border-color: rgba(185, 28, 28, 0.20);
+    border-color: var(--earn-border-strong);
     border-left-color: var(--earn-danger);
   }
 
@@ -795,8 +967,8 @@
     }
 
     .earn__status {
-      top: 14px;
       right: 14px;
+      bottom: 14px;
     }
   }
 </style>
@@ -819,17 +991,47 @@
       <div class="earn__sidebar-form">
         <div class="earn__field">
           <label for="fromDate">শুরুর তারিখ · From Date</label>
-          <div class="earn__date-control">
+          <div class="earn__date-control" data-calendar-wrap="fromDate">
             <span class="earn__date-icon">📅</span>
-            <input type="date" id="fromDate" />
+            <input type="text" id="fromDate" readonly inputmode="none" placeholder="তারিখ নির্বাচন করুন" data-calendar-input />
+            <div class="earn__calendar-card" data-calendar-for="fromDate" aria-hidden="true">
+              <div class="earn__calendar-head">
+                <button type="button" class="earn__calendar-nav" data-calendar-nav="-1" aria-label="আগের মাস">‹</button>
+                <div class="earn__calendar-month" data-calendar-month></div>
+                <button type="button" class="earn__calendar-nav" data-calendar-nav="1" aria-label="পরের মাস">›</button>
+              </div>
+              <div class="earn__calendar-week">
+                <span>রবি</span><span>সোম</span><span>মঙ্গল</span><span>বুধ</span><span>বৃহঃ</span><span>শুক্র</span><span>শনি</span>
+              </div>
+              <div class="earn__calendar-days" data-calendar-days></div>
+              <div class="earn__calendar-actions">
+                <button type="button" class="earn__calendar-action" data-calendar-clear>মুছুন</button>
+                <button type="button" class="earn__calendar-action earn__calendar-action--primary" data-calendar-today>আজ</button>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="earn__field">
           <label for="toDate">শেষ তারিখ · To Date</label>
-          <div class="earn__date-control">
+          <div class="earn__date-control" data-calendar-wrap="toDate">
             <span class="earn__date-icon">📅</span>
-            <input type="date" id="toDate" />
+            <input type="text" id="toDate" readonly inputmode="none" placeholder="তারিখ নির্বাচন করুন" data-calendar-input />
+            <div class="earn__calendar-card" data-calendar-for="toDate" aria-hidden="true">
+              <div class="earn__calendar-head">
+                <button type="button" class="earn__calendar-nav" data-calendar-nav="-1" aria-label="আগের মাস">‹</button>
+                <div class="earn__calendar-month" data-calendar-month></div>
+                <button type="button" class="earn__calendar-nav" data-calendar-nav="1" aria-label="পরের মাস">›</button>
+              </div>
+              <div class="earn__calendar-week">
+                <span>রবি</span><span>সোম</span><span>মঙ্গল</span><span>বুধ</span><span>বৃহঃ</span><span>শুক্র</span><span>শনি</span>
+              </div>
+              <div class="earn__calendar-days" data-calendar-days></div>
+              <div class="earn__calendar-actions">
+                <button type="button" class="earn__calendar-action" data-calendar-clear>মুছুন</button>
+                <button type="button" class="earn__calendar-action earn__calendar-action--primary" data-calendar-today>আজ</button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1031,7 +1233,23 @@
     yearlySummary: []
   };
 
+  const calendarState = {};
+
   const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+  const bnMonths = [
+    'জানুয়ারি',
+    'ফেব্রুয়ারি',
+    'মার্চ',
+    'এপ্রিল',
+    'মে',
+    'জুন',
+    'জুলাই',
+    'আগস্ট',
+    'সেপ্টেম্বর',
+    'অক্টোবর',
+    'নভেম্বর',
+    'ডিসেম্বর'
+  ];
   let statusTimer = null;
 
   function toBanglaNumber(value) {
@@ -1053,6 +1271,179 @@
 
   function safeText(value) {
     return value == null || value === '' ? '-' : String(value);
+  }
+
+  function padDatePart(value) {
+    return String(value).padStart(2, '0');
+  }
+
+  function formatISODate(date) {
+    return `${date.getFullYear()}-${padDatePart(date.getMonth() + 1)}-${padDatePart(date.getDate())}`;
+  }
+
+  function parseISODate(value) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value || '')) return null;
+    const [year, month, day] = value.split('-').map(Number);
+    const date = new Date(year, month - 1, day);
+    if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) return null;
+    return date;
+  }
+
+  function getMonthTitle(date) {
+    return `${bnMonths[date.getMonth()]} ${toBanglaNumber(date.getFullYear())}`;
+  }
+
+  function formatBanglaDisplayDate(date) {
+    return `${toBanglaNumber(date.getDate())} ${bnMonths[date.getMonth()]} ${toBanglaNumber(date.getFullYear())}`;
+  }
+
+  function getCalendarISOValue(input) {
+    return input.dataset.isoValue || '';
+  }
+
+  function setCalendarValue(input, date) {
+    input.dataset.isoValue = formatISODate(date);
+    input.value = formatBanglaDisplayDate(date);
+  }
+
+  function clearCalendarValue(input) {
+    input.dataset.isoValue = '';
+    input.value = '';
+  }
+
+  function closeCalendars() {
+    document.querySelectorAll('.earn__date-control.is-open').forEach(item => {
+      item.classList.remove('is-open');
+      const card = item.querySelector('.earn__calendar-card');
+      if (card) card.setAttribute('aria-hidden', 'true');
+    });
+  }
+
+  function openCalendar(input) {
+    const wrap = input.closest('.earn__date-control');
+    const card = wrap.querySelector('.earn__calendar-card');
+    const selected = parseISODate(getCalendarISOValue(input));
+    const baseDate = selected || new Date();
+
+    closeCalendars();
+    calendarState[input.id] = {
+      viewYear: baseDate.getFullYear(),
+      viewMonth: baseDate.getMonth()
+    };
+
+    renderCalendar(input.id);
+    wrap.classList.add('is-open');
+    card.setAttribute('aria-hidden', 'false');
+  }
+
+  function renderCalendar(inputId) {
+    const input = document.getElementById(inputId);
+    const wrap = input.closest('.earn__date-control');
+    const card = wrap.querySelector('.earn__calendar-card');
+    const monthLabel = card.querySelector('[data-calendar-month]');
+    const daysBox = card.querySelector('[data-calendar-days]');
+    const view = calendarState[inputId] || {
+      viewYear: new Date().getFullYear(),
+      viewMonth: new Date().getMonth()
+    };
+    const selectedValue = getCalendarISOValue(input);
+    const todayValue = formatISODate(new Date());
+
+    const firstDay = new Date(view.viewYear, view.viewMonth, 1);
+    const totalDays = new Date(view.viewYear, view.viewMonth + 1, 0).getDate();
+    const startOffset = firstDay.getDay();
+
+    monthLabel.textContent = getMonthTitle(firstDay);
+    daysBox.innerHTML = '';
+
+    for (let i = 0; i < startOffset; i++) {
+      const empty = document.createElement('span');
+      empty.className = 'earn__calendar-empty';
+      daysBox.appendChild(empty);
+    }
+
+    for (let day = 1; day <= totalDays; day++) {
+      const date = new Date(view.viewYear, view.viewMonth, day);
+      const iso = formatISODate(date);
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'earn__calendar-day';
+      btn.dataset.calendarDate = iso;
+      btn.textContent = toBanglaNumber(day);
+
+      if (iso === todayValue) btn.classList.add('is-today');
+      if (iso === selectedValue) btn.classList.add('is-selected');
+
+      daysBox.appendChild(btn);
+    }
+  }
+
+  function initCustomCalendar() {
+    document.querySelectorAll('[data-calendar-input]').forEach(input => {
+      input.addEventListener('click', event => {
+        event.stopPropagation();
+        openCalendar(input);
+      });
+
+      input.addEventListener('focus', () => {
+        openCalendar(input);
+      });
+
+      const wrap = input.closest('.earn__date-control');
+      wrap.addEventListener('click', event => {
+        if (event.target.closest('.earn__calendar-card')) return;
+        openCalendar(input);
+      });
+    });
+
+    document.querySelectorAll('.earn__calendar-card').forEach(card => {
+      card.addEventListener('click', event => {
+        event.stopPropagation();
+        const inputId = card.dataset.calendarFor;
+        const input = document.getElementById(inputId);
+
+        const nav = event.target.closest('[data-calendar-nav]');
+        if (nav) {
+          const direction = Number(nav.dataset.calendarNav || 0);
+          const view = calendarState[inputId];
+          const next = new Date(view.viewYear, view.viewMonth + direction, 1);
+          calendarState[inputId] = {
+            viewYear: next.getFullYear(),
+            viewMonth: next.getMonth()
+          };
+          renderCalendar(inputId);
+          return;
+        }
+
+        const day = event.target.closest('[data-calendar-date]');
+        if (day) {
+          setCalendarValue(input, parseISODate(day.dataset.calendarDate));
+          closeCalendars();
+          return;
+        }
+
+        if (event.target.closest('[data-calendar-clear]')) {
+          clearCalendarValue(input);
+          closeCalendars();
+          return;
+        }
+
+        if (event.target.closest('[data-calendar-today]')) {
+          setCalendarValue(input, new Date());
+          closeCalendars();
+        }
+      });
+    });
+
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.earn__date-control')) {
+        closeCalendars();
+      }
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeCalendars();
+    });
   }
 
   function setStatus(message, isError = false, autoHide = true) {
@@ -1239,8 +1630,8 @@
   }
 
   function applyFilters() {
-    const fromDate = document.getElementById('fromDate').value;
-    const toDate = document.getElementById('toDate').value;
+    const fromDate = getCalendarISOValue(document.getElementById('fromDate'));
+    const toDate = getCalendarISOValue(document.getElementById('toDate'));
     const statusFilter = document.getElementById('statusFilter').value.trim().toLowerCase();
     const q = document.getElementById('searchInput').value.trim().toLowerCase();
 
@@ -1263,8 +1654,8 @@
   }
 
   function resetFilters() {
-    document.getElementById('fromDate').value = '';
-    document.getElementById('toDate').value = '';
+    clearCalendarValue(document.getElementById('fromDate'));
+    clearCalendarValue(document.getElementById('toDate'));
     document.getElementById('statusFilter').value = '';
     document.getElementById('searchInput').value = '';
     resetCustomDropdown();
@@ -1379,9 +1770,11 @@
     showInvoiceDetail(invoiceId);
   });
 
+  initCustomCalendar();
   initCustomDropdown();
   loadAllData();
 </script>
+
   </main>
 
   <!-- JS files -->
