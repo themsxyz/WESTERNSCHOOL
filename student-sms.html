@@ -15,34 +15,47 @@
 <body>
   <!-- Keep this blank. Add custom page content here later if needed. -->
   <main data-wsc-page-content>
-    <style>
+   <style>
 
 .sms-body{
-    --sms-gradient-start: #f8fafc;
-    --sms-gradient-end: #eef2f7;
-    --sms-text-dark: #111827;
-    --sms-text-primary: #0f172a;
-    --sms-text-secondary: #64748b;
-    --sms-text-muted: #475569;
-    --sms-glass-bg: rgba(255,255,255,.58);
-    --sms-glass-border: rgba(255,255,255,.8);
-    --sms-glass-border-light: rgba(255,255,255,.85);
-    --sms-border-table: rgba(203,213,225,.6);
-    --sms-border-table-light: rgba(226,232,240,.7);
-    --sms-purple: linear-gradient(135deg,#7c3aed,#8b5cf6);
-    --sms-blue: linear-gradient(135deg,#2563eb,#3b82f6);
-    --sms-green: linear-gradient(135deg,#059669,#10b981);
-    --sms-red: linear-gradient(135deg,#dc2626,#ef4444);
-    --sms-cyan: linear-gradient(135deg,#0891b2,#06b6d4);
-    --sms-radius-xl: 32px;
-    --sms-radius-pill: 999px;
-    --sms-shadow: 0 10px 30px rgba(15,23,42,.06);
-    --sms-shadow-lg: 0 10px 30px rgba(15,23,42,.1);
-    --sms-inner-glow: inset 0 1px 0 rgba(255,255,255,.9);
-    --sms-font-family: 'Noto Serif Display', 'Noto Serif Bengali', serif;
+    --sms-gradient-start: var(--wsc-bg, #f6f9ff);
+    --sms-gradient-end: var(--wsc-surface-soft, #f1f5ff);
+    --sms-text-dark: var(--wsc-text, #111827);
+    --sms-text-primary: var(--wsc-text, #111827);
+    --sms-text-secondary: var(--wsc-muted, #6b7280);
+    --sms-text-muted: var(--muted, #64748b);
+    --sms-glass-bg: var(--wsc-surface, #ffffff);
+    --sms-glass-border: var(--wsc-border, #dbe4f0);
+    --sms-glass-border-light: var(--wsc-border, #dbe4f0);
+    --sms-border-table: var(--wsc-border, #dbe4f0);
+    --sms-border-table-light: var(--wsc-border, #dbe4f0);
+    --sms-purple: linear-gradient(135deg, var(--wsc-purple, #7c3aed), var(--wsc-primary, #2563eb));
+    --sms-blue: linear-gradient(135deg, var(--wsc-primary, #2563eb), var(--wsc-primary-dark, #1d4ed8));
+    --sms-green: linear-gradient(135deg, var(--wsc-success, #16a34a), var(--success, #166534));
+    --sms-red: linear-gradient(135deg, var(--wsc-danger, #dc2626), var(--danger, #b91c1c));
+    --sms-cyan: linear-gradient(135deg, var(--blue, #1d4f78), var(--wsc-primary, #2563eb));
+    --sms-radius-xl: var(--earn-radius-xl, 32px);
+    --sms-radius-lg: var(--wsc-radius-lg, 22px);
+    --sms-radius-md: var(--wsc-radius-md, 14px);
+    --sms-radius-sm: var(--wsc-radius-sm, 8px);
+    --sms-radius-pill: var(--wsc-radius-pill, 999px);
+    --sms-shadow: var(--wsc-shadow, 0 14px 40px rgba(15, 23, 42, 0.08));
+    --sms-shadow-lg: var(--earn-shadow, 0 18px 50px rgba(15, 47, 99, 0.10));
+    --sms-inner-glow: inset 0 1px 0 color-mix(in srgb, var(--wsc-surface, #ffffff) 80%, transparent);
+    --sms-font-family: var(--wsc-font-bn, "Noto Sans Bengali", system-ui, sans-serif);
+
+    background: linear-gradient(135deg, var(--sms-gradient-start), var(--sms-gradient-end));
+    color: var(--sms-text-dark);
+    font-family: var(--sms-font-family);
+    font-size: var(--wsc-text-base, 16px);
+    min-height: 100vh;
+    padding: 24px;
+    box-sizing: border-box;
 }
 
-
+.sms-body *{
+    box-sizing: border-box;
+}
 
 .sms-container{
     max-width: 1400px;
@@ -58,18 +71,20 @@
     padding: 30px;
     box-shadow: var(--sms-shadow), var(--sms-inner-glow);
     margin-bottom: 24px;
+    color: var(--sms-text-dark);
 }
 
 .sms-title{
-    font-size: 32px;
-    font-weight: 700;
+    font-size: var(--wsc-text-xl, 28px);
+    font-weight: 800;
     margin-bottom: 8px;
     color: var(--sms-text-primary);
+    letter-spacing: -0.4px;
 }
 
 .sms-subtitle{
     color: var(--sms-text-secondary);
-    font-size: 14px;
+    font-size: var(--wsc-text-sm, 14px);
     margin-bottom: 28px;
     line-height: 1.7;
 }
@@ -86,21 +101,22 @@
     outline: none;
     padding: 15px 24px;
     border-radius: var(--sms-radius-pill);
-    font-size: 14px;
-    font-weight: 700;
+    font-size: var(--wsc-text-sm, 14px);
+    font-weight: 800;
     color: #fff;
     cursor: pointer;
-    transition: .25s;
+    transition: transform var(--wsc-transition, 180ms ease), opacity var(--wsc-transition, 180ms ease), box-shadow var(--wsc-transition, 180ms ease);
     display: flex;
     align-items: center;
     gap: 10px;
     justify-content: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+    box-shadow: var(--earn-shadow-soft, 0 10px 28px rgba(15, 47, 99, 0.08));
     font-family: var(--sms-font-family);
 }
 
 .sms-btn:hover{
     transform: translateY(-2px);
+    opacity: .95;
 }
 
 .sms-btn:disabled{
@@ -145,25 +161,32 @@
     width: 100%;
     padding: 16px 20px;
     border-radius: var(--sms-radius-pill);
-    border: none;
+    border: 1px solid var(--sms-glass-border);
     outline: none;
-    background: rgba(255,255,255,.75);
-    border: 1px solid rgba(203,213,225,.8);
+    background: var(--wsc-surface, #ffffff);
     color: var(--sms-text-dark);
     backdrop-filter: blur(10px);
     font-family: var(--sms-font-family);
+    font-size: var(--wsc-text-sm, 14px);
+    transition: border-color var(--wsc-transition, 180ms ease), box-shadow var(--wsc-transition, 180ms ease), background var(--wsc-transition, 180ms ease);
+}
+
+.sms-file-input input:focus{
+    border-color: var(--wsc-primary, #2563eb);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--wsc-primary, #2563eb) 14%, transparent);
 }
 
 .sms-file-input input::file-selector-button{
     border: none;
     background: var(--sms-text-dark);
-    color: #fff;
+    color: var(--wsc-surface, #ffffff);
     padding: 10px 16px;
     border-radius: var(--sms-radius-pill);
     margin-right: 12px;
     cursor: pointer;
-    font-weight: 700;
+    font-weight: 800;
     font-family: var(--sms-font-family);
+    font-size: var(--wsc-text-sm, 14px);
 }
 
 .sms-table-card{
@@ -178,68 +201,69 @@
 .sms-table{
     width: 100%;
     border-collapse: collapse;
-    background: rgba(255,255,255,.4);
+    background: var(--wsc-surface, #ffffff);
     backdrop-filter: blur(18px);
 }
 
 .sms-table thead{
-    background: rgba(255,255,255,.7);
+    background: var(--wsc-surface-soft, #f1f5ff);
     backdrop-filter: blur(16px);
 }
 
 .sms-table th{
     padding: 20px;
     text-align: left;
-    font-size: 13px;
+    font-size: var(--wsc-text-xs, 12px);
     color: var(--sms-text-muted);
-    font-weight: 700;
+    font-weight: 800;
     border-bottom: 1px solid var(--sms-border-table);
     white-space: nowrap;
 }
 
 .sms-table td{
     padding: 18px 20px;
-    font-size: 14px;
+    font-size: var(--wsc-text-sm, 14px);
     color: var(--sms-text-dark);
     border-bottom: 1px solid var(--sms-border-table-light);
 }
 
 .sms-table tbody tr{
-    transition: .2s;
+    transition: background var(--wsc-transition, 180ms ease);
 }
 
 .sms-table tbody tr:hover{
-    background: rgba(255,255,255,.5);
+    background: var(--wsc-surface-soft, #f1f5ff);
 }
 
 .sms-status{
     padding: 8px 14px;
     border-radius: var(--sms-radius-pill);
-    font-size: 12px;
-    font-weight: 700;
+    font-size: var(--wsc-text-xs, 12px);
+    font-weight: 800;
     display: inline-block;
 }
 
 .sms-status-sent{
-    background: rgba(16,185,129,.12);
-    color: #059669;
+    background: var(--success-bg, #ecfdf3);
+    color: var(--wsc-success, #16a34a);
 }
 
 .sms-status-failed{
-    background: rgba(239,68,68,.12);
-    color: #dc2626;
+    background: var(--danger-bg, #fff1f2);
+    color: var(--wsc-danger, #dc2626);
 }
 
 .sms-status-pending{
-    background: rgba(245,158,11,.12);
-    color: #d97706;
+    background: var(--warning-bg, #fff7ed);
+    color: var(--warning, #b45309);
 }
 
 .sms-loading{
     padding: 55px;
     text-align: center;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--sms-text-secondary);
+    font-size: var(--wsc-text-base, 16px);
 }
 
 .sms-popup{
@@ -252,15 +276,16 @@
     padding: 16px 24px;
     border-radius: var(--sms-radius-pill);
     color: var(--sms-text-dark);
-    font-weight: 700;
+    font-weight: 800;
     text-align: center;
-    background: rgba(255,255,255,.7);
+    background: var(--wsc-surface, #ffffff);
     backdrop-filter: blur(18px);
     border: 1px solid var(--sms-glass-border-light);
     box-shadow: var(--sms-shadow-lg), var(--sms-inner-glow);
     transition: .4s ease;
     z-index: 999;
     font-family: var(--sms-font-family);
+    font-size: var(--wsc-text-sm, 14px);
 }
 
 .sms-popup.show{
@@ -268,17 +293,17 @@
 }
 
 .sms-popup.sms-success{
-    color: #059669;
+    color: var(--wsc-success, #16a34a);
 }
 
 .sms-popup.sms-error{
-    color: #dc2626;
+    color: var(--wsc-danger, #dc2626);
 }
 
 .sms-loader{
     width: 18px;
     height: 18px;
-    border: 3px solid rgba(0,0,0,.15);
+    border: 3px solid color-mix(in srgb, var(--sms-text-dark) 15%, transparent);
     border-top: 3px solid var(--sms-text-dark);
     border-radius: 50%;
     animation: smsSpin .8s linear infinite;
@@ -288,7 +313,7 @@
 }
 
 .sms-icon{
-    font-size: 16px;
+    font-size: var(--wsc-text-base, 16px);
 }
 
 @keyframes smsSpin{
@@ -298,6 +323,9 @@
 }
 
 @media(max-width: 900px){
+    .sms-body{
+        padding: 14px;
+    }
     .sms-action-grid{
         flex-direction: column;
     }

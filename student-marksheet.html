@@ -14,18 +14,51 @@
 </head>
 <body>
   <!-- Keep this blank. Add custom page content here later if needed. -->
-  <main data-wsc-page-content>
-    <style>
- 
+ <main data-wsc-page-content class="mark-page">
+  <style>
+    .mark-page {
+      --mark-primary: var(--wsc-primary, #2563eb);
+      --mark-primary-dark: var(--wsc-primary-dark, #1d4ed8);
+      --mark-bg: var(--wsc-bg, #f6f9ff);
+      --mark-card: var(--wsc-surface, #ffffff);
+      --mark-card-soft: var(--wsc-surface-soft, #f1f5ff);
+      --mark-text: var(--wsc-text, #111827);
+      --mark-muted: var(--wsc-muted, #6b7280);
+      --mark-border: var(--wsc-border, #dbe4f0);
+      --mark-success: var(--wsc-success, #16a34a);
+      --mark-success-bg: var(--success-bg, #ecfdf3);
+      --mark-danger: var(--wsc-danger, #dc2626);
+      --mark-danger-bg: var(--danger-bg, #fff1f2);
+      --mark-warning: var(--warning, #b45309);
+      --mark-warning-bg: var(--warning-bg, #fff7ed);
+      --mark-font: var(--wsc-font-bn, "Noto Sans Bengali", system-ui, sans-serif);
+      --mark-radius-sm: var(--wsc-radius-sm, 8px);
+      --mark-radius-md: var(--wsc-radius-md, 14px);
+      --mark-radius-lg: var(--wsc-radius-lg, 22px);
+      --mark-radius-pill: var(--wsc-radius-pill, 999px);
+      --mark-shadow: var(--wsc-shadow, 0 14px 40px rgba(15, 23, 42, 0.08));
+      --mark-transition: var(--wsc-transition, 180ms ease);
+
+      width: 100%;
+      min-height: 100%;
+      background: var(--mark-bg);
+      color: var(--mark-text);
+      font-family: var(--mark-font);
+      font-size: var(--wsc-text-base, 16px);
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
     .mark-app-card {
       width: 100%;
       max-width: 560px;
-      background: #ffffff;
-      border-radius: 20px;
+      background: var(--mark-card);
+      border: 1px solid var(--mark-border);
+      border-radius: var(--mark-radius-lg);
       padding: 32px;
-      box-shadow: 0 24px 70px rgba(15, 23, 42, 0.14);
-      border: 1px solid #e5e7eb;
+      box-shadow: var(--mark-shadow);
       margin: 0 auto;
+      box-sizing: border-box;
     }
 
     .mark-header {
@@ -35,15 +68,17 @@
 
     .mark-header h1 {
       margin: 0 0 8px;
-      font-size: 28px;
+      font-size: var(--wsc-text-xl, 28px);
       line-height: 1.2;
-      color: #0f5132;
+      color: var(--mark-primary);
+      font-weight: 800;
+      letter-spacing: -0.4px;
     }
 
     .mark-header p {
       margin: 0;
-      color: #6b7280;
-      font-size: 15px;
+      color: var(--mark-muted);
+      font-size: var(--wsc-text-sm, 14px);
       line-height: 1.5;
     }
 
@@ -51,92 +86,209 @@
       margin-bottom: 18px;
     }
 
-    label {
+    .mark-label {
       display: block;
       margin-bottom: 8px;
-      font-size: 15px;
+      font-size: var(--wsc-text-sm, 14px);
       font-weight: 700;
-      color: #1f2937;
+      color: var(--mark-text);
     }
 
-    select,
-    input {
+    .mark-input {
       width: 100%;
       height: 48px;
-      border: 1px solid #d1d5db;
-      border-radius: 12px;
+      border: 1px solid var(--mark-border);
+      border-radius: var(--mark-radius-md);
       padding: 0 14px;
-      font-size: 15px;
-      color: #111827;
+      font-size: var(--wsc-text-base, 16px);
+      color: var(--mark-text);
       outline: none;
-      background: #ffffff;
-      transition: 0.2s ease;
+      background: var(--mark-card);
+      transition: border-color var(--mark-transition), box-shadow var(--mark-transition), background var(--mark-transition);
+      font-family: var(--mark-font);
+      box-sizing: border-box;
+      caret-color: var(--mark-primary);
     }
 
-    select:focus,
-    input:focus {
-      border-color: #0f5132;
-      box-shadow: 0 0 0 4px rgba(15, 81, 50, 0.12);
+    .mark-input::placeholder {
+      color: var(--mark-muted);
+      opacity: 0.85;
+    }
+
+    .mark-input:focus {
+      border-color: var(--mark-primary);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--mark-primary) 14%, transparent);
+    }
+
+    .mark-input:-webkit-autofill,
+    .mark-input:-webkit-autofill:hover,
+    .mark-input:-webkit-autofill:focus {
+      -webkit-text-fill-color: var(--mark-text) !important;
+      caret-color: var(--mark-primary);
+      box-shadow: 0 0 0 1000px var(--mark-card) inset !important;
+      transition: background-color 9999s ease-in-out 0s;
+    }
+
+    .mark-custom-select {
+      position: relative;
+      width: 100%;
+    }
+
+    .mark-custom-trigger {
+      width: 100%;
+      height: 48px;
+      border: 1px solid var(--mark-border);
+      border-radius: var(--mark-radius-md);
+      padding: 0 14px;
+      font-size: var(--wsc-text-base, 16px);
+      color: var(--mark-text);
+      outline: none;
+      background: var(--mark-card);
+      transition: border-color var(--mark-transition), box-shadow var(--mark-transition), background var(--mark-transition);
+      font-family: var(--mark-font);
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-sizing: border-box;
+    }
+
+    .mark-custom-trigger:hover,
+    .mark-custom-select.open .mark-custom-trigger {
+      border-color: var(--mark-primary);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--mark-primary) 12%, transparent);
+    }
+
+    .mark-custom-arrow {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--mark-radius-pill);
+      background: var(--mark-card-soft);
+      color: var(--mark-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--wsc-text-sm, 14px);
+      flex: 0 0 auto;
+      transition: transform var(--mark-transition);
+    }
+
+    .mark-custom-select.open .mark-custom-arrow {
+      transform: rotate(180deg);
+    }
+
+    .mark-custom-list {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      z-index: 50;
+      display: none;
+      padding: 8px;
+      background: var(--mark-card);
+      border: 1px solid var(--mark-border);
+      border-radius: var(--mark-radius-md);
+      box-shadow: var(--mark-shadow);
+    }
+
+    .mark-custom-select.open .mark-custom-list {
+      display: block;
+    }
+
+    .mark-custom-option {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: var(--mark-text);
+      padding: 12px 14px;
+      border-radius: var(--mark-radius-sm);
+      font-size: var(--wsc-text-sm, 14px);
+      font-family: var(--mark-font);
+      font-weight: 700;
+      text-align: left;
+      cursor: pointer;
+      transition: background var(--mark-transition), color var(--mark-transition);
+    }
+
+    .mark-custom-option:hover,
+    .mark-custom-option.active {
+      background: var(--mark-card-soft);
+      color: var(--mark-primary);
+    }
+
+    .mark-custom-option.active::after {
+      content: "✓";
+      float: right;
+      color: var(--mark-success);
     }
 
     .mark-btn {
       width: 100%;
       height: 50px;
       border: none;
-      border-radius: 12px;
-      background: #0f5132;
+      border-radius: var(--mark-radius-md);
+      background: var(--mark-primary);
       color: #ffffff;
-      font-size: 16px;
+      font-size: var(--wsc-text-base, 16px);
       font-weight: 700;
       cursor: pointer;
-      transition: 0.2s ease;
+      transition: background var(--mark-transition), transform var(--mark-transition), opacity var(--mark-transition);
       margin-top: 6px;
+      font-family: var(--mark-font);
     }
 
     .mark-btn:hover {
-      background: #0a3f26;
+      background: var(--mark-primary-dark);
+      transform: translateY(-1px);
     }
 
     .mark-btn:disabled {
-      background: #94a3b8;
+      background: var(--mark-muted);
       cursor: not-allowed;
+      transform: none;
+      opacity: 0.75;
     }
 
     .mark-status-box {
       display: none;
       margin-top: 20px;
       padding: 16px;
-      border-radius: 14px;
-      font-size: 15px;
+      border-radius: var(--mark-radius-md);
+      font-size: var(--wsc-text-sm, 14px);
       line-height: 1.5;
+      border: 1px solid var(--mark-border);
     }
 
     .mark-loading {
-      background: #eff6ff;
-      color: #1d4ed8;
-      border: 1px solid #bfdbfe;
+      background: var(--mark-card-soft);
+      color: var(--mark-primary);
+      border-color: color-mix(in srgb, var(--mark-primary) 30%, var(--mark-border));
     }
 
     .mark-error {
-      background: #fef2f2;
-      color: #991b1b;
-      border: 1px solid #fecaca;
+      background: var(--mark-danger-bg);
+      color: var(--mark-danger);
+      border-color: color-mix(in srgb, var(--mark-danger) 28%, var(--mark-border));
     }
 
     .mark-success {
-      background: #ecfdf5;
-      color: #065f46;
-      border: 1px solid #a7f3d0;
+      background: var(--mark-success-bg);
+      color: var(--mark-success);
+      border-color: color-mix(in srgb, var(--mark-success) 30%, var(--mark-border));
     }
 
     .mark-success h3 {
       margin: 0 0 10px;
-      color: #065f46;
-      font-size: 18px;
+      color: var(--mark-success);
+      font-size: var(--wsc-text-md, 18px);
+      font-weight: 800;
     }
 
     .mark-result-info {
       margin-bottom: 14px;
+      color: var(--mark-text);
     }
 
     .mark-link-buttons {
@@ -153,32 +305,44 @@
       min-height: 44px;
       padding: 10px 12px;
       text-decoration: none;
-      border-radius: 10px;
-      background: #0f5132;
+      border-radius: var(--mark-radius-md);
+      background: var(--mark-success);
       color: #ffffff;
+      font-size: var(--wsc-text-sm, 14px);
       font-weight: 700;
       text-align: center;
+      transition: transform var(--mark-transition), opacity var(--mark-transition);
+    }
+
+    .mark-link-buttons a:hover {
+      transform: translateY(-1px);
+      opacity: 0.92;
     }
 
     .mark-link-buttons a.mark-secondary {
-      background: #334155;
+      background: var(--mark-text);
+      color: var(--mark-card);
     }
 
     .mark-note {
       margin-top: 18px;
       text-align: center;
-      font-size: 13px;
-      color: #6b7280;
+      font-size: var(--wsc-text-xs, 12px);
+      color: var(--mark-muted);
       line-height: 1.5;
     }
 
     @media (max-width: 520px) {
+      .mark-page {
+        padding: 14px;
+      }
+
       .mark-app-card {
         padding: 24px 18px;
       }
 
       .mark-header h1 {
-        font-size: 24px;
+        font-size: var(--wsc-text-lg, 22px);
       }
 
       .mark-link-buttons {
@@ -187,33 +351,40 @@
     }
   </style>
 
-  <main class="mark-app-card">
+  <section class="mark-app-card">
     <div class="mark-header">
-      <h1>Marksheet PDF Generator</h1>
-      <p>Select a class and exam name. The system will generate a class-wise marksheet PDF automatically.</p>
+      <h1>Marksheet</h1>
+      <p>Class select kore exam name diye PDF generate korun.</p>
     </div>
 
     <form id="marksheetForm">
       <div class="mark-form-group">
-        <label for="className">Select Class</label>
-        <select id="className" required>
-          <option value="">Choose Class</option>
-          <option value="play">Play</option>
-          <option value="nursery">Nursery</option>
-          <option value="kg">KG</option>
-          <option value="1">Class 1</option>
-          <option value="2">Class 2</option>
-          <option value="3">Class 3</option>
-          <option value="4">Class 4</option>
-          <option value="5">Class 5</option>
-        </select>
+        <label class="mark-label" for="className">Select Class</label>
+        <input type="hidden" id="className" value="">
+        <div class="mark-custom-select" id="classNameDropdown">
+          <button type="button" class="mark-custom-trigger" onclick="markToggleDropdown('classNameDropdown')">
+            <span id="classNameText">Choose Class</span>
+            <span class="mark-custom-arrow">⌄</span>
+          </button>
+          <div class="mark-custom-list">
+            <button type="button" class="mark-custom-option" onclick="markSelectDropdown('classNameDropdown', 'className', 'classNameText', 'play', 'Play', this)">Play</button>
+            <button type="button" class="mark-custom-option" onclick="markSelectDropdown('classNameDropdown', 'className', 'classNameText', 'nursery', 'Nursery', this)">Nursery</button>
+            <button type="button" class="mark-custom-option" onclick="markSelectDropdown('classNameDropdown', 'className', 'classNameText', 'kg', 'KG', this)">KG</button>
+            <button type="button" class="mark-custom-option" onclick="markSelectDropdown('classNameDropdown', 'className', 'classNameText', '1', 'Class 1', this)">Class 1</button>
+            <button type="button" class="mark-custom-option" onclick="markSelectDropdown('classNameDropdown', 'className', 'classNameText', '2', 'Class 2', this)">Class 2</button>
+            <button type="button" class="mark-custom-option" onclick="markSelectDropdown('classNameDropdown', 'className', 'classNameText', '3', 'Class 3', this)">Class 3</button>
+            <button type="button" class="mark-custom-option" onclick="markSelectDropdown('classNameDropdown', 'className', 'classNameText', '4', 'Class 4', this)">Class 4</button>
+            <button type="button" class="mark-custom-option" onclick="markSelectDropdown('classNameDropdown', 'className', 'classNameText', '5', 'Class 5', this)">Class 5</button>
+          </div>
+        </div>
       </div>
 
       <div class="mark-form-group">
-        <label for="examName">Exam Name</label>
+        <label class="mark-label" for="examName">Exam Name</label>
         <input
           type="text"
           id="examName"
+          class="mark-input"
           placeholder="Example: Half Yearly Exam 2026"
           required
         />
@@ -223,34 +394,24 @@
     </form>
 
     <div class="mark-status-box mark-loading" id="loadingBox">
-      Generating PDF. Please keep this page open.
+      Generating PDF. অপেক্ষা করুন.
     </div>
 
     <div class="mark-status-box mark-error" id="errorBox"></div>
 
     <div class="mark-status-box mark-success" id="successBox">
-      <h3>PDF Generated Successfully!</h3>
+      <h3>PDF Generated হয়েছে!</h3>
       <div class="mark-result-info" id="resultInfo"></div>
       <div class="mark-link-buttons">
         <a href="#" target="_blank" rel="noopener" id="viewPdfLink">View PDF</a>
         <a href="#" target="_blank" rel="noopener" id="downloadPdfLink" class="mark-secondary">Download PDF</a>
       </div>
     </div>
-
-    <div class="mark-note">
-      Backend will read students from Google Sheet, filter by selected class, generate HTML marksheet, convert it to PDF, and return the PDF link.
-    </div>
-  </main>
+  </section>
 
   <script>
-    /************************************************************
-     * FRONTEND CONFIG
-     * Step 1: Deploy Apps Script as Web App.
-     * Step 2: Paste your Web App /exec URL below.
-     * Step 3: Keep API_TOKEN same as backend CONFIG.API_TOKEN.
-     ************************************************************/
-    const APPS_SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzvK7uZTudHTpgNKLxsY09mIiFsh64uG9X2hSuKuQHYrl1uh4FAY9K1Q4RbyO8WBZHZUg/exec';
-    const API_TOKEN = 'CHANGE_THIS_SECRET_TOKEN_12345';
+    const APPS_SCRIPT_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbysvLWDfhUxuIaAh5HxfjnqI16JcqlP-zLJbU72BBnUXhhUZ-idtv-2oUewnE1DDNnP/exec';
+    const API_TOKEN = 'CHANGE_THIS_SECRET_TOKEN_12345'; // Must match the SECRET/API_TOKEN inside your Apps Script backend
 
     const form = document.getElementById('marksheetForm');
     const classNameInput = document.getElementById('className');
@@ -263,6 +424,34 @@
     const resultInfo = document.getElementById('resultInfo');
     const viewPdfLink = document.getElementById('viewPdfLink');
     const downloadPdfLink = document.getElementById('downloadPdfLink');
+
+    function markToggleDropdown(dropdownId) {
+      const dropdown = document.getElementById(dropdownId);
+      document.querySelectorAll('.mark-custom-select').forEach(function (item) {
+        if (item.id !== dropdownId) item.classList.remove('open');
+      });
+      dropdown.classList.toggle('open');
+    }
+
+    function markSelectDropdown(dropdownId, inputId, textId, value, label, optionElement) {
+      document.getElementById(inputId).value = value;
+      document.getElementById(textId).innerText = label;
+
+      const dropdown = document.getElementById(dropdownId);
+      dropdown.querySelectorAll('.mark-custom-option').forEach(function (option) {
+        option.classList.remove('active');
+      });
+      optionElement.classList.add('active');
+      dropdown.classList.remove('open');
+    }
+
+    document.addEventListener('click', function (event) {
+      if (!event.target.closest('.mark-custom-select')) {
+        document.querySelectorAll('.mark-custom-select').forEach(function (item) {
+          item.classList.remove('open');
+        });
+      }
+    });
 
     form.addEventListener('submit', async function (event) {
       event.preventDefault();
@@ -283,15 +472,15 @@
       setLoading(true);
 
       try {
-        const response = await callBackendJsonp({
+        const response = await callBackend({
           action: 'generatePdf',
           className: className,
           examName: examName,
           token: API_TOKEN
         });
 
-        if (!response.success) {
-          throw new Error(response.error || 'Failed to generate PDF.');
+        if (!response || !response.success) {
+          throw new Error((response && response.error) || 'Failed to generate PDF.');
         }
 
         showSuccess(response);
@@ -303,34 +492,114 @@
     });
 
     /************************************************************
+     * BACKEND CALL FIX
+     * 1) First tries normal GET fetch for Apps Script JSON response.
+     * 2) If browser blocks fetch/CORS, it falls back to JSONP.
+     * 3) If backend returns JSONP text, it can also parse that safely.
+     ************************************************************/
+    async function callBackend(params) {
+      const queryParams = Object.assign({}, params, {
+        cacheBust: Date.now()
+      });
+
+      const url = APPS_SCRIPT_WEB_APP_URL + '?' + new URLSearchParams(queryParams).toString();
+      let fetchError = null;
+
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          cache: 'no-store',
+          redirect: 'follow'
+        });
+
+        const text = await response.text();
+
+        if (!response.ok) {
+          throw new Error('Backend HTTP error: ' + response.status);
+        }
+
+        return parseBackendResponse(text);
+      } catch (error) {
+        fetchError = error;
+      }
+
+      try {
+        return await callBackendJsonp(params);
+      } catch (jsonpError) {
+        throw new Error(
+          'Backend response পাওয়া যায়নি। Web App URL, deployment access, token, অথবা response format check করুন. Fetch error: ' +
+          (fetchError ? fetchError.message : 'none') +
+          ' | JSONP error: ' +
+          (jsonpError ? jsonpError.message : 'none')
+        );
+      }
+    }
+
+    function parseBackendResponse(text) {
+      const cleanText = String(text || '').trim();
+
+      if (!cleanText) {
+        throw new Error('Backend returned empty response.');
+      }
+
+      try {
+        return JSON.parse(cleanText);
+      } catch (jsonError) {
+        const jsonpMatch = cleanText.match(/^[a-zA-Z_$][\w$]*\(([\s\S]*)\);?$/);
+        if (jsonpMatch && jsonpMatch[1]) {
+          return JSON.parse(jsonpMatch[1]);
+        }
+
+        if (cleanText.toLowerCase().includes('<html') || cleanText.toLowerCase().includes('<!doctype')) {
+          throw new Error('Backend returned HTML page. Apps Script Web App deployment/access is not returning JSON.');
+        }
+
+        throw new Error('Backend response is not valid JSON/JSONP.');
+      }
+    }
+
+    /************************************************************
      * JSONP CALL
-     * Apps Script web app often causes CORS issue with fetch.
-     * JSONP avoids browser CORS problem for simple GET API.
+     * Use this fallback only if fetch is blocked by CORS.
+     * Backend must return: callbackName({ success: true, ... })
      ************************************************************/
     function callBackendJsonp(params) {
       return new Promise(function (resolve, reject) {
         const callbackName = 'marksheetCallback_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
         const script = document.createElement('script');
         const timeoutMs = 120000;
+        let finished = false;
 
         params.callback = callbackName;
+        params.cacheBust = Date.now();
 
         const queryString = new URLSearchParams(params).toString();
         script.src = APPS_SCRIPT_WEB_APP_URL + '?' + queryString;
+        script.async = true;
 
         const timeout = setTimeout(function () {
           cleanup();
-          reject(new Error('Request timeout. PDF generation took too long. Try again.'));
+          reject(new Error('Request timeout. Backend connected but callback/JSON response পাওয়া যায়নি.'));
         }, timeoutMs);
 
         window[callbackName] = function (data) {
+          finished = true;
           cleanup();
           resolve(data);
         };
 
         script.onerror = function () {
           cleanup();
-          reject(new Error('Could not connect to backend. Check Apps Script Web App URL and deployment access.'));
+          reject(new Error('JSONP script load failed. Backend may be returning plain JSON, HTML, or deployment is not public.'));
+        };
+
+        script.onload = function () {
+          setTimeout(function () {
+            if (!finished && window[callbackName]) {
+              cleanup();
+              reject(new Error('Script loaded but JSONP callback was not called. Backend must support callback parameter or use JSON fetch response.'));
+            }
+          }, 0);
         };
 
         function cleanup() {
@@ -372,8 +641,8 @@
         <strong>PDF File:</strong> ${escapeHtml(data.pdfFileName)}
       `;
 
-      viewPdfLink.href = data.pdfViewUrl;
-      downloadPdfLink.href = data.pdfDownloadUrl;
+      viewPdfLink.href = data.pdfViewUrl || '#';
+      downloadPdfLink.href = data.pdfDownloadUrl || data.pdfViewUrl || '#';
 
       successBox.style.display = 'block';
       errorBox.style.display = 'none';
@@ -388,7 +657,7 @@
         .replace(/'/g, '&#039;');
     }
   </script>
-  </main>
+</main>
 
   <!-- JS files -->
   <script src="assets/js/wsc-config.js"></script>

@@ -16,32 +16,31 @@
   <!-- Keep this blank. Add custom page content here later if needed. -->
   <main data-wsc-page-content>
     <style>
-
+/* Uses your global :root variables. JS/functions are unchanged. */
 .fee-body {
-    --fee-primary: #2563eb;
-    --fee-primary-dark: #1d4ed8;
-    --fee-success: #16a34a;
-    --fee-danger: #ef4444;
-    --fee-warning: #f59e0b;
-    --fee-gray-bg: #f3f6fb;
-    --fee-card-white: white;
-    --fee-text-dark: #111827;
-    --fee-text-light: #6b7280;
-    --fee-border: #e5e7eb;
-    --fee-border-focus: #d1d5db;
-    --fee-shadow: 0 10px 30px rgba(0,0,0,.04);
-    --fee-font-family: 'Noto Serif Display', 'Noto Serif Bengali', serif;
-    --fee-radius-lg: 28px;
-    --fee-radius-md: 24px;
-    --fee-radius-sm: 18px;
-    --fee-radius-pill: 999px;
-}
+    --fee-primary: var(--wsc-primary, #2563eb);
+    --fee-primary-dark: var(--wsc-primary-dark, #1d4ed8);
+    --fee-success: var(--wsc-success, #16a34a);
+    --fee-danger: var(--wsc-danger, #dc2626);
+    --fee-warning: var(--warning, #b45309);
+    --fee-gray-bg: var(--wsc-bg, #f6f9ff);
+    --fee-card-white: var(--wsc-surface, #ffffff);
+    --fee-card-soft: var(--wsc-surface-soft, #f1f5ff);
+    --fee-text-dark: var(--wsc-text, #111827);
+    --fee-text-light: var(--wsc-muted, #6b7280);
+    --fee-border: var(--wsc-border, #dbe4f0);
+    --fee-shadow: var(--wsc-shadow, 0 14px 40px rgba(15, 23, 42, 0.08));
+    --fee-font-family: var(--wsc-font-bn, "Noto Sans Bengali", system-ui, sans-serif);
+    --fee-radius-lg: var(--earn-radius-xl, 32px);
+    --fee-radius-md: var(--earn-radius-lg, 24px);
+    --fee-radius-sm: var(--earn-radius-md, 18px);
+    --fee-radius-pill: var(--wsc-radius-pill, 999px);
 
-.fee-body {
     background: var(--fee-gray-bg);
     padding: 24px;
     color: var(--fee-text-dark);
     font-family: var(--fee-font-family);
+    font-size: var(--wsc-text-base, 16px);
 }
 
 .fee-container {
@@ -56,23 +55,26 @@
     margin-bottom: 24px;
     border: 1px solid var(--fee-border);
     box-shadow: var(--fee-shadow);
+    color: var(--fee-text-dark);
 }
 
 .fee-h1 {
-    font-size: 38px;
+    font-size: clamp(var(--wsc-text-xl, 28px), 3vw, 38px);
     font-weight: 800;
     margin-bottom: 10px;
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
+    color: var(--fee-text-dark);
 }
 
 .fee-h2 {
-    font-size: 24px;
+    font-size: var(--wsc-text-lg, 22px);
     font-weight: 700;
     margin-bottom: 20px;
+    color: var(--fee-text-dark);
 }
 
 .fee-subtitle {
-    font-size: 15px;
+    font-size: var(--wsc-text-sm, 14px);
     color: var(--fee-text-light);
 }
 
@@ -89,33 +91,152 @@
 }
 
 .fee-label {
-    font-size: 14px;
+    font-size: var(--wsc-text-sm, 14px);
     font-weight: 600;
-    color: #374151;
+    color: var(--fee-text-dark);
 }
 
 .fee-input,
 .fee-select {
     width: 100%;
+    box-sizing: border-box;
     padding: 15px 18px;
-    border-radius: 16px;
-    border: 1px solid var(--fee-border-focus);
-    background: white;
-    font-size: 15px;
+    border-radius: 50px;
+    border: 1px solid var(--fee-border);
+    background: var(--fee-card-white);
+    color: var(--fee-text-dark);
+    font-size: var(--wsc-text-base, 16px);
     outline: none;
-    transition: .2s;
+    transition: border-color var(--wsc-transition, 180ms ease), box-shadow var(--wsc-transition, 180ms ease), background var(--wsc-transition, 180ms ease);
     font-family: var(--fee-font-family);
+    caret-color: var(--fee-primary);
+}
+
+.fee-input::placeholder {
+    color: var(--fee-text-light);
+    opacity: 0.85;
 }
 
 .fee-input:focus,
 .fee-select:focus {
     border-color: var(--fee-primary);
-    box-shadow: 0 0 0 5px rgba(37,99,235,.08);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--fee-primary) 14%, transparent);
 }
 
+/* Important: auto-filled readonly values stay visible in light/dark mode */
 .fee-input[readonly] {
-    background: #f9fafb;
+    background: var(--fee-card-soft);
+    color: var(--fee-text-dark) !important;
+    -webkit-text-fill-color: var(--fee-text-dark) !important;
     cursor: default;
+    opacity: 1;
+}
+
+/* Browser autofill protection */
+.fee-input:-webkit-autofill,
+.fee-input:-webkit-autofill:hover,
+.fee-input:-webkit-autofill:focus,
+.fee-select:-webkit-autofill,
+.fee-select:-webkit-autofill:hover,
+.fee-select:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--fee-text-dark) !important;
+    caret-color: var(--fee-primary);
+    box-shadow: 0 0 0 1000px var(--fee-card-white) inset !important;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Custom dropdown: browser default select design removed */
+.fee-custom-select {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+}
+
+.fee-custom-select-trigger {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px 18px;
+    border-radius: 50px;
+    border: 1px solid var(--fee-border);
+    background: var(--fee-card-white);
+    color: var(--fee-text-dark);
+    font-size: var(--wsc-text-base, 16px);
+    font-family: var(--fee-font-family);
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: border-color var(--wsc-transition, 180ms ease), box-shadow var(--wsc-transition, 180ms ease), background var(--wsc-transition, 180ms ease);
+}
+
+.fee-custom-select-trigger:hover,
+.fee-custom-select.open .fee-custom-select-trigger {
+    border-color: var(--fee-primary);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--fee-primary) 12%, transparent);
+}
+
+.fee-custom-arrow {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--fee-radius-pill);
+    background: var(--fee-card-soft);
+    color: var(--fee-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: transform var(--wsc-transition, 180ms ease);
+}
+
+.fee-custom-select.open .fee-custom-arrow {
+    transform: rotate(180deg);
+}
+
+.fee-custom-select-list {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: var(--fee-card-white);
+    border: 1px solid var(--fee-border);
+    border-radius: var(--wsc-radius-md, 14px);
+    box-shadow: var(--fee-shadow);
+    padding: 8px;
+    display: none;
+}
+
+.fee-custom-select.open .fee-custom-select-list {
+    display: block;
+}
+
+.fee-custom-option {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    color: var(--fee-text-dark);
+    padding: 12px 14px;
+    border-radius: var(--wsc-radius-sm, 8px);
+    font-size: var(--wsc-text-sm, 14px);
+    font-family: var(--fee-font-family);
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+    transition: background var(--wsc-transition, 180ms ease), color var(--wsc-transition, 180ms ease);
+}
+
+.fee-custom-option:hover,
+.fee-custom-option.active {
+    background: var(--fee-card-soft);
+    color: var(--fee-primary);
+}
+
+.fee-custom-option.active::after {
+    content: "✓";
+    float: right;
+    color: var(--fee-success);
 }
 
 .fee-button {
@@ -123,20 +244,23 @@
     border: none;
     border-radius: var(--fee-radius-pill);
     background: var(--fee-primary);
-    color: white;
-    font-size: 15px;
+    color: #ffffff;
+    font-size: var(--wsc-text-sm, 14px);
     font-weight: 700;
     cursor: pointer;
-    transition: .2s;
+    transition: background var(--wsc-transition, 180ms ease), transform var(--wsc-transition, 180ms ease);
+    font-family: var(--fee-font-family);
 }
 
 .fee-button:hover {
     background: var(--fee-primary-dark);
+    transform: translateY(-1px);
 }
 
 .fee-button:disabled {
-    background: #9ca3af;
+    background: var(--fee-text-light);
     cursor: not-allowed;
+    transform: none;
 }
 
 .fee-months {
@@ -150,18 +274,21 @@
 }
 
 .fee-month-pill input {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .fee-month-pill label {
     padding: 12px 18px;
     border-radius: var(--fee-radius-pill);
-    background: white;
-    border: 1px solid var(--fee-border-focus);
+    background: var(--fee-card-white);
+    color: var(--fee-text-dark);
+    border: 1px solid var(--fee-border);
     cursor: pointer;
-    font-size: 14px;
+    font-size: var(--wsc-text-sm, 14px);
     font-weight: 600;
-    transition: .2s;
+    transition: all var(--wsc-transition, 180ms ease);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -170,7 +297,7 @@
 
 .fee-month-pill input:checked + label {
     background: var(--fee-primary);
-    color: white;
+    color: #ffffff;
     border-color: var(--fee-primary);
 }
 
@@ -178,29 +305,31 @@
     margin-top: 20px;
     padding: 24px;
     border-radius: var(--fee-radius-md);
-    background: #f9fafb;
+    background: var(--fee-card-soft);
     border: 1px solid var(--fee-border);
+    color: var(--fee-text-dark);
 }
 
 .fee-month-card h3 {
-    font-size: 20px;
+    font-size: var(--wsc-text-md, 18px);
     margin-bottom: 20px;
+    color: var(--fee-text-dark);
 }
 
 .fee-amount-preview {
     margin-top: 8px;
-    font-size: 13px;
+    font-size: var(--wsc-text-xs, 12px);
     font-weight: 700;
     color: var(--fee-primary);
 }
 
 .fee-success {
-    background: #dcfce7;
-    color: #166534;
+    background: var(--success-bg, #ecfdf3);
+    color: var(--success, #166534);
     padding: 18px;
     border-radius: var(--fee-radius-sm);
     margin-top: 20px;
-    font-size: 15px;
+    font-size: var(--wsc-text-sm, 14px);
     font-weight: 700;
     display: none;
 }
@@ -224,28 +353,31 @@
 
 .fee-summary-box {
     padding: 24px;
-    border-radius: 22px;
-    background: #f9fafb;
+    border-radius: var(--fee-radius-md);
+    background: var(--fee-card-soft);
     border: 1px solid var(--fee-border);
+    color: var(--fee-text-dark);
 }
 
 .fee-summary-box h3 {
-    font-size: 14px;
+    font-size: var(--wsc-text-sm, 14px);
     color: var(--fee-text-light);
     margin-bottom: 10px;
 }
 
 .fee-summary-box p {
-    font-size: 30px;
+    font-size: var(--wsc-text-xl, 28px);
     font-weight: 800;
+    color: var(--fee-text-dark);
 }
 
 .fee-receipt-box {
     margin-top: 24px;
     padding: 24px;
     border-radius: var(--fee-radius-md);
-    background: white;
+    background: var(--fee-card-white);
     border: 1px solid var(--fee-border);
+    color: var(--fee-text-dark);
 }
 
 .fee-receipt-header {
@@ -260,27 +392,30 @@
 .fee-badge {
     padding: 10px 18px;
     border-radius: var(--fee-radius-pill);
-    background: #eff6ff;
+    background: var(--fee-card-soft);
     color: var(--fee-primary);
-    font-size: 13px;
+    font-size: var(--wsc-text-xs, 12px);
     font-weight: 700;
 }
 
 .fee-table-wrapper {
     overflow: auto;
     border-radius: var(--fee-radius-sm);
+    border: 1px solid var(--fee-border);
 }
 
 .fee-table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    background: var(--fee-card-white);
+    color: var(--fee-text-dark);
 }
 
 .fee-table th {
-    background: #f3f4f6;
+    background: var(--fee-card-soft);
+    color: var(--fee-text-dark);
     padding: 15px;
-    font-size: 14px;
+    font-size: var(--wsc-text-sm, 14px);
     text-align: center;
     white-space: nowrap;
 }
@@ -288,13 +423,13 @@
 .fee-table td {
     padding: 15px;
     text-align: center;
-    font-size: 14px;
+    font-size: var(--wsc-text-sm, 14px);
     border-top: 1px solid var(--fee-border);
     white-space: nowrap;
 }
 
 .fee-total-row {
-    background: #f9fafb;
+    background: var(--fee-card-soft);
     font-weight: 800;
 }
 
@@ -302,20 +437,21 @@
     padding: 10px 18px;
     border-radius: var(--fee-radius-pill);
     background: var(--fee-success);
-    color: white;
+    color: #ffffff;
     text-decoration: none;
-    font-size: 13px;
+    font-size: var(--wsc-text-xs, 12px);
     font-weight: 700;
     display: inline-block;
-    transition: .2s;
+    transition: background var(--wsc-transition, 180ms ease), transform var(--wsc-transition, 180ms ease);
 }
 
 .fee-print-btn:hover {
-    background: #15803d;
+    background: var(--fee-success);
+    transform: translateY(-1px);
 }
 
 .fee-disabled-area {
-    opacity: .5;
+    opacity: .55;
     pointer-events: none;
 }
 
@@ -327,7 +463,7 @@
         padding: 20px;
     }
     .fee-h1 {
-        font-size: 28px;
+        font-size: var(--wsc-text-xl, 28px);
     }
     .fee-search-area {
         flex-direction: column;
@@ -349,7 +485,7 @@
         <div class="fee-grid">
             <div class="fee-input-group">
                 <label class="fee-label">স্টুডেন্ট আইডি (Student ID)</label>
-                <input type="text" id="fee_student_id" class="fee-input" placeholder="Student ID লিখুন" onkeyup="feeFetchStudent()">
+                <input type="text" id="fee_student_id" class="fee-input" placeholder="Student ID লিখুন" oninput="clearTimeout(window.feeStudentTimer); window.feeStudentTimer = setTimeout(feeFetchStudent, 350)">
             </div>
             <div class="fee-input-group">
                 <label class="fee-label">নাম (Name)</label>
@@ -378,13 +514,20 @@
     <!-- Payment Section Card -->
     <div class="fee-card fee-disabled-area" id="fee_paymentSection">
         <h2 class="fee-h2">💳 পেমেন্ট মাধ্যম</h2>
-        <select id="fee_payment_method" class="fee-select">
-            <option>Cash</option>
-            <option>Bkash</option>
-            <option>Nagad</option>
-            <option>Rocket</option>
-            <option>Bank</option>
-        </select>
+        <input type="hidden" id="fee_payment_method" value="Cash">
+        <div class="fee-custom-select" id="fee_payment_method_dropdown">
+            <button type="button" class="fee-custom-select-trigger" onclick="feeToggleCustomDropdown('fee_payment_method_dropdown')">
+                <span id="fee_payment_method_text">Cash</span>
+                <span class="fee-custom-arrow">⌄</span>
+            </button>
+            <div class="fee-custom-select-list">
+                <button type="button" class="fee-custom-option active" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Cash', this)">Cash</button>
+                <button type="button" class="fee-custom-option" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Bkash', this)">Bkash</button>
+                <button type="button" class="fee-custom-option" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Nagad', this)">Nagad</button>
+                <button type="button" class="fee-custom-option" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Rocket', this)">Rocket</button>
+                <button type="button" class="fee-custom-option" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Bank', this)">Bank</button>
+            </div>
+        </div>
         <br><br>
         <button class="fee-button" onclick="feeSubmitFees()" id="fee_submitBtn" disabled>Receipt Generate করুন</button>
         <div class="fee-success" id="fee_successBox"></div>
@@ -447,6 +590,29 @@
         document.getElementById("fee_paymentSection").classList.add("fee-disabled-area");
         document.getElementById("fee_submitBtn").disabled = true;
     }
+
+    function feeToggleCustomDropdown(dropdownId) {
+        const dropdown = document.getElementById(dropdownId);
+        document.querySelectorAll('.fee-custom-select').forEach(item => {
+            if (item.id !== dropdownId) item.classList.remove('open');
+        });
+        dropdown.classList.toggle('open');
+    }
+
+    function feeSelectCustomOption(dropdownId, inputId, textId, value, optionElement) {
+        document.getElementById(inputId).value = value;
+        document.getElementById(textId).innerText = value;
+        const dropdown = document.getElementById(dropdownId);
+        dropdown.querySelectorAll('.fee-custom-option').forEach(option => option.classList.remove('active'));
+        optionElement.classList.add('active');
+        dropdown.classList.remove('open');
+    }
+
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.fee-custom-select')) {
+            document.querySelectorAll('.fee-custom-select').forEach(item => item.classList.remove('open'));
+        }
+    });
 
     // Generate dynamic month input cards
     function feeGenerateMonthInputs() {
@@ -543,7 +709,10 @@
             document.getElementById("fee_student_id").value = "";
             feeDisableSystem();
             document.getElementById("fee_monthInputs").innerHTML = "";
-            document.getElementById("fee_payment_method").selectedIndex = 0;
+            document.getElementById("fee_payment_method").value = "Cash";
+            document.getElementById("fee_payment_method_text").innerText = "Cash";
+            document.querySelectorAll('#fee_payment_method_dropdown .fee-custom-option').forEach(option => option.classList.remove('active'));
+            document.querySelector('#fee_payment_method_dropdown .fee-custom-option').classList.add('active');
             document.querySelectorAll('.fee-month-pill input').forEach(el => el.checked = false);
         } catch (err) {
             alert("সাবমিট ব্যর্থ, আবার চেষ্টা করুন");
@@ -646,6 +815,7 @@
     // Initial system state
     feeDisableSystem();
 </script>
+
   </main>
 
   <!-- JS files -->
