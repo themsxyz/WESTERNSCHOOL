@@ -46,9 +46,8 @@
 
   .Stu-pill-search-container {
     width: 70%;
-    background: var(--wsc-surface);
+    background: transparent;
     border-radius: var(--wsc-radius-pill);
-    border: 1px solid var(--wsc-border);
     box-shadow: var(--shadow);
     transition: var(--wsc-transition);
   }
@@ -241,9 +240,8 @@
 
   .Stu-results-glass-card,
   .Stu-glass-card,
-  .Stu-student-full-card,
-  .Stu-class-stat-card {
-    background: var(--wsc-surface);
+  .Stu-student-full-card {
+    background: transparent;
     border: 1px solid var(--wsc-border);
     box-shadow: var(--shadow);
   }
@@ -393,7 +391,7 @@
   }
 
   .Stu-class-stat-card {
-    border-radius: var(--wsc-radius-md);
+    border-radius: 20px;
     padding: 22px 16px;
     transition: var(--wsc-transition);
   }
@@ -812,10 +810,7 @@
   <div class="Stu-search-wrapper">
     <div class="Stu-pill-search-container">
       <div class="Stu-pill-search-inner">
-        <svg class="Stu-search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <circle cx="10.5" cy="10.5" r="7.5"></circle>
-          <line x1="16" y1="16" x2="22" y2="22"></line>
-        </svg>
+       
         <div class="Stu-pill-search-input">
           <input type="text" id="StuGlobalSearchInput" placeholder="Search by ID, Name, or Roll ... | খুঁজুন আইডি, নাম বা রোল দ্বারা" autocomplete="off">
         </div>

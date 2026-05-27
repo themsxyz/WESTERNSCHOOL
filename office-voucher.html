@@ -24,7 +24,7 @@
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
-  background: var(--wsc-surface);
+  background: transparent;
   border-radius: var(--earn-radius-xl);
   box-shadow: var(--earn-shadow-soft);
   overflow: hidden;
@@ -33,7 +33,7 @@
 
 /* header area redesign */
 .voucherHeader {
-  background: linear-gradient(135deg, var(--earn-navy-dark) 0%, var(--earn-navy) 100%);
+  background: transparent;
   padding: 1.25rem 2rem;
   border-bottom: 1px solid var(--earn-border);
 }
@@ -43,9 +43,10 @@
   font-size: 1.85rem;
   font-weight: 600;
   letter-spacing: -0.3px;
-  color: var(--wsc-surface);
+  color: var(--wsc-text);
   display: flex;
   align-items: center;
+   justify-content: center;
   gap: 12px;
 }
 
@@ -110,7 +111,7 @@
 /* items section styling */
 .voucherItemsSection {
   margin-top: 1rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.2rem;,
 }
 
 .voucherSectionTitle {
@@ -136,11 +137,11 @@
   gap: 1rem;
   margin-bottom: 1rem;
   align-items: center;
-  background: var(--wsc-surface);
+  
   border-radius: var(--earn-radius-md);
   padding: 0.4rem;
   transition: all var(--wsc-transition);
-  border: 1px solid var(--earn-border);
+  
 }
 
 .voucherItem:hover {
