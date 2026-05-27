@@ -262,8 +262,7 @@ html[data-theme="dark"] .wsc-sidebar {
   height: 42px;
   object-fit: contain;
   border-radius: 14px;
-  background: #ffffff;
-  border: 1px solid var(--wsc-border);
+  background: transparent;
   padding: 4px;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
   flex: 0 0 auto;
@@ -435,7 +434,7 @@ html.wsc-mobile-sidebar-open .wsc-apple-menu__line--bottom {
   gap: 10px;
 
   padding: 11px 12px;
-  border-radius: 16px;
+  border-radius: 50px;
   text-align: left;
 
   transition: background var(--wsc-transition), color var(--wsc-transition), border-color var(--wsc-transition);
