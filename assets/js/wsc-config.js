@@ -9,7 +9,7 @@ window.WSC_CONFIG = {
   logoUrl: "https://res.cloudinary.com/do1dejkkk/image/upload/v1778605133/western_logo_hg9fji_1_vojrqz_1_zjiw5m.png",
   helpline: "+8801820716529",
   driveFolderUrl: "https://drive.google.com/drive/folders/1nSfSwnd5YOZc7ofmrtMt2swhYbdDNykE?usp=sharing",
-  appsScriptWebAppUrl: "PASTE_APPS_SCRIPT_WEB_APP_URL_HERE",
+  appsScriptWebAppUrl: "https://script.google.com/macros/s/AKfycbwRN0Vt7O8tBD1lblgSrMzARk5vWQDvX7uXLBWnFnnMG-RoS-bHeVLp-9zpn5d8uBZ9xA/exec",
 
   storageKeys: {
     theme: "wsc_theme",

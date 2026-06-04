@@ -152,7 +152,17 @@ html {
   min-height: 100%;
   scroll-behavior: smooth;
 }
+body.wsc-login-required {
+  overflow: hidden;
+}
 
+body.wsc-login-required [data-wsc-login-popup] {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 99999;
+}
 body {
   margin: 0;
   min-height: 100vh;
