@@ -30,8 +30,8 @@
 <body>
   <!-- Keep this blank. Add custom page content here later if needed. -->
   <main data-wsc-page-content>
-    <style>
-/* Uses your global :root variables. JS/functions are unchanged. */
+   <style>
+/* Uses your global :root variables. */
 .fee-body {
     --fee-primary: var(--wsc-primary, #2563eb);
     --fee-primary-dark: var(--wsc-primary-dark, #1d4ed8);
@@ -87,9 +87,16 @@
     color: var(--fee-text-dark);
 }
 
-.fee-subtitle {
+.fee-subtitle,
+.fee-helper {
     font-size: var(--wsc-text-sm, 14px);
     color: var(--fee-text-light);
+    line-height: 1.6;
+}
+
+.fee-helper {
+    margin-top: 8px;
+    padding-left: 6px;
 }
 
 .fee-grid {
@@ -278,6 +285,32 @@
     transform: none;
 }
 
+.fee-button-success {
+    background: var(--fee-success);
+}
+
+.fee-button-danger {
+    background: var(--fee-danger);
+}
+
+.fee-button-soft {
+    background: var(--fee-card-soft);
+    color: var(--fee-text-dark);
+    border: 1px solid var(--fee-border);
+}
+
+.fee-button-soft:hover {
+    background: var(--fee-card-white);
+    color: var(--fee-primary);
+}
+
+.fee-action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
 .fee-months {
     display: flex;
     flex-wrap: wrap;
@@ -347,6 +380,15 @@
     font-size: var(--wsc-text-sm, 14px);
     font-weight: 700;
     display: none;
+    line-height: 1.7;
+}
+
+.fee-extra-box {
+    margin-top: 18px;
+    padding: 20px;
+    border-radius: var(--fee-radius-md);
+    background: var(--fee-card-soft);
+    border: 1px solid var(--fee-border);
 }
 
 .fee-search-area {
@@ -404,6 +446,10 @@
     gap: 12px;
 }
 
+.fee-receipt-title-area h2 {
+    margin: 0 0 8px 0;
+}
+
 .fee-badge {
     padding: 10px 18px;
     border-radius: var(--fee-radius-pill);
@@ -448,7 +494,8 @@
     font-weight: 800;
 }
 
-.fee-print-btn {
+.fee-print-btn,
+.fee-mini-btn {
     padding: 10px 18px;
     border-radius: var(--fee-radius-pill);
     background: var(--fee-success);
@@ -457,12 +504,25 @@
     font-size: var(--wsc-text-xs, 12px);
     font-weight: 700;
     display: inline-block;
+    border: 0;
+    cursor: pointer;
+    font-family: var(--fee-font-family);
     transition: background var(--wsc-transition, 180ms ease), transform var(--wsc-transition, 180ms ease);
 }
 
-.fee-print-btn:hover {
-    background: var(--fee-success);
+.fee-mini-btn {
+    background: var(--fee-primary);
+}
+
+.fee-print-btn:hover,
+.fee-mini-btn:hover {
     transform: translateY(-1px);
+}
+
+.fee-print-btn.fee-disabled-link {
+    background: var(--fee-text-light);
+    pointer-events: none;
+    cursor: not-allowed;
 }
 
 .fee-disabled-area {
@@ -480,8 +540,10 @@
     .fee-h1 {
         font-size: var(--wsc-text-xl, 28px);
     }
-    .fee-search-area {
+    .fee-search-area,
+    .fee-action-row {
         flex-direction: column;
+        align-items: stretch;
     }
 }
 </style>
@@ -491,6 +553,7 @@
     <!-- Header Card -->
     <div class="fee-card">
         <h1 class="fee-h1">ফি ম্যানেজমেন্ট</h1>
+        <p class="fee-subtitle" style="text-align:center;">Student ID box-এ আগে থেকেই 100 থাকবে। বাকি 3 digit লিখলেই student search হবে।</p>
     </div>
 
     <!-- Student Information Card -->
@@ -499,7 +562,8 @@
         <div class="fee-grid">
             <div class="fee-input-group">
                 <label class="fee-label">স্টুডেন্ট আইডি (Student ID)</label>
-                <input type="text" id="fee_student_id" class="fee-input" placeholder="Student ID লিখুন" oninput="clearTimeout(window.feeStudentTimer); window.feeStudentTimer = setTimeout(feeFetchStudent, 350)">
+                <input type="text" id="fee_student_id" class="fee-input" value="100" maxlength="6" placeholder="100 + 3 digit" onfocus="feeMoveCursorToEnd(this)" oninput="feeHandleStudentInput()">
+                <div class="fee-helper">Example: 100123 — 6 digit পূর্ণ হলে data auto আসবে।</div>
             </div>
             <div class="fee-input-group">
                 <label class="fee-label">নাম (Name)</label>
@@ -520,30 +584,62 @@
     <div class="fee-card fee-disabled-area" id="fee_feeSection">
         <h2 class="fee-h2">📅 মাস নির্বাচন করুন</h2>
         <div class="fee-months" id="fee_monthsContainer"></div>
-        <br>
-        <button class="fee-button" onclick="feeGenerateMonthInputs()">ফি ইনপুট তৈরি করুন</button>
+        <div class="fee-helper">Student পাওয়া গেলে current month auto select হয়ে input form খুলে যাবে। মাস change করলে input form auto refresh হবে।</div>
         <div id="fee_monthInputs"></div>
     </div>
 
     <!-- Payment Section Card -->
     <div class="fee-card fee-disabled-area" id="fee_paymentSection">
-        <h2 class="fee-h2">💳 পেমেন্ট মাধ্যম</h2>
-        <input type="hidden" id="fee_payment_method" value="Cash">
-        <div class="fee-custom-select" id="fee_payment_method_dropdown">
-            <button type="button" class="fee-custom-select-trigger" onclick="feeToggleCustomDropdown('fee_payment_method_dropdown')">
-                <span id="fee_payment_method_text">Cash</span>
-                <span class="fee-custom-arrow">⌄</span>
-            </button>
-            <div class="fee-custom-select-list">
-                <button type="button" class="fee-custom-option active" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Cash', this)">Cash</button>
-                <button type="button" class="fee-custom-option" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Bkash', this)">Bkash</button>
-                <button type="button" class="fee-custom-option" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Nagad', this)">Nagad</button>
-                <button type="button" class="fee-custom-option" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Rocket', this)">Rocket</button>
-                <button type="button" class="fee-custom-option" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Bank', this)">Bank</button>
+        <h2 class="fee-h2">💳 পেমেন্ট ও রিসিপ্ট সেটিংস</h2>
+
+        <div class="fee-grid">
+            <div class="fee-input-group">
+                <label class="fee-label">Receipt No</label>
+                <input type="text" id="fee_custom_receipt_id" class="fee-input" placeholder="ফাঁকা রাখলে auto receipt no হবে">
+                <div class="fee-helper">Custom receipt no দিলে সেটাই ব্যবহার হবে। না দিলে auto generate হবে।</div>
+            </div>
+
+            <div class="fee-input-group">
+                <label class="fee-label">Custom Date & Time</label>
+                <button type="button" class="fee-button fee-button-soft" onclick="feeToggleCustomDateTime()">Custom Date/Time ব্যবহার করুন</button>
+                <input type="hidden" id="fee_use_custom_datetime" value="false">
+                <div class="fee-extra-box" id="fee_custom_datetime_box" style="display:none;">
+                    <input type="text" id="fee_custom_datetime" class="fee-input" placeholder="03 June 2026 10:30:00 AM">
+                    <div class="fee-helper">Calendar/clock নেই। Text হিসেবে date and time লিখুন। খালি রাখলে current date/time যাবে।</div>
+                </div>
+            </div>
+
+            <div class="fee-input-group">
+                <label class="fee-label">পেমেন্ট মাধ্যম</label>
+                <input type="hidden" id="fee_payment_method" value="Bank">
+                <div class="fee-custom-select" id="fee_payment_method_dropdown">
+                    <button type="button" class="fee-custom-select-trigger" onclick="feeToggleCustomDropdown('fee_payment_method_dropdown')">
+                        <span id="fee_payment_method_text">Bank</span>
+                        <span class="fee-custom-arrow">⌄</span>
+                    </button>
+                    <div class="fee-custom-select-list">
+                        <button type="button" class="fee-custom-option" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Cash', this)">Cash</button>
+                        <button type="button" class="fee-custom-option" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Bkash', this)">Bkash</button>
+                        <button type="button" class="fee-custom-option" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Nagad', this)">Nagad</button>
+                        <button type="button" class="fee-custom-option" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Rocket', this)">Rocket</button>
+                        <button type="button" class="fee-custom-option active" onclick="feeSelectCustomOption('fee_payment_method_dropdown', 'fee_payment_method', 'fee_payment_method_text', 'Bank', this)">Bank</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <br><br>
-        <button class="fee-button" onclick="feeSubmitFees()" id="fee_submitBtn" disabled>Receipt Generate করুন</button>
+
+        <br>
+
+        <div class="fee-action-row">
+            <button class="fee-button" onclick="feeSubmitFees('receipt_only')" id="fee_receiptOnlyBtn" disabled>Receipt Generate</button>
+            <button class="fee-button fee-button-soft" onclick="feeSubmitFees('submit_only')" id="fee_submitOnlyBtn" disabled>Submit</button>
+            <button class="fee-button fee-button-success" onclick="feeSubmitFees('submit_receipt')" id="fee_submitReceiptBtn" disabled>Submit + Receipt</button>
+        </div>
+
+        <div class="fee-helper">
+            Receipt Generate = শুধু receipt/PDF হবে, sheet-এ submit হবে না। Submit = শুধু sheet-এ save হবে, receipt হবে না। Submit + Receipt = save হবে এবং receipt print/open হবে।
+        </div>
+
         <div class="fee-success" id="fee_successBox"></div>
     </div>
 
@@ -551,58 +647,133 @@
     <div class="fee-card">
         <h2 class="fee-h2">🔍 ফি অনুসন্ধান</h2>
         <div class="fee-search-area">
-            <input type="text" id="fee_searchInput" class="fee-input" placeholder="Student ID / Receipt ID দিয়ে সার্চ করুন">
+            <input type="text" id="fee_searchInput" class="fee-input" value="100" placeholder="Student ID / Receipt ID দিয়ে সার্চ করুন" onfocus="feeMoveCursorToEnd(this)" oninput="feeHandleFeeSearchInput()">
             <button class="fee-button" onclick="feeSearchData()">সার্চ করুন</button>
         </div>
+        <div class="fee-helper">Student ID search করতে 100 এর পরে 3 digit লিখুন। Receipt ID হলে পুরো Receipt ID লিখে Search করুন।</div>
         <div id="fee_summary"></div>
         <div id="fee_result"></div>
     </div>
 </div>
 
 <script>
-    const FEE_API_URL = "https://script.google.com/macros/s/AKfycbxdqDiH48chrBATX0lD-F5di8jT08mXFURTI1DCh_iTB4edEaFP4f4mdj9Xipopx1gB/exec";
+    const FEE_API_URL = "https://script.google.com/macros/s/AKfycbyxYdQHWv84YgaRwMS-FMxuiXQQgeqCGgCoTg97V0znNnB7mzjw_M0WCaki3o89BpOE/exec";
     const feeMonthsList = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const FEE_ID_PREFIX = "100";
+    const FEE_MIN_STUDENT_ID_LENGTH = 6;
+    const feeActionButtonIds = ["fee_receiptOnlyBtn", "fee_submitOnlyBtn", "fee_submitReceiptBtn"];
 
     // Initialize month pills
     document.getElementById("fee_monthsContainer").innerHTML = feeMonthsList.map(month => `
         <div class="fee-month-pill">
-            <input type="checkbox" value="${month}" id="fee_${month}">
+            <input type="checkbox" value="${month}" id="fee_${month}" onchange="feeGenerateMonthInputs()">
             <label for="fee_${month}">${month}</label>
         </div>
     `).join("");
 
+    function feeMoveCursorToEnd(input) {
+        setTimeout(() => {
+            input.selectionStart = input.selectionEnd = input.value.length;
+        }, 0);
+    }
+
+    function feeHandleStudentInput() {
+        const input = document.getElementById("fee_student_id");
+        let digits = input.value.replace(/\D/g, "");
+
+        if (!digits.startsWith(FEE_ID_PREFIX)) {
+            digits = FEE_ID_PREFIX + digits.replace(/^100/, "").slice(0, 3);
+        }
+
+        input.value = digits.slice(0, FEE_MIN_STUDENT_ID_LENGTH);
+
+        clearTimeout(window.feeStudentTimer);
+
+        if (input.value.length < FEE_MIN_STUDENT_ID_LENGTH) {
+            feeDisableSystem(false);
+            return;
+        }
+
+        window.feeStudentTimer = setTimeout(feeFetchStudent, 350);
+    }
+
+    function feeHandleFeeSearchInput() {
+        const searchValue = document.getElementById("fee_searchInput").value.trim();
+
+        clearTimeout(window.feeSearchTimer);
+
+        if (searchValue.length < FEE_MIN_STUDENT_ID_LENGTH) {
+            return;
+        }
+
+        window.feeSearchTimer = setTimeout(feeSearchData, 450);
+    }
+
     // Fetch student data by ID
     async function feeFetchStudent() {
         const studentId = document.getElementById("fee_student_id").value.trim();
-        if (studentId.length < 1) {
-            feeDisableSystem();
+
+        if (studentId.length < FEE_MIN_STUDENT_ID_LENGTH) {
+            feeDisableSystem(false);
             return;
         }
+
         try {
-            const response = await fetch(`${FEE_API_URL}?action=student&student_id=${studentId}`);
+            const response = await fetch(`${FEE_API_URL}?action=student&student_id=${encodeURIComponent(studentId)}`);
             const data = await response.json();
+
             if (data.error) {
-                feeDisableSystem();
+                feeDisableSystem(false);
                 return;
             }
+
             document.getElementById("fee_student_name").value = data.name || "";
             document.getElementById("fee_roll").value = data.roll || "";
             document.getElementById("fee_class").value = data.class || "";
+
             document.getElementById("fee_feeSection").classList.remove("fee-disabled-area");
             document.getElementById("fee_paymentSection").classList.remove("fee-disabled-area");
-            document.getElementById("fee_submitBtn").disabled = false;
+
+            feeSetActionButtons(false);
+            feeAutoOpenFeeInputs();
+
         } catch (err) {
-            feeDisableSystem();
+            feeDisableSystem(false);
         }
     }
 
-    function feeDisableSystem() {
+    function feeAutoOpenFeeInputs() {
+        const checkedMonths = [...document.querySelectorAll('.fee-month-pill input:checked')];
+
+        if (checkedMonths.length === 0) {
+            const currentMonth = feeMonthsList[new Date().getMonth()];
+            const monthInput = document.getElementById(`fee_${currentMonth}`);
+            if (monthInput) monthInput.checked = true;
+        }
+
+        feeGenerateMonthInputs();
+    }
+
+    function feeDisableSystem(resetStudentInput = false) {
+        if (resetStudentInput) {
+            document.getElementById("fee_student_id").value = FEE_ID_PREFIX;
+        }
+
         document.getElementById("fee_student_name").value = "";
         document.getElementById("fee_roll").value = "";
         document.getElementById("fee_class").value = "";
+
         document.getElementById("fee_feeSection").classList.add("fee-disabled-area");
         document.getElementById("fee_paymentSection").classList.add("fee-disabled-area");
-        document.getElementById("fee_submitBtn").disabled = true;
+
+        feeSetActionButtons(true);
+    }
+
+    function feeSetActionButtons(disabled) {
+        feeActionButtonIds.forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) btn.disabled = disabled;
+        });
     }
 
     function feeToggleCustomDropdown(dropdownId) {
@@ -628,10 +799,26 @@
         }
     });
 
+    function feeToggleCustomDateTime() {
+        const box = document.getElementById("fee_custom_datetime_box");
+        const hidden = document.getElementById("fee_use_custom_datetime");
+
+        if (box.style.display === "none" || box.style.display === "") {
+            box.style.display = "block";
+            hidden.value = "true";
+            document.getElementById("fee_custom_datetime").focus();
+        } else {
+            box.style.display = "none";
+            hidden.value = "false";
+            document.getElementById("fee_custom_datetime").value = "";
+        }
+    }
+
     // Generate dynamic month input cards
     function feeGenerateMonthInputs() {
         const checkedMonths = [...document.querySelectorAll('.fee-month-pill input:checked')].map(el => el.value);
         let html = "";
+
         checkedMonths.forEach(month => {
             html += `
                 <div class="fee-month-card">
@@ -649,6 +836,7 @@
                 </div>
             `;
         });
+
         document.getElementById("fee_monthInputs").innerHTML = html;
     }
 
@@ -664,11 +852,13 @@
     function feeFormatAmount(input) {
         let value = input.value.replace(/,/g, '');
         value = value.replace(/\D/g, '');
+
         if (value === "") {
             input.value = "";
             feeUpdatePreview(input.id, "");
             return;
         }
+
         const number = parseInt(value);
         input.value = number.toLocaleString("en-IN");
         feeUpdatePreview(input.id, number.toLocaleString("bn-BD") + " টাকা");
@@ -681,56 +871,119 @@
 
     function feeCleanNumber(value) {
         if (!value) return "";
-        return parseInt(value.toString().replace(/,/g, ''));
+        return parseInt(value.toString().replace(/,/g, '')) || "";
     }
 
-    async function feeSubmitFees() {
+    function feeBuildPayload(actionType) {
         const checkedMonths = [...document.querySelectorAll('.fee-month-pill input:checked')].map(el => el.value);
+
         if (checkedMonths.length === 0) {
             alert("মাস নির্বাচন করুন");
-            return;
+            return null;
         }
+
         const monthlyData = [];
+
         checkedMonths.forEach(month => {
             monthlyData.push({
                 month: month,
-                tuition_fee: feeCleanNumber(document.getElementById(`fee_${month}_tuition`).value),
-                admission_fee: feeCleanNumber(document.getElementById(`fee_${month}_admission`).value),
-                re_admission_fee: feeCleanNumber(document.getElementById(`fee_${month}_readmission`).value),
-                exam_fee: feeCleanNumber(document.getElementById(`fee_${month}_exam`).value),
-                computer_fee: feeCleanNumber(document.getElementById(`fee_${month}_computer`).value),
-                sports_fee: feeCleanNumber(document.getElementById(`fee_${month}_sports`).value),
-                tc_fee: feeCleanNumber(document.getElementById(`fee_${month}_tc`).value),
-                misc_fee: feeCleanNumber(document.getElementById(`fee_${month}_misc`).value)
+                tuition_fee: feeCleanNumber(document.getElementById(`fee_${month}_tuition`)?.value),
+                admission_fee: feeCleanNumber(document.getElementById(`fee_${month}_admission`)?.value),
+                re_admission_fee: feeCleanNumber(document.getElementById(`fee_${month}_readmission`)?.value),
+                exam_fee: feeCleanNumber(document.getElementById(`fee_${month}_exam`)?.value),
+                computer_fee: feeCleanNumber(document.getElementById(`fee_${month}_computer`)?.value),
+                sports_fee: feeCleanNumber(document.getElementById(`fee_${month}_sports`)?.value),
+                tc_fee: feeCleanNumber(document.getElementById(`fee_${month}_tc`)?.value),
+                misc_fee: feeCleanNumber(document.getElementById(`fee_${month}_misc`)?.value)
             });
         });
-        const payload = {
-            student_id: document.getElementById("fee_student_id").value,
+
+        return {
+            action: actionType,
+            student_id: document.getElementById("fee_student_id").value.trim(),
             student_name: document.getElementById("fee_student_name").value,
             roll: document.getElementById("fee_roll").value,
             class: document.getElementById("fee_class").value,
             payment_method: document.getElementById("fee_payment_method").value,
+            custom_receipt_id: document.getElementById("fee_custom_receipt_id").value.trim(),
+            use_custom_datetime: document.getElementById("fee_use_custom_datetime").value === "true",
+            custom_datetime: document.getElementById("fee_custom_datetime").value.trim(),
             monthlyData: monthlyData
         };
+    }
+
+    async function feeSubmitFees(actionType) {
+        const payload = feeBuildPayload(actionType);
+
+        if (!payload) return;
+
+        const successBox = document.getElementById("fee_successBox");
+        successBox.style.display = "none";
+        feeSetActionButtons(true);
+
         try {
-            const response = await fetch(FEE_API_URL, { method: "POST", body: JSON.stringify(payload) });
+            const response = await fetch(FEE_API_URL, {
+                method: "POST",
+                body: JSON.stringify(payload)
+            });
+
             const result = await response.json();
-            const successBox = document.getElementById("fee_successBox");
+
+            if (!result.success) {
+                alert(result.message || "সাবমিট ব্যর্থ, আবার চেষ্টা করুন");
+                feeSetActionButtons(false);
+                return;
+            }
+
+            let titleText = "✅ কাজ সম্পন্ন হয়েছে";
+
+            if (actionType === "receipt_only") {
+                titleText = "✅ Receipt generate হয়েছে, sheet-এ submit হয়নি";
+            } else if (actionType === "submit_only") {
+                titleText = "✅ Data sheet-এ submit হয়েছে, receipt generate হয়নি";
+            } else if (actionType === "submit_receipt") {
+                titleText = "✅ Data submit হয়েছে এবং receipt generate হয়েছে";
+            }
+
             successBox.style.display = "block";
-            successBox.innerHTML = `✅ Receipt সফলভাবে তৈরি হয়েছে<br><br>Receipt No: <b>${result.receipt_id}</b><br><br>মোট টাকা: <b>${Number(result.total).toLocaleString("bn-BD")} ৳</b>`;
-            if (result.pdf_link) window.open(result.pdf_link);
-            // Reset form
-            document.getElementById("fee_student_id").value = "";
-            feeDisableSystem();
-            document.getElementById("fee_monthInputs").innerHTML = "";
-            document.getElementById("fee_payment_method").value = "Cash";
-            document.getElementById("fee_payment_method_text").innerText = "Cash";
-            document.querySelectorAll('#fee_payment_method_dropdown .fee-custom-option').forEach(option => option.classList.remove('active'));
-            document.querySelector('#fee_payment_method_dropdown .fee-custom-option').classList.add('active');
-            document.querySelectorAll('.fee-month-pill input').forEach(el => el.checked = false);
+            successBox.innerHTML = `${titleText}<br><br>Receipt No: <b>${feeEscapeHtml(result.receipt_id)}</b><br>মোট টাকা: <b>${Number(result.total || 0).toLocaleString("bn-BD")} ৳</b>`;
+
+            if (result.pdf_link && actionType !== "submit_only") {
+                window.open(result.pdf_link, "_blank");
+            }
+
+            if (actionType === "submit_only" || actionType === "submit_receipt") {
+                feeResetFormAfterSubmit();
+            } else {
+                feeSetActionButtons(false);
+            }
+
         } catch (err) {
             alert("সাবমিট ব্যর্থ, আবার চেষ্টা করুন");
+            feeSetActionButtons(false);
         }
+    }
+
+    function feeResetFormAfterSubmit() {
+        document.getElementById("fee_student_id").value = FEE_ID_PREFIX;
+        document.getElementById("fee_custom_receipt_id").value = "";
+        document.getElementById("fee_custom_datetime").value = "";
+        document.getElementById("fee_use_custom_datetime").value = "false";
+        document.getElementById("fee_custom_datetime_box").style.display = "none";
+        document.getElementById("fee_monthInputs").innerHTML = "";
+        document.querySelectorAll('.fee-month-pill input').forEach(el => el.checked = false);
+        feeSetPaymentMethodBank();
+        feeDisableSystem(false);
+    }
+
+    function feeSetPaymentMethodBank() {
+        document.getElementById("fee_payment_method").value = "Bank";
+        document.getElementById("fee_payment_method_text").innerText = "Bank";
+
+        document.querySelectorAll('#fee_payment_method_dropdown .fee-custom-option').forEach(option => {
+            option.classList.remove('active');
+            if (option.innerText.trim() === "Bank") option.classList.add('active');
+        });
     }
 
     // Helper formatting functions
@@ -743,7 +996,7 @@
 
     function feeFormatTime(timeString) {
         if (!timeString) return "-";
-        if (timeString.includes("AM") || timeString.includes("PM")) return timeString;
+        if (String(timeString).includes("AM") || String(timeString).includes("PM")) return timeString;
         const date = new Date(timeString);
         if (isNaN(date)) return timeString;
         return date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true });
@@ -751,15 +1004,23 @@
 
     async function feeSearchData() {
         const searchValue = document.getElementById("fee_searchInput").value.trim();
+
+        if (!searchValue || searchValue === FEE_ID_PREFIX) {
+            alert("Student ID এর বাকি 3 digit বা Receipt ID লিখুন");
+            return;
+        }
+
         try {
-            const response = await fetch(`${FEE_API_URL}?action=search&student_id=${searchValue}&receipt_id=${searchValue}`);
+            const response = await fetch(`${FEE_API_URL}?action=search&student_id=${encodeURIComponent(searchValue)}&receipt_id=${encodeURIComponent(searchValue)}`);
             const data = await response.json();
             const records = data.records || [];
             const grouped = {};
+
             records.forEach(item => {
                 if (!grouped[item.receipt_id]) grouped[item.receipt_id] = [];
                 grouped[item.receipt_id].push(item);
             });
+
             document.getElementById("fee_summary").innerHTML = `
                 <div class="fee-summary">
                     <div class="fee-summary-box">
@@ -772,47 +1033,83 @@
                     </div>
                 </div>
             `;
+
             let html = "";
+
             for (const [receiptId, rows] of Object.entries(grouped)) {
                 let receiptTotal = 0;
+                const firstRow = rows[0] || {};
+                const pdfLink = firstRow.pdf_link || "";
+                const safeId = feeSafeDomId(receiptId);
+
                 html += `
                     <div class="fee-receipt-box">
                         <div class="fee-receipt-header">
-                            <h2>📄 Receipt Details</h2>
-                            <div class="fee-badge">${receiptId}</div>
+                            <div class="fee-receipt-title-area">
+                                <h2>📄 Receipt Details</h2>
+                                <div class="fee-helper">
+                                    Student: <b>${feeEscapeHtml(firstRow.student_name || "")}</b> |
+                                    Class: <b>${feeEscapeHtml(firstRow.class || "")}</b> |
+                                    Roll: <b>${feeEscapeHtml(firstRow.roll || "")}</b> |
+                                    Payment: <b>${feeEscapeHtml(firstRow.payment_method || "-")}</b>
+                                </div>
+                            </div>
+                            <div class="fee-action-row">
+                                <div class="fee-badge">${feeEscapeHtml(receiptId)}</div>
+                                <button type="button" class="fee-mini-btn" onclick="feeGenerateExistingReceipt('${encodeURIComponent(receiptId)}')">Receipt Generate</button>
+                                <a href="${pdfLink ? feeEscapeAttribute(pdfLink) : '#'}" target="_blank" id="fee_print_${safeId}" class="fee-print-btn ${pdfLink ? '' : 'fee-disabled-link'}">Print</a>
+                            </div>
                         </div>
                         <div class="fee-table-wrapper">
                             <table class="fee-table">
                                 <thead>
                                     <tr>
-                                        <th>মাস</th><th>Tuition</th><th>Admission</th><th>Exam</th>
-                                        <th>Computer</th><th>Sports</th><th>Total</th><th>Date</th><th>সময়</th><th>Receipt</th>
+                                        <th>মাস</th>
+                                        <th>Tuition</th>
+                                        <th>Admission</th>
+                                        <th>Re Admission</th>
+                                        <th>Exam</th>
+                                        <th>Computer</th>
+                                        <th>Sports</th>
+                                        <th>TC</th>
+                                        <th>Misc</th>
+                                        <th>Total</th>
+                                        <th>Payment Method</th>
+                                        <th>Date</th>
+                                        <th>সময়</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                 `;
+
                 rows.forEach(item => {
                     receiptTotal += Number(item.total || 0);
                     html += `
                         <tr>
-                            <td>${item.month || ''}</td>
+                            <td>${feeEscapeHtml(item.month || '')}</td>
                             <td>${Number(item.tuition_fee || 0).toLocaleString("bn-BD")}</td>
                             <td>${Number(item.admission_fee || 0).toLocaleString("bn-BD")}</td>
+                            <td>${Number(item.re_admission_fee || 0).toLocaleString("bn-BD")}</td>
                             <td>${Number(item.exam_fee || 0).toLocaleString("bn-BD")}</td>
                             <td>${Number(item.computer_fee || 0).toLocaleString("bn-BD")}</td>
                             <td>${Number(item.sports_fee || 0).toLocaleString("bn-BD")}</td>
+                            <td>${Number(item.tc_fee || 0).toLocaleString("bn-BD")}</td>
+                            <td>${Number(item.misc_fee || 0).toLocaleString("bn-BD")}</td>
                             <td>${Number(item.total || 0).toLocaleString("bn-BD")} ৳</td>
+                            <td>${feeEscapeHtml(item.payment_method || "-")}</td>
                             <td>${feeFormatDate(item.payment_date)}</td>
                             <td>${feeFormatTime(item.payment_time)}</td>
-                            <td><a href="${item.pdf_link || '#'}" target="_blank" class="fee-print-btn">Print</a></td>
+                            <td>${feeEscapeHtml(item.status || "-")}</td>
                         </tr>
                     `;
                 });
+
                 html += `
                                     <tr class="fee-total-row">
-                                        <td colspan="6">মোট টাকা</td>
-                                        <td colspan="1">${Number(receiptTotal).toLocaleString("bn-BD")} ৳</td>
-                                        <td colspan="3"></td>
+                                        <td colspan="9">মোট টাকা</td>
+                                        <td>${Number(receiptTotal).toLocaleString("bn-BD")} ৳</td>
+                                        <td colspan="4"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -820,14 +1117,72 @@
                     </div>
                 `;
             }
+
             document.getElementById("fee_result").innerHTML = html || "<div class='fee-card' style='margin-top:20px; text-align:center;'>কোনো রেকর্ড পাওয়া যায়নি</div>";
+
         } catch (err) {
             document.getElementById("fee_result").innerHTML = "<div class='fee-card' style='margin-top:20px; text-align:center;'>সার্চ করতে সমস্যা হয়েছে</div>";
         }
     }
 
+    async function feeGenerateExistingReceipt(encodedReceiptId) {
+        const receiptId = decodeURIComponent(encodedReceiptId);
+
+        try {
+            const response = await fetch(FEE_API_URL, {
+                method: "POST",
+                body: JSON.stringify({
+                    action: "generate_existing_receipt",
+                    receipt_id: receiptId
+                })
+            });
+
+            const result = await response.json();
+
+            if (!result.success) {
+                alert(result.message || "Receipt generate করা যায়নি");
+                return;
+            }
+
+            const safeId = feeSafeDomId(receiptId);
+            const printBtn = document.getElementById(`fee_print_${safeId}`);
+
+            if (printBtn) {
+                printBtn.href = result.pdf_link;
+                printBtn.classList.remove("fee-disabled-link");
+            }
+
+            if (result.pdf_link) {
+                window.open(result.pdf_link, "_blank");
+            }
+
+        } catch (err) {
+            alert("Receipt generate করতে সমস্যা হয়েছে");
+        }
+    }
+
+    function feeSafeDomId(value) {
+        return String(value).replace(/[^a-zA-Z0-9_-]/g, "_");
+    }
+
+    function feeEscapeHtml(value) {
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    function feeEscapeAttribute(value) {
+        return feeEscapeHtml(value);
+    }
+
     // Initial system state
-    feeDisableSystem();
+    feeSetPaymentMethodBank();
+    feeDisableSystem(false);
+
+    
 </script>
 
   </main>
