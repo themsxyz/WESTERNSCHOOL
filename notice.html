@@ -1,0 +1,1368 @@
+﻿<!doctype html>
+<html lang="bn" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Western School & College</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="assets/css/base/wsc-root.css">
+  <link rel="stylesheet" href="assets/css/side-nav/wsc-side-nav.css">
+  <link rel="stylesheet" href="assets/css/components/wsc-components.css">
+  <link rel="stylesheet" href="assets/css/responsive/wsc-responsive.css">
+  <link rel="stylesheet" href="assets/css/shortcode/wsc-shortcode.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/do1dejkkk/image/upload/v1777663686/western_logo_hg9fji_1_vojrqz.png">
+
+  <!-- Open Graph Thumbnail (social media preview) -->
+  <meta property="og:title" content="Western School">
+  <meta property="og:image" content="https://res.cloudinary.com/do1dejkkk/image/upload/v1777663686/western_logo_hg9fji_1_vojrqz.png">
+  <meta property="og:type" content="website">
+
+  <!-- Optional Twitter preview -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://res.cloudinary.com/do1dejkkk/image/upload/v1777663686/western_logo_hg9fji_1_vojrqz.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@100..900&family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Keep this blank. Add custom page content here later if needed. -->
+  <main data-wsc-page-content>
+    
+
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap");
+
+    :root {
+      --wsc-font-bn: "Noto Sans Bengali", system-ui, sans-serif;
+      --wsc-font-en: "Times New Roman", Times, serif;
+
+      --wsc-bg: #f6f9ff;
+      --wsc-surface: #ffffff;
+      --wsc-surface-soft: #f1f5ff;
+      --wsc-text: #111827;
+      --wsc-muted: #6b7280;
+      --wsc-border: #dbe4f0;
+      --wsc-primary: #2563eb;
+      --wsc-primary-dark: #1d4ed8;
+      --wsc-purple: #7c3aed;
+      --wsc-danger: #dc2626;
+      --wsc-success: #16a34a;
+
+      --navy: #0b2545;
+      --navy-2: #12385d;
+      --blue: #1d4f78;
+      --blue-soft: #e9f1f8;
+      --blue-gray: #eff4f8;
+      --slate: #334155;
+      --muted: #64748b;
+      --line: #d8e2ea;
+      --bg: #f5f8fb;
+      --card: #ffffff;
+      --black: #0f172a;
+      --success: #166534;
+      --success-bg: #ecfdf3;
+      --danger: #b91c1c;
+      --danger-bg: #fff1f2;
+      --warning: #b45309;
+      --warning-bg: #fff7ed;
+      --radius: 12px;
+      --shadow: 0 8px 22px rgba(15, 23, 42, 0.07);
+
+      --earn-bg: #ffffff;
+      --earn-card: rgba(255, 255, 255, 0.72);
+      --earn-card-strong: rgba(255, 255, 255, 0.90);
+      --earn-border: rgba(15, 47, 99, 0.12);
+      --earn-border-strong: rgba(15, 47, 99, 0.18);
+      --earn-text: #080f1f;
+      --earn-muted: #5b6475;
+      --earn-blue: #1d4ed8;
+      --earn-navy: #0f2f63;
+      --earn-navy-dark: #071f44;
+      --earn-success: #15803d;
+      --earn-success-bg: #ecfdf3;
+      --earn-danger: #b91c1c;
+      --earn-danger-bg: #fef2f2;
+      --earn-warning: #b45309;
+      --earn-warning-bg: #fff7ed;
+      --earn-shadow: 0 18px 50px rgba(15, 47, 99, 0.10);
+      --earn-shadow-soft: 0 10px 28px rgba(15, 47, 99, 0.08);
+      --earn-radius-xl: 32px;
+      --earn-radius-lg: 24px;
+      --earn-radius-md: 18px;
+      --earn-radius-pill: 50px;
+
+      --wsc-nav-height: 72px;
+      --wsc-sidebar-width: 270px;
+      --wsc-sidebar-collapsed-width: 78px;
+
+      --wsc-icon-size: 20px;
+      --wsc-icon-stroke: 1.8;
+
+      --wsc-text-xs: 12px;
+      --wsc-text-sm: 14px;
+      --wsc-text-base: 16px;
+      --wsc-text-md: 18px;
+      --wsc-text-lg: 22px;
+      --wsc-text-xl: 28px;
+
+      --wsc-radius-sm: 8px;
+      --wsc-radius-md: 50px;
+      --wsc-radius-lg: 22px;
+      --wsc-radius-pill: 999px;
+
+      --wsc-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+      --wsc-transition: 180ms ease;
+
+      --wsc-admin-page-max-width: 1200px;
+      --wsc-admin-page-padding: 20px;
+      --wsc-admin-topbar-radius: 28px;
+      --wsc-admin-logo-size: 64px;
+      --wsc-admin-logo-size-mobile: 56px;
+      --wsc-admin-grid-sidebar: 360px;
+      --wsc-admin-grid-gap: 18px;
+      --wsc-admin-card-head-padding-y: 16px;
+      --wsc-admin-card-head-padding-x: 18px;
+      --wsc-admin-card-body-padding: 18px;
+      --wsc-admin-field-gap: 14px;
+      --wsc-admin-input-radius: 16px;
+      --wsc-admin-input-padding-y: 13px;
+      --wsc-admin-input-padding-x: 14px;
+      --wsc-admin-textarea-min-height: 130px;
+      --wsc-admin-btn-radius: 15px;
+      --wsc-admin-btn-padding-y: 12px;
+      --wsc-admin-btn-padding-x: 15px;
+      --wsc-admin-small-btn-padding-y: 9px;
+      --wsc-admin-small-btn-padding-x: 11px;
+      --wsc-admin-notice-radius: 18px;
+      --wsc-admin-status-radius: 16px;
+      --wsc-admin-help-radius: 18px;
+      --wsc-admin-gold: #d89b20;
+      --wsc-admin-gold-soft: #fff7df;
+      --wsc-admin-primary-soft: #eaf2ff;
+      --wsc-admin-purple-soft: #f5f3ff;
+      --wsc-admin-success-soft: #ecfdf3;
+      --wsc-admin-danger-soft: #fef2f2;
+      --wsc-admin-warning-soft: #fffbeb;
+      --wsc-admin-white: #ffffff;
+      --wsc-admin-help-text: #6b4b0d;
+    }
+
+    html[data-theme="dark"] {
+      --wsc-bg: #101011;
+      --wsc-surface: #101827;
+      --wsc-surface-soft: #172033;
+      --wsc-text: #e5edf8;
+      --wsc-muted: #9ca3af;
+      --wsc-border: #26364f;
+      --wsc-primary: #60a5fa;
+      --wsc-primary-dark: #93c5fd;
+      --wsc-purple: #a78bfa;
+      --wsc-danger: #fb7185;
+      --wsc-success: #4ade80;
+      --wsc-shadow: 0 14px 40px rgba(0, 0, 0, 0.26);
+
+      --navy: #010e1e;
+      --navy-2: #bfdbfe;
+      --blue: #60a5fa;
+      --blue-soft: #172033;
+      --blue-gray: #111827;
+      --slate: #cbd5e1;
+      --muted: #94a3b8;
+      --line: #26364f;
+      --bg: #0b1220;
+      --card: #101827;
+      --black: #f8fafc;
+
+      --success: #4ade80;
+      --success-bg: rgba(22, 163, 74, 0.14);
+
+      --danger: #fb7185;
+      --danger-bg: rgba(220, 38, 38, 0.14);
+
+      --warning: #fbbf24;
+      --warning-bg: rgba(245, 158, 11, 0.14);
+
+      --shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+
+      --earn-bg: #0b1220;
+      --earn-card: rgba(16, 24, 39, 0.78);
+      --earn-card-strong: rgba(16, 24, 39, 0.94);
+      --earn-border: rgba(147, 197, 253, 0.14);
+      --earn-border-strong: rgba(147, 197, 253, 0.24);
+      --earn-text: #e5edf8;
+      --earn-muted: #94a3b8;
+      --earn-blue: #60a5fa;
+      --earn-navy: #bfdbfe;
+      --earn-navy-dark: #dbeafe;
+      --earn-success: #4ade80;
+      --earn-success-bg: rgba(22, 163, 74, 0.14);
+      --earn-danger: #fb7185;
+      --earn-danger-bg: rgba(220, 38, 38, 0.14);
+      --earn-warning: #fbbf24;
+      --earn-warning-bg: rgba(245, 158, 11, 0.14);
+      --earn-shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
+      --earn-shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.26);
+
+      --wsc-admin-gold: #fbbf24;
+      --wsc-admin-gold-soft: rgba(245, 158, 11, 0.14);
+      --wsc-admin-primary-soft: rgba(96, 165, 250, 0.14);
+      --wsc-admin-purple-soft: rgba(167, 139, 250, 0.14);
+      --wsc-admin-success-soft: rgba(22, 163, 74, 0.14);
+      --wsc-admin-danger-soft: rgba(220, 38, 38, 0.14);
+      --wsc-admin-warning-soft: rgba(245, 158, 11, 0.14);
+      --wsc-admin-white: #ffffff;
+      --wsc-admin-help-text: #fbbf24;
+    }
+
+    .wsc-notice-admin,
+    .wsc-notice-admin *,
+    .wsc-notice-admin *::before,
+    .wsc-notice-admin *::after {
+      box-sizing: border-box;
+    }
+
+    .wsc-notice-admin button,
+    .wsc-notice-admin input,
+    .wsc-notice-admin textarea,
+    .wsc-notice-admin select {
+      font-family: inherit;
+    }
+
+    .wsc-notice-admin {
+      min-height: 100vh;
+      font-family: var(--wsc-font-bn);
+      color: var(--wsc-text);
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, .10), transparent 350px),
+        radial-gradient(circle at bottom right, rgba(216, 155, 32, .13), transparent 350px),
+        var(--wsc-bg);
+    }
+
+    .wsc-notice-admin__app {
+      width: min(var(--wsc-admin-page-max-width), 100%);
+      margin: 0 auto;
+      padding: var(--wsc-admin-page-padding);
+    }
+
+    .wsc-notice-admin__topbar {
+      background: linear-gradient(135deg, var(--navy), var(--wsc-primary));
+      color: var(--wsc-admin-white);
+      border-radius: var(--wsc-admin-topbar-radius);
+      padding: var(--wsc-admin-page-padding);
+      box-shadow: var(--wsc-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .wsc-notice-admin__brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .wsc-notice-admin__logo {
+      width: var(--wsc-admin-logo-size);
+      height: var(--wsc-admin-logo-size);
+      object-fit: contain;
+      background: var(--wsc-admin-white);
+      border-radius: 50%;
+      padding: 4px;
+    }
+
+    .wsc-notice-admin__brand-title {
+      margin: 0 0 5px;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .wsc-notice-admin__brand-subtitle {
+      margin: 0;
+      opacity: .9;
+      font-size: 13px;
+    }
+
+    .wsc-notice-admin__pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border-radius: var(--wsc-radius-pill);
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 800;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.22);
+    }
+
+    .wsc-notice-admin__pill--loading {
+      color: var(--navy);
+      background: var(--wsc-admin-primary-soft);
+      border-color: rgba(37, 99, 235, .18);
+    }
+
+    .wsc-notice-admin__grid {
+      display: grid;
+      grid-template-columns: var(--wsc-admin-grid-sidebar) 1fr;
+      gap: var(--wsc-admin-grid-gap);
+      align-items: start;
+    }
+
+    .wsc-notice-admin__card {
+      background: var(--wsc-surface);
+      border: 1px solid var(--wsc-border);
+      border-radius: var(--wsc-radius-lg);
+      box-shadow: var(--wsc-shadow);
+      overflow: hidden;
+    }
+
+    .wsc-notice-admin__card-head {
+      padding: var(--wsc-admin-card-head-padding-y) var(--wsc-admin-card-head-padding-x);
+      border-bottom: 1px solid var(--wsc-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .wsc-notice-admin__card-title {
+      margin: 0;
+      font-size: var(--wsc-text-md);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .wsc-notice-admin__card-body {
+      padding: var(--wsc-admin-card-body-padding);
+    }
+
+    .wsc-notice-admin__field {
+      margin-bottom: var(--wsc-admin-field-gap);
+    }
+
+    .wsc-notice-admin__field-label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--wsc-muted);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .wsc-notice-admin__input,
+    .wsc-notice-admin__textarea,
+    .wsc-notice-admin__select {
+      width: 100%;
+      outline: 0;
+      border: 1px solid var(--wsc-border);
+      border-radius: var(--wsc-admin-input-radius);
+      padding: var(--wsc-admin-input-padding-y) var(--wsc-admin-input-padding-x);
+      background: var(--wsc-surface);
+      color: var(--wsc-text);
+      font-size: 15px;
+    }
+
+    .wsc-notice-admin__textarea {
+      min-height: var(--wsc-admin-textarea-min-height);
+      resize: vertical;
+      line-height: 1.65;
+    }
+
+    .wsc-notice-admin__input:focus,
+    .wsc-notice-admin__textarea:focus,
+    .wsc-notice-admin__select:focus {
+      border-color: var(--wsc-primary);
+      box-shadow: 0 0 0 4px var(--wsc-admin-primary-soft);
+    }
+
+    .wsc-notice-admin__two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .wsc-notice-admin__btn {
+      border: 0;
+      border-radius: var(--wsc-admin-btn-radius);
+      padding: var(--wsc-admin-btn-padding-y) var(--wsc-admin-btn-padding-x);
+      font-weight: 900;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--wsc-transition);
+    }
+
+    .wsc-notice-admin__btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .wsc-notice-admin__btn:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .wsc-notice-admin__btn--full {
+      width: 100%;
+    }
+
+    .wsc-notice-admin__btn--main {
+      background: var(--navy);
+      color: var(--wsc-admin-white);
+    }
+
+    .wsc-notice-admin__btn--blue {
+      background: var(--wsc-primary);
+      color: var(--wsc-admin-white);
+    }
+
+    .wsc-notice-admin__btn--gold {
+      background: var(--wsc-admin-gold);
+      color: var(--wsc-admin-white);
+    }
+
+    .wsc-notice-admin__btn--purple {
+      background: var(--wsc-purple);
+      color: var(--wsc-admin-white);
+    }
+
+    .wsc-notice-admin__btn--danger {
+      background: var(--wsc-danger);
+      color: var(--wsc-admin-white);
+    }
+
+    .wsc-notice-admin__btn--soft {
+      background: var(--wsc-surface-soft);
+      color: var(--wsc-text);
+      border: 1px solid var(--wsc-border);
+    }
+
+    .wsc-notice-admin__tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .wsc-notice-admin__tab {
+      border: 1px solid var(--wsc-border);
+      background: var(--wsc-surface);
+      color: var(--wsc-muted);
+      padding: 11px 13px;
+      border-radius: var(--wsc-radius-pill);
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .wsc-notice-admin__tab.is-active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--wsc-admin-white);
+    }
+
+    .wsc-notice-admin__msg {
+      margin-bottom: 14px;
+      padding: 13px 14px;
+      border-radius: var(--wsc-admin-status-radius);
+      line-height: 1.55;
+      font-size: 13px;
+      font-weight: 800;
+      display: none;
+    }
+
+    .wsc-notice-admin__msg.show {
+      display: block;
+    }
+
+    .wsc-notice-admin__msg.success {
+      color: var(--wsc-success);
+      background: var(--wsc-admin-success-soft);
+      border: 1px solid rgba(22, 163, 74, .18);
+    }
+
+    .wsc-notice-admin__msg.error {
+      color: var(--wsc-danger);
+      background: var(--wsc-admin-danger-soft);
+      border: 1px solid rgba(220, 38, 38, .18);
+    }
+
+    .wsc-notice-admin__msg.info {
+      color: var(--wsc-primary);
+      background: var(--wsc-admin-primary-soft);
+      border: 1px solid rgba(37, 99, 235, .18);
+    }
+
+    .wsc-notice-admin__notice-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .wsc-notice-admin__notice-item {
+      border: 1px solid var(--wsc-border);
+      border-radius: var(--wsc-admin-notice-radius);
+      padding: 14px;
+      background: var(--wsc-surface);
+    }
+
+    .wsc-notice-admin__notice-item.global {
+      border-left: 5px solid var(--wsc-admin-gold);
+    }
+
+    .wsc-notice-admin__notice-item.individual {
+      border-left: 5px solid var(--wsc-purple);
+    }
+
+    .wsc-notice-admin__notice-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .wsc-notice-admin__notice-title {
+      margin: 0;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .wsc-notice-admin__notice-text {
+      margin: 9px 0;
+      white-space: pre-wrap;
+      line-height: 1.65;
+    }
+
+    .wsc-notice-admin__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .wsc-notice-admin__meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 9px;
+      border-radius: var(--wsc-radius-pill);
+      background: var(--wsc-surface-soft);
+      border: 1px solid var(--wsc-border);
+      color: var(--wsc-muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .wsc-notice-admin__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .wsc-notice-admin__small-btn {
+      padding: var(--wsc-admin-small-btn-padding-y) var(--wsc-admin-small-btn-padding-x);
+      border-radius: var(--wsc-radius-sm);
+      font-size: 12px;
+    }
+
+    .wsc-notice-admin__help {
+      padding: 14px;
+      border-radius: var(--wsc-admin-help-radius);
+      background: var(--wsc-admin-gold-soft);
+      border: 1px solid rgba(216, 155, 32, .20);
+      line-height: 1.6;
+      font-size: 13px;
+      font-weight: 750;
+      color: var(--wsc-admin-help-text);
+    }
+
+    .wsc-notice-admin__empty {
+      text-align: center;
+      padding: 38px 12px;
+      color: var(--wsc-muted);
+      font-weight: 800;
+    }
+
+    .wsc-notice-admin__empty i {
+      display: block;
+      font-size: 38px;
+      margin-bottom: 10px;
+      color: var(--wsc-primary);
+    }
+
+    .wsc-notice-admin__spacer {
+      height: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .wsc-notice-admin__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wsc-notice-admin__topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .wsc-notice-admin__two {
+        grid-template-columns: 1fr;
+      }
+
+      .wsc-notice-admin__brand-title {
+        font-size: 20px;
+      }
+
+      .wsc-notice-admin__logo {
+        width: var(--wsc-admin-logo-size-mobile);
+        height: var(--wsc-admin-logo-size-mobile);
+      }
+    }
+  </style>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const API_URL = "https://script.google.com/macros/s/AKfycbx5uyXdaP-dhKnCdicvsRcnF5cZe1N-iKyWKEcGFWAa4MQXFEDw1_Y8BTch_Dgd2VoPug/exec";
+
+    const LOGO_URL = "https://res.cloudinary.com/do1dejkkk/image/upload/v1778605133/western_logo_hg9fji_1_vojrqz_1_zjiw5m.png";
+
+    const STORAGE = {
+      adminKey: "wsc_admin_notice_key",
+      lastTab: "wsc_admin_last_tab"
+    };
+
+    function jsonpRequest(params) {
+      return new Promise((resolve, reject) => {
+        const callbackName = "wsc_admin_callback_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
+
+        params.callback = callbackName;
+
+        const query = Object.keys(params)
+          .filter(key => params[key] !== undefined && params[key] !== null)
+          .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(params[key]))
+          .join("&");
+
+        const separator = API_URL.includes("?") ? "&" : "?";
+        const script = document.createElement("script");
+
+        const timeout = setTimeout(() => {
+          cleanup();
+          reject(new Error("Request timeout. Apps Script deployment/access check করুন।"));
+        }, 25000);
+
+        window[callbackName] = data => {
+          cleanup();
+          resolve(data);
+        };
+
+        script.onerror = () => {
+          cleanup();
+          reject(new Error("Network/API error. Web App URL বা deployment check করুন।"));
+        };
+
+        function cleanup() {
+          clearTimeout(timeout);
+          delete window[callbackName];
+          if (script.parentNode) script.parentNode.removeChild(script);
+        }
+
+        script.src = API_URL + separator + query;
+        document.body.appendChild(script);
+      });
+    }
+
+    function nowLocalInput() {
+      const d = new Date();
+      d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+      return d.toISOString().slice(0, 16);
+    }
+
+    function formatDate(value) {
+      if (!value) return "-";
+      const d = new Date(value);
+      if (isNaN(d.getTime())) return String(value);
+
+      return d.toLocaleString("bn-BD", {
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
+
+    function safeText(value) {
+      return String(value || "").trim();
+    }
+
+    function App() {
+      const [adminKey, setAdminKey] = React.useState(localStorage.getItem(STORAGE.adminKey) || "");
+      const [activeTab, setActiveTab] = React.useState(localStorage.getItem(STORAGE.lastTab) || "global");
+      const [status, setStatus] = React.useState({ type: "", text: "" });
+      const [loading, setLoading] = React.useState(false);
+
+      const [globalNotice, setGlobalNotice] = React.useState("");
+      const [globalDate, setGlobalDate] = React.useState(nowLocalInput());
+      const [globalDuration, setGlobalDuration] = React.useState("24h");
+      const [customDuration, setCustomDuration] = React.useState("");
+
+      const [studentId, setStudentId] = React.useState("");
+      const [studentMessage, setStudentMessage] = React.useState("");
+      const [studentDate, setStudentDate] = React.useState(nowLocalInput());
+
+      const [globalList, setGlobalList] = React.useState([]);
+      const [individualList, setIndividualList] = React.useState([]);
+      const [filterStudentId, setFilterStudentId] = React.useState("");
+
+      React.useEffect(() => {
+        localStorage.setItem(STORAGE.lastTab, activeTab);
+      }, [activeTab]);
+
+      function showStatus(type, text) {
+        setStatus({ type, text });
+        setTimeout(() => {
+          setStatus({ type: "", text: "" });
+        }, 6000);
+      }
+
+      function saveAdminKey() {
+        if (!adminKey.trim()) {
+          showStatus("error", "Admin key লিখুন। Backend_Settings sheet থেকে NOTICE_ADMIN_KEY copy করুন।");
+          return;
+        }
+
+        localStorage.setItem(STORAGE.adminKey, adminKey.trim());
+        showStatus("success", "Admin key saved হয়েছে।");
+      }
+
+      async function sendGlobalNotice(e) {
+        e.preventDefault();
+
+        if (!adminKey.trim()) {
+          showStatus("error", "Admin key missing.");
+          return;
+        }
+
+        if (!globalNotice.trim()) {
+          showStatus("error", "Notice text লিখুন।");
+          return;
+        }
+
+        const duration = customDuration.trim() || globalDuration;
+
+        try {
+          setLoading(true);
+          showStatus("info", "সব student-এর জন্য notice পাঠানো হচ্ছে...");
+
+          const res = await jsonpRequest({
+            action: "addNotice",
+            adminKey: adminKey.trim(),
+            notice: globalNotice.trim(),
+            date: globalDate,
+            duration: duration,
+            createdBy: "React Admin Website"
+          });
+
+          if (!res.success) {
+            throw new Error(res.error || "Notice send failed.");
+          }
+
+          setGlobalNotice("");
+          setGlobalDate(nowLocalInput());
+          setGlobalDuration("24h");
+          setCustomDuration("");
+
+          showStatus("success", "Notice successfully সব student-এর জন্য পাঠানো হয়েছে।");
+          loadGlobalNotices();
+        } catch (err) {
+          showStatus("error", err.message);
+        } finally {
+          setLoading(false);
+        }
+      }
+
+      async function sendIndividualMessage(e) {
+        e.preventDefault();
+
+        if (!adminKey.trim()) {
+          showStatus("error", "Admin key missing.");
+          return;
+        }
+
+        if (!studentId.trim()) {
+          showStatus("error", "Student ID লিখুন।");
+          return;
+        }
+
+        if (!studentMessage.trim()) {
+          showStatus("error", "Individual message লিখুন।");
+          return;
+        }
+
+        try {
+          setLoading(true);
+          showStatus("info", "Individual message পাঠানো হচ্ছে...");
+
+          const res = await jsonpRequest({
+            action: "addIndividualNotice",
+            adminKey: adminKey.trim(),
+            studentId: studentId.trim(),
+            notice: studentMessage.trim(),
+            date: studentDate,
+            createdBy: "React Admin Website"
+          });
+
+          if (!res.success) {
+            throw new Error(res.error || "Individual message send failed.");
+          }
+
+          setStudentMessage("");
+          setStudentDate(nowLocalInput());
+
+          showStatus("success", "Individual message successfully পাঠানো হয়েছে। এই message শুধু ওই Student ID-এর profile/message-এ show হবে।");
+          loadIndividualMessages();
+        } catch (err) {
+          showStatus("error", err.message);
+        } finally {
+          setLoading(false);
+        }
+      }
+
+      async function loadGlobalNotices() {
+        if (!adminKey.trim()) {
+          showStatus("error", "Admin key missing.");
+          return;
+        }
+
+        try {
+          setLoading(true);
+
+          const res = await jsonpRequest({
+            action: "adminNotices",
+            adminKey: adminKey.trim()
+          });
+
+          if (!res.success) {
+            throw new Error(res.error || "Notice list load failed.");
+          }
+
+          setGlobalList(res.notices || []);
+          showStatus("success", "Global notice list loaded.");
+        } catch (err) {
+          showStatus("error", err.message);
+        } finally {
+          setLoading(false);
+        }
+      }
+
+      async function loadIndividualMessages() {
+        if (!adminKey.trim()) {
+          showStatus("error", "Admin key missing.");
+          return;
+        }
+
+        try {
+          setLoading(true);
+
+          const params = {
+            action: "adminIndividualNotices",
+            adminKey: adminKey.trim()
+          };
+
+          if (filterStudentId.trim()) {
+            params.studentId = filterStudentId.trim();
+          }
+
+          const res = await jsonpRequest(params);
+
+          if (!res.success) {
+            throw new Error(res.error || "Individual message list load failed.");
+          }
+
+          setIndividualList(res.messages || res.notices || []);
+          showStatus("success", "Individual message list loaded.");
+        } catch (err) {
+          showStatus("error", err.message);
+        } finally {
+          setLoading(false);
+        }
+      }
+
+      async function deleteGlobalNotice(noticeId) {
+        if (!confirm("এই notice delete করতে চান?")) return;
+
+        try {
+          setLoading(true);
+
+          const res = await jsonpRequest({
+            action: "deleteNotice",
+            adminKey: adminKey.trim(),
+            noticeId
+          });
+
+          if (!res.success) {
+            throw new Error(res.error || "Delete failed.");
+          }
+
+          showStatus("success", "Notice deleted হয়েছে।");
+          loadGlobalNotices();
+        } catch (err) {
+          showStatus("error", err.message);
+        } finally {
+          setLoading(false);
+        }
+      }
+
+      async function deleteIndividualMessage(messageId) {
+        if (!confirm("এই individual message delete করতে চান?")) return;
+
+        try {
+          setLoading(true);
+
+          const res = await jsonpRequest({
+            action: "deleteIndividualNotice",
+            adminKey: adminKey.trim(),
+            messageId
+          });
+
+          if (!res.success) {
+            throw new Error(res.error || "Delete failed.");
+          }
+
+          showStatus("success", "Individual message deleted হয়েছে।");
+          loadIndividualMessages();
+        } catch (err) {
+          showStatus("error", err.message);
+        } finally {
+          setLoading(false);
+        }
+      }
+
+      async function editGlobalNotice(item) {
+        const newText = prompt("Notice edit করুন:", item.notice || "");
+
+        if (newText === null) return;
+
+        const newDuration = prompt("Duration দিন: 30m, 2h, 24h, 3d, 7d, permanent", item.noticeAppearDuration || "24h");
+
+        if (newDuration === null) return;
+
+        try {
+          setLoading(true);
+
+          const res = await jsonpRequest({
+            action: "editNotice",
+            adminKey: adminKey.trim(),
+            noticeId: item.noticeId,
+            notice: newText,
+            duration: newDuration,
+            status: "Active"
+          });
+
+          if (!res.success) {
+            throw new Error(res.error || "Edit failed.");
+          }
+
+          showStatus("success", "Notice updated হয়েছে।");
+          loadGlobalNotices();
+        } catch (err) {
+          showStatus("error", err.message);
+        } finally {
+          setLoading(false);
+        }
+      }
+
+      async function editIndividualMessage(item) {
+        const newStudentId = prompt("Student ID edit করুন:", item.studentId || "");
+
+        if (newStudentId === null) return;
+
+        const newText = prompt("Message edit করুন:", item.message || item.notice || "");
+
+        if (newText === null) return;
+
+        try {
+          setLoading(true);
+
+          const res = await jsonpRequest({
+            action: "editIndividualNotice",
+            adminKey: adminKey.trim(),
+            messageId: item.messageId || item.noticeId,
+            studentId: newStudentId,
+            notice: newText,
+            status: "Active"
+          });
+
+          if (!res.success) {
+            throw new Error(res.error || "Edit failed.");
+          }
+
+          showStatus("success", "Individual message updated হয়েছে।");
+          loadIndividualMessages();
+        } catch (err) {
+          showStatus("error", err.message);
+        } finally {
+          setLoading(false);
+        }
+      }
+
+      async function extendGlobalNotice(item) {
+        const extraDuration = prompt("কত সময় বাড়াবেন? Example: 1h, 24h, 3d, 1w", "24h");
+
+        if (!extraDuration) return;
+
+        try {
+          setLoading(true);
+
+          const res = await jsonpRequest({
+            action: "extendNoticeDuration",
+            adminKey: adminKey.trim(),
+            noticeId: item.noticeId,
+            extraDuration
+          });
+
+          if (!res.success) {
+            throw new Error(res.error || "Extend failed.");
+          }
+
+          showStatus("success", "Notice duration বাড়ানো হয়েছে।");
+          loadGlobalNotices();
+        } catch (err) {
+          showStatus("error", err.message);
+        } finally {
+          setLoading(false);
+        }
+      }
+
+      return (
+        <div className="wsc-notice-admin">
+          <div className="wsc-notice-admin__app">
+            <header className="wsc-notice-admin__topbar">
+              <div className="wsc-notice-admin__brand">
+                <img className="wsc-notice-admin__logo" src={LOGO_URL} alt="Logo" />
+                <div>
+                  <h1 className="wsc-notice-admin__brand-title">Student Portal Admin</h1>
+                  <p className="wsc-notice-admin__brand-subtitle">Notice & Individual Message Management</p>
+                </div>
+              </div>
+              <span className="wsc-notice-admin__pill">
+                <i className="fa-solid fa-cloud"></i>
+                Apps Script Connected
+              </span>
+            </header>
+
+            <div className={status.text ? `wsc-notice-admin__msg show ${status.type}` : "wsc-notice-admin__msg"}>
+              {status.text}
+            </div>
+
+            <div className="wsc-notice-admin__grid">
+              <aside className="wsc-notice-admin__card">
+                <div className="wsc-notice-admin__card-head">
+                  <h2 className="wsc-notice-admin__card-title"><i className="fa-solid fa-key"></i> Admin Access</h2>
+                </div>
+
+                <div className="wsc-notice-admin__card-body">
+                  <div className="wsc-notice-admin__field">
+                    <label className="wsc-notice-admin__field-label">Admin Key / NOTICE_ADMIN_KEY</label>
+                    <input
+                      className="wsc-notice-admin__input"
+                      type="password"
+                      value={adminKey}
+                      onChange={e => setAdminKey(e.target.value)}
+                      placeholder="Backend_Settings sheet থেকে key দিন"
+                    />
+                  </div>
+
+                  <button className="wsc-notice-admin__btn wsc-notice-admin__btn--main wsc-notice-admin__btn--full" onClick={saveAdminKey}>
+                    <i className="fa-solid fa-floppy-disk"></i>
+                    Save Admin Key
+                  </button>
+
+                  <div className="wsc-notice-admin__spacer"></div>
+
+                  <div className="wsc-notice-admin__help">
+                    <strong>কাজের নিয়ম:</strong><br />
+                    Notice দিলে সব student profile/notice page-এ show হবে।<br />
+                    Individual message দিলে শুধু ওই Student ID-এর message/profile-এ show হবে।
+                  </div>
+
+                  <div className="wsc-notice-admin__spacer"></div>
+
+                  <button className="wsc-notice-admin__btn wsc-notice-admin__btn--soft wsc-notice-admin__btn--full" onClick={() => window.open(API_URL + "?action=health", "_blank")}>
+                    <i className="fa-solid fa-heart-pulse"></i>
+                    Test Backend Health
+                  </button>
+                </div>
+              </aside>
+
+              <main className="wsc-notice-admin__card">
+                <div className="wsc-notice-admin__card-head">
+                  <h2 className="wsc-notice-admin__card-title"><i className="fa-solid fa-screwdriver-wrench"></i> Manage Panel</h2>
+                  {loading && <span className="wsc-notice-admin__pill wsc-notice-admin__pill--loading">
+                    <i className="fa-solid fa-spinner fa-spin"></i> Working...
+                  </span>}
+                </div>
+
+                <div className="wsc-notice-admin__card-body">
+                  <div className="wsc-notice-admin__tabs">
+                    <button className={activeTab === "global" ? "wsc-notice-admin__tab is-active" : "wsc-notice-admin__tab"} onClick={() => setActiveTab("global")}>
+                      <i className="fa-solid fa-bullhorn"></i> All Student Notice
+                    </button>
+                    <button className={activeTab === "individual" ? "wsc-notice-admin__tab is-active" : "wsc-notice-admin__tab"} onClick={() => setActiveTab("individual")}>
+                      <i className="fa-solid fa-envelope"></i> Individual Message
+                    </button>
+                    <button className={activeTab === "manageGlobal" ? "wsc-notice-admin__tab is-active" : "wsc-notice-admin__tab"} onClick={() => setActiveTab("manageGlobal")}>
+                      <i className="fa-solid fa-list"></i> Notice List
+                    </button>
+                    <button className={activeTab === "manageIndividual" ? "wsc-notice-admin__tab is-active" : "wsc-notice-admin__tab"} onClick={() => setActiveTab("manageIndividual")}>
+                      <i className="fa-solid fa-inbox"></i> Message List
+                    </button>
+                  </div>
+
+                  {activeTab === "global" && (
+                    <form onSubmit={sendGlobalNotice}>
+                      <div className="wsc-notice-admin__field">
+                        <label className="wsc-notice-admin__field-label">সব student-এর জন্য Notice লিখুন</label>
+                        <textarea
+                          className="wsc-notice-admin__textarea"
+                          value={globalNotice}
+                          onChange={e => setGlobalNotice(e.target.value)}
+                          placeholder="যেমন: আগামীকাল স্কুল বন্ধ থাকবে..."
+                        />
+                      </div>
+
+                      <div className="wsc-notice-admin__two">
+                        <div className="wsc-notice-admin__field">
+                          <label className="wsc-notice-admin__field-label">Notice Start Date/Time</label>
+                          <input
+                            className="wsc-notice-admin__input"
+                            type="datetime-local"
+                            value={globalDate}
+                            onChange={e => setGlobalDate(e.target.value)}
+                          />
+                        </div>
+
+                        <div className="wsc-notice-admin__field">
+                          <label className="wsc-notice-admin__field-label">Notice Duration</label>
+                          <select className="wsc-notice-admin__select" value={globalDuration} onChange={e => setGlobalDuration(e.target.value)}>
+                            <option value="30m">30 Minutes</option>
+                            <option value="1h">1 Hour</option>
+                            <option value="2h">2 Hours</option>
+                            <option value="6h">6 Hours</option>
+                            <option value="12h">12 Hours</option>
+                            <option value="24h">24 Hours</option>
+                            <option value="3d">3 Days</option>
+                            <option value="7d">7 Days</option>
+                            <option value="30d">30 Days</option>
+                            <option value="permanent">Permanent</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="wsc-notice-admin__field">
+                        <label className="wsc-notice-admin__field-label">Custom Duration Optional</label>
+                        <input
+                          className="wsc-notice-admin__input"
+                          type="text"
+                          value={customDuration}
+                          onChange={e => setCustomDuration(e.target.value)}
+                          placeholder="Example: 45m, 5h, 10d, permanent"
+                        />
+                      </div>
+
+                      <button className="wsc-notice-admin__btn wsc-notice-admin__btn--gold wsc-notice-admin__btn--full" disabled={loading}>
+                        <i className="fa-solid fa-paper-plane"></i>
+                        Notice Upload / Send to All Students
+                      </button>
+                    </form>
+                  )}
+
+                  {activeTab === "individual" && (
+                    <form onSubmit={sendIndividualMessage}>
+                      <div className="wsc-notice-admin__field">
+                        <label className="wsc-notice-admin__field-label">Student ID</label>
+                        <input
+                          className="wsc-notice-admin__input"
+                          type="text"
+                          inputMode="numeric"
+                          value={studentId}
+                          onChange={e => setStudentId(e.target.value.replace(/\D/g, ""))}
+                          placeholder="যেমন: 100111"
+                        />
+                      </div>
+
+                      <div className="wsc-notice-admin__field">
+                        <label className="wsc-notice-admin__field-label">Individual Message লিখুন</label>
+                        <textarea
+                          className="wsc-notice-admin__textarea"
+                          value={studentMessage}
+                          onChange={e => setStudentMessage(e.target.value)}
+                          placeholder="এই message শুধু উপরের Student ID-এর portal/profile/message-এ show হবে..."
+                        />
+                      </div>
+
+                      <div className="wsc-notice-admin__field">
+                        <label className="wsc-notice-admin__field-label">Message Date/Time</label>
+                        <input
+                          className="wsc-notice-admin__input"
+                          type="datetime-local"
+                          value={studentDate}
+                          onChange={e => setStudentDate(e.target.value)}
+                        />
+                      </div>
+
+                      <button className="wsc-notice-admin__btn wsc-notice-admin__btn--purple wsc-notice-admin__btn--full" disabled={loading}>
+                        <i className="fa-solid fa-envelope-circle-check"></i>
+                        Send Individual Message
+                      </button>
+                    </form>
+                  )}
+
+                  {activeTab === "manageGlobal" && (
+                    <div>
+                      <button className="wsc-notice-admin__btn wsc-notice-admin__btn--blue" onClick={loadGlobalNotices} disabled={loading}>
+                        <i className="fa-solid fa-rotate"></i>
+                        Load All Notices
+                      </button>
+
+                      <div className="wsc-notice-admin__spacer"></div>
+
+                      <div className="wsc-notice-admin__notice-list">
+                        {globalList.length ? globalList.map(item => (
+                          <article className="wsc-notice-admin__notice-item global" key={item.noticeId}>
+                            <div className="wsc-notice-admin__notice-top">
+                              <h3 className="wsc-notice-admin__notice-title">
+                                <i className="fa-solid fa-bullhorn"></i>
+                                Global Notice
+                              </h3>
+                              <strong>{item.status || "Active"}</strong>
+                            </div>
+
+                            <p className="wsc-notice-admin__notice-text">{item.notice}</p>
+
+                            <div className="wsc-notice-admin__meta">
+                              <span><i className="fa-solid fa-hashtag"></i>{item.noticeId}</span>
+                              <span><i className="fa-solid fa-calendar"></i>{formatDate(item.date)}</span>
+                              <span><i className="fa-solid fa-clock"></i>{item.noticeAppearDuration || "-"}</span>
+                              <span><i className="fa-solid fa-hourglass-end"></i>{item.expireAt ? formatDate(item.expireAt) : "Permanent"}</span>
+                            </div>
+
+                            <div className="wsc-notice-admin__actions">
+                              <button className="wsc-notice-admin__btn wsc-notice-admin__btn--blue wsc-notice-admin__small-btn" onClick={() => editGlobalNotice(item)}>
+                                <i className="fa-solid fa-pen"></i> Edit
+                              </button>
+                              <button className="wsc-notice-admin__btn wsc-notice-admin__btn--gold wsc-notice-admin__small-btn" onClick={() => extendGlobalNotice(item)}>
+                                <i className="fa-solid fa-clock"></i> Extend
+                              </button>
+                              <button className="wsc-notice-admin__btn wsc-notice-admin__btn--danger wsc-notice-admin__small-btn" onClick={() => deleteGlobalNotice(item.noticeId)}>
+                                <i className="fa-solid fa-trash"></i> Delete
+                              </button>
+                            </div>
+                          </article>
+                        )) : (
+                          <div className="wsc-notice-admin__empty">
+                            <i className="fa-solid fa-bullhorn"></i>
+                            Notice list empty. Load All Notices চাপুন।
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === "manageIndividual" && (
+                    <div>
+                      <div className="wsc-notice-admin__two">
+                        <div className="wsc-notice-admin__field">
+                          <label className="wsc-notice-admin__field-label">Filter by Student ID Optional</label>
+                          <input
+                            className="wsc-notice-admin__input"
+                            type="text"
+                            inputMode="numeric"
+                            value={filterStudentId}
+                            onChange={e => setFilterStudentId(e.target.value.replace(/\D/g, ""))}
+                            placeholder="সব দেখতে empty রাখুন"
+                          />
+                        </div>
+
+                        <div className="wsc-notice-admin__field">
+                          <label className="wsc-notice-admin__field-label">&nbsp;</label>
+                          <button className="wsc-notice-admin__btn wsc-notice-admin__btn--purple wsc-notice-admin__btn--full" onClick={loadIndividualMessages} disabled={loading}>
+                            <i className="fa-solid fa-rotate"></i>
+                            Load Messages
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="wsc-notice-admin__notice-list">
+                        {individualList.length ? individualList.map(item => (
+                          <article className="wsc-notice-admin__notice-item individual" key={item.messageId || item.noticeId}>
+                            <div className="wsc-notice-admin__notice-top">
+                              <h3 className="wsc-notice-admin__notice-title">
+                                <i className="fa-solid fa-envelope"></i>
+                                Individual Message
+                              </h3>
+                              <strong>Student ID: {item.studentId || "-"}</strong>
+                            </div>
+
+                            <p className="wsc-notice-admin__notice-text">{item.message || item.notice}</p>
+
+                            <div className="wsc-notice-admin__meta">
+                              <span><i className="fa-solid fa-hashtag"></i>{item.messageId || item.noticeId}</span>
+                              <span><i className="fa-solid fa-calendar"></i>{formatDate(item.date)}</span>
+                              <span><i className="fa-solid fa-circle-check"></i>{item.status || "Active"}</span>
+                            </div>
+
+                            <div className="wsc-notice-admin__actions">
+                              <button className="wsc-notice-admin__btn wsc-notice-admin__btn--blue wsc-notice-admin__small-btn" onClick={() => editIndividualMessage(item)}>
+                                <i className="fa-solid fa-pen"></i> Edit
+                              </button>
+                              <button className="wsc-notice-admin__btn wsc-notice-admin__btn--danger wsc-notice-admin__small-btn" onClick={() => deleteIndividualMessage(item.messageId || item.noticeId)}>
+                                <i className="fa-solid fa-trash"></i> Delete
+                              </button>
+                            </div>
+                          </article>
+                        )) : (
+                          <div className="wsc-notice-admin__empty">
+                            <i className="fa-solid fa-inbox"></i>
+                            Individual message list empty. Load Messages চাপুন।
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </main>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+
+  </main>
+
+  <!-- JS files -->
+  <script src="assets/js/wsc-config.js"></script>
+  <script src="assets/js/wsc-layout.js"></script>
+  <script src="assets/js/wsc-search.js"></script>
+  <script src="assets/js/wsc-password.js"></script>
+</body>
+</html>
+

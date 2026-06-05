@@ -76,8 +76,8 @@ menuGroups: [
         icon: "https://res.cloudinary.com/do1dejkkk/image/upload/v1779713459/rent-sign-svgrepo-com_dhiblu.svg"
       },
       {
-        title: "অফিস টেমপ্লেট",
-        file: "office-template.html",
+        title: "নোটিশ",
+        file: "notice.html",
         icon: "https://res.cloudinary.com/do1dejkkk/image/upload/v1779713102/office-svgrepo-com_a3xuzm.svg"
       }
     ]
@@ -195,3 +195,4 @@ menuGroups: [
     { title: "I Love PDF", url: "https://www.ilovepdf.com", logo: "https://res.cloudinary.com/do1dejkkk/image/upload/v1779712094/love-svgrepo-com_dq6vaw.svg" }
   ]
 };
+
