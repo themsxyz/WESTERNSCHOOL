@@ -982,68 +982,55 @@
     }
 
     // ========== সিট প্লান ফাংশন (এক্সাম ড্রপডাউন সহ) ==========
-    const SITPLAN_APP_URL = "https://script.google.com/macros/s/AKfycby_TESJKvA4Z_wVAVGIjH8jE8Ko875kpK79886LP1eEv5e9bEgaxgEkl9FtxhY3HFBx/exec";
-
-    function sitplanSetStatus(message, type = "info") {
-      const statusDiv = document.getElementById("sitplan_status");
-      if (!statusDiv) return;
-      statusDiv.innerHTML = message;
-      statusDiv.classList.remove("loading", "success", "error");
-      if (type === "loading") statusDiv.classList.add("loading");
-      else if (type === "success") statusDiv.classList.add("success");
-      else if (type === "error") statusDiv.classList.add("error");
-    }
-
     async function sitplanGenerate() {
-      const classValue = document.getElementById("sitplan_cls").value;
-      const examValue = document.getElementById("sitplan_exam").value.trim();
-      const yearValue = document.getElementById("sitplan_year").value.trim();
+  const classValue = document.getElementById("sitplan_cls").value;
+  const examValue = document.getElementById("sitplan_exam").value.trim();
+  const yearValue = document.getElementById("sitplan_year").value.trim();
 
-      if (!classValue) {
-        sitplanSetStatus("❌ দয়া করে একটি শ্রেণি নির্বাচন করুন", "error");
-        return;
-      }
-      if (!examValue) {
-        sitplanSetStatus("❌ দয়া করে পরীক্ষার নাম নির্বাচন করুন", "error");
-        return;
-      }
-      if (!yearValue) {
-        sitplanSetStatus("❌ দয়া করে সাল লিখুন", "error");
-        return;
-      }
+  if (!classValue) {
+    sitplanSetStatus("❌ দয়া করে একটি শ্রেণি নির্বাচন করুন", "error");
+    return;
+  }
 
-      sitplanSetStatus('<span class="spinner"></span> সিট প্লান তৈরি হচ্ছে, দয়া করে অপেক্ষা করুন...', "loading");
+  if (!examValue) {
+    sitplanSetStatus("❌ দয়া করে পরীক্ষার নাম নির্বাচন করুন", "error");
+    return;
+  }
 
-      const payload = { class: classValue, examname: examValue, year: yearValue };
+  if (!yearValue) {
+    sitplanSetStatus("❌ দয়া করে সাল লিখুন", "error");
+    return;
+  }
 
-      try {
-        const response = await fetch(SITPLAN_APP_URL, {
-          method: "POST",
-          mode: "cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
-        let data;
-        try { data = await response.json(); } catch (e) { throw new Error("সার্ভার থেকে সঠিক উত্তর পাওয়া যায়নি"); }
-        if (data && data.url) {
-          sitplanSetStatus("✅ সিট প্লান সফলভাবে তৈরি হয়েছে!", "success");
-          window.open(data.url, "_blank");
-          setTimeout(() => {
-            if (document.getElementById("sitplan_status")) sitplanSetStatus("✅ প্রস্তুত — আরেকটি সিট প্লান তৈরি করুন", "info");
-          }, 4000);
-        } else {
-          const errorMsg = data?.error || "কিছু ভুল হয়েছে, আবার চেষ্টা করুন।";
-          sitplanSetStatus(`⚠️ ${errorMsg}`, "error");
-        }
-      } catch (error) {
-        console.error("সিটপ্লান ত্রুটি:", error);
-        sitplanSetStatus("❌ নেটওয়ার্ক সমস্যা বা সার্ভার উপলব্ধ নয়।", "error");
-      }
+  sitplanSetStatus('<span class="spinner"></span> সিট প্লান তৈরি হচ্ছে...', "loading");
+
+  const payload = {
+    operation: "sitplan",
+    class: classValue,
+    examname: examValue,
+    year: yearValue
+  };
+
+  try {
+    const response = await fetch(SITPLAN_APP_URL, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
+
+    const data = await response.json();
+
+    if (data && data.url) {
+      sitplanSetStatus("✅ সিট প্লান সফলভাবে তৈরি হয়েছে!", "success");
+      window.open(data.url, "_blank");
+    } else {
+      sitplanSetStatus(`⚠️ ${data.error || data.message || "কিছু ভুল হয়েছে"}`, "error");
     }
 
-    // প্রাথমিককরণ
-    admitAutoSetYear();
-    document.getElementById("sitplan_year")?.addEventListener("keypress", (e) => { if (e.key === "Enter") sitplanGenerate(); });
+  } catch (error) {
+    console.error("সিটপ্লান ত্রুটি:", error);
+    sitplanSetStatus("❌ নেটওয়ার্ক/CORS সমস্যা। Fetch header চেক করুন।", "error");
+  }
+}
   </script>
   </main>
 
