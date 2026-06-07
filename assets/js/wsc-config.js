@@ -183,7 +183,7 @@ menuGroups: [
   /* EDIT NAVBAR TOOLS HERE */
   toolsLinks: [
     { title: "Sheet", url: "https://sheets.google.com", logo: "https://res.cloudinary.com/do1dejkkk/image/upload/v1776594809/sheeet_g5yanj.png" },
-    { title: "Drive Folder", url: "https://drive.google.com/drive/folders/1nSfSwnd5YOZc7ofmrtMt2swhYbdDNykE?usp=sharing", logo: "https://res.cloudinary.com/do1dejkkk/image/upload/v1776761499/drive-color-svgrepo-com_zphbuz.svg" },
+    { title: "Drive Folder", url: "https://drive.google.com/drive/folders/1zFPCTbQX8CZJLGUNrO3oyT3OmOiyotCR?usp=drive_link", logo: "https://res.cloudinary.com/do1dejkkk/image/upload/v1776761499/drive-color-svgrepo-com_zphbuz.svg" },
     { title: "DeepSeek", url: "https://chat.deepseek.com", logo: "https://res.cloudinary.com/do1dejkkk/image/upload/v1776594809/deep_y24ygs.png" },
     { title: "Calendar", url: "https://calendar.google.com", logo: "https://res.cloudinary.com/do1dejkkk/image/upload/v1779712095/calander-interface-icon-svgrepo-com_ffvblj.svg" },
     { title: "Google Task", url: "https://tasks.google.com", logo: "https://res.cloudinary.com/do1dejkkk/image/upload/v1779712094/task-square-svgrepo-com_qdguzl.svg" },
